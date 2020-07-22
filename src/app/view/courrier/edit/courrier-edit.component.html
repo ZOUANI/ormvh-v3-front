@@ -1,0 +1,339 @@
+<!-- <div class="card col-md-8 mx-auto  p-md-2">
+    <div class="card-header text-center font-weight-bold">Edit Courriers</div> 
+    <div class="card-body">
+            <div class="row my-1 ">
+                <label>Available Courriers</label>
+                <select class="form-control" [(ngModel)]="courrier.idCourrier" (click)="findByidCourrier(courrier.idCourrier)" >
+                    <option *ngFor="let p of editableCourriers" [ngValue]="p.idCourrier" value="{{p.idCourrier}}">{{p.idCourrier}}</option>
+                </select>
+            </div>
+        
+                <div class="row py-2">
+                    <label>instruction</label>
+                    <input type="text" class="form-control" [placeholder]="courrier.instruction" [(ngModel)] = "courrier.instruction">
+                </div>
+                <div class="row py-2">
+                    <label>expediteurDesc</label>
+                    <input type="text" class="form-control" [placeholder]="courrier.expediteurDesc" [(ngModel)] = "courrier.expediteurDesc">
+                </div>
+                <div class="row py-2">
+                        <label>sentAt</label>
+                        <input type="date" class="col-md-12" [(ngModel)] = "courrier.sentAt">
+                </div>
+                <div class="row py-2">
+                    <label>destinataireDesc</label>
+                    <input type="text" class="form-control" [placeholder]="courrier.destinataireDesc" [(ngModel)] = "courrier.destinataireDesc">
+                </div>
+                <div class="row py-2">
+                    <label>destinataireVille</label>
+                    <input type="text" class="form-control" [placeholder]="courrier.destinataireVille" [(ngModel)] = "courrier.destinataireVille">
+                </div>
+                <div class="row py-2">
+                    <label>relance</label>
+                    <input type="text" class="form-control" [placeholder]="courrier.relance" [(ngModel)] = "courrier.relance">
+                </div>
+                <div class="row py-2">
+                        <label>dateRelance</label>
+                        <input type="date" class="col-md-12" [(ngModel)] = "courrier.dateRelance">
+                </div>
+                <div class="row py-2">
+                    <label>accuse</label>
+                    <input type="text" class="form-control" [placeholder]="courrier.accuse" [(ngModel)] = "courrier.accuse">
+                </div>
+                <div class="row py-2">
+                    <label>reponse</label>
+                    <input type="text" class="form-control" [placeholder]="courrier.reponse" [(ngModel)] = "courrier.reponse">
+                </div>
+                <div class="row py-2">
+                        <label>dateAccuse</label>
+                        <input type="date" class="col-md-12" [(ngModel)] = "courrier.dateAccuse">
+                </div>
+                <div class="row py-2">
+                        <label>dateReponse</label>
+                        <input type="date" class="col-md-12" [(ngModel)] = "courrier.dateReponse">
+                </div>
+                <div class="row py-2">
+                        <label>receivedAt</label>
+                        <input type="date" class="col-md-12" [(ngModel)] = "courrier.receivedAt">
+                </div>
+                <div class="row py-2">
+                    <label>idCourrier</label>
+                    <input type="text" class="form-control" [placeholder]="courrier.idCourrier" [(ngModel)] = "courrier.idCourrier">
+                </div>
+                <div class="row py-2">
+                    <label>subject</label>
+                    <input type="text" class="form-control" [placeholder]="courrier.subject" [(ngModel)] = "courrier.subject">
+                </div>
+                <div class="row py-2">
+                    <label>description</label>
+                    <input type="text" class="form-control" [placeholder]="courrier.description" [(ngModel)] = "courrier.description">
+                </div>
+                <div class="row py-2">
+                        <label>createdAt</label>
+                        <input type="date" class="col-md-12" [(ngModel)] = "courrier.createdAt">
+                </div>
+                <div class="row py-2">
+                        <label>updatedAt</label>
+                        <input type="date" class="col-md-12" [(ngModel)] = "courrier.updatedAt">
+                </div>
+                <div class="row py-2">
+                    <label>delai</label>
+                    <input type="text" class="form-control" [placeholder]="courrier.delai" [(ngModel)] = "courrier.delai">
+                </div>
+            
+                <div class="row m-md-2 p-md-1" >
+                    <label>courrierObject</label>
+                    <select class="form-control" [(ngModel)]="courrier.courrierObjectVo.title" >
+                        <option *ngFor="let p of courrierObjects" [ngValue]="p.title" value="{{p.title}}">{{p.title}}</option>
+                    </select>
+                </div>
+                <div class="row m-md-2 p-md-1" >
+                    <label>voie</label>
+                    <select class="form-control" [(ngModel)]="courrier.voieVo.libelle" >
+                        <option *ngFor="let p of voies" [ngValue]="p.libelle" value="{{p.libelle}}">{{p.libelle}}</option>
+                    </select>
+                </div>
+                <div class="row m-md-2 p-md-1" >
+                    <label>natureCourrier</label>
+                    <select class="form-control" [(ngModel)]="courrier.natureCourrierVo.libelle" >
+                        <option *ngFor="let p of natureCourriers" [ngValue]="p.libelle" value="{{p.libelle}}">{{p.libelle}}</option>
+                    </select>
+                </div>
+                <div class="row m-md-2 p-md-1" >
+                    <label>linkedTo</label>
+                    <select class="form-control" [(ngModel)]="courrier.linkedToVo.idCourrier" >
+                        <option *ngFor="let p of linkedTos" [ngValue]="p.idCourrier" value="{{p.idCourrier}}">{{p.idCourrier}}</option>
+                    </select>
+                </div>
+                <div class="row m-md-2 p-md-1" >
+                    <label>expeditor</label>
+                    <select class="form-control" [(ngModel)]="courrier.expeditorVo.title" >
+                        <option *ngFor="let p of expeditors" [ngValue]="p.title" value="{{p.title}}">{{p.title}}</option>
+                    </select>
+                </div>
+                <div class="row m-md-2 p-md-1" >
+                    <label>destinator</label>
+                    <select class="form-control" [(ngModel)]="courrier.destinatorVo.title" >
+                        <option *ngFor="let p of destinators" [ngValue]="p.title" value="{{p.title}}">{{p.title}}</option>
+                    </select>
+                </div>
+                <div class="row m-md-2 p-md-1" >
+                    <label>coordinator</label>
+                    <select class="form-control" [(ngModel)]="courrier.coordinatorVo.title" >
+                        <option *ngFor="let p of coordinators" [ngValue]="p.title" value="{{p.title}}">{{p.title}}</option>
+                    </select>
+                </div>
+                <div class="row m-md-2 p-md-1" >
+                    <label>emetteur</label>
+                    <select class="form-control" [(ngModel)]="courrier.emetteurVo.title" >
+                        <option *ngFor="let p of emetteurs" [ngValue]="p.title" value="{{p.title}}">{{p.title}}</option>
+                    </select>
+                </div>
+                <div class="row m-md-2 p-md-1" >
+                    <label>evaluation</label>
+                    <select class="form-control" [(ngModel)]="courrier.evaluationVo.title" >
+                        <option *ngFor="let p of evaluations" [ngValue]="p.title" value="{{p.title}}">{{p.title}}</option>
+                    </select>
+                </div>
+                <div class="row m-md-2 p-md-1" >
+                    <label>expeditorType</label>
+                    <select class="form-control" [(ngModel)]="courrier.expeditorTypeVo.title" >
+                        <option *ngFor="let p of expeditorTypes" [ngValue]="p.title" value="{{p.title}}">{{p.title}}</option>
+                    </select>
+                </div>
+                <div class="row m-md-2 p-md-1" >
+                    <label>subdivision</label>
+                    <select class="form-control" [(ngModel)]="courrier.subdivisionVo.title" >
+                        <option *ngFor="let p of subdivisions" [ngValue]="p.title" value="{{p.title}}">{{p.title}}</option>
+                    </select>
+                </div>
+                <div class="row m-md-2 p-md-1" >
+                    <label>status</label>
+                    <select class="form-control" [(ngModel)]="courrier.statusVo.libelle" >
+                        <option *ngFor="let p of statuss" [ngValue]="p.libelle" value="{{p.libelle}}">{{p.libelle}}</option>
+                    </select>
+                </div>
+                <div class="row m-md-2 p-md-1" >
+                    <label>typeCourrier</label>
+                    <select class="form-control" [(ngModel)]="courrier.typeCourrierVo.libelle" >
+                        <option *ngFor="let p of typeCourriers" [ngValue]="p.libelle" value="{{p.libelle}}">{{p.libelle}}</option>
+                    </select>
+                </div>
+                <div class="row m-md-2 p-md-1" >
+                    <label>createdBy</label>
+                    <select class="form-control" [(ngModel)]="courrier.createdByVo.username" >
+                        <option *ngFor="let p of createdBys" [ngValue]="p.username" value="{{p.username}}">{{p.username}}</option>
+                    </select>
+                </div>
+                <div class="row m-md-2 p-md-1" >
+                    <label>updatedBy</label>
+                    <select class="form-control" [(ngModel)]="courrier.updatedByVo.username" >
+                        <option *ngFor="let p of updatedBys" [ngValue]="p.username" value="{{p.username}}">{{p.username}}</option>
+                    </select>
+                </div>
+                <div class="card row">
+                    <div class="card-header">Add tasks</div>
+                    <div class="card-body">
+                        <div class="row">
+                                    <div class="col-md-6 py-2">
+                                            <label>createdAt</label>
+                                            <input class="col-md-12" [(ngModel)] = "task.createdAt">
+                                    </div>
+                                    <div class="col-md-6 py-2">
+                                            <label>updatedAt</label>
+                                            <input class="col-md-12" [(ngModel)] = "task.updatedAt">
+                                    </div>
+                                    <div class="col-md-6 py-2">
+                                            <label>assignedAt</label>
+                                            <input class="col-md-12" [(ngModel)] = "task.assignedAt">
+                                    </div>
+                                    <div class="col-md-6 py-2">
+                                            <label>dateAccuse</label>
+                                            <input class="col-md-12" [(ngModel)] = "task.dateAccuse">
+                                    </div>
+                                    <div class="col-md-6 py-2">
+                                            <label>dateReponse</label>
+                                            <input class="col-md-12" [(ngModel)] = "task.dateReponse">
+                                    </div>
+                                    <div class="col-md-6 py-2">
+                                            <label>processedAt</label>
+                                            <input class="col-md-12" [(ngModel)] = "task.processedAt">
+                                    </div>
+                                <div class="col-md-6 py-2"><label>delai</label>
+                                    <input type="text" class="form-control" [(ngModel)] = "task.delai" >
+                                </div>
+                                <div class="col-md-6 py-2"><label>relance</label>
+                                    <input type="text" class="form-control" [(ngModel)] = "task.relance" >
+                                </div>
+                                <div class="col-md-6 py-2"><label>accuse</label>
+                                    <input type="text" class="form-control" [(ngModel)] = "task.accuse" >
+                                </div>
+                                <div class="col-md-6 py-2"><label>reponse</label>
+                                    <input type="text" class="form-control" [(ngModel)] = "task.reponse" >
+                                </div>
+                                <div class="col-md-6 py-2"><label>title</label>
+                                    <input type="text" class="form-control" [(ngModel)] = "task.title" >
+                                </div>
+                                <div class="col-md-6 py-2"><label>description</label>
+                                    <input type="text" class="form-control" [(ngModel)] = "task.description" >
+                                </div>
+                                <div class="col-md-6 py-2"><label>observation</label>
+                                    <input type="text" class="form-control" [(ngModel)] = "task.observation" >
+                                </div>
+                                    <div class="col-md-6 py-2"><label>updatedBy username</label>
+                                        <input type="text" class="form-control" [(ngModel)] = "task.updatedByVo.username">
+                                    </div>
+                                    <div class="col-md-6 py-2"><label>courrier idCourrier</label>
+                                        <input type="text" class="form-control" [(ngModel)] = "task.courrierVo.idCourrier">
+                                    </div>
+                                    <div class="col-md-6 py-2"><label>assigne username</label>
+                                        <input type="text" class="form-control" [(ngModel)] = "task.assigneVo.username">
+                                    </div>
+                                    <div class="col-md-6 py-2"><label>createdBy username</label>
+                                        <input type="text" class="form-control" [(ngModel)] = "task.createdByVo.username">
+                                    </div>
+                                    <div class="col-md-6 py-2"><label>status libelle</label>
+                                        <input type="text" class="form-control" [(ngModel)] = "task.statusVo.libelle">
+                                    </div>
+                        </div>
+                        <div class="card-footer">
+                            <button class="btn btn-outline-danger btn-block" (click)="addTask()">+</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card row m-md-2 p-md-1 table-responsive">
+                    <div class="card-header">Added tasks</div>
+                    <div class="card-body">
+                        <table class="table table-hover table-striped">
+                            <thead>
+                                    <th>createdAt</th>
+                                    <th>updatedAt</th>
+                                    <th>assignedAt</th>
+                                    <th>dateAccuse</th>
+                                    <th>dateReponse</th>
+                                    <th>processedAt</th>
+                                    <th>delai</th>
+                                    <th>relance</th>
+                                    <th>accuse</th>
+                                    <th>reponse</th>
+                                    <th>title</th>
+                                    <th>description</th>
+                                    <th>observation</th>
+                                    <th>updatedBy username</th>
+                                    <th>courrier idCourrier</th>
+                                    <th>assigne username</th>
+                                    <th>createdBy username</th>
+                                    <th>status libelle</th>
+                                <th>Delete</th>
+                            </thead>
+                            <tbody>
+                            <tr *ngFor="let p of courrier.tasksVo;let i = index">
+                                    <td>{{p.createdAt}}</td>
+                                    <td>{{p.updatedAt}}</td>
+                                    <td>{{p.assignedAt}}</td>
+                                    <td>{{p.dateAccuse}}</td>
+                                    <td>{{p.dateReponse}}</td>
+                                    <td>{{p.processedAt}}</td>
+                                    <td>{{p.delai}}</td>
+                                    <td>{{p.relance}}</td>
+                                    <td>{{p.accuse}}</td>
+                                    <td>{{p.reponse}}</td>
+                                    <td>{{p.title}}</td>
+                                    <td>{{p.description}}</td>
+                                    <td>{{p.observation}}</td>
+                                        <td>{{p.updatedByVo.username}}</td>
+                                        <td>{{p.courrierVo.idCourrier}}</td>
+                                        <td>{{p.assigneVo.username}}</td>
+                                        <td>{{p.createdByVo.username}}</td>
+                                        <td>{{p.statusVo.libelle}}</td>
+                                    <td><button class="btn btn-dark fa fa-trash" (click)="removeTask(i)"></button></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="card row">
+                    <div class="card-header">Add courrierServiceItems</div>
+                    <div class="card-body">
+                        <div class="row">
+                                <div class="col-md-6 py-2"><label>id</label>
+                                    <input type="text" class="form-control" [(ngModel)] = "courrierServiceItem.id" >
+                                </div>
+                                    <div class="col-md-6 py-2"><label>courrier idCourrier</label>
+                                        <input type="text" class="form-control" [(ngModel)] = "courrierServiceItem.courrierVo.idCourrier">
+                                    </div>
+                                    <div class="col-md-6 py-2"><label>service title</label>
+                                        <input type="text" class="form-control" [(ngModel)] = "courrierServiceItem.serviceVo.title">
+                                    </div>
+                        </div>
+                        <div class="card-footer">
+                            <button class="btn btn-outline-danger btn-block" (click)="addCourrierServiceItem()">+</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card row m-md-2 p-md-1 table-responsive">
+                    <div class="card-header">Added courrierServiceItems</div>
+                    <div class="card-body">
+                        <table class="table table-hover table-striped">
+                            <thead>
+                                <th>id</th>
+                                    <th>courrier idCourrier</th>
+                                    <th>service title</th>
+                                <th>Delete</th>
+                            </thead>
+                            <tbody>
+                            <tr *ngFor="let p of courrier.courrierServiceItemsVo;let i = index">
+                                    <td>{{p.id}}</td>
+                                        <td>{{p.courrierVo.idCourrier}}</td>
+                                        <td>{{p.serviceVo.title}}</td>
+                                    <td><button class="btn btn-dark fa fa-trash" (click)="removeCourrierServiceItem(i)"></button></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+        <div class="card-footer" >
+            <button class="form-control" (click)="editCourrier()" >Edit</button>
+        </div>
+    </div>
+</div> -->

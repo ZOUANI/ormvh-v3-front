@@ -1,0 +1,140 @@
+
+<div class="container">
+  <div class="row">
+    <div id="accordion" class="col-12 my-3">
+      <div class="card">
+        <div class="card-header border-0 bg-white" id="headingSearch">
+          
+            <button class="btn btn-info  btn-sm fa fa-filter" data-toggle="collapse" data-target="#search" aria-expanded="true" aria-controls="search">
+              <h5 class="float-right">Search Forms</h5>
+            </button>
+         
+        </div>
+
+        <div id="search" class="collapse" aria-labelledby="headingSearch" data-parent="#accordion">
+          <div class="card-body">
+            <div class="container">
+              <div class = "row">
+               <div class="form-row">
+   
+              <div class="input-group  col-3  my-2">
+<small class="text-muted col-12">id</small>
+<input type="text" class="form-control col-12" placeholder="id" [(ngModel)]="courrierObjectSearch.id">
+             </div>
+              <div class="input-group  col-3  my-2">
+<small class="text-muted col-12">title</small>
+<input type="text" class="form-control col-12" placeholder="title" [(ngModel)]="courrierObjectSearch.title">
+             </div>
+              <div class="input-group  col-3  my-2">
+<small class="text-muted col-12">titleArab</small>
+<input type="text" class="form-control col-12" placeholder="titleArab" [(ngModel)]="courrierObjectSearch.titleArab">
+             </div>
+              <div class="input-group  col-3  my-2">
+<small class="text-muted col-12">code</small>
+<input type="text" class="form-control col-12" placeholder="code" [(ngModel)]="courrierObjectSearch.code">
+             </div>
+              <div class="input-group  col-4  my-2">
+    <div class="col-5 mx-1 px-1">
+                    <div class="p-grid ui-fluid">
+                        <small class="text-muted">createdAt Min</small>
+                        <p-calendar class="p-col-12" dateFormat="yy-mm-dd" [(ngModel)] = "courrierObjectSearch.createdAtMin"></p-calendar>
+                    </div>
+    </div>
+    <div class="col-5 mx-1 px-1">
+                    <div class="p-grid ui-fluid">
+                        <small class="text-muted">createdAt Max</small>
+                        <p-calendar class="p-col-12" dateFormat="yy-mm-dd" [(ngModel)] = "courrierObjectSearch.createdAtMax"></p-calendar>
+                    </div>
+    </div>
+
+             </div>
+              <div class="input-group  col-4  my-2">
+    <div class="col-5 mx-1 px-1">
+                    <div class="p-grid ui-fluid">
+                        <small class="text-muted">updatedAt Min</small>
+                        <p-calendar class="p-col-12" dateFormat="yy-mm-dd" [(ngModel)] = "courrierObjectSearch.updatedAtMin"></p-calendar>
+                    </div>
+    </div>
+    <div class="col-5 mx-1 px-1">
+                    <div class="p-grid ui-fluid">
+                        <small class="text-muted">updatedAt Max</small>
+                        <p-calendar class="p-col-12" dateFormat="yy-mm-dd" [(ngModel)] = "courrierObjectSearch.updatedAtMax"></p-calendar>
+                    </div>
+    </div>
+
+             </div>
+                <div class="input-group  col-4 my-2">
+                   <small class="text-muted col-12">createdBy</small>
+                    <select class="form-control col-12" [(ngModel)]="courrierObjectSearch.createdByVo" >
+                        <option *ngFor="let p of createdBys" [ngValue]="p" >{{p.username}}</option>
+                    </select>
+                 </div>
+                <div class="input-group  col-4 my-2">
+                   <small class="text-muted col-12">updatedBy</small>
+                    <select class="form-control col-12" [(ngModel)]="courrierObjectSearch.updatedByVo" >
+                        <option *ngFor="let p of updatedBys" [ngValue]="p" >{{p.username}}</option>
+                    </select>
+                 </div>
+              </div>    
+          </div>
+           <button class="btn btn-info btn-sm fa fa-search float-right px-5 py-2 my-4" (click)="findCourrierObject(courrierObjectSearch)"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  </div>
+<div class="row">
+  <div class="card col-12">
+    <div class="card-header bg-transparent">
+    <div class="float-left px-1"> <h5>List of courrierObjects. </h5></div>
+
+          <button class="btn btn-success btn-sm fa fa-plus float-right" (click)="createShow()"> Create a new courrierObject</button>
+          
+    </div>
+    <div class="card-body table-responsive">
+
+      <table class="table table-hover col-md-12">
+        <thead class="thead-dark">
+
+          <th>id</th>
+          <th>title</th>
+          <th>titleArab</th>
+          <th>code</th>
+          <th>createdAt</th>
+          <th>updatedAt</th>
+            <th>createdBy reference</th>
+            <th>updatedBy reference</th>
+     <th>Actions</th>
+  </thead>
+  <tbody>
+  <tr *ngFor="let p of courrierObjectListe">
+
+           <td>{{p.id}}</td>
+           <td>{{p.title}}</td>
+           <td>{{p.titleArab}}</td>
+           <td>{{p.code}}</td>
+           <td>{{p.createdAt}}</td>
+           <td>{{p.updatedAt}}</td>
+            <td>{{p.createdByVo?.username}}</td>
+            <td>{{p.updatedByVo?.username}}</td>
+ 
+
+<td><button class="btn btn-danger btn-sm fa fa-trash mx-md-1" (click)="delete(p)"></button>
+  <button class="btn btn-warning btn-sm fa fa-external-link mx-md-1" (click)="detailShow(p)"></button>
+    <button class="btn btn-info btn-sm fa fa-pencil mx-md-1" (click)="editShow(p)"></button>
+  
+  
+
+</td>
+
+</tr>
+  <app-courrierObject-edit *ngIf="courrierObjectShowEdit"></app-courrierObject-edit>
+  <app-courrierObject-create *ngIf="courrierObjectShowCreate"></app-courrierObject-create>
+<app-courrierObject-details *ngIf="courrierObjectShowDetail"></app-courrierObject-details>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>

@@ -1,0 +1,77 @@
+     <app-expeditor></app-expeditor>
+<div class="card col-md-8 mx-auto  p-md-2">
+    <div class="card-header text-center font-weight-bold">Edit Expeditors</div> 
+    <div class="card-body">
+            <div class="row my-1 ">
+                <label>Available Expeditors</label>
+                <select class="form-control" [(ngModel)]="expeditor.title" (click)="findBytitle(expeditor.title)" >
+                    <option *ngFor="let p of editableExpeditors" [ngValue]="p.title" value="{{p.title}}">{{p.title}}</option>
+                </select>
+            </div>
+        
+                <div class="row py-2">
+                    <label>adress</label>
+                    <input type="text" class="form-control" [placeholder]="expeditor.adress" [(ngModel)] = "expeditor.adress">
+                </div>
+                <div class="row py-2">
+                        <label>createdAt</label>
+                        <input type="date" class="col-md-12" [(ngModel)] = "expeditor.createdAt">
+                </div>
+                <div class="row py-2">
+                        <label>updatedAt</label>
+                        <input type="date" class="col-md-12" [(ngModel)] = "expeditor.updatedAt">
+                </div>
+                <div class="row py-2">
+                    <label>code</label>
+                    <input type="text" class="form-control" [placeholder]="expeditor.code" [(ngModel)] = "expeditor.code">
+                </div>
+                <div class="row py-2">
+                    <label>description</label>
+                    <input type="text" class="form-control" [placeholder]="expeditor.description" [(ngModel)] = "expeditor.description">
+                </div>
+                <div class="row py-2">
+                    <label>nature</label>
+                    <input type="text" class="form-control" [placeholder]="expeditor.nature" [(ngModel)] = "expeditor.nature">
+                </div>
+                <div class="row py-2">
+                    <label>age</label>
+                    <input type="text" class="form-control" [placeholder]="expeditor.age" [(ngModel)] = "expeditor.age">
+                </div>
+                <div class="row py-2">
+                    <label>title</label>
+                    <input type="text" class="form-control" [placeholder]="expeditor.title" [(ngModel)] = "expeditor.title">
+                </div>
+                <div class="row py-2">
+                    <label>titleArab</label>
+                    <input type="text" class="form-control" [placeholder]="expeditor.titleArab" [(ngModel)] = "expeditor.titleArab">
+                </div>
+            
+                <div class="row m-md-2 p-md-1" >
+                    <label>sexe</label>
+                    <select class="form-control" [(ngModel)]="expeditor.sexeVo.libelle" >
+                        <option *ngFor="let p of sexes" [ngValue]="p.libelle" value="{{p.libelle}}">{{p.libelle}}</option>
+                    </select>
+                </div>
+                <div class="row m-md-2 p-md-1" >
+                    <label>nationality</label>
+                    <select class="form-control" [(ngModel)]="expeditor.nationalityVo.libelle" >
+                        <option *ngFor="let p of nationalitys" [ngValue]="p.libelle" value="{{p.libelle}}">{{p.libelle}}</option>
+                    </select>
+                </div>
+                <div class="row m-md-2 p-md-1" >
+                    <label>createdBy</label>
+                    <select class="form-control" [(ngModel)]="expeditor.createdByVo.username" >
+                        <option *ngFor="let p of createdBys" [ngValue]="p.username" value="{{p.username}}">{{p.username}}</option>
+                    </select>
+                </div>
+                <div class="row m-md-2 p-md-1" >
+                    <label>updatedBy</label>
+                    <select class="form-control" [(ngModel)]="expeditor.updatedByVo.username" >
+                        <option *ngFor="let p of updatedBys" [ngValue]="p.username" value="{{p.username}}">{{p.username}}</option>
+                    </select>
+                </div>
+        <div class="card-footer" >
+            <button class="form-control" (click)="editExpeditor()" >Edit</button>
+        </div>
+    </div>
+</div>

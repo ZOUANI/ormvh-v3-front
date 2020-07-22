@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="row">
+  
+</div>
+<div class="row">
+  <div class="card col-12">
+    <div class="card-header bg-transparent">
+      <div class="float-left px-1">
+        <h5>List of courriers. </h5>
+      </div>
+
+    </div>
+    <div class="card-body table-responsive">
+
+      <table class="table table-hover col-md-12">
+        <thead class="thead-dark">
+
+          <th>id</th>
+          <th>subject</th>
+          <th>createdAt</th>
+          <th>status</th>
+          <th>type</th>
+          <th>voie</th>
+          <th>linkedTo</th>
+          <th>Actions</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let p of courrierListe">
+
+            <td>{{p.idCourrier}}</td>
+            <td>{{p.subject}}</td>
+            <td>{{p.createdAt}}</td>
+            <td>{{p.statusVo?.libelle}}</td>
+            <td>{{p.typeCourrierVo?.libelle}}</td>
+            <td>{{p.voieVo?.libelle}}</td>
+            <td>{{p.linkedToVo?.idCourrier}}</td>
+            <td><button class="btn btn-danger btn-sm fa fa-trash mx-md-1" (click)="delete(p)"></button>
+              <button class="btn btn-warning btn-sm fa fa-external-link mx-md-1" (click)="detailShow(p)"></button>
+            </td>
+
+          </tr>
+          <app-courrier-details *ngIf="courrierShowDetail"></app-courrier-details>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</div>

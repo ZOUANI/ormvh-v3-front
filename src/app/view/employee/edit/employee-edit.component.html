@@ -1,0 +1,54 @@
+<div class="modal" tabindex="-1" role="dialog" style="display: block;background-color: #000000bf;">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">edit Employee </h5>
+        <button type="button" class="close" aria-label="Close" (click)="editHide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+<div class="card col-md-12 mx-auto  p-md-2">
+   
+    <div class="card-body">
+        <div class="row">
+                <div class="col-md-6 py-2">
+                        <label>updatedAt</label>
+                        <input type="date" class="col-md-12" [(ngModel)] = "employee.updatedAt">
+                </div>
+                <div class="col-md-6 py-2">
+                        <label>createdAt</label>
+                        <input type="date" class="col-md-12" [(ngModel)] = "employee.createdAt">
+                </div>
+                <div class="col-md-6 py-2">
+                    <label>title</label>
+                    <input type="text" class="form-control" [placeholder]="employee.title" [(ngModel)] = "employee.title">
+                </div>
+            </div>
+                <div class="row m-md-2 p-md-1" >
+                    <label>updatedBy</label>
+                    <select class="form-control" [(ngModel)]="employee.updatedByVo.username" >
+                        <option *ngFor="let p of updatedBys" [ngValue]="p.username" value="{{p.username}}">{{p.username}}</option>
+                    </select>
+                </div>
+                <div class="row m-md-2 p-md-1" >
+                    <label>createdBy</label>
+                    <select class="form-control" [(ngModel)]="employee.createdByVo.username" >
+                        <option *ngFor="let p of createdBys" [ngValue]="p.username" value="{{p.username}}">{{p.username}}</option>
+                    </select>
+                </div>
+                <div class="row m-md-2 p-md-1" >
+                    <label>user</label>
+                    <select class="form-control" [(ngModel)]="employee.userVo.username" >
+                        <option *ngFor="let p of users" [ngValue]="p.username" value="{{p.username}}">{{p.username}}</option>
+                    </select>
+                </div>
+        <div class="card-footer" >
+            <button class="form-control" (click)="editEmployee()" >Edit</button>
+        </div>
+    </div>
+</div>
+       </div>
+	   </div>
+	   </div>
+	   </div>

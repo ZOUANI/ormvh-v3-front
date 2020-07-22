@@ -1,0 +1,60 @@
+<div class="modal" tabindex="-1" role="dialog" style="display: block;background-color: #000000bf;">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Create Voie </h5>
+        <button type="button" class="close" aria-label="Close" (click)="createHide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+<div class="card col-md-12 mx-auto  p-md-2">
+    
+    <div class="card-body">
+        <div class="row">
+                <div class="col-md-6 py-2">
+                    <div class="p-grid ui-fluid">
+                        <label>createdAt</label>
+                        <p-calendar class="p-col-12" dateFormat="yy-mm-dd" [(ngModel)] = "voie.createdAt"></p-calendar>
+                    </div>
+                </div>
+                <div class="col-md-6 py-2">
+                    <div class="p-grid ui-fluid">
+                        <label>updatedAt</label>
+                        <p-calendar class="p-col-12" dateFormat="yy-mm-dd" [(ngModel)] = "voie.updatedAt"></p-calendar>
+                    </div>
+                </div>
+                <div class="col-md-6 py-2">
+                    <label>libelleArab</label>
+                    <input type="text" class="form-control" [(ngModel)] = "voie.libelleArab">
+                </div>
+                <div class="col-md-6 py-2">
+                    <label>code</label>
+                    <input type="text" class="form-control" [(ngModel)] = "voie.code">
+                </div>
+                <div class="col-md-6 py-2">
+                    <label>libelle</label>
+                    <input type="text" class="form-control" [(ngModel)] = "voie.libelle">
+                </div>
+        </div>
+                <div class="row" >
+                    <label>createdBy</label>
+                    <select class="form-control" [(ngModel)]="voie.createdByVo.username" >
+                        <option *ngFor="let p of createdBys" [ngValue]="p.username" value="{{p.username}}">{{p.username}}</option>
+                    </select>
+                </div>
+                <div class="row" >
+                    <label>updatedBy</label>
+                    <select class="form-control" [(ngModel)]="voie.updatedByVo.username" >
+                        <option *ngFor="let p of updatedBys" [ngValue]="p.username" value="{{p.username}}">{{p.username}}</option>
+                    </select>
+                </div>
+        <div class="modal-footer" >
+            <button class="form-control" (click)="saveVoie()" >Save</button>
+        </div>
+    </div>
+</div>
+       </div>
+	   </div>
+	   </div>
+	   </div>

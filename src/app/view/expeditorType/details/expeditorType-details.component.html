@@ -1,0 +1,55 @@
+<div class="modal" tabindex="-1" role="dialog" style="display: block;background-color: #000000bf;">
+  <div class="modal-dialog modal-dialog-scrollable" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">details of ExpeditorType </h5>
+        <button type="button" class="close" aria-label="Close" (click)="detailHide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <table class="table table-hover">
+          <thead class="thead-dark">
+            <th>Field</th>
+            <th>Value</th>
+          </thead>
+          <tbody>
+           <tr >
+             <td>id</td>
+             <td>{{expeditorTypeDetail.id}} </td>
+           </tr>
+           <tr >
+             <td>title</td>
+             <td>{{expeditorTypeDetail.title}} </td>
+           </tr>
+           <tr >
+             <td>libelleArab</td>
+             <td>{{expeditorTypeDetail.libelleArab}} </td>
+           </tr>
+           <tr >
+             <td>code</td>
+             <td>{{expeditorTypeDetail.code}} </td>
+           </tr>
+           <tr >
+             <td>createdAt</td>
+             <td>{{expeditorTypeDetail.createdAt}} </td>
+           </tr>
+           <tr >
+             <td>updatedAt</td>
+             <td>{{expeditorTypeDetail.updatedAt}} </td>
+           </tr>
+           <tr >
+             <td>createdBy</td>
+           <td>{{expeditorTypeDetail.createdByVo.username}} </td>
+           </tr>
+           <tr >
+             <td>updatedBy</td>
+           <td>{{expeditorTypeDetail.updatedByVo.username}} </td>
+           </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</div>

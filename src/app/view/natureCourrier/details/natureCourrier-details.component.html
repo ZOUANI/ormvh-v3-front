@@ -1,0 +1,63 @@
+<div class="modal" tabindex="-1" role="dialog" style="display: block;background-color: #000000bf;">
+  <div class="modal-dialog modal-dialog-scrollable" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">details of NatureCourrier </h5>
+        <button type="button" class="close" aria-label="Close" (click)="detailHide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <table class="table table-hover">
+          <thead class="thead-dark">
+            <th>Field</th>
+            <th>Value</th>
+          </thead>
+          <tbody>
+           <tr >
+             <td>id</td>
+             <td>{{natureCourrierDetail.id}} </td>
+           </tr>
+           <tr >
+             <td>libelle</td>
+             <td>{{natureCourrierDetail.libelle}} </td>
+           </tr>
+           <tr >
+             <td>delai</td>
+             <td>{{natureCourrierDetail.delai}} </td>
+           </tr>
+           <tr >
+             <td>relance</td>
+             <td>{{natureCourrierDetail.relance}} </td>
+           </tr>
+           <tr >
+             <td>libelleArab</td>
+             <td>{{natureCourrierDetail.libelleArab}} </td>
+           </tr>
+           <tr >
+             <td>code</td>
+             <td>{{natureCourrierDetail.code}} </td>
+           </tr>
+           <tr >
+             <td>createdAt</td>
+             <td>{{natureCourrierDetail.createdAt}} </td>
+           </tr>
+           <tr >
+             <td>updatedAt</td>
+             <td>{{natureCourrierDetail.updatedAt}} </td>
+           </tr>
+           <tr >
+             <td>createdBy</td>
+           <td>{{natureCourrierDetail.createdByVo.username}} </td>
+           </tr>
+           <tr >
+             <td>updatedBy</td>
+           <td>{{natureCourrierDetail.updatedByVo.username}} </td>
+           </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</div>

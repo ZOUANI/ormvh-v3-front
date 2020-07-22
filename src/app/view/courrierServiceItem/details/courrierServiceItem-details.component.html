@@ -1,0 +1,35 @@
+<div class="modal" tabindex="-1" role="dialog" style="display: block;background-color: #000000bf;">
+  <div class="modal-dialog modal-dialog-scrollable" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">details of CourrierServiceItem </h5>
+        <button type="button" class="close" aria-label="Close" (click)="detailHide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <table class="table table-hover">
+          <thead class="thead-dark">
+            <th>Field</th>
+            <th>Value</th>
+          </thead>
+          <tbody>
+           <tr >
+             <td>id</td>
+             <td>{{courrierServiceItemDetail.id}} </td>
+           </tr>
+           <tr >
+             <td>courrier</td>
+           <td>{{courrierServiceItemDetail.courrierVo.idCourrier}} </td>
+           </tr>
+           <tr >
+             <td>service</td>
+           <td>{{courrierServiceItemDetail.serviceVo.title}} </td>
+           </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</div>

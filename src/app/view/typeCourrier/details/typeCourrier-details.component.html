@@ -1,0 +1,39 @@
+<div class="modal" tabindex="-1" role="dialog" style="display: block;background-color: #000000bf;">
+  <div class="modal-dialog modal-dialog-scrollable" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">details of TypeCourrier </h5>
+        <button type="button" class="close" aria-label="Close" (click)="detailHide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <table class="table table-hover">
+          <thead class="thead-dark">
+            <th>Field</th>
+            <th>Value</th>
+          </thead>
+          <tbody>
+           <tr >
+             <td>id</td>
+             <td>{{typeCourrierDetail.id}} </td>
+           </tr>
+           <tr >
+             <td>libelle</td>
+             <td>{{typeCourrierDetail.libelle}} </td>
+           </tr>
+           <tr >
+             <td>libelleArab</td>
+             <td>{{typeCourrierDetail.libelleArab}} </td>
+           </tr>
+           <tr >
+             <td>code</td>
+             <td>{{typeCourrierDetail.code}} </td>
+           </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</div>

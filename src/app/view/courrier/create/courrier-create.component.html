@@ -1,0 +1,242 @@
+<div class="card col-md-12 mx-auto p-md-2">
+    <div class="card-header text-center font-weight-bold">Create Courriers</div>
+    <div class="card-body from-ctn">
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label for="type-courrier">type</label>
+                <p-dropdown styleClass="form-control" selectId="type-courrier" [options]="typeCourriers" [(ngModel)]="courrier.typeCourrierVo"  optionLabel="libelle" dataKey="id"></p-dropdown>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="nature-courrier">nature</label>
+                <p-dropdown [options]="natureCourriers" styleClass="form-control"  selectId="nature-courrier"  [(ngModel)]="courrier.natureCourrierVo" optionLabel="libelle" dataKey="id"></p-dropdown>
+            </div>
+            <div class="form-group col-md-3">
+                <label  for="voie-courrier">voie</label>
+                <p-dropdown   styleClass="form-control"  selectId="voie-courrier"[options]="voies" [(ngModel)]="courrier.voieVo" optionLabel="libelle"  dataKey="id"></p-dropdown>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="status-courrier">status</label>
+                <p-dropdown styleClass="form-control" selectId="status-courrier" [options]="statuss" [(ngModel)]="courrier.statusVo"  optionLabel="libelle" dataKey="id"></p-dropdown>
+            </div>
+        </div>
+        
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="object-courrier">object</label>
+                <p-dropdown styleClass="form-control" selectId="object-courrier" [options]="courrierObjects" [(ngModel)]="courrier.courrierObjectVo" [filter]="true" dataKey="id"></p-dropdown>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="linked-courrier">linked</label>
+                <p-dropdown styleClass="form-control" selectId="linked-courrier"  [options]="linkedTos" [(ngModel)]="courrier.linkedToVo" [filter]="true" dataKey="id"></p-dropdown>
+           </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-12">
+                <label for="subject-courrier">subject</label>
+                <input type="text"  id="subject-courrier"  class="form-control" [(ngModel)]="courrier.subject">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="description-courrier">description</label>
+                <textarea  type="text"  id="description-courrier"  class="form-control" [(ngModel)]="courrier.description" rows="6"></textarea>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="instruction-courrier">instruction</label>
+                <textarea  type="text"  id="instruction-courrier"  class="form-control" [(ngModel)]="courrier.instruction" rows="6"></textarea>
+            </div>
+        </div>
+       
+        <div class="row py-2">
+            <label>expediteurDesc</label>
+            <input type="text" class="form-control" [(ngModel)]="courrier.expediteurDesc">
+        </div>
+        <div class="row py-2">
+            <div class="p-grid ui-fluid">
+                <label>sentAt</label>
+                <p-calendar class="p-col-12" dateFormat="yy-mm-dd" [(ngModel)]="courrier.sentAt" ></p-calendar>
+            </div>
+        </div>
+        <div class="row py-2">
+            <label>destinataireDesc</label>
+            <input type="text" class="form-control" [(ngModel)]="courrier.destinataireDesc">
+        </div>
+        <div class="row py-2">
+            <label>destinataireVille</label>
+            <input type="text" class="form-control" [(ngModel)]="courrier.destinataireVille">
+        </div>
+        <div class="row py-2">
+            <label>relance</label>
+            <input type="text" class="form-control" [(ngModel)]="courrier.relance">
+        </div>
+        <div class="row py-2">
+            <div class="p-grid ui-fluid">
+                <label>dateRelance</label>
+                <p-calendar class="p-col-12" dateFormat="yy-mm-dd" [(ngModel)]="courrier.dateRelance"></p-calendar>
+            </div>
+        </div>
+        <div class="row py-2">
+            <label>accuse</label>
+            <input type="text" class="form-control" [(ngModel)]="courrier.accuse">
+        </div>
+        <div class="row py-2">
+            <label>reponse</label>
+            <input type="text" class="form-control" [(ngModel)]="courrier.reponse">
+        </div>
+
+      
+
+        <div class="row py-2">
+            <label>delai</label>
+            <input type="text" class="form-control" [(ngModel)]="courrier.delai">
+        </div>
+
+        <div class="row">
+            <label>expeditor</label>
+            <p-dropdown [options]="expeditors" [(ngModel)]="courrier.expeditorVo" [filter]="true" dataKey="id"></p-dropdown>
+        </div>
+        <div class="row">
+            <label>expeditorType</label>
+            <p-dropdown [options]="expeditorTypes" [(ngModel)]="courrier.expeditorTypeVo" [filter]="true" dataKey="id"></p-dropdown>
+        </div>
+        <div class="row">
+            <label>destinator</label>
+            <p-dropdown [options]="expeditors" [(ngModel)]="courrier.destinatorVo" [filter]="true" dataKey="id"></p-dropdown>
+        </div>
+        <div class="row">
+            <label>coordinator</label>
+            <p-dropdown [options]="leServices" [(ngModel)]="courrier.coordinatorVo" [filter]="true" dataKey="id"></p-dropdown>
+        </div>
+        <div class="row">
+            <label>emetteur</label>
+            <p-dropdown [options]="leServices" [(ngModel)]="courrier.emetteurVo" [filter]="true" dataKey="id"></p-dropdown>
+        </div>
+        <div class="row">
+            <label>evaluation</label>
+            <p-dropdown [options]="evaluations" [(ngModel)]="courrier.evaluationVo" [filter]="true" dataKey="id" ></p-dropdown>
+        </div>
+       
+        <div class="row">
+            <label>subdivision</label>
+            <p-dropdown [options]="subdivisions" [(ngModel)]="courrier.subdivisionVo" [filter]="true" dataKey="id"></p-dropdown>
+
+        </div>
+      
+        <div class="card row">
+            <div class="card-header">Add tasks</div>
+            <div class="card-body">
+                <div class="row">
+<!-- 
+                    <div class="col-md-6 py-2">
+                        <div class="p-grid ui-fluid">
+                            <label>dateAccuse</label>
+                            <p-calendar class="p-col-12" dateFormat="yy-mm-dd" [(ngModel)]="task.dateAccuse">
+                            </p-calendar>
+                        </div>
+                    </div>
+                    <div class="col-md-6 py-2">
+                        <div class="p-grid ui-fluid">
+                            <label>dateReponse</label>
+                            <p-calendar class="p-col-12" dateFormat="yy-mm-dd" [(ngModel)]="task.dateReponse">
+                            </p-calendar>
+                        </div>
+                    </div> -->
+
+                    <!-- <div class="col-md-6 py-2"><label>delai</label>
+                        <input type="text" class="form-control" [(ngModel)]="task.delai">
+                    </div>
+                    <div class="col-md-6 py-2"><label>relance</label>
+                        <input type="text" class="form-control" [(ngModel)]="task.relance">
+                    </div>
+                    <div class="col-md-6 py-2"><label>accuse</label>
+                        <input type="text" class="form-control" [(ngModel)]="task.accuse">
+                    </div>
+                    <div class="col-md-6 py-2"><label>reponse</label>
+                        <input type="text" class="form-control" [(ngModel)]="task.reponse">
+                    </div> -->
+                    <div class="col-md-6 py-2"><label>title</label>
+                        <input type="text" class="form-control" [(ngModel)]="task.title">
+                    </div>
+                    <div class="col-md-6 py-2">
+                        <label>status</label>
+                        
+                        <p-dropdown [options]="statuss" [(ngModel)]="task.statusVo"  optionLabel="libelle" [filter]="true" dataKey="id"></p-dropdown>
+                    </div>
+                    <div class="col-md-6 py-2">
+                        <label>assigne to</label>
+                        <p-dropdown [options]="users" [(ngModel)]="task.assigneVo" [showClear]="true"  optionLabel="username" [filter]="true" dataKey="id"></p-dropdown>
+                    </div>
+                    <div class="col-md-6 py-2"><label>description</label>
+                        <input type="text" class="form-control" [(ngModel)]="task.description">
+                    </div>
+                    <div class="col-md-6 py-2"><label>observation</label>
+                        <input type="text" class="form-control" [(ngModel)]="task.observation">
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-outline-danger btn-block" (click)="addTask()">+</button>
+                </div>
+            </div>
+        </div>
+        <div class="card row table-responsive">
+            <div class="card-header">Added tasks</div>
+            <div class="card-body">
+                <table class="table table-hover table-striped">
+                    <thead>
+                        
+                        <th>title</th>
+                        <th>status</th>
+                        <th>Delete</th>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let p of courrier.tasksVo;let i = index">
+                            <td>{{p.title}}</td>
+                            <td>{{p.statusVo.libelle}}</td>
+                            <td><button class="btn btn-dark fa fa-trash" (click)="removeTask(i)"></button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="card row">
+            <div class="card-header">Add Service</div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6 py-2"><label>service</label>
+                        <!-- <input type="text" class="form-control" [(ngModel)]="courrierServiceItem.serviceVo.title"> -->
+                        <p-dropdown [options]="changedServices" [(ngModel)]="courrierServiceItem.serviceVo"  optionLabel="title" [filter]="true" dataKey="id"></p-dropdown>
+
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-outline-danger btn-block" (click)="addCourrierServiceItem()">+</button>
+                </div>
+            </div>
+        </div>
+        <div class="card row table-responsive">
+            <div class="card-header">Services</div>
+            <div class="card-body">
+                <div class="service-badge" *ngFor="let item of courrier.courrierServiceItemsVo;let i = index">
+                        {{item.serviceVo.title}}
+                </div>
+                <!-- <table class="table table-hover table-striped">
+                    <thead>
+                        <th>service</th>
+                        <th>Delete</th>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let p of courrier.courrierServiceItemsVo;let i = index">
+                        
+                            <td>{{p.serviceVo.title}}</td>
+                            <td><button class="btn btn-dark fa fa-trash"
+                                    (click)="removeCourrierServiceItem(i)"></button></td>
+                        </tr>
+                    </tbody>
+                </table> -->
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="form-control" (click)="saveCourrier()">Save</button>
+        </div>
+    </div>
+</div>

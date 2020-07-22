@@ -1,0 +1,105 @@
+    <app-task></app-task>
+<div class="card col-md-8 mx-auto  p-md-2">
+     <div class="card-header text-center font-weight-bold">Create Tasks</div> 
+    <div class="card-body">
+        
+                <div class="row py-2">
+                    <div class="p-grid ui-fluid">
+                        <label>createdAt</label>
+                        <p-calendar class="p-col-12" dateFormat="yy-mm-dd" [(ngModel)] = "task.createdAt"></p-calendar>
+                    </div>
+                </div>
+                <div class="row py-2">
+                    <div class="p-grid ui-fluid">
+                        <label>updatedAt</label>
+                        <p-calendar class="p-col-12" dateFormat="yy-mm-dd" [(ngModel)] = "task.updatedAt"></p-calendar>
+                    </div>
+                </div>
+                <div class="row py-2">
+                    <div class="p-grid ui-fluid">
+                        <label>assignedAt</label>
+                        <p-calendar class="p-col-12" dateFormat="yy-mm-dd" [(ngModel)] = "task.assignedAt"></p-calendar>
+                    </div>
+                </div>
+                <div class="row py-2">
+                    <div class="p-grid ui-fluid">
+                        <label>dateAccuse</label>
+                        <p-calendar class="p-col-12" dateFormat="yy-mm-dd" [(ngModel)] = "task.dateAccuse"></p-calendar>
+                    </div>
+                </div>
+                <div class="row py-2">
+                    <div class="p-grid ui-fluid">
+                        <label>dateReponse</label>
+                        <p-calendar class="p-col-12" dateFormat="yy-mm-dd" [(ngModel)] = "task.dateReponse"></p-calendar>
+                    </div>
+                </div>
+                <div class="row py-2">
+                    <div class="p-grid ui-fluid">
+                        <label>processedAt</label>
+                        <p-calendar class="p-col-12" dateFormat="yy-mm-dd" [(ngModel)] = "task.processedAt"></p-calendar>
+                    </div>
+                </div>
+                <div class="row py-2">
+                    <label>delai</label>
+                    <input type="text" class="form-control" [(ngModel)] = "task.delai">
+                </div>
+                <div class="row py-2">
+                    <label>relance</label>
+                    <input type="text" class="form-control" [(ngModel)] = "task.relance">
+                </div>
+                <div class="row py-2">
+                    <label>accuse</label>
+                    <input type="text" class="form-control" [(ngModel)] = "task.accuse">
+                </div>
+                <div class="row py-2">
+                    <label>reponse</label>
+                    <input type="text" class="form-control" [(ngModel)] = "task.reponse">
+                </div>
+                <div class="row py-2">
+                    <label>title</label>
+                    <input type="text" class="form-control" [(ngModel)] = "task.title">
+                </div>
+                <div class="row py-2">
+                    <label>description</label>
+                    <input type="text" class="form-control" [(ngModel)] = "task.description">
+                </div>
+                <div class="row py-2">
+                    <label>observation</label>
+                    <input type="text" class="form-control" [(ngModel)] = "task.observation">
+                </div>
+        
+                <div class="row" >
+                    <label>updatedBy</label>
+                    <select class="form-control" [(ngModel)]="task.updatedByVo.username" >
+                        <option *ngFor="let p of updatedBys" [ngValue]="p.username" value="{{p.username}}">{{p.username}}</option>
+                    </select>
+                </div>
+                <div class="row" >
+                    <label>courrier</label>
+                    <select class="form-control" [(ngModel)]="task.courrierVo.idCourrier" >
+                        <option *ngFor="let p of courriers" [ngValue]="p.idCourrier" value="{{p.idCourrier}}">{{p.idCourrier}}</option>
+                    </select>
+                </div>
+                <div class="row" >
+                    <label>assigne</label>
+                    <select class="form-control" [(ngModel)]="task.assigneVo.username" >
+                        <option *ngFor="let p of assignes" [ngValue]="p.username" value="{{p.username}}">{{p.username}}</option>
+                    </select>
+                </div>
+                <div class="row" >
+                    <label>createdBy</label>
+                    <select class="form-control" [(ngModel)]="task.createdByVo.username" >
+                        <option *ngFor="let p of createdBys" [ngValue]="p.username" value="{{p.username}}">{{p.username}}</option>
+                    </select>
+                </div>
+                <div class="row" >
+                    <label>status</label>
+                    <select class="form-control" [(ngModel)]="task.statusVo.libelle" >
+                        <option *ngFor="let p of statuss" [ngValue]="p.libelle" value="{{p.libelle}}">{{p.libelle}}</option>
+                    </select>
+                </div>
+        <div class="modal-footer" >
+            <button class="form-control" (click)="saveTask()" >Save</button>
+        </div>
+    </div>
+</div>
