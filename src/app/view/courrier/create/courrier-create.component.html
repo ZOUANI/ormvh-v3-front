@@ -1,6 +1,15 @@
 <div class="card col-md-12 mx-auto p-md-2">
     <div class="card-header text-center font-weight-bold">Create Courriers</div>
     <div class="card-body from-ctn">
+        <div class="row py-2">
+
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <button class="btn btn-outline-primary" (click)="generateId()" type="button">Generate</button>
+                </div>
+                <input type="text" class="form-control" [(ngModel)]="generatedId"  placeholder="idCourrier xxx_year">
+            </div>
+        </div>
         <div class="form-row">
             <div class="form-group col-md-3">
                 <label for="type-courrier">type</label>

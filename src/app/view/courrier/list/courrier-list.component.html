@@ -5,10 +5,8 @@
 <div class="row">
   <div class="card col-12">
     <div class="card-header bg-transparent">
-      <div class="float-left px-1">
-        <h5>List of courriers. </h5>
-      </div>
-
+      <div class="float-left px-1"> <h5>List of courriers. </h5></div>
+      <button class="btn btn-success btn-sm fa fa-plus float-right" (click)="showReservation()">Reserve Couriers</button>
     </div>
     <div class="card-body table-responsive">
 
@@ -31,7 +29,7 @@
             <td>{{p.subject}}</td>
             <td>{{p.createdAt}}</td>
             <td>{{p.statusVo?.libelle}}</td>
-            <td>{{p.typeCourrierVo?.libelle}}</td>
+            <td><span class="badge badge-pill badge-warning">{{p.typeCourrierVo?.libelle}}</span></td>
             <td>{{p.voieVo?.libelle}}</td>
             <td>{{p.linkedToVo?.idCourrier}}</td>
             <td><button class="btn btn-danger btn-sm fa fa-trash mx-md-1" (click)="delete(p)"></button>
@@ -40,6 +38,7 @@
 
           </tr>
           <app-courrier-details *ngIf="courrierShowDetail"></app-courrier-details>
+          <app-courrier-reservation *ngIf="reservationShow"></app-courrier-reservation>
         </tbody>
       </table>
     </div>

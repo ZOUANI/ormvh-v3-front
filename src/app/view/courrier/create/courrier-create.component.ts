@@ -107,9 +107,12 @@ export class CourrierCreateComponent implements OnInit {
     this.changedServices.push(this.courrier.courrierServiceItemsVo[i].serviceVo)
    this.courrierService.removeCourrierServiceItem(i);
   }
-   saveCourrier() {
-    this.courrierService.saveCourrier();
-  }
+
+    saveCourrier() {
+        this.courrier.idCourrier=this.generatedId
+        this.courrierService.saveCourrier();
+        this.generatedId=''
+    }
 
    findAllcourrierObjects() {
      this.courrierObjectService.findAllcourrierObjects().subscribe(data=>{    
@@ -250,5 +253,18 @@ export class CourrierCreateComponent implements OnInit {
         console.log(error);
       });
   }
-  
+    generateId(){
+        this.courrierService.generateId()
+    }
+
+    get generatedId(): string {
+        return this.courrierService.generatedId;
+    }
+
+
+    set generatedId(value: string) {
+        this.courrierService.generatedId = value;
+    }
+
+
 }

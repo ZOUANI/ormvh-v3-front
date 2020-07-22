@@ -87,6 +87,7 @@ import {VoieEditComponent} from './view/voie/edit/voie-edit.component';
 import {AppComponent} from './app.component';
 import {LandingPageComponent} from './landing-page/landing-page.component';
 import { CourrierComponent } from './view/courrier/courrier.component';
+import {CourrierReservationComponent} from './view/courrier/reservation/courrier-reservation.component';
 
 const routes: Routes = [
   { path: 'status', children: [
@@ -141,8 +142,10 @@ const routes: Routes = [
       {path: 'list', component: CourrierlistComponent},
       {path: 'create', component: CourrierCreateComponent},
       {path: 'details', component: CourrierDetailsComponent},
-      {path: 'edit', component: CourrierEditComponent}
-    ]},
+      {path: 'edit', component: CourrierEditComponent},
+          { path: 'reservation', component: CourrierReservationComponent }
+
+      ]},
   { path: 'modelLettreReponse', children: [
       {path: 'list', component: ModelLettreReponselistComponent},
       {path: 'create', component: ModelLettreReponseCreateComponent},

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CourrierVo} from '../../../controller/model/courrier.model';
 import {CourrierService} from '../../../controller/service/Courrier.service';
 import {UserVo} from '../../../controller/model/User.model';
@@ -16,75 +16,89 @@ import {VoieVo} from '../../../controller/model/Voie.model';
 import {LeServiceVo} from '../../../controller/model/LeService.model';
 
 @Component({
-  selector: 'app-courrier-list',
-  templateUrl: './courrier-list.component.html',
-  styleUrls: ['./courrier-list.component.css']
+    selector: 'app-courrier-list',
+    templateUrl: './courrier-list.component.html',
+    styleUrls: ['./courrier-list.component.css']
 })
 export class CourrierlistComponent implements OnInit {
 
-  constructor(private _courrierService : CourrierService) {}
-
-  
-  ngOnInit(): void {
-
-  }
-
-  get courrierService (): CourrierService {
-    return this._courrierService;
-  }
-
-  set courrierService (value: CourrierService) {
-    this._courrierService = value ;
-  }
-
-  get courrierListe (): Array<CourrierVo> {
-    return this.courrierService.courrierListe;
-  }
-
-  set courrierListe (value: Array<CourrierVo>) {
-    this.courrierService.courrierListe = value ;
-  }
-
-  get courrierDetail (): CourrierVo {
-    return this.courrierService.courrierDetail;
-}
-
-  set courrierDetail (value: CourrierVo) {
-  this.courrierService.courrierDetail = value ;
-}
-
-get courrierSearch (): CourrierVo {
-  return this.courrierService.courrierSearch;
-}
-
-set courrierSearch (value: CourrierVo) {
-  this.courrierService.courrierSearch = value ;
-}
+    constructor(private _courrierService: CourrierService) {
+    }
 
 
-get courrierShowDetail (): boolean  {
-  return this.courrierService.courrierShowDetail;
-}
+    ngOnInit(): void {
 
-set courrierShowDetail (value: boolean ) {
-  this.courrierService.courrierShowDetail = value ;
-}
+    }
+
+    get courrierService(): CourrierService {
+        return this._courrierService;
+    }
+
+    set courrierService(value: CourrierService) {
+        this._courrierService = value;
+    }
+
+    get courrierListe(): Array<CourrierVo> {
+        return this.courrierService.courrierListe;
+    }
+
+    set courrierListe(value: Array<CourrierVo>) {
+        this.courrierService.courrierListe = value;
+    }
+
+    get courrierDetail(): CourrierVo {
+        return this.courrierService.courrierDetail;
+    }
+
+    set courrierDetail(value: CourrierVo) {
+        this.courrierService.courrierDetail = value;
+    }
+
+    get courrierSearch(): CourrierVo {
+        return this.courrierService.courrierSearch;
+    }
+
+    set courrierSearch(value: CourrierVo) {
+        this.courrierService.courrierSearch = value;
+    }
 
 
-   delete( pojo : CourrierVo ) {
-    this.courrierService.delete(pojo);
-  }
+    get courrierShowDetail(): boolean {
+        return this.courrierService.courrierShowDetail;
+    }
+
+    set courrierShowDetail(value: boolean) {
+        this.courrierService.courrierShowDetail = value;
+    }
 
 
- detailShow( pojo : CourrierVo ) {
-  this.courrierService.detailShow( pojo);
+    delete(pojo: CourrierVo) {
+        this.courrierService.delete(pojo);
+    }
 
-}
 
- findCourrier(pojo : CourrierVo ) {
-  this.courrierService.findCourrier( pojo);
+    detailShow(pojo: CourrierVo) {
+        this.courrierService.detailShow(pojo);
 
-}
- 
+    }
+
+    findCourrier(pojo: CourrierVo) {
+        this.courrierService.findCourrier(pojo);
+
+    }
+
+
+    showReservation() {
+        this.courrierService.showReservation();
+    }
+
+
+    get reservationShow(): boolean {
+        return this.courrierService.reservationShow;
+    }
+
+    set reservationShow(value: boolean) {
+        this.courrierService.reservationShow = value;
+    }
 
 }
