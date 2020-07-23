@@ -121,6 +121,8 @@ import {OverlayPanelModule} from 'primeng/overlaypanel';
 
 import {MenuModule} from 'primeng/menu';
 import {CourrierReservationComponent} from './view/courrier/reservation/courrier-reservation.component';
+import {ChartModule} from 'primeng/chart';
+import {DashboardComponent} from './view/dashboard/dashboard.component';
 
 @NgModule({
     declarations: [
@@ -232,7 +234,8 @@ import {CourrierReservationComponent} from './view/courrier/reservation/courrier
         AppComponent,
         LandingPageComponent,
         NavbarComponent,
-        CourrierReservationComponent
+        CourrierReservationComponent,
+        DashboardComponent
 
     ],
     imports: [
@@ -244,7 +247,8 @@ import {CourrierReservationComponent} from './view/courrier/reservation/courrier
         CalendarModule,
         OverlayPanelModule,
         MenuModule,
-        DropdownModule
+        DropdownModule,
+        ChartModule,
     ],
     providers: [],
     bootstrap: [AppComponent]

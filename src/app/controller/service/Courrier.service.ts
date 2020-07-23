@@ -1,20 +1,10 @@
-import {
-    Injectable
-} from '@angular/core';
-import {
-    HttpClient
-} from '@angular/common/http';
-import {
-    CourrierVo
-} from '../model/courrier.model';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {CourrierVo} from '../model/courrier.model';
 
-import {
-    TaskVo
-} from '../model/Task.model';
+import {TaskVo} from '../model/Task.model';
 
-import {
-    CourrierServiceItemVo
-} from '../model/CourrierServiceItem.model';
+import {CourrierServiceItemVo} from '../model/CourrierServiceItem.model';
 
 @Injectable({
     providedIn: 'root'
@@ -31,15 +21,21 @@ export class CourrierService {
     private _courrierSearch: CourrierVo = new CourrierVo();
     private _courrier: CourrierVo = new CourrierVo();
     private _searchedCourriers: Array<CourrierVo> = new Array<CourrierVo>();
-    private _editableCourriers: Array<CourrierVo> = new Array<CourrierVo>()
-
+    private _editableCourriers: Array<CourrierVo> = new Array<CourrierVo>();
+    private _departCourriers: Array<CourrierVo> = new Array<CourrierVo>();
+    private _arrivedCourriers: Array<CourrierVo> = new Array<CourrierVo>();
+    private _ouvertCourriers: Array<CourrierVo> = new Array<CourrierVo>();
+    private _enCoursCourriers: Array<CourrierVo> = new Array<CourrierVo>();
+    private _traitedCourriers: Array<CourrierVo> = new Array<CourrierVo>();
+    private _accusedCourriers: Array<CourrierVo> = new Array<CourrierVo>();
+    private _responseCourriers: Array<CourrierVo> = new Array<CourrierVo>();
 
 
     private _task: TaskVo;
-    private _generatedId: string='';
-    private _generatedId2: string='';
-    private _reservationCourrier : CourrierVo = new CourrierVo();
-    private _reserveCourier : CourrierVo = new CourrierVo();
+    private _generatedId: string = '';
+    private _generatedId2: string = '';
+    private _reservationCourrier: CourrierVo = new CourrierVo();
+    private _reserveCourier: CourrierVo = new CourrierVo();
 
     get task(): TaskVo {
         if (this._task == null) {
@@ -116,6 +112,63 @@ export class CourrierService {
         this._editableCourriers = value;
     }
 
+
+    get departCourriers(): Array<CourrierVo> {
+        return this._departCourriers;
+    }
+
+    set departCourriers(value: Array<CourrierVo>) {
+        this._departCourriers = value;
+    }
+
+    get arrivedCourriers(): Array<CourrierVo> {
+        return this._arrivedCourriers;
+    }
+
+    set arrivedCourriers(value: Array<CourrierVo>) {
+        this._arrivedCourriers = value;
+    }
+
+    get ouvertCourriers(): Array<CourrierVo> {
+        return this._ouvertCourriers;
+    }
+
+    set ouvertCourriers(value: Array<CourrierVo>) {
+        this._ouvertCourriers = value;
+    }
+
+    get enCoursCourriers(): Array<CourrierVo> {
+        return this._enCoursCourriers;
+    }
+
+    set enCoursCourriers(value: Array<CourrierVo>) {
+        this._enCoursCourriers = value;
+    }
+
+    get traitedCourriers(): Array<CourrierVo> {
+        return this._traitedCourriers;
+    }
+
+    set traitedCourriers(value: Array<CourrierVo>) {
+        this._traitedCourriers = value;
+    }
+
+    get accusedCourriers(): Array<CourrierVo> {
+        return this._accusedCourriers;
+    }
+
+    set accusedCourriers(value: Array<CourrierVo>) {
+        this._accusedCourriers = value;
+    }
+
+    get responseCourriers(): Array<CourrierVo> {
+        return this._responseCourriers;
+    }
+
+    set responseCourriers(value: Array<CourrierVo>) {
+        this._responseCourriers = value;
+    }
+
     public findAll() {
         this.http.get <Array<CourrierVo>>('http://localhost:8080/generated/courrier/').subscribe(
             value => {
@@ -126,10 +179,81 @@ export class CourrierService {
         );
     }
 
+    public findAllDepartCourriers() {
+        this.http.get<Array<CourrierVo>>('http://localhost:8080/generated/courrier/typeCourrier/libelle/' + 'Départ').subscribe(
+            value => {
+                if (value != null) {
+                    this.departCourriers = value;
+                }
+            }
+        );
+    }
+
+    public findAllArrivedCourriers() {
+        this.http.get<Array<CourrierVo>>('http://localhost:8080/generated/courrier/typeCourrier/libelle/' + 'Arrivée').subscribe(
+            value => {
+                if (value != null) {
+                    this.arrivedCourriers = value;
+                }
+            }
+        );
+    }
+
+    public findAllOpenCourriers() {
+        this.http.get<Array<CourrierVo>>('http://localhost:8080/generated/courrier/status/libelle/' + 'Ouvert').subscribe(
+            value => {
+                if (value != null) {
+                    this.ouvertCourriers = value;
+                }
+            }
+        );
+    }
+
+    public findAllEnCoursCourriers() {
+        this.http.get<Array<CourrierVo>>('http://localhost:8080/generated/courrier/status/libelle/' + 'En cours').subscribe(
+            value => {
+                if (value != null) {
+                    this.enCoursCourriers = value;
+                }
+            }
+        );
+    }
+
+    public findAllTraitedCourriers() {
+        this.http.get<Array<CourrierVo>>('http://localhost:8080/generated/courrier/status/libelle/' + 'Traité').subscribe(
+            value => {
+                if (value != null) {
+                    this.traitedCourriers = value;
+                }
+            }
+        );
+    }
+
+    public findAllAccusedCourriers() {
+        this.http.get<Array<CourrierVo>>('http://localhost:8080/generated/courrier/accuse/' + true).subscribe(
+            value => {
+                if (value != null) {
+                    this.accusedCourriers = value;
+                }
+            }
+        );
+    }
+
+    public findAllResponseCourriers() {
+        this.http.get<Array<CourrierVo>>('http://localhost:8080/generated/courrier/reponse/' + true).subscribe(
+            value => {
+                if (value != null) {
+                    this.responseCourriers = value;
+                }
+            }
+        );
+    }
+
     public saveCourrier() {
         this.http.post <CourrierVo>('http://localhost:8080/generated/courrier/', this.courrier).subscribe(data => {
-            if (data != null)
+            if (data != null) {
                 this.courrierListe.push(data);
+            }
             this.courrier = null;
         });
 
@@ -227,29 +351,29 @@ export class CourrierService {
 
 
     public generateId() {
-        this.http.get('http://localhost:8080/generated/courrier/generateId/',{responseType: 'text'}).subscribe(
+        this.http.get('http://localhost:8080/generated/courrier/generateId/', {responseType: 'text'}).subscribe(
             value => {
                 if (value != null) {
-                    this.generatedId= value;
+                    this.generatedId = value;
 
                 }
             });
     }
 
 
-    public reserve(idCourier : string, nbrCourier : number) {
-        this.http.post<CourrierVo>('http://localhost:8080/generated/courrier/courriers/reservation/idCourier/'+idCourier+'/nbr/'+nbrCourier, this.reserveCourier).subscribe(
+    public reserve(idCourier: string, nbrCourier: number) {
+        this.http.post<CourrierVo>('http://localhost:8080/generated/courrier/courriers/reservation/idCourier/' + idCourier + '/nbr/' + nbrCourier, this.reserveCourier).subscribe(
             value => {
-                console.log(value)
-                this.findAll()
+                console.log(value);
+                this.findAll();
             });
     }
 
     public generateIdReserve() {
-        this.http.get('http://localhost:8080/generated/courrier/generateId/',{responseType: 'text'}).subscribe(
+        this.http.get('http://localhost:8080/generated/courrier/generateId/', {responseType: 'text'}).subscribe(
             value => {
                 if (value != null) {
-                    this.generatedId2= value;
+                    this.generatedId2 = value;
 
                 }
             });
@@ -263,7 +387,7 @@ export class CourrierService {
         this.reservationCourrier = new CourrierVo();
     }
 
-    showReservation(){
+    showReservation() {
         this.reservationShow = true;
         this.reservationCourrier = new CourrierVo();
     }

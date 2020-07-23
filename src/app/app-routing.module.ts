@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 import {StatuslistComponent} from './view/status/list/status-list.component';
 import {StatusCreateComponent} from './view/status/create/status-create.component';
 import {StatusDetailsComponent} from './view/status/details/status-details.component';
@@ -84,146 +84,191 @@ import {VoielistComponent} from './view/voie/list/voie-list.component';
 import {VoieCreateComponent} from './view/voie/create/voie-create.component';
 import {VoieDetailsComponent} from './view/voie/details/voie-details.component';
 import {VoieEditComponent} from './view/voie/edit/voie-edit.component';
-import {AppComponent} from './app.component';
 import {LandingPageComponent} from './landing-page/landing-page.component';
-import { CourrierComponent } from './view/courrier/courrier.component';
+import {CourrierComponent} from './view/courrier/courrier.component';
 import {CourrierReservationComponent} from './view/courrier/reservation/courrier-reservation.component';
+import {DashboardComponent} from './view/dashboard/dashboard.component';
 
 const routes: Routes = [
-  { path: 'status', children: [
-      {path: 'list', component: StatuslistComponent},
-      {path: 'create', component: StatusCreateComponent},
-      {path: 'details', component: StatusDetailsComponent},
-      {path: 'edit', component: StatusEditComponent}
-    ]},
-  { path: 'courrierObject', children: [
-      {path: 'list', component: CourrierObjectlistComponent},
-      {path: 'create', component: CourrierObjectCreateComponent},
-      {path: 'details', component: CourrierObjectDetailsComponent},
-      {path: 'edit', component: CourrierObjectEditComponent}
-    ]},
-  { path: 'evaluation', children: [
-      {path: 'list', component: EvaluationlistComponent},
-      {path: 'create', component: EvaluationCreateComponent},
-      {path: 'details', component: EvaluationDetailsComponent},
-      {path: 'edit', component: EvaluationEditComponent}
-    ]},
-  { path: 'task', children: [
-      {path: 'list', component: TasklistComponent},
-      {path: 'create', component: TaskCreateComponent},
-      {path: 'details', component: TaskDetailsComponent},
-      {path: 'edit', component: TaskEditComponent}
-    ]},
-  { path: 'user', children: [
-      {path: 'list', component: UserlistComponent},
-      {path: 'create', component: UserCreateComponent},
-      {path: 'details', component: UserDetailsComponent},
-      {path: 'edit', component: UserEditComponent}
-    ]},
-  { path: 'natureCourrier', children: [
-      {path: 'list', component: NatureCourrierlistComponent},
-      {path: 'create', component: NatureCourrierCreateComponent},
-      {path: 'details', component: NatureCourrierDetailsComponent},
-      {path: 'edit', component: NatureCourrierEditComponent}
-    ]},
-  { path: 'expeditorType', children: [
-      {path: 'list', component: ExpeditorTypelistComponent},
-      {path: 'create', component: ExpeditorTypeCreateComponent},
-      {path: 'details', component: ExpeditorTypeDetailsComponent},
-      {path: 'edit', component: ExpeditorTypeEditComponent}
-    ]},
-  { path: 'courrierServiceItem', children: [
-      {path: 'list', component: CourrierServiceItemlistComponent},
-      {path: 'create', component: CourrierServiceItemCreateComponent},
-      {path: 'details', component: CourrierServiceItemDetailsComponent},
-      {path: 'edit', component: CourrierServiceItemEditComponent}
-    ]},
-  { path: 'courrier', component:CourrierComponent, children: [
-      {path: 'list', component: CourrierlistComponent},
-      {path: 'create', component: CourrierCreateComponent},
-      {path: 'details', component: CourrierDetailsComponent},
-      {path: 'edit', component: CourrierEditComponent},
-          { path: 'reservation', component: CourrierReservationComponent }
+        {
+            path: 'status', children: [
+                {path: 'list', component: StatuslistComponent},
+                {path: 'create', component: StatusCreateComponent},
+                {path: 'details', component: StatusDetailsComponent},
+                {path: 'edit', component: StatusEditComponent}
+            ]
+        },
+        {
+            path: 'courrierObject', children: [
+                {path: 'list', component: CourrierObjectlistComponent},
+                {path: 'create', component: CourrierObjectCreateComponent},
+                {path: 'details', component: CourrierObjectDetailsComponent},
+                {path: 'edit', component: CourrierObjectEditComponent}
+            ]
+        },
+        {
+            path: 'evaluation', children: [
+                {path: 'list', component: EvaluationlistComponent},
+                {path: 'create', component: EvaluationCreateComponent},
+                {path: 'details', component: EvaluationDetailsComponent},
+                {path: 'edit', component: EvaluationEditComponent}
+            ]
+        },
+        {
+            path: 'task', children: [
+                {path: 'list', component: TasklistComponent},
+                {path: 'create', component: TaskCreateComponent},
+                {path: 'details', component: TaskDetailsComponent},
+                {path: 'edit', component: TaskEditComponent}
+            ]
+        },
+        {
+            path: 'user', children: [
+                {path: 'list', component: UserlistComponent},
+                {path: 'create', component: UserCreateComponent},
+                {path: 'details', component: UserDetailsComponent},
+                {path: 'edit', component: UserEditComponent}
+            ]
+        },
+        {
+            path: 'natureCourrier', children: [
+                {path: 'list', component: NatureCourrierlistComponent},
+                {path: 'create', component: NatureCourrierCreateComponent},
+                {path: 'details', component: NatureCourrierDetailsComponent},
+                {path: 'edit', component: NatureCourrierEditComponent}
+            ]
+        },
+        {
+            path: 'expeditorType', children: [
+                {path: 'list', component: ExpeditorTypelistComponent},
+                {path: 'create', component: ExpeditorTypeCreateComponent},
+                {path: 'details', component: ExpeditorTypeDetailsComponent},
+                {path: 'edit', component: ExpeditorTypeEditComponent}
+            ]
+        },
+        {
+            path: 'courrierServiceItem', children: [
+                {path: 'list', component: CourrierServiceItemlistComponent},
+                {path: 'create', component: CourrierServiceItemCreateComponent},
+                {path: 'details', component: CourrierServiceItemDetailsComponent},
+                {path: 'edit', component: CourrierServiceItemEditComponent}
+            ]
+        },
+        {
+            path: 'courrier', component: CourrierComponent, children: [
+                {path: 'list', component: CourrierlistComponent},
+                {path: 'create', component: CourrierCreateComponent},
+                {path: 'details', component: CourrierDetailsComponent},
+                {path: 'edit', component: CourrierEditComponent},
+                {path: 'reservation', component: CourrierReservationComponent}
 
-      ]},
-  { path: 'modelLettreReponse', children: [
-      {path: 'list', component: ModelLettreReponselistComponent},
-      {path: 'create', component: ModelLettreReponseCreateComponent},
-      {path: 'details', component: ModelLettreReponseDetailsComponent},
-      {path: 'edit', component: ModelLettreReponseEditComponent}
-    ]},
-  { path: 'subdivision', children: [
-      {path: 'list', component: SubdivisionlistComponent},
-      {path: 'create', component: SubdivisionCreateComponent},
-      {path: 'details', component: SubdivisionDetailsComponent},
-      {path: 'edit', component: SubdivisionEditComponent}
-    ]},
-  { path: 'nationality', children: [
-      {path: 'list', component: NationalitylistComponent},
-      {path: 'create', component: NationalityCreateComponent},
-      {path: 'details', component: NationalityDetailsComponent},
-      {path: 'edit', component: NationalityEditComponent}
-    ]},
-  { path: 'typeCourrier', children: [
-      {path: 'list', component: TypeCourrierlistComponent},
-      {path: 'create', component: TypeCourrierCreateComponent},
-      {path: 'details', component: TypeCourrierDetailsComponent},
-      {path: 'edit', component: TypeCourrierEditComponent}
-    ]},
-  { path: 'expeditor', children: [
-      {path: 'list', component: ExpeditorlistComponent},
-      {path: 'create', component: ExpeditorCreateComponent},
-      {path: 'details', component: ExpeditorDetailsComponent},
-      {path: 'edit', component: ExpeditorEditComponent}
-    ]},
-  { path: 'role', children: [
-      {path: 'list', component: RolelistComponent},
-      {path: 'create', component: RoleCreateComponent},
-      {path: 'details', component: RoleDetailsComponent},
-      {path: 'edit', component: RoleEditComponent}
-    ]},
-  { path: 'employee', children: [
-      {path: 'list', component: EmployeelistComponent},
-      {path: 'create', component: EmployeeCreateComponent},
-      {path: 'details', component: EmployeeDetailsComponent},
-      {path: 'edit', component: EmployeeEditComponent}
-    ]},
-  { path: 'categorieModelLettreReponse', children: [
-      {path: 'list', component: CategorieModelLettreReponselistComponent},
-      {path: 'create', component: CategorieModelLettreReponseCreateComponent},
-      {path: 'details', component: CategorieModelLettreReponseDetailsComponent},
-      {path: 'edit', component: CategorieModelLettreReponseEditComponent}
-    ]},
-  { path: 'leService', children: [
-      {path: 'list', component: LeServicelistComponent},
-      {path: 'create', component: LeServiceCreateComponent},
-      {path: 'details', component: LeServiceDetailsComponent},
-      {path: 'edit', component: LeServiceEditComponent}
-    ]},
-  { path: 'sexe', children: [
-      {path: 'list', component: SexelistComponent},
-      {path: 'create', component: SexeCreateComponent},
-      {path: 'details', component: SexeDetailsComponent},
-      {path: 'edit', component: SexeEditComponent}
-    ]},
-  { path: 'bordereau', children: [
-      {path: 'list', component: BordereaulistComponent},
-      {path: 'create', component: BordereauCreateComponent},
-      {path: 'details', component: BordereauDetailsComponent},
-      {path: 'edit', component: BordereauEditComponent}
-    ]},
-  { path: 'voie', children: [
-      {path: 'list', component: VoielistComponent},
-      {path: 'create', component: VoieCreateComponent},
-      {path: 'details', component: VoieDetailsComponent},
-      {path: 'edit', component: VoieEditComponent}
-    ]},
-  {path: '', component: LandingPageComponent}
+            ]
+        },
+        {
+            path: 'modelLettreReponse', children: [
+                {path: 'list', component: ModelLettreReponselistComponent},
+                {path: 'create', component: ModelLettreReponseCreateComponent},
+                {path: 'details', component: ModelLettreReponseDetailsComponent},
+                {path: 'edit', component: ModelLettreReponseEditComponent}
+            ]
+        },
+        {
+            path: 'subdivision', children: [
+                {path: 'list', component: SubdivisionlistComponent},
+                {path: 'create', component: SubdivisionCreateComponent},
+                {path: 'details', component: SubdivisionDetailsComponent},
+                {path: 'edit', component: SubdivisionEditComponent}
+            ]
+        },
+        {
+            path: 'nationality', children: [
+                {path: 'list', component: NationalitylistComponent},
+                {path: 'create', component: NationalityCreateComponent},
+                {path: 'details', component: NationalityDetailsComponent},
+                {path: 'edit', component: NationalityEditComponent}
+            ]
+        },
+        {
+            path: 'typeCourrier', children: [
+                {path: 'list', component: TypeCourrierlistComponent},
+                {path: 'create', component: TypeCourrierCreateComponent},
+                {path: 'details', component: TypeCourrierDetailsComponent},
+                {path: 'edit', component: TypeCourrierEditComponent}
+            ]
+        },
+        {
+            path: 'expeditor', children: [
+                {path: 'list', component: ExpeditorlistComponent},
+                {path: 'create', component: ExpeditorCreateComponent},
+                {path: 'details', component: ExpeditorDetailsComponent},
+                {path: 'edit', component: ExpeditorEditComponent}
+            ]
+        },
+        {
+            path: 'role', children: [
+                {path: 'list', component: RolelistComponent},
+                {path: 'create', component: RoleCreateComponent},
+                {path: 'details', component: RoleDetailsComponent},
+                {path: 'edit', component: RoleEditComponent}
+            ]
+        },
+        {
+            path: 'employee', children: [
+                {path: 'list', component: EmployeelistComponent},
+                {path: 'create', component: EmployeeCreateComponent},
+                {path: 'details', component: EmployeeDetailsComponent},
+                {path: 'edit', component: EmployeeEditComponent}
+            ]
+        },
+        {
+            path: 'categorieModelLettreReponse', children: [
+                {path: 'list', component: CategorieModelLettreReponselistComponent},
+                {path: 'create', component: CategorieModelLettreReponseCreateComponent},
+                {path: 'details', component: CategorieModelLettreReponseDetailsComponent},
+                {path: 'edit', component: CategorieModelLettreReponseEditComponent}
+            ]
+        },
+        {
+            path: 'leService', children: [
+                {path: 'list', component: LeServicelistComponent},
+                {path: 'create', component: LeServiceCreateComponent},
+                {path: 'details', component: LeServiceDetailsComponent},
+                {path: 'edit', component: LeServiceEditComponent}
+            ]
+        },
+        {
+            path: 'sexe', children: [
+                {path: 'list', component: SexelistComponent},
+                {path: 'create', component: SexeCreateComponent},
+                {path: 'details', component: SexeDetailsComponent},
+                {path: 'edit', component: SexeEditComponent}
+            ]
+        },
+        {
+            path: 'bordereau', children: [
+                {path: 'list', component: BordereaulistComponent},
+                {path: 'create', component: BordereauCreateComponent},
+                {path: 'details', component: BordereauDetailsComponent},
+                {path: 'edit', component: BordereauEditComponent}
+            ]
+        },
+        {
+            path: 'voie', children: [
+                {path: 'list', component: VoielistComponent},
+                {path: 'create', component: VoieCreateComponent},
+                {path: 'details', component: VoieDetailsComponent},
+                {path: 'edit', component: VoieEditComponent}
+            ]
+        },
+        {path: 'dashboard', component: DashboardComponent},
+
+        {path: '', component: LandingPageComponent}
     ]
 ;
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}
