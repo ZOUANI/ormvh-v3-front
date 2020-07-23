@@ -146,7 +146,7 @@
                 [sidebarItems]="sidebarItems"></app-navbar>
     <div id="content">
         <nav class="navbar navbar-dark  boxShadow">
-            <div class="sticky-top my-2 mx-2"> <button class="btn btn-dark btn-circle btn-lg" (click)="buttonClick()"><i class=" fa " [ngClass]="{'fa-bars': openBar==true , ' fa-close': openBar==false}" ></i></button></div>
+            <div class="sticky-top my-2 mx-2"> <button class="btn btn-dark btn-circle btn-lg" (click)="buttonClick()"><i class=" fa " [ngClass]="{'fa-bars': !openBar , ' fa-close': openBar}" ></i></button></div>
             <span style="text-align: center;" class="span">
           <!-- <i class="fas fa-school"
               style="font-size: 45px;text-align: center;"></i> -->
