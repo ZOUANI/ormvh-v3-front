@@ -12,37 +12,33 @@
     
     <div class="card-body">
         <div class="row">
-                <div class="col-md-6 py-2">
-                    <div class="p-grid ui-fluid">
+                    <div class=" col-md-6 p-grid ui-fluid">
                         <label>updatedAt</label>
                         <p-calendar class="p-col-12" dateFormat="yy-mm-dd" [(ngModel)] = "categorieModelLettreReponse.updatedAt"></p-calendar>
                     </div>
-                </div>
-                <div class="col-md-6 py-2">
+                    <div class="col-md-6 p-grid ui-fluid">
                     <label>libelle</label>
                     <input type="text" class="form-control" [(ngModel)] = "categorieModelLettreReponse.libelle">
-                </div>
-                <div class="col-md-6 py-2">
-                    <div class="p-grid ui-fluid">
+               </div>
+                    <div class="col-md-6 p-grid ui-fluid">
                         <label>createdAt</label>
                         <p-calendar class="p-col-12" dateFormat="yy-mm-dd" [(ngModel)] = "categorieModelLettreReponse.createdAt"></p-calendar>
                     </div>
-                </div>
+            <div class="col-md-6"> <label>updatedBy</label>
+                <select class="form-control" [(ngModel)]="categorieModelLettreReponse.updatedByVo.username" >
+                    <option *ngFor="let p of updatedBys" [ngValue]="p.username" value="{{p.username}}">{{p.username}}</option>
+                </select></div>
+            <br>
+            <div class="col-md-6">
+                <label>createdBy</label>
+                <select class="form-control" [(ngModel)]="categorieModelLettreReponse.createdByVo.username" >
+                <option *ngFor="let p of createdBys" [ngValue]="p.username" value="{{p.username}}">{{p.username}}</option>
+            </select></div>
+
         </div>
-                <div class="row" >
-                    <label>updatedBy</label>
-                    <select class="form-control" [(ngModel)]="categorieModelLettreReponse.updatedByVo.username" >
-                        <option *ngFor="let p of updatedBys" [ngValue]="p.username" value="{{p.username}}">{{p.username}}</option>
-                    </select>
-                </div>
-                <div class="row" >
-                    <label>createdBy</label>
-                    <select class="form-control" [(ngModel)]="categorieModelLettreReponse.createdByVo.username" >
-                        <option *ngFor="let p of createdBys" [ngValue]="p.username" value="{{p.username}}">{{p.username}}</option>
-                    </select>
-                </div>
-        <div class="modal-footer" >
-            <button class="form-control" (click)="saveCategorieModelLettreReponse()" >Save</button>
+        <br><br>
+        <div style="text-align: center">
+            <button style="width: 60%" class="btn btn-outline-info"  (click)="saveCategorieModelLettreReponse()" >Save</button>
         </div>
     </div>
 </div>
