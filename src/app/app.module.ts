@@ -5,7 +5,7 @@ import {NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
 import {FormsModule} from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AppRoutingModule} from './app-routing.module';
 import {StatusCreateComponent} from './view/status/create/status-create.component';
 import {StatuslistComponent} from './view/status/list/status-list.component';
@@ -124,6 +124,9 @@ import {CourrierReservationComponent} from './view/courrier/reservation/courrier
 import {ChartModule} from 'primeng/chart';
 import {DashboardComponent} from './view/dashboard/dashboard.component';
 import {LoginComponent} from './view/login/login.component';
+import {InterceptorService} from './controller/service/auth/interceptor.service';
+import {ErrorInterceptorService} from './controller/service/auth/error-interceptor.service';
+import {AuthGuard} from './controller/service/auth/auth.guard';
 
 @NgModule({
     declarations: [
@@ -252,7 +255,19 @@ import {LoginComponent} from './view/login/login.component';
         DropdownModule,
         ChartModule,
     ],
-    providers: [],
+    providers: [
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: InterceptorService,
+            multi: true
+        },
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: ErrorInterceptorService,
+            multi: true
+        },
+        AuthGuard,
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule {
