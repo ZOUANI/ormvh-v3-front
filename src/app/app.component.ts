@@ -25,10 +25,10 @@ export class AppComponent {
           id: 'courrier', label: 'Courrier', icon: 'fa fa-suitcase', items: [
             { label: 'Courrier', routerLink: '/courrier/list', icon: 'fa fa-suitcase' },
             { label: 'Object', routerLink: '/courrierObject/list', icon: 'fa fa-header' },
-            { label: 'Nature', routerLink: '/natureCourrier/list', icon: 'fa fa-list' },
-            { label: 'Service Item', routerLink: '/courrierServiceItem/list', icon: 'fa fa-wrench' },
-            { label: 'Type', routerLink: '/typeCourrier/list', icon: 'fa fa-sticky-note-o' },
-
+            { label: 'Bordereau', routerLink: '/bordereau/list', icon: 'fa fa-file-text-o' },
+            { label: 'Expéditeur', routerLink: '/expeditor/list', icon: 'fa fa-ship' },
+            { label: 'Evaluation', routerLink: '/evaluation/list', icon: 'fa fa-check-square-o' },
+            // { label: 'Service Item', routerLink: '/courrierServiceItem/list', icon: 'fa fa-wrench' },
           ]
         },
         {
@@ -37,28 +37,31 @@ export class AppComponent {
             { label: 'Rôles', routerLink: '/role/list', icon: 'fa fa-tag' },
           ]
         },
-        { id: 'employé', label: 'Employé', routerLink: '/employee/list', icon: 'fa fa-male' },
-        {
-          id: 'services', label: 'Services', icon: 'fa fa-briefcase', items: [
-            { label: 'LeService', routerLink: '/leService/list', icon: 'fa fa-briefcase' },
-            { label: 'Evaluation', routerLink: '/evaluation/list', icon: 'fa fa-check-square-o' },
-            { label: 'Tâche', routerLink: '/task/list', icon: 'fa fa-tasks' },
-            { label: 'Bordereau', routerLink: '/bordereau/list', icon: 'fa fa-file-text-o' },
-          ]
-        },
+        // {
+        //   id: 'services', label: 'Services', icon: 'fa fa-briefcase', items: [
+
+
+        // { label: 'Tâche', routerLink: '/task/list', icon: 'fa fa-tasks' },
+
+        //   ]
+        // },
         {
           id: 'lettres', label: 'Lettres', icon: 'fa fa-envelope', items: [
-            { label: 'Voie', routerLink: '/voie/list', icon: 'fa fa-paper-plane' },
-            { label: 'Expéditeur', routerLink: '/expeditor/list', icon: 'fa fa-ship' },
-            { label: 'Expéditeur Type', routerLink: '/expeditorType/list', icon: 'fa fa-archive' },
-            { label: 'Catégorie Modele Lettre Réponse', routerLink: '/categorieModelLettreReponse/list', icon: 'fa fa-filter' },
-            { label: 'Modèle Lettre Reponse', routerLink: '/modelLettreReponse/list', icon: 'fa fa-envelope-square' },
+
+            { label: 'Catégorie', routerLink: '/categorieModelLettreReponse/list', icon: 'fa fa-filter' },
+            { label: 'Modèle', routerLink: '/modelLettreReponse/list', icon: 'fa fa-envelope-square' },
           ]
         },
-        { id: 'status', label: 'Status', routerLink: '/status/list', icon: 'fa fa-exclamation-circle' },
+        { id: 'employé', label: 'Employé', routerLink: '/employee/list', icon: 'fa fa-male' },
         {
           id: 'paramètres', label: 'Paramètres', icon: 'fa fa-gear', items: [
+            { label: 'Service', routerLink: '/leService/list', icon: 'fa fa-briefcase' },
             { label: 'Subdivision', routerLink: '/subdivision/list', icon: 'fa fa-exchange' },
+            { label: 'Nature', routerLink: '/natureCourrier/list', icon: 'fa fa-list' },
+            { label: 'Type', routerLink: '/typeCourrier/list', icon: 'fa fa-sticky-note-o' },
+            { label: 'Voie', routerLink: '/voie/list', icon: 'fa fa-paper-plane' },
+            { label: 'Status', routerLink: '/status/list', icon: 'fa fa-exclamation-circle' },
+            { label: 'Expéditeur Type', routerLink: '/expeditorType/list', icon: 'fa fa-archive' },
             { label: 'Nationalité', routerLink: '/nationality/list', icon: 'fa fa-globe' },
             { label: 'Sexe', routerLink: '/sexe/list', icon: 'fa fa-genderless' },
           ]
