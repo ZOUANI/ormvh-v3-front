@@ -1,0 +1,58 @@
+<!--<mat-card class="text-center">-->
+  <!--<mat-card-header >-->
+  <!--<mat-card-title >Login</mat-card-title>-->
+
+  <!--</mat-card-header>-->
+  <!--<hr>-->
+  <!--<mat-card-content>-->
+
+    <!--<mat-form-field class="example-form-field">-->
+      <!--<mat-label>Username</mat-label>-->
+      <!--<input matInput type="text" [(ngModel)]="userCandidat.username">-->
+      <!--<button mat-button *ngIf="userCandidat.username" matSuffix mat-icon-button aria-label="Clear" (click)="userCandidat.username=''">-->
+        <!--<mat-icon>close</mat-icon>-->
+      <!--</button>-->
+    <!--</mat-form-field>-->
+
+    <!--<mat-form-field class="example-form-field">-->
+      <!--<mat-label>Password</mat-label>-->
+      <!--<input matInput type="password" [(ngModel)]="userCandidat.password">-->
+      <!--<button mat-button *ngIf="userCandidat.password" matSuffix mat-icon-button aria-label="Clear" (click)="userCandidat.password=''">-->
+        <!--<mat-icon>close</mat-icon>-->
+      <!--</button>-->
+    <!--</mat-form-field>-->
+
+  <!--</mat-card-content>-->
+
+  <!--<mat-card-actions>-->
+    <!--<button class="btn btn-sm btn-block btn-outline-info" (click)="login()">Connexion</button>-->
+  <!--</mat-card-actions>-->
+<!--</mat-card>-->
+
+<div class="pos">
+  <div class="text-center mb-3">
+      <img  src="assets/images/ormvah.png" >
+  </div>
+  <div>
+
+
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">username</span>
+      </div>
+      <input type="text" class="form-control"   aria-label="Username" aria-describedby="basic-addon1" [(ngModel)]="userCandidat.username">
+    </div>
+
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon">password</span>
+      </div>
+      <input type="password" class="form-control"   aria-label="Username" aria-describedby="basic-addon" [(ngModel)]="userCandidat.password">
+    </div>
+
+
+    <button class="btn btn-sm btn-block btn-outline-success" (click)="login()">Connexion</button>
+  </div>
+</div>
+
+

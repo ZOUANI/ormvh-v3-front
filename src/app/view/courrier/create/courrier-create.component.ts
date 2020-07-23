@@ -42,7 +42,8 @@ export class CourrierCreateComponent implements OnInit {
   users:UserVo[];
   changedServices:LeServiceVo[];
   typeCourriers:TypeCourrierVo[];
-
+  showEditTask:boolean = false;
+  editableTask:TaskVo ;
   constructor(private courrierService: CourrierService,
               private voieService:VoieService,
               private courrierObjectService:CourrierObjectService,
@@ -69,7 +70,7 @@ export class CourrierCreateComponent implements OnInit {
       this.findAllstatuss();
       this.findAlltypeCourriers();
       this.findAllUSer();
-    
+      this.findAlllinkedTos();
     }
   
  
@@ -78,7 +79,19 @@ export class CourrierCreateComponent implements OnInit {
     return this.courrierService.courrier;
   }
 
- 
+  generateId(){
+    this.courrierService.generateId()
+}
+
+get generatedId(): string {
+    return this.courrierService.generatedId;
+}
+
+
+set generatedId(value: string) {
+    this.courrierService.generatedId = value;
+}
+  
 
   get task(): TaskVo {
     return this.courrierService.task;
@@ -87,32 +100,40 @@ export class CourrierCreateComponent implements OnInit {
   addTask() {
    return this.courrierService.addTask();
   }
-
-  removeTask(i: number) {
-   this.courrierService.removeTask(i);
+  editTask(task:TaskVo){
+    this.showEditTask = true;
+    this.editableTask = task;
+  }
+  editTaskHide(){
+    this.showEditTask = false;
+    this.editableTask = null;
+  }
+  deleteTask() {
+    let index = this.courrier.tasksVo.indexOf(this.editableTask);
+    if(index!=-1)
+    this.courrier.tasksVo.splice(index,1);
+    this.editTaskHide();
   }
   get courrierServiceItem(): CourrierServiceItemVo {
     return this.courrierService.courrierServiceItem;
   }
-
-  addCourrierServiceItem() {
-    let index = this.changedServices.indexOf(this.courrierServiceItem.serviceVo);
-    if(index!= -1){
-      this.changedServices.splice(index,1);
-      this.courrierService.addCourrierServiceItem();
-    }
+   set courrierServiceItem(value:CourrierServiceItemVo){
+     this.courrierService.courrierServiceItem = value;
+   }
+  addCourrierServiceItem() {  
+      let index = this.courrier.courrierServiceItemsVo.findIndex(item=>item.serviceVo.id== this.courrierServiceItem.serviceVo.id);
+      if(index==-1 && this.courrierServiceItem.serviceVo)
+             this.courrierService.addCourrierServiceItem();
   }
 
   removeCourrierServiceItem(i: number) {
-    this.changedServices.push(this.courrier.courrierServiceItemsVo[i].serviceVo)
    this.courrierService.removeCourrierServiceItem(i);
   }
-
-    saveCourrier() {
-        this.courrier.idCourrier=this.generatedId
-        this.courrierService.saveCourrier();
-        this.generatedId=''
-    }
+  saveCourrier() {
+    this.courrier.idCourrier=this.generatedId
+    this.courrierService.saveCourrier();
+    this.generatedId=''
+}
 
    findAllcourrierObjects() {
      this.courrierObjectService.findAllcourrierObjects().subscribe(data=>{    
@@ -142,7 +163,8 @@ export class CourrierCreateComponent implements OnInit {
     this.leServiceService.findAllServices().subscribe(data=>{    
       if(data!=null){
        this.changedServices = data;
-    }
+       this.courrierServiceItem.serviceVo = this.changedServices[0];
+      }
      },error=>{
        console.log(error);
     });
@@ -172,6 +194,7 @@ export class CourrierCreateComponent implements OnInit {
      for (const item of this.courrierService.courrierListe) {
       this.linkedTos.push({label:item.idCourrier,value:item});
      }
+     console.log(this.linkedTos);
    }
    findAllexpeditors() {
      this.expeditorService.findAllexpeditors().subscribe(data=>{    
@@ -229,6 +252,7 @@ export class CourrierCreateComponent implements OnInit {
       if(data!=null){
         this.statuss = data;
         this.courrier.statusVo = this.statuss[0];
+        this.task.statusVo = this.statuss[0];
       }
       },error=>{
         console.log(error);
@@ -253,18 +277,5 @@ export class CourrierCreateComponent implements OnInit {
         console.log(error);
       });
   }
-    generateId(){
-        this.courrierService.generateId()
-    }
-
-    get generatedId(): string {
-        return this.courrierService.generatedId;
-    }
-
-
-    set generatedId(value: string) {
-        this.courrierService.generatedId = value;
-    }
-
-
+  
 }

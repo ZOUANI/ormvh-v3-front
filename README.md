@@ -18,3 +18,6 @@ are using here.
 
 Optional: If you open the project in WebStorm , right click on
 the app folder and click on "Reformat Code".
+
+login : admin
+password : admin
