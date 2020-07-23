@@ -123,6 +123,7 @@ import {MenuModule} from 'primeng/menu';
 import {CourrierReservationComponent} from './view/courrier/reservation/courrier-reservation.component';
 import {ChartModule} from 'primeng/chart';
 import {DashboardComponent} from './view/dashboard/dashboard.component';
+import {LoginComponent} from './view/login/login.component';
 
 @NgModule({
     declarations: [
@@ -235,7 +236,8 @@ import {DashboardComponent} from './view/dashboard/dashboard.component';
         LandingPageComponent,
         NavbarComponent,
         CourrierReservationComponent,
-        DashboardComponent
+        DashboardComponent,
+        LoginComponent,
 
     ],
     imports: [

@@ -88,6 +88,7 @@ import {LandingPageComponent} from './landing-page/landing-page.component';
 import {CourrierComponent} from './view/courrier/courrier.component';
 import {CourrierReservationComponent} from './view/courrier/reservation/courrier-reservation.component';
 import {DashboardComponent} from './view/dashboard/dashboard.component';
+import {LoginComponent} from './view/login/login.component';
 
 const routes: Routes = [
         {
@@ -262,7 +263,9 @@ const routes: Routes = [
         },
         {path: 'dashboard', component: DashboardComponent},
 
-        {path: '', component: LandingPageComponent}
+        {path: '', component: LandingPageComponent},
+        {path: 'login', component: LoginComponent},
+        {path: '', redirectTo: '/login', pathMatch: 'full'},
     ]
 ;
 
