@@ -1,0 +1,97 @@
+<div class="modal" tabindex="-1" role="dialog" style="display: block;background-color: #000000bf;">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Create Expeditor</h5>
+                <button type="button" class="close" aria-label="Close" (click)="createExpeditorHide()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div class="card-body from-ctn">
+
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label>title</label>
+                            <input type="text" class="form-control" [(ngModel)]="expeditor.title">
+                        </div>
+
+                        <div class="form-group col-md-4">
+                            <label>code</label>
+                            <input type="text" class="form-control" [(ngModel)]="expeditor.code">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>adress</label>
+                            <input type="text" class="form-control" [(ngModel)]="expeditor.adress">
+                        </div>
+                        <!--<div class="row py-2">-->
+                        <!--<div class="p-grid ui-fluid">-->
+                        <!--<label>createdAt</label>-->
+                        <!--<p-calendar class="p-col-12" dateFormat="yy-mm-dd" [(ngModel)] = "expeditor.createdAt"></p-calendar>-->
+                        <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="row py-2">-->
+                        <!--<div class="p-grid ui-fluid">-->
+                        <!--<label>updatedAt</label>-->
+                        <!--<p-calendar class="p-col-12" dateFormat="yy-mm-dd" [(ngModel)] = "expeditor.updatedAt"></p-calendar>-->
+                        <!--</div>-->
+                        <!--</div>-->
+                        <div class="form-group col-md-4">
+                            <label>description</label>
+                            <input type="text" class="form-control" [(ngModel)]="expeditor.description">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>nature</label>
+                            <input type="text" class="form-control" [(ngModel)]="expeditor.nature">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>age</label>
+                            <input type="text" class="form-control" [(ngModel)]="expeditor.age">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>titleArab</label>
+                            <input type="text" class="form-control" [(ngModel)]="expeditor.titleArab">
+                        </div>
+
+                        <div class="form-group col-md-4">
+                            <label>sexe</label>
+                            <select class="form-control" [(ngModel)]="expeditor.sexeVo.libelle">
+                                <option *ngFor="let p of sexes" [ngValue]="p.libelle" value="{{p.libelle}}">
+                                    {{p.libelle}}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>nationality</label>
+                            <select class="form-control" [(ngModel)]="expeditor.nationalityVo.libelle">
+                                <option *ngFor="let p of nationalitys" [ngValue]="p.libelle" value="{{p.libelle}}">
+                                    {{p.libelle}}
+                                </option>
+                            </select>
+                        </div>
+                        <!--<div class="row" >-->
+                        <!--<label>createdBy</label>-->
+                        <!--<select class="form-control" [(ngModel)]="expeditor.createdByVo.username" >-->
+                        <!--<option *ngFor="let p of createdBys" [ngValue]="p.username" value="{{p.username}}">{{p.username}}</option>-->
+                        <!--</select>-->
+                        <!--</div>-->
+                        <!--<div class="row" >-->
+                        <!--<label>updatedBy</label>-->
+                        <!--<select class="form-control" [(ngModel)]="expeditor.updatedByVo.username" >-->
+                        <!--<option *ngFor="let p of updatedBys" [ngValue]="p.username" value="{{p.username}}">{{p.username}}</option>-->
+                        <!--</select>-->
+                        <!--</div>-->
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button class="form-control" (click)="saveExpeditor()">Save</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

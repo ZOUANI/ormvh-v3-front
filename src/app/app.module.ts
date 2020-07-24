@@ -119,6 +119,8 @@ import { DropdownModule } from 'primeng/dropdown';
 
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 
+
+import {CreateExpeditorComponent} from "./view/courrier/createExpeditor/createExpeditor.component";
 import { MenuModule } from 'primeng/menu';
 import { CourrierReservationComponent } from './view/courrier/reservation/courrier-reservation.component';
 import { ChartModule } from 'primeng/chart';
@@ -248,6 +250,7 @@ export function httpLoaderFactory(http: HttpClient){
         CourrierReservationComponent,
         DashboardComponent,
         LoginComponent,
+        CreateExpeditorComponent
 
     ],
     imports: [

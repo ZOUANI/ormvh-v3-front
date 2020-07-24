@@ -6,14 +6,16 @@ import {TaskVo} from '../model/Task.model';
 
 import {CourrierServiceItemVo} from '../model/CourrierServiceItem.model';
 import { LeServiceVo } from '../model/LeService.model';
+import {ExpeditorService} from "./Expeditor.service";
+import {ExpeditorVo} from "../model/Expeditor.model";
 
 @Injectable({
     providedIn: 'root'
 })
 export class CourrierService {
-  
-    
-    constructor(private http: HttpClient) {
+
+
+    constructor(private http: HttpClient,private expeditorService : ExpeditorService) {
     }
     
 
@@ -40,6 +42,7 @@ export class CourrierService {
     private _generatedId2: string = '';
     private _reservationCourrier: CourrierVo = new CourrierVo();
     private _reserveCourier: CourrierVo = new CourrierVo();
+    private _verifyIdCourier : string =''
 
     get task(): TaskVo {
         if (this._task == null) {
@@ -50,6 +53,14 @@ export class CourrierService {
 
     set task(value: TaskVo) {
         this._task = value;
+    }
+
+    get verifyIdCourier(): string {
+        return this._verifyIdCourier;
+    }
+
+    set verifyIdCourier(value: string) {
+        this._verifyIdCourier = value;
     }
 
     private _courrierServiceItem: CourrierServiceItemVo;
@@ -75,6 +86,8 @@ export class CourrierService {
     set courrier(value: CourrierVo) {
         this._courrier = value;
     }
+
+
 
     get courrierListe(): Array<CourrierVo> {
         return this._courrierListe;
@@ -503,6 +516,15 @@ export class CourrierService {
 
     }
 
+    public verifyId(IdCourier : string){
+        this.http.get('http://localhost:8080/generated/courrier/verify/IdCourier/'+IdCourier, {responseType: 'text'}).subscribe(
+            value => {
+                if (value != null) {
+                    this.verifyIdCourier = value;
+
+                }
+            });
+    }
     public editCourrier() {
         this.http.put <CourrierVo>('http://localhost:8080/generated/courrier/', this.courrier).subscribe(data => {
         });
@@ -627,6 +649,8 @@ export class CourrierService {
     }
 
     private _reservationShow: boolean;
+    private _createExpeditorShow: boolean;
+
 
     reservationHide() {
 
@@ -696,4 +720,19 @@ export class CourrierService {
     set reserveCourier(value: CourrierVo) {
         this._reserveCourier = value;
     }
+
+
+
+    showCreateExpeditor(){
+        this.createExpeditorShow = true;
+        this.expeditorService.expeditor = new ExpeditorVo();
+    }
+    get createExpeditorShow(): boolean {
+        return this._createExpeditorShow;
+    }
+
+    set createExpeditorShow(value: boolean) {
+        this._createExpeditorShow = value;
+    }
+
 }

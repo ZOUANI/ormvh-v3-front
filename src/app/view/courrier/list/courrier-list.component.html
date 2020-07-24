@@ -1,23 +1,5 @@
 <div class="container">
   <div class="row">
-  
-</div>
-<div class="row">
-  <div class="card col-12">
-    <div class="card-header bg-transparent">
-      <div class="float-left px-1"> <h5>List of courriers. </h5></div>
-      <button class="btn btn-success btn-sm fa fa-plus float-right" (click)="showReservation()">Reserve Couriers</button>
-    </div>
-    <div class="row">
-      <div class="col-md-3">
-        <button class="btn btn-success btn-block" (click)="addNewCourrier=true">ajouter courrier</button>
-      </div>
-    </div>
-
-    <div class="card-body table-responsive">
-
-  </div>
-  <div class="row">
     <div class="card col-12">
       <div class="card-header bg-transparent">
         <div class="float-left px-1">
@@ -25,6 +7,12 @@
         </div>
         <button class="btn btn-success btn-sm fa fa-plus float-right" (click)="showReservation()">{{"MAILING.RESERVE_MAILING" | translate}}</button>
       </div>
+      <div class="row">
+        <div class="col-md-3">
+          <button class="btn btn-success btn-block" (click)="addNewCourrier=true">ajouter courrier</button>
+        </div>
+      </div>
+  
       <div class="card-body table-responsive">
 
         <table class="table table-hover col-md-12">
