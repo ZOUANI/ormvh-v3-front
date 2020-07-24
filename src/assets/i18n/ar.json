@@ -20,7 +20,9 @@
         "STATUS":"الحالة",
         "EXPEDITOR_TYPE":"نوع المرسل",
         "NATIONALITY":"الجنسية",
-        "GENDER":"الجنس"
+        "GENDER":"الجنس",
+        "DASHBOARD":"الاحصاء"
+
     },
     "MAILING": {
         "MAILING": "Mailing",

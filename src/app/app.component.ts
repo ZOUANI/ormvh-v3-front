@@ -40,6 +40,8 @@ export class AppComponent {
     // to change icons , change the icon value on the array below to one of the font awesome classes
     this.sidebarItems = [{
       items: [
+        { id: 'dashboard', label: 'DASHBOARD', routerLink: '/dashboard', icon: 'fa fa-bar-chart' },
+
         {
           id: 'mailing', label: 'MAILING', icon: 'fa fa-suitcase', items: [
             { label: 'MAILING', routerLink: '/courrier/list', icon: 'fa fa-suitcase' },
@@ -47,6 +49,7 @@ export class AppComponent {
             { label: 'STATEMENT', routerLink: '/bordereau/list', icon: 'fa fa-file-text-o' },
             { label: 'EXPEDITOR', routerLink: '/expeditor/list', icon: 'fa fa-ship' },
             { label: 'EVALUATION', routerLink: '/evaluation/list', icon: 'fa fa-check-square-o' },
+
             // { label: 'Service Item', routerLink: '/courrierServiceItem/list', icon: 'fa fa-wrench' },
             // { label: 'Tâche', routerLink: '/task/list', icon: 'fa fa-tasks' },
           ]

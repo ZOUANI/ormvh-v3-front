@@ -20,7 +20,8 @@
         "STATUS":"Status",
         "EXPEDITOR_TYPE":"Expéditeur type",
         "NATIONALITY":"Nationalité",
-        "GENDER":"Sexe"
+        "GENDER":"Sexe",
+        "DASHBOARD":"Statistique"
     },
     "MAILING": {
         "MAILING": "Courrier",
