@@ -5,6 +5,7 @@ import {CourrierVo} from '../model/courrier.model';
 import {TaskVo} from '../model/Task.model';
 
 import {CourrierServiceItemVo} from '../model/CourrierServiceItem.model';
+import { LeServiceVo } from '../model/LeService.model';
 
 @Injectable({
     providedIn: 'root'
@@ -506,48 +507,51 @@ export class CourrierService {
 
     }
 
-    public addTask() {
-        this.courrier.tasksVo.push(this.cloneTask(this.task));
-        this.task = null;
-    }
+   
+  public addTask() {
+    console.log(this.task);
+    let clone = this.cloneTask(this.task);
+    console.log(clone);
+    this.courrier.tasksVo.push(clone);
+    this.task =null;
+    this.task.assigneVo = clone.assigneVo;
+    this.task.statusVo = clone.statusVo;
+  }
 
-    public cloneTask(task: TaskVo) {
-        const myTaskClone = new TaskVo();
-
-        myTaskClone.delai = task.delai;
-        myTaskClone.relance = task.relance;
-        myTaskClone.accuse = task.accuse;
-        myTaskClone.reponse = task.reponse;
-        myTaskClone.id = task.id;
-        myTaskClone.title = task.title;
-        myTaskClone.description = task.description;
-        myTaskClone.observation = task.observation;
-
-        myTaskClone.courrierVo = task.courrierVo;
-        myTaskClone.assigneVo = task.assigneVo;
-        myTaskClone.statusVo = task.statusVo;
-
-        return myTaskClone;
-    }
-
+  public cloneTask(task: TaskVo) {
+    const myTaskClone = new TaskVo();
+    myTaskClone.delai = task.delai;
+    myTaskClone.relance = task.relance;
+    myTaskClone.accuse = task.accuse;
+    myTaskClone.reponse = task.reponse;
+    myTaskClone.id = task.id;
+    myTaskClone.title = task.title;
+    myTaskClone.description = task.description;
+    myTaskClone.observation = task.observation;
+    myTaskClone.assigneVo = task.assigneVo;
+    myTaskClone.statusVo = task.statusVo;
+    return myTaskClone;
+  }
     public removeTask(i: number) {
         this.courrier.tasksVo.splice(i, 1);
     }
 
     public addCourrierServiceItem() {
-        this.courrier.courrierServiceItemsVo.push(this.cloneCourrierServiceItem(this.courrierServiceItem));
-        this.courrierServiceItem = null;
+      this.courrier.courrierServiceItemsVo.push(this.cloneCourrierServiceItem(this.courrierServiceItem));
+      
     }
-
+  
     public cloneCourrierServiceItem(courrierServiceItem: CourrierServiceItemVo) {
-        const myCourrierServiceItemClone = new CourrierServiceItemVo();
-        myCourrierServiceItemClone.id = courrierServiceItem.id;
-        myCourrierServiceItemClone.serviceVo = courrierServiceItem.serviceVo;
-        return myCourrierServiceItemClone;
+      const myCourrierServiceItemClone = new CourrierServiceItemVo();
+      myCourrierServiceItemClone.serviceVo = new LeServiceVo();
+       myCourrierServiceItemClone.serviceVo.title = courrierServiceItem.serviceVo.title;
+       myCourrierServiceItemClone.serviceVo.code = courrierServiceItem.serviceVo.code;
+       myCourrierServiceItemClone.serviceVo.id = courrierServiceItem.serviceVo.id;
+      return myCourrierServiceItemClone;
     }
-
+  
     public removeCourrierServiceItem(i: number) {
-        this.courrier.courrierServiceItemsVo.splice(i, 1);
+      this.courrier.courrierServiceItemsVo.splice(i, 1);
     }
 
     public findCourrier(pojo: CourrierVo) {
