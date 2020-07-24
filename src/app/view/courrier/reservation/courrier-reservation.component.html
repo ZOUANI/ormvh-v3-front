@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Reserve Courrier</h5>
+                <h5 class="modal-title">{{"MAILING.RESERVE_MAILING" | translate}}</h5>
                 <button type="button" class="close" aria-label="Close" (click)="reservationHide()">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -18,17 +18,21 @@
                             <div class="form-group col-md-7">
                                 <div class="input-group mb-1">
                                     <div class="input-group-prepend">
-                                        <button class="btn btn-outline-primary" (click)="generateId()" type="button">Generate</button>
+                                        <button class="btn btn-outline-primary" (click)="generateId()"
+                                            type="button">{{"MAILING.GENERATE" | translate}}</button>
                                     </div>
-                                    <input type="text" class="form-control" [(ngModel)]="generatedId" placeholder="idCourier xxx_year">
+                                    <input type="text" class="form-control" [(ngModel)]="generatedId"
+                                        placeholder="idCourier xxx_year">
                                 </div>
                             </div>
 
                             <div class="form-group col-md-5">
-                                    <input type="text" class="form-control" [(ngModel)]="nbr" placeholder="nombre des couriers">
+                                <input type="text" class="form-control" [(ngModel)]="nbr"
+                                    placeholder="nombre des couriers">
                             </div>
 
-                            <button class="btn btn-outline-primary btn-block -align-center" (click)="reserve()">Reserve</button>
+                            <button class="btn btn-outline-primary btn-block -align-center"
+                                (click)="reserve()">{{"MAILING.RESERVE" | translate}}</button>
                         </div>
 
 
@@ -38,4 +42,3 @@
         </div>
     </div>
 </div>
-

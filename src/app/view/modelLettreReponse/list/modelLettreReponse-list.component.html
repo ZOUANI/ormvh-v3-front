@@ -103,39 +103,40 @@
     </div>
     <div class="card-body table-responsive">
 
-      <table class="table table-hover col-md-12">
+      <table class="table table-hover table-bordered col-md-12" style="text-align: center">
         <thead class="thead-dark">
 
-          <th>id</th>
+<!--          <th>id</th>-->
           <th>libelle</th>
           <th>libelleArab</th>
           <th>code</th>
-          <th>chemin</th>
-            <th>categorieModelLettreReponse reference</th>
-          <th>createdAt</th>
-          <th>updatedAt</th>
-            <th>createdBy reference</th>
-            <th>updatedBy reference</th>
+<!--          <th>chemin</th>-->
+            <th>CategorieModelLettreReponse</th>
+<!--          <th>createdAt</th>-->
+<!--          <th>updatedAt</th>-->
+<!--            <th>createdBy reference</th>-->
+<!--            <th>updatedBy reference</th>-->
      <th>Actions</th>
   </thead>
   <tbody>
   <tr *ngFor="let p of modelLettreReponseListe">
 
-           <td>{{p.id}}</td>
+<!--           <td>{{p.id}}</td>-->
            <td>{{p.libelle}}</td>
            <td>{{p.libelleArab}}</td>
            <td>{{p.code}}</td>
-           <td>{{p.chemin}}</td>
+<!--           <td>{{p.chemin}}</td>-->
             <td>{{p.categorieModelLettreReponseVo?.libelle}}</td>
-           <td>{{p.createdAt}}</td>
-           <td>{{p.updatedAt}}</td>
-            <td>{{p.createdByVo?.username}}</td>
-            <td>{{p.updatedByVo?.username}}</td>
+<!--           <td>{{p.createdAt}}</td>-->
+<!--           <td>{{p.updatedAt}}</td>-->
+<!--            <td>{{p.createdByVo?.username}}</td>-->
+<!--            <td>{{p.updatedByVo?.username}}</td>-->
  
 
-<td><button class="btn btn-danger btn-sm fa fa-trash mx-md-1" (click)="delete(p)"></button>
-  <button class="btn btn-warning btn-sm fa fa-external-link mx-md-1" (click)="detailShow(p)"></button>
-  
+<td><button class="btn btn-danger btn-sm fa fa-trash mx-md-1" style="margin-right: 5px" (click)="delete(p)"></button>
+  <button class="btn btn-warning btn-sm fa fa-external-link mx-md-1" style="margin-right: 5px" (click)="detailShow(p)"></button>
+    <button class="btn btn-success btn-sm fa fa-download mx-md-1"></button>
+
 
 </td>
 
