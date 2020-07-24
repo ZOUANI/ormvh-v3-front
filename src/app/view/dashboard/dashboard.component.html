@@ -3,6 +3,18 @@
          style="background-color: white;font-size: 2em;text-align: center">Tableau de bord
     </div>
     <br>
+    <div class="p-grid ui-fluid mb-4" style="margin-left: 35em">
+        <label for="rangeDates" class="font-weight-bold">Date range: </label>
+        <div class="col-md-12 pl-0 d-flex justify-content-start">
+            <p-calendar class="p-0 col-md-6 mr-2" id="rangeDates" [(ngModel)]="rangeDates"
+                        selectionMode="range"
+                        [readonlyInput]="true">
+            </p-calendar>
+            <button [disabled]="!rangeDates" pButton type="button"
+                    icon="pi pi-search" class="ui-button-icon-primary" (click)="filterCourriers()"></button>
+        </div>
+    </div>
+    <br>
     <div class="card-header text-center font-weight-bold">Compte rendu "Courrier"</div>
     <br>
     <div class="form-group" style="padding-left: 3em">
@@ -128,7 +140,10 @@
                      style="background-color: white;border-color: white">Ouvert/En cours/Traité
                 </div>
 
-                <p-chart type="doughnut" [data]="data1"></p-chart>
+                <p-chart [hidden]="tmpData1" type="doughnut" [data]="data1"></p-chart>
+                <div class="alert alert-warning text-center" role="alert"
+                     *ngIf="tmpData1">Absence de données à présenter
+                </div>
 
             </div>
 
@@ -136,7 +151,11 @@
                 <div class="card-header text-center font-weight-bold"
                      style="background-color: white;border-color: white">Arrivée/Départ
                 </div>
-                <p-chart type="doughnut" [data]="data2"></p-chart>
+                <p-chart [hidden]="tmpData" type="doughnut"
+                         [data]="data2"></p-chart>
+                <div class="alert alert-warning text-center" role="alert"
+                     *ngIf="tmpData">Absence de données à présenter
+                </div>
             </div>
         </div>
     </div>
