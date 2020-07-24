@@ -266,7 +266,7 @@ const routes: Routes = [
         },
         {path: 'dashboard', component: DashboardComponent},
 
-        // {path: '', component: LandingPageComponent},
+
         {path: 'login', component: LoginComponent},
         {path: '', redirectTo: '/login', pathMatch: 'full'},
     ]

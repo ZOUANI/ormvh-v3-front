@@ -160,8 +160,10 @@
           <br />
           ANGULAR 9.0</span>
 
-            <button  pButton class="btn btn-dark btn-circle btn-lg  float-left  mx-3" (click)="op1.toggle($event)"><i class="fa fa-bell"></i> <span class="badge badge-pill badge-danger" *ngIf="this.badgeNumber>0"> {{this.badgeNumber}}</span> </button>
+            <button  pButton class="btn btn-dark btn-circle btn-lg  float-left" (click)="op1.toggle($event)"><i class="fa fa-bell"></i> <span class="badge badge-pill badge-danger" *ngIf="this.badgeNumber>0"> {{this.badgeNumber}}</span> </button>
 
+            <button  pButton class="btn btn-dark btn-circle btn-lg  float-left mx-3" (click)="lgMenu.toggle($event)"><i class="fa fa-language"></i> </button>
+            
             <button  pButton class="btn btn-dark btn-circle btn-lg  float-left " (click)="menu.toggle($event)"><i class="fa fa-cog"></i> </button>
         </nav>
 
@@ -182,6 +184,7 @@
         </ng-template>
     </p-overlayPanel>
 
+    <p-menu [showTransitionOptions]="'0ms'" [hideTransitionOptions]="'0ms'" #lgMenu [popup]="true" [model]="languageItems"></p-menu>
+    
     <p-menu [showTransitionOptions]="'0ms'" [hideTransitionOptions]="'0ms'" #menu [popup]="true" [model]="settingItems"></p-menu>
-
 </div>

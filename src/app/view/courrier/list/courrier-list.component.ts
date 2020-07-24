@@ -1,19 +1,20 @@
-import {Component, OnInit} from '@angular/core';
-import {CourrierVo} from '../../../controller/model/courrier.model';
-import {CourrierService} from '../../../controller/service/Courrier.service';
-import {UserVo} from '../../../controller/model/User.model';
-import {ExpeditorTypeVo} from '../../../controller/model/ExpeditorType.model';
-import {StatusVo} from '../../../controller/model/Status.model';
-import {TaskVo} from '../../../controller/model/Task.model';
-import {NatureCourrierVo} from '../../../controller/model/NatureCourrier.model';
-import {CourrierServiceItemVo} from '../../../controller/model/CourrierServiceItem.model';
-import {EvaluationVo} from '../../../controller/model/Evaluation.model';
-import {CourrierObjectVo} from '../../../controller/model/CourrierObject.model';
-import {SubdivisionVo} from '../../../controller/model/Subdivision.model';
-import {ExpeditorVo} from '../../../controller/model/Expeditor.model';
-import {TypeCourrierVo} from '../../../controller/model/TypeCourrier.model';
-import {VoieVo} from '../../../controller/model/Voie.model';
-import {LeServiceVo} from '../../../controller/model/LeService.model';
+import { Component, OnInit } from '@angular/core';
+import { CourrierVo } from '../../../controller/model/courrier.model';
+import { CourrierService } from '../../../controller/service/Courrier.service';
+import { UserVo } from '../../../controller/model/User.model';
+import { ExpeditorTypeVo } from '../../../controller/model/ExpeditorType.model';
+import { StatusVo } from '../../../controller/model/Status.model';
+import { TaskVo } from '../../../controller/model/Task.model';
+import { NatureCourrierVo } from '../../../controller/model/NatureCourrier.model';
+import { CourrierServiceItemVo } from '../../../controller/model/CourrierServiceItem.model';
+import { EvaluationVo } from '../../../controller/model/Evaluation.model';
+import { CourrierObjectVo } from '../../../controller/model/CourrierObject.model';
+import { SubdivisionVo } from '../../../controller/model/Subdivision.model';
+import { ExpeditorVo } from '../../../controller/model/Expeditor.model';
+import { TypeCourrierVo } from '../../../controller/model/TypeCourrier.model';
+import { VoieVo } from '../../../controller/model/Voie.model';
+import { LeServiceVo } from '../../../controller/model/LeService.model';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-courrier-list',
