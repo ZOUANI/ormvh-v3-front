@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit,ViewEncapsulation} from '@angular/core';
 import {CourrierService} from '../../../controller/service/Courrier.service';
 import {CourrierVo} from '../../../controller/model/courrier.model';
 import {UserVo} from '../../../controller/model/user.model';
@@ -25,7 +25,8 @@ import { LeServiceVo } from 'src/app/controller/model/LeService.model';
 @Component({
   selector: 'app-courrier-create',
   templateUrl: './courrier-create.component.html',
-  styleUrls: ['./courrier-create.component.css']
+  styleUrls: ['./courrier-create.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class CourrierCreateComponent implements OnInit {
 

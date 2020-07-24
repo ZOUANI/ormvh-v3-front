@@ -11,14 +11,17 @@ import { LeServiceVo } from '../model/LeService.model';
     providedIn: 'root'
 })
 export class CourrierService {
-
-
+  
+    
     constructor(private http: HttpClient) {
     }
+    
+
+    addNewCourrier:boolean = false;
 
     private _courrierDetail: CourrierVo = new CourrierVo();
     private _courrierListe: Array<CourrierVo> = new Array<CourrierVo>();
-
+    
     private _courrierSearch: CourrierVo = new CourrierVo();
     private _courrier: CourrierVo = new CourrierVo();
     private _searchedCourriers: Array<CourrierVo> = new Array<CourrierVo>();
@@ -254,8 +257,9 @@ export class CourrierService {
         this.http.post <CourrierVo>('http://localhost:8080/generated/courrier/', this.courrier).subscribe(data => {
             if (data != null) {
                 this.courrierListe.push(data);
+                this.addNewCourrier = false;
+                this.courrier = null;
             }
-            this.courrier = null;
         });
 
     }

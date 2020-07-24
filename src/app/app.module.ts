@@ -122,6 +122,8 @@ import {OverlayPanelModule} from 'primeng/overlaypanel';
 import {MenuModule} from 'primeng/menu';
 import {CourrierReservationComponent} from './view/courrier/reservation/courrier-reservation.component';
 import {ChartModule} from 'primeng/chart';
+import {DialogModule} from 'primeng/dialog';
+
 import {DashboardComponent} from './view/dashboard/dashboard.component';
 import {LoginComponent} from './view/login/login.component';
 import {InterceptorService} from './controller/service/auth/interceptor.service';
@@ -254,6 +256,7 @@ import {AuthGuard} from './controller/service/auth/auth.guard';
         MenuModule,
         DropdownModule,
         ChartModule,
+        DialogModule
     ],
     providers: [
         {

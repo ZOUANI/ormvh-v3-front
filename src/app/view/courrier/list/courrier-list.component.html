@@ -8,6 +8,12 @@
       <div class="float-left px-1"> <h5>List of courriers. </h5></div>
       <button class="btn btn-success btn-sm fa fa-plus float-right" (click)="showReservation()">Reserve Couriers</button>
     </div>
+    <div class="row">
+      <div class="col-md-3">
+        <button class="btn btn-success btn-block" (click)="addNewCourrier=true">ajouter courrier</button>
+      </div>
+    </div>
+
     <div class="card-body table-responsive">
 
       <table class="table table-hover col-md-12">
@@ -37,7 +43,12 @@
             </td>
 
           </tr>
-          <app-courrier-details *ngIf="courrierShowDetail"></app-courrier-details>
+
+          
+<p-dialog  styleClass="addCourrierDialog" header="Add new Courrier"  position="center" [(visible)]="addNewCourrier">
+     <app-courrier-create  ></app-courrier-create>
+</p-dialog>
+          <app-courrier-details *ngIf="courrierShowDetail" ></app-courrier-details>
           <app-courrier-reservation *ngIf="reservationShow"></app-courrier-reservation>
         </tbody>
       </table>
