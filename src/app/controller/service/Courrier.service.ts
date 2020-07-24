@@ -175,16 +175,77 @@ export class CourrierService {
             value => {
                 if (value != null) {
                     this.courrierListe = value;
+                } else {
+                    console.log('madkheltch oops');
+                    this.courrierListe = [];
                 }
             }
         );
     }
+
+    public findByDate(date: string) {
+        this.http.get <Array<CourrierVo>>('http://localhost:8080/generated/courrier/createdAt/' + date).subscribe(
+            value => {
+                if (value != null) {
+                    console.log('dkhelt l find by date');
+                    this.courrierListe = value;
+                } else {
+                    console.log('madkheltch oops');
+                    this.courrierListe = [];
+                }
+            }
+        );
+    }
+
+    public findByTwoDates(date1: string, date2: string) {
+        this.http.get <Array<CourrierVo>>('http://localhost:8080/generated/courrier/createdAt/' + date1 + '/createdAt2/' + date2).subscribe(
+            value => {
+                if (value != null) {
+                    this.courrierListe = value;
+                } else {
+                    console.log('madkheltch oops');
+                    this.courrierListe = [];
+                }
+            }
+        );
+    }
+
 
     public findAllDepartCourriers() {
         this.http.get<Array<CourrierVo>>('http://localhost:8080/generated/courrier/typeCourrier/libelle/' + 'Départ').subscribe(
             value => {
                 if (value != null) {
                     this.departCourriers = value;
+                } else {
+                    console.log('madkheltch oops');
+                    this.departCourriers = [];
+                }
+            }
+        );
+    }
+
+    public findAllDepartCourriersByDate(date: string) {
+        this.http.get<Array<CourrierVo>>('http://localhost:8080/generated/courrier/typeCourrier_libelle/' + 'Départ/createdAt/' + date).subscribe(
+            value => {
+                if (value != null) {
+                    console.log('dkhelt l findDepart by date');
+                    this.departCourriers = value;
+                } else {
+                    console.log('madkheltch oops');
+                    this.departCourriers = [];
+                }
+            }
+        );
+    }
+
+    public findAllDepartCourriersByTwoDate(date: string, date2: string) {
+        this.http.get<Array<CourrierVo>>('http://localhost:8080/generated/courrier/typeCourrier_libelle/' + 'Départ/createdAt/' + date + '/createdAt2/' + date2).subscribe(
+            value => {
+                if (value != null) {
+                    this.departCourriers = value;
+                } else {
+                    console.log('madkheltch oops');
+                    this.departCourriers = [];
                 }
             }
         );
@@ -195,6 +256,36 @@ export class CourrierService {
             value => {
                 if (value != null) {
                     this.arrivedCourriers = value;
+                } else {
+                    console.log('madkheltch oops');
+                    this.arrivedCourriers = [];
+                }
+            }
+        );
+    }
+
+    public findAllArrivedCourriersByDate(date: string) {
+        this.http.get<Array<CourrierVo>>('http://localhost:8080/generated/courrier/typeCourrier_libelle/' + 'Arrivée/createdAt/' + date).subscribe(
+            value => {
+                if (value != null) {
+                    console.log('dkhelt l find arrived by date');
+                    this.arrivedCourriers = value;
+                } else {
+                    console.log('madkheltch oops');
+                    this.arrivedCourriers = [];
+                }
+            }
+        );
+    }
+
+    public findAllArrivedCourriersByTwoDate(date: string, date2: string) {
+        this.http.get<Array<CourrierVo>>('http://localhost:8080/generated/courrier/typeCourrier_libelle/' + 'Arrivée/createdAt/' + date + '/createdAt2/' + date2).subscribe(
+            value => {
+                if (value != null) {
+                    this.arrivedCourriers = value;
+                } else {
+                    console.log('madkheltch oops');
+                    this.arrivedCourriers = [];
                 }
             }
         );
@@ -205,6 +296,35 @@ export class CourrierService {
             value => {
                 if (value != null) {
                     this.ouvertCourriers = value;
+                } else {
+                    console.log('madkheltch oops');
+                    this.ouvertCourriers = [];
+                }
+            }
+        );
+    }
+
+    public findAllOpenCourriersByDate(date: string) {
+        this.http.get<Array<CourrierVo>>('http://localhost:8080/generated/courrier/status_libelle/' + 'Ouvert/createdAt/' + date).subscribe(
+            value => {
+                if (value != null) {
+                    this.ouvertCourriers = value;
+                } else {
+                    console.log('madkheltch oops');
+                    this.ouvertCourriers = [];
+                }
+            }
+        );
+    }
+
+    public findAllOpenCourriersByTwoDate(date: string, date2: string) {
+        this.http.get<Array<CourrierVo>>('http://localhost:8080/generated/courrier/status_libelle/' + 'Ouvert/createdAt/' + date + '/createdAt2/' + date2).subscribe(
+            value => {
+                if (value != null) {
+                    this.ouvertCourriers = value;
+                } else {
+                    console.log('madkheltch oops');
+                    this.ouvertCourriers = [];
                 }
             }
         );
@@ -215,6 +335,35 @@ export class CourrierService {
             value => {
                 if (value != null) {
                     this.enCoursCourriers = value;
+                } else {
+                    console.log('madkheltch oops');
+                    this.enCoursCourriers = [];
+                }
+            }
+        );
+    }
+
+    public findAllEnCoursCourriersByDate(date: string) {
+        this.http.get<Array<CourrierVo>>('http://localhost:8080/generated/courrier/status_libelle/' + 'En cours/createdAt/' + date).subscribe(
+            value => {
+                if (value != null) {
+                    this.enCoursCourriers = value;
+                } else {
+                    console.log('madkheltch oops');
+                    this.enCoursCourriers = [];
+                }
+            }
+        );
+    }
+
+    public findAllEnCoursCourriersByTwoDate(date: string, date2: string) {
+        this.http.get<Array<CourrierVo>>('http://localhost:8080/generated/courrier/status_libelle/' + 'En cours/createdAt/' + date + '/createdAt2/' + date2).subscribe(
+            value => {
+                if (value != null) {
+                    this.enCoursCourriers = value;
+                } else {
+                    console.log('madkheltch oops');
+                    this.enCoursCourriers = [];
                 }
             }
         );
@@ -225,6 +374,35 @@ export class CourrierService {
             value => {
                 if (value != null) {
                     this.traitedCourriers = value;
+                } else {
+                    console.log('madkheltch oops');
+                    this.traitedCourriers = [];
+                }
+            }
+        );
+    }
+
+    public findAllTraitedCourriersByDate(date: string) {
+        this.http.get<Array<CourrierVo>>('http://localhost:8080/generated/courrier/status_libelle/' + 'Traité/createdAt/' + date).subscribe(
+            value => {
+                if (value != null) {
+                    this.traitedCourriers = value;
+                } else {
+                    console.log('madkheltch oops');
+                    this.traitedCourriers = [];
+                }
+            }
+        );
+    }
+
+    public findAllTraitedCourriersByTwoDate(date: string, date2: string) {
+        this.http.get<Array<CourrierVo>>('http://localhost:8080/generated/courrier/status_libelle/' + 'Traité/createdAt/' + date + '/createdAt2/' + date2).subscribe(
+            value => {
+                if (value != null) {
+                    this.traitedCourriers = value;
+                } else {
+                    console.log('madkheltch oops');
+                    this.traitedCourriers = [];
                 }
             }
         );
@@ -235,16 +413,77 @@ export class CourrierService {
             value => {
                 if (value != null) {
                     this.accusedCourriers = value;
+                } else {
+                    console.log('madkheltch oops');
+                    this.accusedCourriers = [];
                 }
             }
         );
     }
+
+    public findAllAccusedCourriersByDate(date: string) {
+        this.http.get<Array<CourrierVo>>('http://localhost:8080/generated/courrier/accuse/' + true + '/createdAt/' + date).subscribe(
+            value => {
+                if (value != null) {
+                    console.log('dkhelt l find accused by date');
+                    this.accusedCourriers = value;
+                } else {
+                    console.log('madkheltch oops');
+                    this.accusedCourriers = [];
+                }
+            }
+        );
+    }
+
+    public findAllAccusedCourriersByTwoDates(date: string, date2: string) {
+        this.http.get<Array<CourrierVo>>('http://localhost:8080/generated/courrier/accuse/' + true + '/createdAt/' + date + '/createdAt2/' + date2).subscribe(
+            value => {
+                if (value != null) {
+                    this.accusedCourriers = value;
+                } else {
+                    console.log('madkheltch oops');
+                    this.accusedCourriers = [];
+                }
+            }
+        );
+    }
+
 
     public findAllResponseCourriers() {
         this.http.get<Array<CourrierVo>>('http://localhost:8080/generated/courrier/reponse/' + true).subscribe(
             value => {
                 if (value != null) {
                     this.responseCourriers = value;
+                } else {
+                    console.log('madkheltch oops');
+                    this.responseCourriers = [];
+                }
+            }
+        );
+    }
+
+    public findAllResponseCourriersByDate(date: string) {
+        this.http.get<Array<CourrierVo>>('http://localhost:8080/generated/courrier/reponse/' + true + '/createdAt/' + date).subscribe(
+            value => {
+                if (value != null) {
+                    console.log('dkhelt l find reponse by date');
+                    this.responseCourriers = value;
+                } else {
+                    console.log('madkheltch oops');
+                    this.responseCourriers = [];
+                }
+            }
+        );
+    }
+
+    public findAllResponseCourriersByTwoDates(date: string, date2: string) {
+        this.http.get<Array<CourrierVo>>('http://localhost:8080/generated/courrier/reponse/' + true + '/createdAt/' + date + '/createdAt2/' + date2).subscribe(
+            value => {
+                if (value != null) {
+                    this.responseCourriers = value;
+                } else {
+                    console.log('madkheltch oops');
+                    this.responseCourriers = [];
                 }
             }
         );
