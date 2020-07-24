@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {CourrierVo} from '../../../controller/model/courrier.model';
 import {CourrierService} from '../../../controller/service/Courrier.service';
 import {UserVo} from '../../../controller/model/User.model';
@@ -18,18 +18,29 @@ import {LeServiceVo} from '../../../controller/model/LeService.model';
 @Component({
     selector: 'app-courrier-list',
     templateUrl: './courrier-list.component.html',
-    styleUrls: ['./courrier-list.component.css']
+    styleUrls: ['./courrier-list.component.css'],
+    encapsulation: ViewEncapsulation.None
 })
 export class CourrierlistComponent implements OnInit {
-
+    
     constructor(private _courrierService: CourrierService) {
     }
 
-
+   
     ngOnInit(): void {
 
     }
 
+    showNewCorrierDialog(){
+        this.courrierService.addNewCourrier = true;
+
+    }
+    get addNewCourrier():boolean{
+    return this.courrierService.addNewCourrier ;
+    }
+    set addNewCourrier(value:boolean){
+        this.courrierService.addNewCourrier = value;
+    }
     get courrierService(): CourrierService {
         return this._courrierService;
     }

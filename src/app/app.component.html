@@ -146,7 +146,7 @@
                 [sidebarItems]="sidebarItems"></app-navbar>
     <div id="content">
         <nav *ngIf="authenticated" class="navbar navbar-dark  boxShadow">
-            <div class="sticky-top my-2 mx-2"> <button class="btn btn-dark btn-circle btn-lg" (click)="buttonClick()"><i class=" fa " [ngClass]="{'fa-bars': openBar==true , ' fa-close': openBar==false}" ></i></button></div>
+            <div class="sticky-top my-2 mx-2"> <button class="btn btn-dark btn-circle btn-lg" (click)="buttonClick()"><i class=" fa " [ngClass]="{'fa-bars': !openBar, ' fa-close': openBar}" ></i></button></div>
             <span style="text-align: center;" class="span">
           <!-- <i class="fas fa-school"
               style="font-size: 45px;text-align: center;"></i> -->
@@ -160,10 +160,11 @@
           <br />
           ANGULAR 9.0</span>
 
-            <button  pButton class="btn btn-dark btn-circle btn-lg  float-left  mx-3" (click)="op1.toggle($event)"><i class="fa fa-bell"></i> <span class="badge badge-pill badge-danger" *ngIf="this.badgeNumber>0"> {{this.badgeNumber}}</span> </button>
+            <button  pButton class="btn btn-dark btn-circle btn-lg  float-left" (click)="op1.toggle($event)"><i class="fa fa-bell"></i> <span class="badge badge-pill badge-danger" *ngIf="this.badgeNumber>0"> {{this.badgeNumber}}</span> </button>
 
+            <button  pButton class="btn btn-dark btn-circle btn-lg  float-left mx-3" (click)="lgMenu.toggle($event)"><i class="fa fa-language"></i> </button>
+            
             <button  pButton class="btn btn-dark btn-circle btn-lg  float-left " (click)="menu.toggle($event)"><i class="fa fa-cog"></i> </button>
-            <button class="btn btn-link fa fa-sign-out" (click)="logout()"> Exit</button>
         </nav>
 
 
@@ -183,6 +184,7 @@
         </ng-template>
     </p-overlayPanel>
 
+    <p-menu [showTransitionOptions]="'0ms'" [hideTransitionOptions]="'0ms'" #lgMenu [popup]="true" [model]="languageItems"></p-menu>
+    
     <p-menu [showTransitionOptions]="'0ms'" [hideTransitionOptions]="'0ms'" #menu [popup]="true" [model]="settingItems"></p-menu>
-
 </div>
