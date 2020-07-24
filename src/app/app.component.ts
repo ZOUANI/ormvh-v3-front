@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import {MenuItem} from "primeng/api";
-import {AuthenticationService} from './controller/service/auth/authentication.service';
+import { MenuItem } from "primeng/api";
+import { AuthenticationService } from './controller/service/auth/authentication.service';
 
 @Component({
   selector: 'app-root',
@@ -9,9 +9,9 @@ import {AuthenticationService} from './controller/service/auth/authentication.se
 })
 export class AppComponent {
 
-    ngOnInit() {
-        this.authService.loadInfos();
-    }
+  ngOnInit() {
+    this.authService.loadInfos();
+  }
 
   title = 'frontend';
   sidebarItems: MenuItem[];
@@ -21,8 +21,8 @@ export class AppComponent {
   badgeNumber: number;      //contain the number of notifications , if =0 the badge won't show
   settingItems: MenuItem[];  //contain items for the setting menu on nav bar
 
-  constructor( private authService : AuthenticationService) {
-    this.openBar=false;
+  constructor(private authService: AuthenticationService) {
+    this.openBar = false;
 
     // to change icons , change the icon value on the array below to one of the font awesome classes
     this.sidebarItems = [{
@@ -85,7 +85,7 @@ export class AppComponent {
       {
         label: '',
         items: [
-          { label: 'Log out', routerLink: '/', icon: 'fa fa-sign-out' }]
+          { label: 'Log out', icon: 'fa fa-sign-out', command: () => this.logout() }]
       }
     ];
 
@@ -118,12 +118,12 @@ export class AppComponent {
     this.badgeNumber = 0;
   }
 
-    get authenticated() {
-        return this.authService.authenticated;
-    }
+  get authenticated() {
+    return this.authService.authenticated;
+  }
 
-    logout() {
-        this.authService.logout();
-    }
+  logout() {
+    this.authService.logout();
+  }
 
 }
