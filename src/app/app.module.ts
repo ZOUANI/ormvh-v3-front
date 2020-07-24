@@ -127,6 +127,7 @@ import {LoginComponent} from './view/login/login.component';
 import {InterceptorService} from './controller/service/auth/interceptor.service';
 import {ErrorInterceptorService} from './controller/service/auth/error-interceptor.service';
 import {AuthGuard} from './controller/service/auth/auth.guard';
+import {CreateExpeditorComponent} from "./view/courrier/createExpeditor/createExpeditor.component";
 
 @NgModule({
     declarations: [
@@ -241,6 +242,7 @@ import {AuthGuard} from './controller/service/auth/auth.guard';
         CourrierReservationComponent,
         DashboardComponent,
         LoginComponent,
+        CreateExpeditorComponent
 
     ],
     imports: [

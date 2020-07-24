@@ -24,6 +24,10 @@
                     <label>libelle</label>
                     <input type="text" class="form-control" [placeholder]="typeCourrier.libelle" [(ngModel)] = "typeCourrier.libelle">
                 </div>
+            <div class="col-md-6 py-2">
+                <label>color</label>
+                <input type="color" class="form-control" [placeholder]="typeCourrier.color" [(ngModel)] = "typeCourrier.color">
+            </div>
             </div>
         <div class="card-footer" >
             <button class="form-control" (click)="editTypeCourrier()" >Edit</button>

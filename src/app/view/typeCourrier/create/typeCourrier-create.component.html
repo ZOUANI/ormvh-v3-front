@@ -24,6 +24,10 @@
                     <label>libelle</label>
                     <input type="text" class="form-control" [(ngModel)] = "typeCourrier.libelle">
                 </div>
+            <div class="col-md-6 py-2">
+                <label>color</label>
+                <input type="color" class="form-control" [(ngModel)] = "typeCourrier.color">
+            </div>
         </div>
         <div class="modal-footer" >
             <button class="form-control" (click)="saveTypeCourrier()" >Save</button>
