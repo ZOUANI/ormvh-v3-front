@@ -4,48 +4,52 @@ import {SubdivisionVo} from '../../../controller/model/subdivision.model';
 import {UserVo} from '../../../controller/model/User.model';
 
 @Component({
-  selector: 'app-subdivision-create',
-  templateUrl: './subdivision-create.component.html',
-  styleUrls: ['./subdivision-create.component.css']
+    selector: 'app-subdivision-create',
+    templateUrl: './subdivision-create.component.html',
+    styleUrls: ['./subdivision-create.component.css']
 })
 export class SubdivisionCreateComponent implements OnInit {
-  constructor(private subdivisionService: SubdivisionService) { }
-
-   ngOnInit(): void {
-      this.findAllcreatedBys();
-      this.findAllupdatedBys();
+    constructor(private subdivisionService: SubdivisionService) {
     }
 
-   get subdivision(): SubdivisionVo {
-    return this.subdivisionService.subdivision;
-  }
+    get subdivision(): SubdivisionVo {
+        return this.subdivisionService.subdivision;
+    }
 
-  get createdBys(): Array<UserVo> {
-   return this.subdivisionService.createdBys;
-  }
-  get updatedBys(): Array<UserVo> {
-   return this.subdivisionService.updatedBys;
-  }
+    get createdBys(): Array<UserVo> {
+        return this.subdivisionService.createdBys;
+    }
 
-   saveSubdivision() {
-    this.subdivisionService.saveSubdivision();
-  }
+    get updatedBys(): Array<UserVo> {
+        return this.subdivisionService.updatedBys;
+    }
 
-   findAllcreatedBys() {
-     this.subdivisionService.findAllcreatedBys();
-   }
-   findAllupdatedBys() {
-     this.subdivisionService.findAllupdatedBys();
-   }
+    get subdivisionShowCreate(): boolean {
+        return this.subdivisionService.subdivisionShowCreate;
+    }
 
-get subdivisionShowCreate (): boolean  {
-  return this.subdivisionService.subdivisionShowCreate;
-}
+    set subdivisionShowCreate(value: boolean) {
+        this.subdivisionService.subdivisionShowCreate = value;
+    }
 
-set subdivisionShowCreate (value: boolean ) {
-  this.subdivisionService.subdivisionShowCreate = value ;
-}
-public createHide(){
-       this.subdivisionService.createHide();
-}
+    ngOnInit(): void {
+        this.findAllcreatedBys();
+        this.findAllupdatedBys();
+    }
+
+    saveSubdivision() {
+        this.subdivisionService.saveSubdivision();
+    }
+
+    findAllcreatedBys() {
+        this.subdivisionService.findAllcreatedBys();
+    }
+
+    findAllupdatedBys() {
+        this.subdivisionService.findAllupdatedBys();
+    }
+
+    public createHide() {
+        this.subdivisionService.createHide();
+    }
 }

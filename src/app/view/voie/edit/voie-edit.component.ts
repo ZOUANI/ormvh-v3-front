@@ -4,54 +4,58 @@ import {VoieVo} from '../../../controller/model/voie.model';
 import {UserVo} from '../../../controller/model/User.model';
 
 @Component({
-  selector: 'app-voie-edit',
-  templateUrl: './voie-edit.component.html',
-  styleUrls: ['./voie-edit.component.css']
+    selector: 'app-voie-edit',
+    templateUrl: './voie-edit.component.html',
+    styleUrls: ['./voie-edit.component.css']
 })
 export class VoieEditComponent implements OnInit {
-  constructor(private voieService: VoieService) { }
-
-   ngOnInit(): void {
-       this.findAllcreatedBys();
-       this.findAllupdatedBys();
+    constructor(private voieService: VoieService) {
     }
 
-   get voie(): VoieVo {
-    return this.voieService.voie;
-  }
+    get voie(): VoieVo {
+        return this.voieService.voie;
+    }
 
-   get editableVoies(): Array<VoieVo> {
-    return this.voieService.editableVoies;
-   }
+    get editableVoies(): Array<VoieVo> {
+        return this.voieService.editableVoies;
+    }
 
-   set editableVoies(value: Array<VoieVo>) {
-    this.voieService.editableVoies = value;
-   }
+    set editableVoies(value: Array<VoieVo>) {
+        this.voieService.editableVoies = value;
+    }
 
-  get createdBys(): Array<UserVo> {
-   return this.voieService.createdBys;
-  }
-  get updatedBys(): Array<UserVo> {
-   return this.voieService.updatedBys;
-  }
+    get createdBys(): Array<UserVo> {
+        return this.voieService.createdBys;
+    }
 
-   editVoie() {
-    this.voieService.editVoie();
-  }
+    get updatedBys(): Array<UserVo> {
+        return this.voieService.updatedBys;
+    }
+
+    ngOnInit(): void {
+        this.findAllcreatedBys();
+        this.findAllupdatedBys();
+    }
+
+    editVoie() {
+        this.voieService.editVoie();
+    }
+
     findAllcreatedBys() {
-     this.voieService.findAllcreatedBys();
-    }
-    findAllupdatedBys() {
-     this.voieService.findAllupdatedBys();
+        this.voieService.findAllcreatedBys();
     }
 
-     findBylibelle(ref: string) {
-      this.voieService.findBylibelle(ref);
-     }
+    findAllupdatedBys() {
+        this.voieService.findAllupdatedBys();
+    }
+
+    findBylibelle(ref: string) {
+        this.voieService.findBylibelle(ref);
+    }
 
     editHide() {
-      this.voieService.editHide();
+        this.voieService.editHide();
     }
-    
+
 
 }

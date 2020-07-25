@@ -1,103 +1,107 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ModelLettreReponseVo} from '../../../controller/model/modelLettreReponse.model';
 import {ModelLettreReponseService} from '../../../controller/service/ModelLettreReponse.service';
 import {UserVo} from '../../../controller/model/User.model';
 import {CategorieModelLettreReponseVo} from '../../../controller/model/CategorieModelLettreReponse.model';
 
 @Component({
-  selector: 'app-modelLettreReponse-list',
-  templateUrl: './modelLettreReponse-list.component.html',
-  styleUrls: ['./modelLettreReponse-list.component.css']
+    selector: 'app-modelLettreReponse-list',
+    templateUrl: './modelLettreReponse-list.component.html',
+    styleUrls: ['./modelLettreReponse-list.component.css']
 })
 export class ModelLettreReponselistComponent implements OnInit {
 
-  constructor(private _modelLettreReponseService : ModelLettreReponseService) {}
+    constructor(private _modelLettreReponseService: ModelLettreReponseService) {
+    }
 
-  get categorieModelLettreReponses(): Array<CategorieModelLettreReponseVo> {
-   return this.modelLettreReponseService.categorieModelLettreReponses;
-  }
-  get createdBys(): Array<UserVo> {
-   return this.modelLettreReponseService.createdBys;
-  }
-  get updatedBys(): Array<UserVo> {
-   return this.modelLettreReponseService.updatedBys;
-  }
+    get categorieModelLettreReponses(): Array<CategorieModelLettreReponseVo> {
+        return this.modelLettreReponseService.categorieModelLettreReponses;
+    }
 
-  ngOnInit(): void {
-    this.findAll();
-      this.findAllcategorieModelLettreReponses();
-      this.findAllcreatedBys();
-      this.findAllupdatedBys();
-  }
+    get createdBys(): Array<UserVo> {
+        return this.modelLettreReponseService.createdBys;
+    }
 
-  get modelLettreReponseService (): ModelLettreReponseService {
-    return this._modelLettreReponseService;
-  }
+    get updatedBys(): Array<UserVo> {
+        return this.modelLettreReponseService.updatedBys;
+    }
 
-  set modelLettreReponseService (value: ModelLettreReponseService) {
-    this._modelLettreReponseService = value ;
-  }
+    get modelLettreReponseService(): ModelLettreReponseService {
+        return this._modelLettreReponseService;
+    }
 
-  get modelLettreReponseListe (): Array<ModelLettreReponseVo> {
-    return this.modelLettreReponseService.modelLettreReponseListe;
-  }
+    set modelLettreReponseService(value: ModelLettreReponseService) {
+        this._modelLettreReponseService = value;
+    }
 
-  set modelLettreReponseListe (value: Array<ModelLettreReponseVo>) {
-    this.modelLettreReponseService.modelLettreReponseListe = value ;
-  }
+    get modelLettreReponseListe(): Array<ModelLettreReponseVo> {
+        return this.modelLettreReponseService.modelLettreReponseListe;
+    }
 
-  get modelLettreReponseDetail (): ModelLettreReponseVo {
-    return this.modelLettreReponseService.modelLettreReponseDetail;
-}
+    set modelLettreReponseListe(value: Array<ModelLettreReponseVo>) {
+        this.modelLettreReponseService.modelLettreReponseListe = value;
+    }
 
-  set modelLettreReponseDetail (value: ModelLettreReponseVo) {
-  this.modelLettreReponseService.modelLettreReponseDetail = value ;
-}
+    get modelLettreReponseDetail(): ModelLettreReponseVo {
+        return this.modelLettreReponseService.modelLettreReponseDetail;
+    }
 
-get modelLettreReponseSearch (): ModelLettreReponseVo {
-  return this.modelLettreReponseService.modelLettreReponseSearch;
-}
+    set modelLettreReponseDetail(value: ModelLettreReponseVo) {
+        this.modelLettreReponseService.modelLettreReponseDetail = value;
+    }
 
-set modelLettreReponseSearch (value: ModelLettreReponseVo) {
-  this.modelLettreReponseService.modelLettreReponseSearch = value ;
-}
+    get modelLettreReponseSearch(): ModelLettreReponseVo {
+        return this.modelLettreReponseService.modelLettreReponseSearch;
+    }
+
+    set modelLettreReponseSearch(value: ModelLettreReponseVo) {
+        this.modelLettreReponseService.modelLettreReponseSearch = value;
+    }
+
+    get modelLettreReponseShowDetail(): boolean {
+        return this.modelLettreReponseService.modelLettreReponseShowDetail;
+    }
+
+    set modelLettreReponseShowDetail(value: boolean) {
+        this.modelLettreReponseService.modelLettreReponseShowDetail = value;
+    }
+
+    ngOnInit(): void {
+        this.findAll();
+        this.findAllcategorieModelLettreReponses();
+        this.findAllcreatedBys();
+        this.findAllupdatedBys();
+    }
+
+    delete(pojo: ModelLettreReponseVo) {
+        this.modelLettreReponseService.delete(pojo);
+    }
 
 
-get modelLettreReponseShowDetail (): boolean  {
-  return this.modelLettreReponseService.modelLettreReponseShowDetail;
-}
+    detailShow(pojo: ModelLettreReponseVo) {
+        this.modelLettreReponseService.detailShow(pojo);
 
-set modelLettreReponseShowDetail (value: boolean ) {
-  this.modelLettreReponseService.modelLettreReponseShowDetail = value ;
-}
+    }
 
+    findModelLettreReponse(pojo: ModelLettreReponseVo) {
+        this.modelLettreReponseService.findModelLettreReponse(pojo);
 
-   delete( pojo : ModelLettreReponseVo ) {
-    this.modelLettreReponseService.delete(pojo);
-  }
+    }
 
+    findAll() {
+        this.modelLettreReponseService.findAll();
+    }
 
- detailShow( pojo : ModelLettreReponseVo ) {
-  this.modelLettreReponseService.detailShow( pojo);
+    findAllcategorieModelLettreReponses() {
+        this.modelLettreReponseService.findAllcategorieModelLettreReponses();
+    }
 
-}
+    findAllcreatedBys() {
+        this.modelLettreReponseService.findAllcreatedBys();
+    }
 
- findModelLettreReponse(pojo : ModelLettreReponseVo ) {
-  this.modelLettreReponseService.findModelLettreReponse( pojo);
-
-}
- findAll() {
-  this.modelLettreReponseService.findAll();
-}
-
-   findAllcategorieModelLettreReponses() {
-     this.modelLettreReponseService.findAllcategorieModelLettreReponses();
-   }
-   findAllcreatedBys() {
-     this.modelLettreReponseService.findAllcreatedBys();
-   }
-   findAllupdatedBys() {
-     this.modelLettreReponseService.findAllupdatedBys();
-   }
+    findAllupdatedBys() {
+        this.modelLettreReponseService.findAllupdatedBys();
+    }
 
 }

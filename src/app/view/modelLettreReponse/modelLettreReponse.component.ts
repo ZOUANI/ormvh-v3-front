@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
     selector: 'app-modelLettreReponse',
@@ -7,7 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ModelLettreReponseComponent implements OnInit {
 
-    constructor() { }
+    constructor() {
+    }
 
     ngOnInit(): void {
     }

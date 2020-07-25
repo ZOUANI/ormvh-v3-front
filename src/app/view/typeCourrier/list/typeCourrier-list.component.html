@@ -1,17 +1,17 @@
 <div class="container">
     <div class="row">
-        <div id="accordion" class="col-12 my-3">
+        <div class="col-12 my-3" id="accordion">
             <div class="card">
                 <div class="card-header border-0 bg-white" id="headingSearch">
 
-                    <button class="btn btn-info  btn-sm fa fa-filter" data-toggle="collapse" data-target="#search"
-                            aria-expanded="true" aria-controls="search">
+                    <button aria-controls="search" aria-expanded="true" class="btn btn-info  btn-sm fa fa-filter"
+                            data-target="#search" data-toggle="collapse">
                         <h5 class="float-right">Search Forms</h5>
                     </button>
 
                 </div>
 
-                <div id="search" class="collapse" aria-labelledby="headingSearch" data-parent="#accordion">
+                <div aria-labelledby="headingSearch" class="collapse" data-parent="#accordion" id="search">
                     <div class="card-body">
                         <div class="container">
                             <div class="row">
@@ -20,26 +20,26 @@
 
                                     <div class="input-group  col-3  my-2">
                                         <small class="text-muted col-12">libelle</small>
-                                        <input type="text" class="form-control col-12" placeholder="libelle"
-                                               [(ngModel)]="typeCourrierSearch.libelle">
+                                        <input [(ngModel)]="typeCourrierSearch.libelle" class="form-control col-12" placeholder="libelle"
+                                               type="text">
                                     </div>
                                     <div class="input-group  col-3  my-2">
                                         <small class="text-muted col-12">libelleArab</small>
-                                        <input type="text" class="form-control col-12" placeholder="libelleArab"
-                                               [(ngModel)]="typeCourrierSearch.libelleArab">
+                                        <input [(ngModel)]="typeCourrierSearch.libelleArab" class="form-control col-12" placeholder="libelleArab"
+                                               type="text">
                                     </div>
                                     <div class="input-group  col-3  my-2">
                                         <small class="text-muted col-12">code</small>
-                                        <input type="text" class="form-control col-12" placeholder="code"
-                                               [(ngModel)]="typeCourrierSearch.code">
+                                        <input [(ngModel)]="typeCourrierSearch.code" class="form-control col-12" placeholder="code"
+                                               type="text">
                                     </div>
-                                    <td><span class="badge badge-pill p-2"
-                                              [ngStyle]="{'background-color':typeCourrierSearch.color}"><i
+                                    <td><span [ngStyle]="{'background-color':typeCourrierSearch.color}"
+                                              class="badge badge-pill p-2"><i
                                             class="fa fa-paint-brush" style="color: wheat;"></i> </span></td>
                                 </div>
                             </div>
-                            <button class="btn btn-info btn-sm fa fa-search float-right px-5 py-2 my-4"
-                                    (click)="findTypeCourrier(typeCourrierSearch)"></button>
+                            <button (click)="findTypeCourrier(typeCourrierSearch)"
+                                    class="btn btn-info btn-sm fa fa-search float-right px-5 py-2 my-4"></button>
                         </div>
                     </div>
                 </div>
@@ -51,7 +51,7 @@
             <div class="card-header bg-transparent">
                 <div class="float-left px-1"><h5>List of typeCourriers. </h5></div>
 
-                <button class="btn btn-success btn-sm fa fa-plus float-right" (click)="createShow()"> Create a new
+                <button (click)="createShow()" class="btn btn-success btn-sm fa fa-plus float-right"> Create a new
                     typeCourrier
                 </button>
 
@@ -75,16 +75,16 @@
                         <td>{{p.libelle}}</td>
                         <td>{{p.libelleArab}}</td>
                         <td>{{p.code}}</td>
-                        <td><span class="badge badge-pill p-2" [ngStyle]="{'background-color':p.color}"><i
+                        <td><span [ngStyle]="{'background-color':p.color}" class="badge badge-pill p-2"><i
                                 class="fa fa-paint-brush" style="color: wheat;"></i> </span></td>
 
 
                         <td>
-                            <button class="btn btn-danger btn-sm fa fa-trash mx-md-1" (click)="delete(p)"></button>
-                            <button class="btn btn-danger btn-sm fa fa-trash mx-md-1" (click)="delete(p)"></button>
-                            <button class="btn btn-warning btn-sm fa fa-external-link mx-md-1"
-                                    (click)="detailShow(p)"></button>
-                            <button class="btn btn-info btn-sm fa fa-pencil mx-md-1" (click)="editShow(p)"></button>
+                            <button (click)="delete(p)" class="btn btn-danger btn-sm fa fa-trash mx-md-1"></button>
+                            <button (click)="delete(p)" class="btn btn-danger btn-sm fa fa-trash mx-md-1"></button>
+                            <button (click)="detailShow(p)"
+                                    class="btn btn-warning btn-sm fa fa-external-link mx-md-1"></button>
+                            <button (click)="editShow(p)" class="btn btn-info btn-sm fa fa-pencil mx-md-1"></button>
 
 
                         </td>

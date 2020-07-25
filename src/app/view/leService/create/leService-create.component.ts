@@ -4,48 +4,52 @@ import {LeServiceVo} from '../../../controller/model/leService.model';
 import {UserVo} from '../../../controller/model/User.model';
 
 @Component({
-  selector: 'app-leService-create',
-  templateUrl: './leService-create.component.html',
-  styleUrls: ['./leService-create.component.css']
+    selector: 'app-leService-create',
+    templateUrl: './leService-create.component.html',
+    styleUrls: ['./leService-create.component.css']
 })
 export class LeServiceCreateComponent implements OnInit {
-  constructor(private leServiceService: LeServiceService) { }
-
-   ngOnInit(): void {
-      this.findAllcreatedBys();
-      this.findAllupdatedBys();
+    constructor(private leServiceService: LeServiceService) {
     }
 
-   get leService(): LeServiceVo {
-    return this.leServiceService.leService;
-  }
+    get leService(): LeServiceVo {
+        return this.leServiceService.leService;
+    }
 
-  get createdBys(): Array<UserVo> {
-   return this.leServiceService.createdBys;
-  }
-  get updatedBys(): Array<UserVo> {
-   return this.leServiceService.updatedBys;
-  }
+    get createdBys(): Array<UserVo> {
+        return this.leServiceService.createdBys;
+    }
 
-   saveLeService() {
-    this.leServiceService.saveLeService();
-  }
+    get updatedBys(): Array<UserVo> {
+        return this.leServiceService.updatedBys;
+    }
 
-   findAllcreatedBys() {
-     this.leServiceService.findAllcreatedBys();
-   }
-   findAllupdatedBys() {
-     this.leServiceService.findAllupdatedBys();
-   }
+    get leServiceShowCreate(): boolean {
+        return this.leServiceService.leServiceShowCreate;
+    }
 
-get leServiceShowCreate (): boolean  {
-  return this.leServiceService.leServiceShowCreate;
-}
+    set leServiceShowCreate(value: boolean) {
+        this.leServiceService.leServiceShowCreate = value;
+    }
 
-set leServiceShowCreate (value: boolean ) {
-  this.leServiceService.leServiceShowCreate = value ;
-}
-public createHide(){
-       this.leServiceService.createHide();
-}
+    ngOnInit(): void {
+        this.findAllcreatedBys();
+        this.findAllupdatedBys();
+    }
+
+    saveLeService() {
+        this.leServiceService.saveLeService();
+    }
+
+    findAllcreatedBys() {
+        this.leServiceService.findAllcreatedBys();
+    }
+
+    findAllupdatedBys() {
+        this.leServiceService.findAllupdatedBys();
+    }
+
+    public createHide() {
+        this.leServiceService.createHide();
+    }
 }

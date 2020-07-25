@@ -4,49 +4,53 @@ import {UserVo} from '../../../controller/model/user.model';
 import {RoleVo} from '../../../controller/model/Role.model';
 
 @Component({
-  selector: 'app-user-create',
-  templateUrl: './user-create.component.html',
-  styleUrls: ['./user-create.component.css']
+    selector: 'app-user-create',
+    templateUrl: './user-create.component.html',
+    styleUrls: ['./user-create.component.css']
 })
 export class UserCreateComponent implements OnInit {
-  constructor(private userService: UserService) { }
-
-   ngOnInit(): void {
-      this.findAllcreatedBys();
-      this.findAllupdatedBys();
+    constructor(private userService: UserService) {
     }
 
-   get user(): UserVo {
-    return this.userService.user;
-  }
+    get user(): UserVo {
+        return this.userService.user;
+    }
 
-  get createdBys(): Array<UserVo> {
-   return this.userService.createdBys;
-  }
-  get updatedBys(): Array<UserVo> {
-   return this.userService.updatedBys;
-  }
+    get createdBys(): Array<UserVo> {
+        return this.userService.createdBys;
+    }
 
-  get role(): RoleVo {
-    return this.userService.role;
-  }
+    get updatedBys(): Array<UserVo> {
+        return this.userService.updatedBys;
+    }
 
-  addRole() {
-   return this.userService.addRole();
-  }
+    get role(): RoleVo {
+        return this.userService.role;
+    }
 
-  removeRole(i: number) {
-   this.userService.removeRole(i);
-  }
-   saveUser() {
-    this.userService.saveUser();
-  }
+    ngOnInit(): void {
+        this.findAllcreatedBys();
+        this.findAllupdatedBys();
+    }
 
-   findAllcreatedBys() {
-     this.userService.findAllcreatedBys();
-   }
-   findAllupdatedBys() {
-     this.userService.findAllupdatedBys();
-   }
+    addRole() {
+        return this.userService.addRole();
+    }
+
+    removeRole(i: number) {
+        this.userService.removeRole(i);
+    }
+
+    saveUser() {
+        this.userService.saveUser();
+    }
+
+    findAllcreatedBys() {
+        this.userService.findAllcreatedBys();
+    }
+
+    findAllupdatedBys() {
+        this.userService.findAllupdatedBys();
+    }
 
 }

@@ -4,48 +4,52 @@ import {CategorieModelLettreReponseVo} from '../../../controller/model/categorie
 import {UserVo} from '../../../controller/model/User.model';
 
 @Component({
-  selector: 'app-categorieModelLettreReponse-create',
-  templateUrl: './categorieModelLettreReponse-create.component.html',
-  styleUrls: ['./categorieModelLettreReponse-create.component.css']
+    selector: 'app-categorieModelLettreReponse-create',
+    templateUrl: './categorieModelLettreReponse-create.component.html',
+    styleUrls: ['./categorieModelLettreReponse-create.component.css']
 })
 export class CategorieModelLettreReponseCreateComponent implements OnInit {
-  constructor(private categorieModelLettreReponseService: CategorieModelLettreReponseService) { }
-
-   ngOnInit(): void {
-      this.findAllupdatedBys();
-      this.findAllcreatedBys();
+    constructor(private categorieModelLettreReponseService: CategorieModelLettreReponseService) {
     }
 
-   get categorieModelLettreReponse(): CategorieModelLettreReponseVo {
-    return this.categorieModelLettreReponseService.categorieModelLettreReponse;
-  }
+    get categorieModelLettreReponse(): CategorieModelLettreReponseVo {
+        return this.categorieModelLettreReponseService.categorieModelLettreReponse;
+    }
 
-  get updatedBys(): Array<UserVo> {
-   return this.categorieModelLettreReponseService.updatedBys;
-  }
-  get createdBys(): Array<UserVo> {
-   return this.categorieModelLettreReponseService.createdBys;
-  }
+    get updatedBys(): Array<UserVo> {
+        return this.categorieModelLettreReponseService.updatedBys;
+    }
 
-   saveCategorieModelLettreReponse() {
-    this.categorieModelLettreReponseService.saveCategorieModelLettreReponse();
-  }
+    get createdBys(): Array<UserVo> {
+        return this.categorieModelLettreReponseService.createdBys;
+    }
 
-   findAllupdatedBys() {
-     this.categorieModelLettreReponseService.findAllupdatedBys();
-   }
-   findAllcreatedBys() {
-     this.categorieModelLettreReponseService.findAllcreatedBys();
-   }
+    get categorieModelLettreReponseShowCreate(): boolean {
+        return this.categorieModelLettreReponseService.categorieModelLettreReponseShowCreate;
+    }
 
-get categorieModelLettreReponseShowCreate (): boolean  {
-  return this.categorieModelLettreReponseService.categorieModelLettreReponseShowCreate;
-}
+    set categorieModelLettreReponseShowCreate(value: boolean) {
+        this.categorieModelLettreReponseService.categorieModelLettreReponseShowCreate = value;
+    }
 
-set categorieModelLettreReponseShowCreate (value: boolean ) {
-  this.categorieModelLettreReponseService.categorieModelLettreReponseShowCreate = value ;
-}
-public createHide(){
-       this.categorieModelLettreReponseService.createHide();
-}
+    ngOnInit(): void {
+        this.findAllupdatedBys();
+        this.findAllcreatedBys();
+    }
+
+    saveCategorieModelLettreReponse() {
+        this.categorieModelLettreReponseService.saveCategorieModelLettreReponse();
+    }
+
+    findAllupdatedBys() {
+        this.categorieModelLettreReponseService.findAllupdatedBys();
+    }
+
+    findAllcreatedBys() {
+        this.categorieModelLettreReponseService.findAllcreatedBys();
+    }
+
+    public createHide() {
+        this.categorieModelLettreReponseService.createHide();
+    }
 }

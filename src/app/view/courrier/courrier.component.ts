@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { CourrierService } from 'src/app/controller/service/Courrier.service';
+import {Component, OnInit} from '@angular/core';
+import {CourrierService} from 'src/app/controller/service/Courrier.service';
 
 @Component({
     selector: 'app-courrier',
@@ -9,7 +9,7 @@ import { CourrierService } from 'src/app/controller/service/Courrier.service';
 export class CourrierComponent implements OnInit {
 
     constructor(private courrierService: CourrierService) {
-     }
+    }
 
     ngOnInit(): void {
         this.courrierService.findAll();
