@@ -33,7 +33,6 @@ export class CourrierCreateComponent implements OnInit {
     courrierObjects: SelectItem[];
     voies: VoieVo[];
     natureCourriers: NatureCourrierVo[];
-    linkedTos: SelectItem[];
     evaluations: SelectItem[];
     expeditorTypes: SelectItem[];
     subdivisions: SelectItem[];
@@ -59,6 +58,12 @@ export class CourrierCreateComponent implements OnInit {
                 private userService: UserService) {
     }
 
+    get addNewCourrier():boolean{
+      return this.courrierService.addNewCourrier ;
+      }
+      set addNewCourrier(value:boolean){
+          this.courrierService.addNewCourrier = value;
+      }
     ngOnInit(): void {
         this.findAllcourrierObjects();
         this.findAllvoies();
@@ -72,7 +77,6 @@ export class CourrierCreateComponent implements OnInit {
         this.findAllstatuss();
         this.findAlltypeCourriers();
         this.findAllUSer();
-        this.findAlllinkedTos();
     }
 
 
@@ -205,12 +209,8 @@ export class CourrierCreateComponent implements OnInit {
         });
     }
 
-    findAlllinkedTos() {
-        this.linkedTos = [{label: "none", value: null}];
-        for (const item of this.courrierService.courrierListe) {
-            this.linkedTos.push({label: item.idCourrier, value: item});
-        }
-        console.log(this.linkedTos);
+    get linkedTos(): CourrierVo[] {
+        return this.courrierService.courrierListe;
     }
 
     findAllexpeditors() {

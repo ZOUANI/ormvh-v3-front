@@ -12,7 +12,6 @@
           <button class="btn btn-success btn-block" (click)="addNewCourrier=true">ajouter courrier</button>
         </div>
       </div>
-  
       <div class="card-body table-responsive">
 
         <table class="table table-hover col-md-12">
@@ -37,16 +36,17 @@
               <td><span class="badge badge-pill badge-warning">{{p.typeCourrierVo?.libelle}}</span></td>
               <td>{{p.voieVo?.libelle}}</td>
               <td>{{p.linkedToVo?.idCourrier}}</td>
-              <td><button class="btn btn-danger btn-sm fa fa-trash mx-md-1" (click)="delete(p)"></button>
+              <td>
+                <button class="btn btn-warning btn-sm fa fa-external-link mx-md-1" (click)="showLinked(p)"></button>
+                <button class="btn btn-danger btn-sm fa fa-trash mx-md-1" (click)="delete(p)"></button>
                 <button class="btn btn-warning btn-sm fa fa-external-link mx-md-1" (click)="detailShow(p)"></button>
               </td>
 
           </tr>
 
-          
-<p-dialog  styleClass="addCourrierDialog" header="Add new Courrier"  position="center" [(visible)]="addNewCourrier">
-     <app-courrier-create  ></app-courrier-create>
-</p-dialog>
+          <app-courrier-create  ></app-courrier-create>
+          <app-courrier-linked></app-courrier-linked>
+
           <app-courrier-details *ngIf="courrierShowDetail" ></app-courrier-details>
           <app-courrier-reservation *ngIf="reservationShow"></app-courrier-reservation>
         </tbody>

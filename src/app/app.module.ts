@@ -133,6 +133,7 @@ import {DialogModule} from 'primeng/dialog';
 
 import { TranslateModule, TranslateLoader, TranslateFakeLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { LinkedCourriersComponent } from './view/courrier/linked/linked-courriers.component';
 
 export function httpLoaderFactory(http: HttpClient){
     return new TranslateHttpLoader(http);
@@ -250,7 +251,8 @@ export function httpLoaderFactory(http: HttpClient){
         CourrierReservationComponent,
         DashboardComponent,
         LoginComponent,
-        CreateExpeditorComponent
+        CreateExpeditorComponent,
+        LinkedCourriersComponent
 
     ],
     imports: [

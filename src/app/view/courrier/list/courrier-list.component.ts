@@ -31,6 +31,7 @@ export class CourrierlistComponent implements OnInit {
 
     }
 
+   
     showNewCorrierDialog(){
         this.courrierService.addNewCourrier = true;
 
@@ -81,8 +82,19 @@ export class CourrierlistComponent implements OnInit {
     set courrierShowDetail(value: boolean) {
         this.courrierService.courrierShowDetail = value;
     }
+    
+         
+    showLinked(courrier:CourrierVo){
+        this.courrierService.findLinkedCourrier(courrier);
+    }
 
+     get showLinkedCourrier():boolean{
+         return this.courrierService.showLinkedCourrier;
+     }
 
+     set showLinkedCourrier(value:boolean){
+        this.courrierService.showLinkedCourrier = value;
+     }
     delete(pojo: CourrierVo) {
         this.courrierService.delete(pojo);
     }

@@ -13,14 +13,17 @@ import {ExpeditorVo} from '../model/Expeditor.model';
     providedIn: 'root'
 })
 export class CourrierService {
-
+   
 
     constructor(private http: HttpClient, private expeditorService: ExpeditorService) {
     }
 
 
     addNewCourrier: boolean = false;
-
+    showLinkedCourrier:boolean = false;
+    linkedToThisCourrier:CourrierVo;
+    linkedCourrier: Array<CourrierVo> = new Array<CourrierVo>();
+    
     private _courrierDetail: CourrierVo = new CourrierVo();
     private _courrierListe: Array<CourrierVo> = new Array<CourrierVo>();
 
@@ -812,6 +815,18 @@ export class CourrierService {
                 this.findAll();
             });
     }
+  
+    findLinkedCourrier(courrier: CourrierVo) {
+        this.linkedToThisCourrier = courrier;
+        this.http.get<CourrierVo[]>('http://localhost:8080/generated/courrier/linked/'+courrier.id).subscribe(data=>{
+            if(data!=null){
+                this.linkedCourrier = data;
+                this.showLinkedCourrier= true;
+            }
+        }
+        );
+    }
+
 
     public generateIdReserve() {
         this.http.get('http://localhost:8080/generated/courrier/generateId/', {responseType: 'text'}).subscribe(
