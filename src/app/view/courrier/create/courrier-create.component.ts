@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, OnInit,ViewEncapsulation} from '@angular/core';
 import {CourrierService} from '../../../controller/service/Courrier.service';
 import {CourrierVo} from '../../../controller/model/courrier.model';
 import {UserVo} from '../../../controller/model/user.model';
@@ -23,17 +23,16 @@ import {UserService} from 'src/app/controller/service/User.service';
 import {LeServiceVo} from 'src/app/controller/model/LeService.model';
 
 @Component({
-    selector: 'app-courrier-create',
-    templateUrl: './courrier-create.component.html',
-    styleUrls: ['./courrier-create.component.css'],
-    encapsulation: ViewEncapsulation.None
+  selector: 'app-courrier-create',
+  templateUrl: './courrier-create.component.html',
+  styleUrls: ['./courrier-create.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class CourrierCreateComponent implements OnInit {
 
     courrierObjects: SelectItem[];
     voies: VoieVo[];
     natureCourriers: NatureCourrierVo[];
-    linkedTos: SelectItem[];
     evaluations: SelectItem[];
     expeditorTypes: SelectItem[];
     subdivisions: SelectItem[];
@@ -59,54 +58,12 @@ export class CourrierCreateComponent implements OnInit {
                 private userService: UserService) {
     }
 
-    get courrier(): CourrierVo {
-        return this.courrierService.courrier;
-    }
-
-    get generatedId(): string {
-        return this.courrierService.generatedId;
-    }
-
-    set generatedId(value: string) {
-        this.courrierService.generatedId = value;
-    }
-
-    get task(): TaskVo {
-        return this.courrierService.task;
-    }
-
-    get courrierServiceItem(): CourrierServiceItemVo {
-        return this.courrierService.courrierServiceItem;
-    }
-
-    set courrierServiceItem(value: CourrierServiceItemVo) {
-        this.courrierService.courrierServiceItem = value;
-    }
-
-    get createExpeditorShow(): boolean {
-        return this.courrierService.createExpeditorShow;
-    }
-
-    set createExpeditorShow(value: boolean) {
-        this.courrierService.createExpeditorShow = value;
-    }
-
-    get expeditors(): SelectItem[] {
-        return this.expeditorService.expeditors;
-    }
-
-    set expeditors(value: SelectItem[]) {
-        this.expeditorService.expeditors = value;
-    }
-
-    get verifyIdCourier(): string {
-        return this.courrierService.verifyIdCourier;
-    }
-
-    set verifyIdCourier(value: string) {
-        this.courrierService.verifyIdCourier = value;
-    }
-
+    get addNewCourrier():boolean{
+      return this.courrierService.addNewCourrier ;
+      }
+      set addNewCourrier(value:boolean){
+          this.courrierService.addNewCourrier = value;
+      }
     ngOnInit(): void {
         this.findAllcourrierObjects();
         this.findAllvoies();
@@ -120,12 +77,30 @@ export class CourrierCreateComponent implements OnInit {
         this.findAllstatuss();
         this.findAlltypeCourriers();
         this.findAllUSer();
-        this.findAlllinkedTos();
+    }
+
+
+    get courrier(): CourrierVo {
+        return this.courrierService.courrier;
     }
 
     generateId() {
         this.courrierService.generateId()
         this.courrierService.verifyIdCourier = ''
+    }
+
+    get generatedId(): string {
+        return this.courrierService.generatedId;
+    }
+
+
+    set generatedId(value: string) {
+        this.courrierService.generatedId = value;
+    }
+
+
+    get task(): TaskVo {
+        return this.courrierService.task;
     }
 
     addTask() {
@@ -147,6 +122,14 @@ export class CourrierCreateComponent implements OnInit {
         if (index != -1)
             this.courrier.tasksVo.splice(index, 1);
         this.editTaskHide();
+    }
+
+    get courrierServiceItem(): CourrierServiceItemVo {
+        return this.courrierService.courrierServiceItem;
+    }
+
+    set courrierServiceItem(value: CourrierServiceItemVo) {
+        this.courrierService.courrierServiceItem = value;
     }
 
     addCourrierServiceItem() {
@@ -226,17 +209,14 @@ export class CourrierCreateComponent implements OnInit {
         });
     }
 
-    findAlllinkedTos() {
-        this.linkedTos = [{label: "none", value: null}];
-        for (const item of this.courrierService.courrierListe) {
-            this.linkedTos.push({label: item.idCourrier, value: item});
-        }
-        console.log(this.linkedTos);
+    get linkedTos(): CourrierVo[] {
+        return this.courrierService.courrierListe;
     }
 
     findAllexpeditors() {
         this.expeditorService.findAllexpeditors();
     }
+
 
     findAllevaluations() {
         this.evaluationService.findAllevaluations().subscribe(data => {
@@ -312,6 +292,30 @@ export class CourrierCreateComponent implements OnInit {
 
     showCreateExpeditor() {
         this.courrierService.showCreateExpeditor()
+    }
+
+    get createExpeditorShow(): boolean {
+        return this.courrierService.createExpeditorShow;
+    }
+
+    set createExpeditorShow(value: boolean) {
+        this.courrierService.createExpeditorShow = value;
+    }
+
+    get expeditors(): SelectItem[] {
+        return this.expeditorService.expeditors;
+    }
+
+    set expeditors(value: SelectItem[]) {
+        this.expeditorService.expeditors = value;
+    }
+
+    get verifyIdCourier(): string {
+        return this.courrierService.verifyIdCourier;
+    }
+
+    set verifyIdCourier(value: string) {
+        this.courrierService.verifyIdCourier = value;
     }
 
     verifyId() {
