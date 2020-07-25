@@ -4,54 +4,58 @@ import {CategorieModelLettreReponseVo} from '../../../controller/model/categorie
 import {UserVo} from '../../../controller/model/User.model';
 
 @Component({
-  selector: 'app-categorieModelLettreReponse-edit',
-  templateUrl: './categorieModelLettreReponse-edit.component.html',
-  styleUrls: ['./categorieModelLettreReponse-edit.component.css']
+    selector: 'app-categorieModelLettreReponse-edit',
+    templateUrl: './categorieModelLettreReponse-edit.component.html',
+    styleUrls: ['./categorieModelLettreReponse-edit.component.css']
 })
 export class CategorieModelLettreReponseEditComponent implements OnInit {
-  constructor(private categorieModelLettreReponseService: CategorieModelLettreReponseService) { }
-
-   ngOnInit(): void {
-       this.findAllupdatedBys();
-       this.findAllcreatedBys();
+    constructor(private categorieModelLettreReponseService: CategorieModelLettreReponseService) {
     }
 
-   get categorieModelLettreReponse(): CategorieModelLettreReponseVo {
-    return this.categorieModelLettreReponseService.categorieModelLettreReponse;
-  }
+    get categorieModelLettreReponse(): CategorieModelLettreReponseVo {
+        return this.categorieModelLettreReponseService.categorieModelLettreReponse;
+    }
 
-   get editableCategorieModelLettreReponses(): Array<CategorieModelLettreReponseVo> {
-    return this.categorieModelLettreReponseService.editableCategorieModelLettreReponses;
-   }
+    get editableCategorieModelLettreReponses(): Array<CategorieModelLettreReponseVo> {
+        return this.categorieModelLettreReponseService.editableCategorieModelLettreReponses;
+    }
 
-   set editableCategorieModelLettreReponses(value: Array<CategorieModelLettreReponseVo>) {
-    this.categorieModelLettreReponseService.editableCategorieModelLettreReponses = value;
-   }
+    set editableCategorieModelLettreReponses(value: Array<CategorieModelLettreReponseVo>) {
+        this.categorieModelLettreReponseService.editableCategorieModelLettreReponses = value;
+    }
 
-  get updatedBys(): Array<UserVo> {
-   return this.categorieModelLettreReponseService.updatedBys;
-  }
-  get createdBys(): Array<UserVo> {
-   return this.categorieModelLettreReponseService.createdBys;
-  }
+    get updatedBys(): Array<UserVo> {
+        return this.categorieModelLettreReponseService.updatedBys;
+    }
 
-   editCategorieModelLettreReponse() {
-    this.categorieModelLettreReponseService.editCategorieModelLettreReponse();
-  }
+    get createdBys(): Array<UserVo> {
+        return this.categorieModelLettreReponseService.createdBys;
+    }
+
+    ngOnInit(): void {
+        this.findAllupdatedBys();
+        this.findAllcreatedBys();
+    }
+
+    editCategorieModelLettreReponse() {
+        this.categorieModelLettreReponseService.editCategorieModelLettreReponse();
+    }
+
     findAllupdatedBys() {
-     this.categorieModelLettreReponseService.findAllupdatedBys();
-    }
-    findAllcreatedBys() {
-     this.categorieModelLettreReponseService.findAllcreatedBys();
+        this.categorieModelLettreReponseService.findAllupdatedBys();
     }
 
-     findBylibelle(ref: string) {
-      this.categorieModelLettreReponseService.findBylibelle(ref);
-     }
+    findAllcreatedBys() {
+        this.categorieModelLettreReponseService.findAllcreatedBys();
+    }
+
+    findBylibelle(ref: string) {
+        this.categorieModelLettreReponseService.findBylibelle(ref);
+    }
 
     editHide() {
-      this.categorieModelLettreReponseService.editHide();
+        this.categorieModelLettreReponseService.editHide();
     }
-    
+
 
 }

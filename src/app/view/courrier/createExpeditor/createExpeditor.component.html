@@ -1,9 +1,9 @@
-<div class="modal" tabindex="-1" role="dialog" style="display: block;background-color: #000000bf;">
+<div class="modal" role="dialog" style="display: block;background-color: #000000bf;" tabindex="-1">
     <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Create Expeditor</h5>
-                <button type="button" class="close" aria-label="Close" (click)="createExpeditorHide()">
+                <button (click)="createExpeditorHide()" aria-label="Close" class="close" type="button">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -14,16 +14,16 @@
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <label>title</label>
-                            <input type="text" class="form-control" [(ngModel)]="expeditor.title">
+                            <input [(ngModel)]="expeditor.title" class="form-control" type="text">
                         </div>
 
                         <div class="form-group col-md-4">
                             <label>code</label>
-                            <input type="text" class="form-control" [(ngModel)]="expeditor.code">
+                            <input [(ngModel)]="expeditor.code" class="form-control" type="text">
                         </div>
                         <div class="form-group col-md-4">
                             <label>adress</label>
-                            <input type="text" class="form-control" [(ngModel)]="expeditor.adress">
+                            <input [(ngModel)]="expeditor.adress" class="form-control" type="text">
                         </div>
                         <!--<div class="row py-2">-->
                         <!--<div class="p-grid ui-fluid">-->
@@ -39,24 +39,24 @@
                         <!--</div>-->
                         <div class="form-group col-md-4">
                             <label>description</label>
-                            <input type="text" class="form-control" [(ngModel)]="expeditor.description">
+                            <input [(ngModel)]="expeditor.description" class="form-control" type="text">
                         </div>
                         <div class="form-group col-md-4">
                             <label>nature</label>
-                            <input type="text" class="form-control" [(ngModel)]="expeditor.nature">
+                            <input [(ngModel)]="expeditor.nature" class="form-control" type="text">
                         </div>
                         <div class="form-group col-md-4">
                             <label>age</label>
-                            <input type="text" class="form-control" [(ngModel)]="expeditor.age">
+                            <input [(ngModel)]="expeditor.age" class="form-control" type="text">
                         </div>
                         <div class="form-group col-md-4">
                             <label>titleArab</label>
-                            <input type="text" class="form-control" [(ngModel)]="expeditor.titleArab">
+                            <input [(ngModel)]="expeditor.titleArab" class="form-control" type="text">
                         </div>
 
                         <div class="form-group col-md-4">
                             <label>sexe</label>
-                            <select class="form-control" [(ngModel)]="expeditor.sexeVo.libelle">
+                            <select [(ngModel)]="expeditor.sexeVo.libelle" class="form-control">
                                 <option *ngFor="let p of sexes" [ngValue]="p.libelle" value="{{p.libelle}}">
                                     {{p.libelle}}
                                 </option>
@@ -64,7 +64,7 @@
                         </div>
                         <div class="form-group col-md-4">
                             <label>nationality</label>
-                            <select class="form-control" [(ngModel)]="expeditor.nationalityVo.libelle">
+                            <select [(ngModel)]="expeditor.nationalityVo.libelle" class="form-control">
                                 <option *ngFor="let p of nationalitys" [ngValue]="p.libelle" value="{{p.libelle}}">
                                     {{p.libelle}}
                                 </option>
@@ -86,7 +86,7 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button class="form-control" (click)="saveExpeditor()">Save</button>
+                        <button (click)="saveExpeditor()" class="form-control">Save</button>
                     </div>
 
                 </div>

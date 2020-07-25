@@ -4,20 +4,20 @@
     </div>
     <br>
     <div class="p-grid ui-fluid mb-4" style="margin-left: 35em">
-        <label for="rangeDates" class="font-weight-bold">Date (Intervalle) : </label>
+        <label class="font-weight-bold" for="rangeDates">Date (Intervalle) : </label>
         <div class="col-md-12 pl-0 d-flex justify-content-start">
-            <p-calendar class="p-0 col-md-6 mr-2" id="rangeDates" [(ngModel)]="rangeDates"
-                        selectionMode="range"
-                        [readonlyInput]="true">
+            <p-calendar [(ngModel)]="rangeDates" [readonlyInput]="true" class="p-0 col-md-6 mr-2"
+                        id="rangeDates"
+                        selectionMode="range">
             </p-calendar>
-            <button [disabled]="!rangeDates" pButton type="button"
-                    icon="pi pi-search" class="ui-button-icon-primary" (click)="filterCourriers()"></button>
+            <button (click)="filterCourriers()" [disabled]="!rangeDates" class="ui-button-icon-primary"
+                    icon="pi pi-search" pButton type="button"></button>
         </div>
     </div>
     <div class="card-header text-center font-weight-bold"
          style="background-color: white;text-align: center">
-        <button pButton type="button" [disabled]="!rangeDates"
-                icon="pi pi-replay" class="ui-button-icon-primary" (click)="reset()">
+        <button (click)="reset()" [disabled]="!rangeDates" class="ui-button-icon-primary"
+                icon="pi pi-replay" pButton type="button">
         </button>
     </div>
     <div class="card-header text-center font-weight-bold">Compte rendu "Courrier"</div>
@@ -156,9 +156,9 @@
                      style="background-color: white;border-color: white">Ouvert/En cours/Traité
                 </div>
 
-                <p-chart [hidden]="tmpData1" type="doughnut" [data]="data1"></p-chart>
-                <div class="alert alert-warning text-center" role="alert"
-                     *ngIf="tmpData1">Absence de données à présenter
+                <p-chart [data]="data1" [hidden]="tmpData1" type="doughnut"></p-chart>
+                <div *ngIf="tmpData1" class="alert alert-warning text-center"
+                     role="alert">Absence de données à présenter
                 </div>
 
             </div>
@@ -167,10 +167,10 @@
                 <div class="card-header text-center font-weight-bold"
                      style="background-color: white;border-color: white">Arrivée/Départ
                 </div>
-                <p-chart [hidden]="tmpData" type="doughnut"
-                         [data]="data2"></p-chart>
-                <div class="alert alert-warning text-center" role="alert"
-                     *ngIf="tmpData">Absence de données à présenter
+                <p-chart [data]="data2" [hidden]="tmpData"
+                         type="doughnut"></p-chart>
+                <div *ngIf="tmpData" class="alert alert-warning text-center"
+                     role="alert">Absence de données à présenter
                 </div>
             </div>
         </div>

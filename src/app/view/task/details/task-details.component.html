@@ -1,99 +1,99 @@
-<div class="modal" tabindex="-1" role="dialog" style="display: block;background-color: #000000bf;">
-  <div class="modal-dialog modal-dialog-scrollable" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">details of Task </h5>
-        <button type="button" class="close" aria-label="Close" (click)="detailHide()">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <table class="table table-hover">
-          <thead class="thead-dark">
-            <th>Field</th>
-            <th>Value</th>
-          </thead>
-          <tbody>
-           <tr >
-             <td>id</td>
-             <td>{{taskDetail.id}} </td>
-           </tr>
-           <tr >
-             <td>title</td>
-             <td>{{taskDetail.title}} </td>
-           </tr>
-           <tr >
-             <td>description</td>
-             <td>{{taskDetail.description}} </td>
-           </tr>
-           <tr >
-             <td>observation</td>
-             <td>{{taskDetail.observation}} </td>
-           </tr>
-           <tr >
-             <td>status</td>
-           <td>{{taskDetail.statusVo.libelle}} </td>
-           </tr>
-           <tr >
-             <td>delai</td>
-             <td>{{taskDetail.delai}} </td>
-           </tr>
-           <tr >
-             <td>relance</td>
-             <td>{{taskDetail.relance}} </td>
-           </tr>
-           <tr >
-             <td>accuse</td>
-             <td>{{taskDetail.accuse}} </td>
-           </tr>
-           <tr >
-             <td>reponse</td>
-             <td>{{taskDetail.reponse}} </td>
-           </tr>
-           <tr >
-             <td>dateAccuse</td>
-             <td>{{taskDetail.dateAccuse}} </td>
-           </tr>
-           <tr >
-             <td>dateReponse</td>
-             <td>{{taskDetail.dateReponse}} </td>
-           </tr>
-           <tr >
-             <td>createdAt</td>
-             <td>{{taskDetail.createdAt}} </td>
-           </tr>
-           <tr >
-             <td>updatedAt</td>
-             <td>{{taskDetail.updatedAt}} </td>
-           </tr>
-           <tr >
-             <td>assignedAt</td>
-             <td>{{taskDetail.assignedAt}} </td>
-           </tr>
-           <tr >
-             <td>processedAt</td>
-             <td>{{taskDetail.processedAt}} </td>
-           </tr>
-           <tr >
-             <td>createdBy</td>
-           <td>{{taskDetail.createdByVo.username}} </td>
-           </tr>
-           <tr >
-             <td>updatedBy</td>
-           <td>{{taskDetail.updatedByVo.username}} </td>
-           </tr>
-           <tr >
-             <td>courrier</td>
-           <td>{{taskDetail.courrierVo.idCourrier}} </td>
-           </tr>
-           <tr >
-             <td>assigne</td>
-           <td>{{taskDetail.assigneVo.username}} </td>
-           </tr>
-          </tbody>
-        </table>
-      </div>
+<div class="modal" role="dialog" style="display: block;background-color: #000000bf;" tabindex="-1">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">details of Task </h5>
+                <button (click)="detailHide()" aria-label="Close" class="close" type="button">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-hover">
+                    <thead class="thead-dark">
+                    <th>Field</th>
+                    <th>Value</th>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>id</td>
+                        <td>{{taskDetail.id}} </td>
+                    </tr>
+                    <tr>
+                        <td>title</td>
+                        <td>{{taskDetail.title}} </td>
+                    </tr>
+                    <tr>
+                        <td>description</td>
+                        <td>{{taskDetail.description}} </td>
+                    </tr>
+                    <tr>
+                        <td>observation</td>
+                        <td>{{taskDetail.observation}} </td>
+                    </tr>
+                    <tr>
+                        <td>status</td>
+                        <td>{{taskDetail.statusVo.libelle}} </td>
+                    </tr>
+                    <tr>
+                        <td>delai</td>
+                        <td>{{taskDetail.delai}} </td>
+                    </tr>
+                    <tr>
+                        <td>relance</td>
+                        <td>{{taskDetail.relance}} </td>
+                    </tr>
+                    <tr>
+                        <td>accuse</td>
+                        <td>{{taskDetail.accuse}} </td>
+                    </tr>
+                    <tr>
+                        <td>reponse</td>
+                        <td>{{taskDetail.reponse}} </td>
+                    </tr>
+                    <tr>
+                        <td>dateAccuse</td>
+                        <td>{{taskDetail.dateAccuse}} </td>
+                    </tr>
+                    <tr>
+                        <td>dateReponse</td>
+                        <td>{{taskDetail.dateReponse}} </td>
+                    </tr>
+                    <tr>
+                        <td>createdAt</td>
+                        <td>{{taskDetail.createdAt}} </td>
+                    </tr>
+                    <tr>
+                        <td>updatedAt</td>
+                        <td>{{taskDetail.updatedAt}} </td>
+                    </tr>
+                    <tr>
+                        <td>assignedAt</td>
+                        <td>{{taskDetail.assignedAt}} </td>
+                    </tr>
+                    <tr>
+                        <td>processedAt</td>
+                        <td>{{taskDetail.processedAt}} </td>
+                    </tr>
+                    <tr>
+                        <td>createdBy</td>
+                        <td>{{taskDetail.createdByVo.username}} </td>
+                    </tr>
+                    <tr>
+                        <td>updatedBy</td>
+                        <td>{{taskDetail.updatedByVo.username}} </td>
+                    </tr>
+                    <tr>
+                        <td>courrier</td>
+                        <td>{{taskDetail.courrierVo.idCourrier}} </td>
+                    </tr>
+                    <tr>
+                        <td>assigne</td>
+                        <td>{{taskDetail.assigneVo.username}} </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
 
+        </div>
     </div>
-  </div>
 </div>

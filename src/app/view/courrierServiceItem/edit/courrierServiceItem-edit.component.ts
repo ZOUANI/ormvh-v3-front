@@ -5,54 +5,58 @@ import {CourrierVo} from '../../../controller/model/Courrier.model';
 import {LeServiceVo} from '../../../controller/model/LeService.model';
 
 @Component({
-  selector: 'app-courrierServiceItem-edit',
-  templateUrl: './courrierServiceItem-edit.component.html',
-  styleUrls: ['./courrierServiceItem-edit.component.css']
+    selector: 'app-courrierServiceItem-edit',
+    templateUrl: './courrierServiceItem-edit.component.html',
+    styleUrls: ['./courrierServiceItem-edit.component.css']
 })
 export class CourrierServiceItemEditComponent implements OnInit {
-  constructor(private courrierServiceItemService: CourrierServiceItemService) { }
-
-   ngOnInit(): void {
-       this.findAllcourriers();
-       this.findAllservices();
+    constructor(private courrierServiceItemService: CourrierServiceItemService) {
     }
 
-   get courrierServiceItem(): CourrierServiceItemVo {
-    return this.courrierServiceItemService.courrierServiceItem;
-  }
+    get courrierServiceItem(): CourrierServiceItemVo {
+        return this.courrierServiceItemService.courrierServiceItem;
+    }
 
-   get editableCourrierServiceItems(): Array<CourrierServiceItemVo> {
-    return this.courrierServiceItemService.editableCourrierServiceItems;
-   }
+    get editableCourrierServiceItems(): Array<CourrierServiceItemVo> {
+        return this.courrierServiceItemService.editableCourrierServiceItems;
+    }
 
-   set editableCourrierServiceItems(value: Array<CourrierServiceItemVo>) {
-    this.courrierServiceItemService.editableCourrierServiceItems = value;
-   }
+    set editableCourrierServiceItems(value: Array<CourrierServiceItemVo>) {
+        this.courrierServiceItemService.editableCourrierServiceItems = value;
+    }
 
-  get courriers(): Array<CourrierVo> {
-   return this.courrierServiceItemService.courriers;
-  }
-  get services(): Array<LeServiceVo> {
-   return this.courrierServiceItemService.services;
-  }
+    get courriers(): Array<CourrierVo> {
+        return this.courrierServiceItemService.courriers;
+    }
 
-   editCourrierServiceItem() {
-    this.courrierServiceItemService.editCourrierServiceItem();
-  }
+    get services(): Array<LeServiceVo> {
+        return this.courrierServiceItemService.services;
+    }
+
+    ngOnInit(): void {
+        this.findAllcourriers();
+        this.findAllservices();
+    }
+
+    editCourrierServiceItem() {
+        this.courrierServiceItemService.editCourrierServiceItem();
+    }
+
     findAllcourriers() {
-     this.courrierServiceItemService.findAllcourriers();
-    }
-    findAllservices() {
-     this.courrierServiceItemService.findAllservices();
+        this.courrierServiceItemService.findAllcourriers();
     }
 
-      findByid(identifier: string) {
-       this.courrierServiceItemService.findByid(identifier);
-      }
+    findAllservices() {
+        this.courrierServiceItemService.findAllservices();
+    }
+
+    findByid(identifier: string) {
+        this.courrierServiceItemService.findByid(identifier);
+    }
 
     editHide() {
-      this.courrierServiceItemService.editHide();
+        this.courrierServiceItemService.editHide();
     }
-    
+
 
 }

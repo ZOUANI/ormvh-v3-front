@@ -1,55 +1,55 @@
-<div class="modal" tabindex="-1" role="dialog" style="display: block;background-color: #000000bf;">
-  <div class="modal-dialog modal-dialog-scrollable" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">details of Subdivision </h5>
-        <button type="button" class="close" aria-label="Close" (click)="detailHide()">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <table class="table table-hover">
-          <thead class="thead-dark">
-            <th>Field</th>
-            <th>Value</th>
-          </thead>
-          <tbody>
-           <tr >
-             <td>id</td>
-             <td>{{subdivisionDetail.id}} </td>
-           </tr>
-           <tr >
-             <td>title</td>
-             <td>{{subdivisionDetail.title}} </td>
-           </tr>
-           <tr >
-             <td>libelleArab</td>
-             <td>{{subdivisionDetail.libelleArab}} </td>
-           </tr>
-           <tr >
-             <td>code</td>
-             <td>{{subdivisionDetail.code}} </td>
-           </tr>
-           <tr >
-             <td>createdAt</td>
-             <td>{{subdivisionDetail.createdAt}} </td>
-           </tr>
-           <tr >
-             <td>updatedAt</td>
-             <td>{{subdivisionDetail.updatedAt}} </td>
-           </tr>
-           <tr >
-             <td>createdBy</td>
-           <td>{{subdivisionDetail.createdByVo.username}} </td>
-           </tr>
-           <tr >
-             <td>updatedBy</td>
-           <td>{{subdivisionDetail.updatedByVo.username}} </td>
-           </tr>
-          </tbody>
-        </table>
-      </div>
+<div class="modal" role="dialog" style="display: block;background-color: #000000bf;" tabindex="-1">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">details of Subdivision </h5>
+                <button (click)="detailHide()" aria-label="Close" class="close" type="button">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-hover">
+                    <thead class="thead-dark">
+                    <th>Field</th>
+                    <th>Value</th>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>id</td>
+                        <td>{{subdivisionDetail.id}} </td>
+                    </tr>
+                    <tr>
+                        <td>title</td>
+                        <td>{{subdivisionDetail.title}} </td>
+                    </tr>
+                    <tr>
+                        <td>libelleArab</td>
+                        <td>{{subdivisionDetail.libelleArab}} </td>
+                    </tr>
+                    <tr>
+                        <td>code</td>
+                        <td>{{subdivisionDetail.code}} </td>
+                    </tr>
+                    <tr>
+                        <td>createdAt</td>
+                        <td>{{subdivisionDetail.createdAt}} </td>
+                    </tr>
+                    <tr>
+                        <td>updatedAt</td>
+                        <td>{{subdivisionDetail.updatedAt}} </td>
+                    </tr>
+                    <tr>
+                        <td>createdBy</td>
+                        <td>{{subdivisionDetail.createdByVo.username}} </td>
+                    </tr>
+                    <tr>
+                        <td>updatedBy</td>
+                        <td>{{subdivisionDetail.updatedByVo.username}} </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
 
+        </div>
     </div>
-  </div>
 </div>

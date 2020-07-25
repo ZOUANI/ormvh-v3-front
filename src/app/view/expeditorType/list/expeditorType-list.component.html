@@ -1,140 +1,154 @@
-
 <div class="container">
-  <div class="row">
-    <div id="accordion" class="col-12 my-3">
-      <div class="card">
-        <div class="card-header border-0 bg-white" id="headingSearch">
-          
-            <button class="btn btn-info  btn-sm fa fa-filter" data-toggle="collapse" data-target="#search" aria-expanded="true" aria-controls="search">
-              <h5 class="float-right">Search Forms</h5>
-            </button>
-         
+    <div class="row">
+        <div class="col-12 my-3" id="accordion">
+            <div class="card">
+                <div class="card-header border-0 bg-white" id="headingSearch">
+
+                    <button aria-controls="search" aria-expanded="true" class="btn btn-info  btn-sm fa fa-filter"
+                            data-target="#search" data-toggle="collapse">
+                        <h5 class="float-right">Search Forms</h5>
+                    </button>
+
+                </div>
+
+                <div aria-labelledby="headingSearch" class="collapse" data-parent="#accordion" id="search">
+                    <div class="card-body">
+                        <div class="container">
+                            <div class="row">
+                                <div class="form-row">
+
+                                    <div class="input-group  col-3  my-2">
+                                        <small class="text-muted col-12">id</small>
+                                        <input [(ngModel)]="expeditorTypeSearch.id" class="form-control col-12" placeholder="id"
+                                               type="text">
+                                    </div>
+                                    <div class="input-group  col-3  my-2">
+                                        <small class="text-muted col-12">title</small>
+                                        <input [(ngModel)]="expeditorTypeSearch.title" class="form-control col-12" placeholder="title"
+                                               type="text">
+                                    </div>
+                                    <div class="input-group  col-3  my-2">
+                                        <small class="text-muted col-12">libelleArab</small>
+                                        <input [(ngModel)]="expeditorTypeSearch.libelleArab" class="form-control col-12" placeholder="libelleArab"
+                                               type="text">
+                                    </div>
+                                    <div class="input-group  col-3  my-2">
+                                        <small class="text-muted col-12">code</small>
+                                        <input [(ngModel)]="expeditorTypeSearch.code" class="form-control col-12" placeholder="code"
+                                               type="text">
+                                    </div>
+                                    <div class="input-group  col-4  my-2">
+                                        <div class="col-5 mx-1 px-1">
+                                            <div class="p-grid ui-fluid">
+                                                <small class="text-muted">createdAt Min</small>
+                                                <p-calendar [(ngModel)]="expeditorTypeSearch.createdAtMin" class="p-col-12"
+                                                            dateFormat="yy-mm-dd"></p-calendar>
+                                            </div>
+                                        </div>
+                                        <div class="col-5 mx-1 px-1">
+                                            <div class="p-grid ui-fluid">
+                                                <small class="text-muted">createdAt Max</small>
+                                                <p-calendar [(ngModel)]="expeditorTypeSearch.createdAtMax" class="p-col-12"
+                                                            dateFormat="yy-mm-dd"></p-calendar>
+                                            </div>
+                                        </div>
+
+                                    </div>
+<!--                                    <div class="input-group  col-4  my-2">-->
+<!--                                        <div class="col-5 mx-1 px-1">-->
+<!--                                            <div class="p-grid ui-fluid">-->
+<!--                                                <small class="text-muted">updatedAt Min</small>-->
+<!--                                                <p-calendar [(ngModel)]="expeditorTypeSearch.updatedAtMin" class="p-col-12"-->
+<!--                                                            dateFormat="yy-mm-dd"></p-calendar>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                        <div class="col-5 mx-1 px-1">-->
+<!--                                            <div class="p-grid ui-fluid">-->
+<!--                                                <small class="text-muted">updatedAt Max</small>-->
+<!--                                                <p-calendar [(ngModel)]="expeditorTypeSearch.updatedAtMax" class="p-col-12"-->
+<!--                                                            dateFormat="yy-mm-dd"></p-calendar>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+
+<!--                                    </div>-->
+<!--                                    <div class="input-group  col-4 my-2">-->
+<!--                                        <small class="text-muted col-12">createdBy</small>-->
+<!--                                        <select [(ngModel)]="expeditorTypeSearch.createdByVo"-->
+<!--                                                class="form-control col-12">-->
+<!--                                            <option *ngFor="let p of createdBys" [ngValue]="p">{{p.username}}</option>-->
+<!--                                        </select>-->
+<!--                                    </div>-->
+<!--                                    <div class="input-group  col-4 my-2">-->
+<!--                                        <small class="text-muted col-12">updatedBy</small>-->
+<!--                                        <select [(ngModel)]="expeditorTypeSearch.updatedByVo"-->
+<!--                                                class="form-control col-12">-->
+<!--                                            <option *ngFor="let p of updatedBys" [ngValue]="p">{{p.username}}</option>-->
+<!--                                        </select>-->
+<!--                                    </div>-->
+                                </div>
+                            </div>
+                            <button (click)="findExpeditorType(expeditorTypeSearch)"
+                                    class="btn btn-info btn-sm fa fa-search float-right px-5 py-2 my-4"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+    </div>
+    <div class="row">
+        <div class="card col-12">
+            <div class="card-header bg-transparent">
+                <div class="float-left px-1"><h5>List of expeditorTypes. </h5></div>
 
-        <div id="search" class="collapse" aria-labelledby="headingSearch" data-parent="#accordion">
-          <div class="card-body">
-            <div class="container">
-              <div class = "row">
-               <div class="form-row">
-   
-              <div class="input-group  col-3  my-2">
-<small class="text-muted col-12">id</small>
-<input type="text" class="form-control col-12" placeholder="id" [(ngModel)]="expeditorTypeSearch.id">
-             </div>
-              <div class="input-group  col-3  my-2">
-<small class="text-muted col-12">title</small>
-<input type="text" class="form-control col-12" placeholder="title" [(ngModel)]="expeditorTypeSearch.title">
-             </div>
-              <div class="input-group  col-3  my-2">
-<small class="text-muted col-12">libelleArab</small>
-<input type="text" class="form-control col-12" placeholder="libelleArab" [(ngModel)]="expeditorTypeSearch.libelleArab">
-             </div>
-              <div class="input-group  col-3  my-2">
-<small class="text-muted col-12">code</small>
-<input type="text" class="form-control col-12" placeholder="code" [(ngModel)]="expeditorTypeSearch.code">
-             </div>
-              <div class="input-group  col-4  my-2">
-    <div class="col-5 mx-1 px-1">
-                    <div class="p-grid ui-fluid">
-                        <small class="text-muted">createdAt Min</small>
-                        <p-calendar class="p-col-12" dateFormat="yy-mm-dd" [(ngModel)] = "expeditorTypeSearch.createdAtMin"></p-calendar>
-                    </div>
-    </div>
-    <div class="col-5 mx-1 px-1">
-                    <div class="p-grid ui-fluid">
-                        <small class="text-muted">createdAt Max</small>
-                        <p-calendar class="p-col-12" dateFormat="yy-mm-dd" [(ngModel)] = "expeditorTypeSearch.createdAtMax"></p-calendar>
-                    </div>
-    </div>
+                <button (click)="createShow()" class="btn btn-success btn-sm fa fa-plus float-right"> Create a new
+                    expeditorType
+                </button>
 
-             </div>
-              <div class="input-group  col-4  my-2">
-    <div class="col-5 mx-1 px-1">
-                    <div class="p-grid ui-fluid">
-                        <small class="text-muted">updatedAt Min</small>
-                        <p-calendar class="p-col-12" dateFormat="yy-mm-dd" [(ngModel)] = "expeditorTypeSearch.updatedAtMin"></p-calendar>
-                    </div>
-    </div>
-    <div class="col-5 mx-1 px-1">
-                    <div class="p-grid ui-fluid">
-                        <small class="text-muted">updatedAt Max</small>
-                        <p-calendar class="p-col-12" dateFormat="yy-mm-dd" [(ngModel)] = "expeditorTypeSearch.updatedAtMax"></p-calendar>
-                    </div>
-    </div>
+            </div>
+            <div class="card-body table-responsive">
 
-             </div>
-                <div class="input-group  col-4 my-2">
-                   <small class="text-muted col-12">createdBy</small>
-                    <select class="form-control col-12" [(ngModel)]="expeditorTypeSearch.createdByVo" >
-                        <option *ngFor="let p of createdBys" [ngValue]="p" >{{p.username}}</option>
-                    </select>
-                 </div>
-                <div class="input-group  col-4 my-2">
-                   <small class="text-muted col-12">updatedBy</small>
-                    <select class="form-control col-12" [(ngModel)]="expeditorTypeSearch.updatedByVo" >
-                        <option *ngFor="let p of updatedBys" [ngValue]="p" >{{p.username}}</option>
-                    </select>
-                 </div>
-              </div>    
-          </div>
-           <button class="btn btn-info btn-sm fa fa-search float-right px-5 py-2 my-4" (click)="findExpeditorType(expeditorTypeSearch)"></button>
+                <table class="table table-hover col-md-12">
+                    <thead class="thead-dark">
+
+                    <th>id</th>
+                    <th>title</th>
+                    <th>libelleArab</th>
+                    <th>code</th>
+<!--                    <th>createdAt</th>-->
+<!--                    <th>updatedAt</th>-->
+<!--                    <th>createdBy reference</th>-->
+<!--                    <th>updatedBy reference</th>-->
+                    <th>Actions</th>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let p of expeditorTypeListe">
+
+                        <td>{{p.id}}</td>
+                        <td>{{p.title}}</td>
+                        <td>{{p.libelleArab}}</td>
+                        <td>{{p.code}}</td>
+<!--                        <td>{{p.createdAt}}</td>-->
+<!--                        <td>{{p.updatedAt}}</td>-->
+<!--                        <td>{{p.createdByVo?.username}}</td>-->
+<!--                        <td>{{p.updatedByVo?.username}}</td>-->
+
+
+                        <td>
+                            <button (click)="delete(p)" class="btn btn-danger btn-sm fa fa-trash mx-md-1"></button>
+                            <button (click)="detailShow(p)"
+                                    class="btn btn-warning btn-sm fa fa-external-link mx-md-1"></button>
+                            <button (click)="editShow(p)" class="btn btn-info btn-sm fa fa-pencil mx-md-1"></button>
+
+
+                        </td>
+
+                    </tr>
+                    <app-expeditorType-edit *ngIf="expeditorTypeShowEdit"></app-expeditorType-edit>
+                    <app-expeditorType-create *ngIf="expeditorTypeShowCreate"></app-expeditorType-create>
+                    <app-expeditorType-details *ngIf="expeditorTypeShowDetail"></app-expeditorType-details>
+                    </tbody>
+                </table>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
-</div>
-  </div>
-<div class="row">
-  <div class="card col-12">
-    <div class="card-header bg-transparent">
-    <div class="float-left px-1"> <h5>List of expeditorTypes. </h5></div>
-
-          <button class="btn btn-success btn-sm fa fa-plus float-right" (click)="createShow()"> Create a new expeditorType</button>
-          
-    </div>
-    <div class="card-body table-responsive">
-
-      <table class="table table-hover col-md-12">
-        <thead class="thead-dark">
-
-          <th>id</th>
-          <th>title</th>
-          <th>libelleArab</th>
-          <th>code</th>
-          <th>createdAt</th>
-          <th>updatedAt</th>
-            <th>createdBy reference</th>
-            <th>updatedBy reference</th>
-     <th>Actions</th>
-  </thead>
-  <tbody>
-  <tr *ngFor="let p of expeditorTypeListe">
-
-           <td>{{p.id}}</td>
-           <td>{{p.title}}</td>
-           <td>{{p.libelleArab}}</td>
-           <td>{{p.code}}</td>
-           <td>{{p.createdAt}}</td>
-           <td>{{p.updatedAt}}</td>
-            <td>{{p.createdByVo?.username}}</td>
-            <td>{{p.updatedByVo?.username}}</td>
- 
-
-<td><button class="btn btn-danger btn-sm fa fa-trash mx-md-1" (click)="delete(p)"></button>
-  <button class="btn btn-warning btn-sm fa fa-external-link mx-md-1" (click)="detailShow(p)"></button>
-    <button class="btn btn-info btn-sm fa fa-pencil mx-md-1" (click)="editShow(p)"></button>
-  
-  
-
-</td>
-
-</tr>
-  <app-expeditorType-edit *ngIf="expeditorTypeShowEdit"></app-expeditorType-edit>
-  <app-expeditorType-create *ngIf="expeditorTypeShowCreate"></app-expeditorType-create>
-<app-expeditorType-details *ngIf="expeditorTypeShowDetail"></app-expeditorType-details>
-</tbody>
-</table>
-</div>
-</div>
-</div>
 </div>

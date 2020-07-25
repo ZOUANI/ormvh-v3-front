@@ -1,117 +1,125 @@
-     <app-user></app-user>
+<app-user></app-user>
 <div class="card col-md-8 mx-auto  p-md-2">
-    <div class="card-header text-center font-weight-bold">Edit Users</div> 
+    <div class="card-header text-center font-weight-bold">Edit Users</div>
     <div class="card-body">
-            <div class="row my-1 ">
-                <label>Available Users</label>
-                <select class="form-control" [(ngModel)]="user.username" (click)="findByusername(user.username)" >
-                    <option *ngFor="let p of editableUsers" [ngValue]="p.username" value="{{p.username}}">{{p.username}}</option>
-                </select>
+        <div class="row my-1 ">
+            <label>Available Users</label>
+            <select (click)="findByusername(user.username)" [(ngModel)]="user.username" class="form-control">
+                <option *ngFor="let p of editableUsers" [ngValue]="p.username"
+                        value="{{p.username}}">{{p.username}}</option>
+            </select>
+        </div>
+
+        <div class="row py-2">
+            <label>credentialsNonExpired</label>
+            <input [(ngModel)]="user.credentialsNonExpired" [placeholder]="user.credentialsNonExpired" class="form-control"
+                   type="text">
+        </div>
+        <div class="row py-2">
+            <label>enabled</label>
+            <input [(ngModel)]="user.enabled" [placeholder]="user.enabled" class="form-control" type="text">
+        </div>
+<!--        <div class="row py-2">-->
+<!--            <label>createdAt</label>-->
+<!--            <input [(ngModel)]="user.createdAt" class="col-md-12" type="date">-->
+<!--        </div>-->
+<!--        <div class="row py-2">-->
+<!--            <label>updatedAt</label>-->
+<!--            <input [(ngModel)]="user.updatedAt" class="col-md-12" type="date">-->
+<!--        </div>-->
+        <div class="row py-2">
+            <label>email</label>
+            <input [(ngModel)]="user.email" [placeholder]="user.email" class="form-control" type="text">
+        </div>
+        <div class="row py-2">
+            <label>accountNonExpired</label>
+            <input [(ngModel)]="user.accountNonExpired" [placeholder]="user.accountNonExpired" class="form-control"
+                   type="text">
+        </div>
+        <div class="row py-2">
+            <label>accountNonLocked</label>
+            <input [(ngModel)]="user.accountNonLocked" [placeholder]="user.accountNonLocked" class="form-control"
+                   type="text">
+        </div>
+        <div class="row py-2">
+            <label>username</label>
+            <input [(ngModel)]="user.username" [placeholder]="user.username" class="form-control" type="text">
+        </div>
+        <div class="row py-2">
+            <label>password</label>
+            <input [(ngModel)]="user.password" [placeholder]="user.password" class="form-control" type="text">
+        </div>
+
+<!--        <div class="row m-md-2 p-md-1">-->
+<!--            <label>createdBy</label>-->
+<!--            <select [(ngModel)]="user.createdByVo.username" class="form-control">-->
+<!--                <option *ngFor="let p of createdBys" [ngValue]="p.username"-->
+<!--                        value="{{p.username}}">{{p.username}}</option>-->
+<!--            </select>-->
+<!--        </div>-->
+<!--        <div class="row m-md-2 p-md-1">-->
+<!--            <label>updatedBy</label>-->
+<!--            <select [(ngModel)]="user.updatedByVo.username" class="form-control">-->
+<!--                <option *ngFor="let p of updatedBys" [ngValue]="p.username"-->
+<!--                        value="{{p.username}}">{{p.username}}</option>-->
+<!--            </select>-->
+<!--        </div>-->
+        <div class="card row">
+            <div class="card-header">Add roles</div>
+            <div class="card-body">
+                <div class="row">
+<!--                    <div class="col-md-6 py-2">-->
+<!--                        <label>updatedAt</label>-->
+<!--                        <input [(ngModel)]="role.updatedAt" class="col-md-12">-->
+<!--                    </div>-->
+                    <div class="col-md-6 py-2"><label>authority</label>
+                        <input [(ngModel)]="role.authority" class="form-control" type="text">
+                    </div>
+<!--                    <div class="col-md-6 py-2">-->
+<!--                        <label>createdAt</label>-->
+<!--                        <input [(ngModel)]="role.createdAt" class="col-md-12">-->
+<!--                    </div>-->
+<!--                    <div class="col-md-6 py-2"><label>updatedBy username</label>-->
+<!--                        <input [(ngModel)]="role.updatedByVo.username" class="form-control" type="text">-->
+<!--                    </div>-->
+<!--                    <div class="col-md-6 py-2"><label>createdBy username</label>-->
+<!--                        <input [(ngModel)]="role.createdByVo.username" class="form-control" type="text">-->
+<!--                    </div>-->
+                </div>
+                <div class="card-footer">
+                    <button (click)="addRole()" class="btn btn-outline-danger btn-block">+</button>
+                </div>
             </div>
-        
-                <div class="row py-2">
-                    <label>credentialsNonExpired</label>
-                    <input type="text" class="form-control" [placeholder]="user.credentialsNonExpired" [(ngModel)] = "user.credentialsNonExpired">
-                </div>
-                <div class="row py-2">
-                    <label>enabled</label>
-                    <input type="text" class="form-control" [placeholder]="user.enabled" [(ngModel)] = "user.enabled">
-                </div>
-                <div class="row py-2">
-                        <label>createdAt</label>
-                        <input type="date" class="col-md-12" [(ngModel)] = "user.createdAt">
-                </div>
-                <div class="row py-2">
-                        <label>updatedAt</label>
-                        <input type="date" class="col-md-12" [(ngModel)] = "user.updatedAt">
-                </div>
-                <div class="row py-2">
-                    <label>email</label>
-                    <input type="text" class="form-control" [placeholder]="user.email" [(ngModel)] = "user.email">
-                </div>
-                <div class="row py-2">
-                    <label>accountNonExpired</label>
-                    <input type="text" class="form-control" [placeholder]="user.accountNonExpired" [(ngModel)] = "user.accountNonExpired">
-                </div>
-                <div class="row py-2">
-                    <label>accountNonLocked</label>
-                    <input type="text" class="form-control" [placeholder]="user.accountNonLocked" [(ngModel)] = "user.accountNonLocked">
-                </div>
-                <div class="row py-2">
-                    <label>username</label>
-                    <input type="text" class="form-control" [placeholder]="user.username" [(ngModel)] = "user.username">
-                </div>
-                <div class="row py-2">
-                    <label>password</label>
-                    <input type="text" class="form-control" [placeholder]="user.password" [(ngModel)] = "user.password">
-                </div>
-            
-                <div class="row m-md-2 p-md-1" >
-                    <label>createdBy</label>
-                    <select class="form-control" [(ngModel)]="user.createdByVo.username" >
-                        <option *ngFor="let p of createdBys" [ngValue]="p.username" value="{{p.username}}">{{p.username}}</option>
-                    </select>
-                </div>
-                <div class="row m-md-2 p-md-1" >
-                    <label>updatedBy</label>
-                    <select class="form-control" [(ngModel)]="user.updatedByVo.username" >
-                        <option *ngFor="let p of updatedBys" [ngValue]="p.username" value="{{p.username}}">{{p.username}}</option>
-                    </select>
-                </div>
-                <div class="card row">
-                    <div class="card-header">Add roles</div>
-                    <div class="card-body">
-                        <div class="row">
-                                    <div class="col-md-6 py-2">
-                                            <label>updatedAt</label>
-                                            <input class="col-md-12" [(ngModel)] = "role.updatedAt">
-                                    </div>
-                                <div class="col-md-6 py-2"><label>authority</label>
-                                    <input type="text" class="form-control" [(ngModel)] = "role.authority" >
-                                </div>
-                                    <div class="col-md-6 py-2">
-                                            <label>createdAt</label>
-                                            <input class="col-md-12" [(ngModel)] = "role.createdAt">
-                                    </div>
-                                    <div class="col-md-6 py-2"><label>updatedBy username</label>
-                                        <input type="text" class="form-control" [(ngModel)] = "role.updatedByVo.username">
-                                    </div>
-                                    <div class="col-md-6 py-2"><label>createdBy username</label>
-                                        <input type="text" class="form-control" [(ngModel)] = "role.createdByVo.username">
-                                    </div>
-                        </div>
-                        <div class="card-footer">
-                            <button class="btn btn-outline-danger btn-block" (click)="addRole()">+</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="card row m-md-2 p-md-1 table-responsive">
-                    <div class="card-header">Added roles</div>
-                    <div class="card-body">
-                        <table class="table table-hover table-striped">
-                            <thead>
-                                    <th>updatedAt</th>
-                                    <th>authority</th>
-                                    <th>createdAt</th>
-                                    <th>updatedBy username</th>
-                                    <th>createdBy username</th>
-                                <th>Delete</th>
-                            </thead>
-                            <tbody>
-                            <tr *ngFor="let p of user.rolesVo;let i = index">
-                                    <td>{{p.updatedAt}}</td>
-                                    <td>{{p.authority}}</td>
-                                    <td>{{p.createdAt}}</td>
-                                        <td>{{p.updatedByVo.username}}</td>
-                                        <td>{{p.createdByVo.username}}</td>
-                                    <td><button class="btn btn-dark fa fa-trash" (click)="removeRole(i)"></button></td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-        <div class="card-footer" >
-            <button class="form-control" (click)="editUser()" >Edit</button>
+        </div>
+        <div class="card row m-md-2 p-md-1 table-responsive">
+            <div class="card-header">Added roles</div>
+            <div class="card-body">
+                <table class="table table-hover table-striped">
+                    <thead>
+<!--                    <th>updatedAt</th>-->
+                    <th>authority</th>
+<!--                    <th>createdAt</th>-->
+<!--                    <th>updatedBy username</th>-->
+<!--                    <th>createdBy username</th>-->
+                    <th>Delete</th>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let p of user.rolesVo;let i = index">
+<!--                        <td>{{p.updatedAt}}</td>-->
+                        <td>{{p.authority}}</td>
+<!--                        <td>{{p.createdAt}}</td>-->
+<!--                        <td>{{p.updatedByVo.username}}</td>-->
+<!--                        <td>{{p.createdByVo.username}}</td>-->
+                        <td>
+                            <button (click)="removeRole(i)" class="btn btn-dark fa fa-trash"></button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="card-footer">
+            <button (click)="editUser()" class="form-control">Edit</button>
         </div>
     </div>
 </div>

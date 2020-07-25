@@ -4,61 +4,66 @@ import {UserVo} from '../../../controller/model/user.model';
 import {RoleVo} from '../../../controller/model/Role.model';
 
 @Component({
-  selector: 'app-user-edit',
-  templateUrl: './user-edit.component.html',
-  styleUrls: ['./user-edit.component.css']
+    selector: 'app-user-edit',
+    templateUrl: './user-edit.component.html',
+    styleUrls: ['./user-edit.component.css']
 })
 export class UserEditComponent implements OnInit {
-  constructor(private userService: UserService) { }
-
-   ngOnInit(): void {
-       this.findAllcreatedBys();
-       this.findAllupdatedBys();
+    constructor(private userService: UserService) {
     }
 
-   get user(): UserVo {
-    return this.userService.user;
-  }
+    get user(): UserVo {
+        return this.userService.user;
+    }
 
-   get editableUsers(): Array<UserVo> {
-    return this.userService.editableUsers;
-   }
+    get editableUsers(): Array<UserVo> {
+        return this.userService.editableUsers;
+    }
 
-   set editableUsers(value: Array<UserVo>) {
-    this.userService.editableUsers = value;
-   }
+    set editableUsers(value: Array<UserVo>) {
+        this.userService.editableUsers = value;
+    }
 
-  get createdBys(): Array<UserVo> {
-   return this.userService.createdBys;
-  }
-  get updatedBys(): Array<UserVo> {
-   return this.userService.updatedBys;
-  }
+    get createdBys(): Array<UserVo> {
+        return this.userService.createdBys;
+    }
 
-  get role(): RoleVo {
-    return this.userService.role;
-  }
+    get updatedBys(): Array<UserVo> {
+        return this.userService.updatedBys;
+    }
 
-  addRole() {
-   return this.userService.addRole();
-  }
+    get role(): RoleVo {
+        return this.userService.role;
+    }
 
-  removeRole(i: number) {
-   this.userService.removeRole(i);
-  }
-   editUser() {
-    this.userService.editUser();
-  }
+    ngOnInit(): void {
+        this.findAllcreatedBys();
+        this.findAllupdatedBys();
+    }
+
+    addRole() {
+        return this.userService.addRole();
+    }
+
+    removeRole(i: number) {
+        this.userService.removeRole(i);
+    }
+
+    editUser() {
+        this.userService.editUser();
+    }
+
     findAllcreatedBys() {
-     this.userService.findAllcreatedBys();
-    }
-    findAllupdatedBys() {
-     this.userService.findAllupdatedBys();
+        this.userService.findAllcreatedBys();
     }
 
-     findByusername(ref: string) {
-      this.userService.findByusername(ref);
-     }
+    findAllupdatedBys() {
+        this.userService.findAllupdatedBys();
+    }
+
+    findByusername(ref: string) {
+        this.userService.findByusername(ref);
+    }
 
 
 }

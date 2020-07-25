@@ -1,15 +1,18 @@
-.addCourrierDialog{
+.addCourrierDialog {
     background-color: #fff !important;
 
     width: 65%;
     height: 800px !important;
-    box-shadow: 3px 4px 5px -1px rgba(0,0,0,0.58) !important;}
-.addCourrierDialog .ui-dialog-titlebar{
+    box-shadow: 3px 4px 5px -1px rgba(0, 0, 0, 0.58) !important;
+}
+
+.addCourrierDialog .ui-dialog-titlebar {
     background-color: #fff !important;
     font-weight: 700;
     font-size: 16px;
 }
-.addCourrierDialog.ui-dialog .ui-dialog-content{
-    padding:0 !important;
+
+.addCourrierDialog.ui-dialog .ui-dialog-content {
+    padding: 0 !important;
     border: 0;
-    }
+}

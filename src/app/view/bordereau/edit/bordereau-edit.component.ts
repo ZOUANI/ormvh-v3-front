@@ -4,54 +4,58 @@ import {BordereauVo} from '../../../controller/model/bordereau.model';
 import {UserVo} from '../../../controller/model/User.model';
 
 @Component({
-  selector: 'app-bordereau-edit',
-  templateUrl: './bordereau-edit.component.html',
-  styleUrls: ['./bordereau-edit.component.css']
+    selector: 'app-bordereau-edit',
+    templateUrl: './bordereau-edit.component.html',
+    styleUrls: ['./bordereau-edit.component.css']
 })
 export class BordereauEditComponent implements OnInit {
-  constructor(private bordereauService: BordereauService) { }
-
-   ngOnInit(): void {
-       this.findAllcreatedBys();
-       this.findAllupdatedBys();
+    constructor(private bordereauService: BordereauService) {
     }
 
-   get bordereau(): BordereauVo {
-    return this.bordereauService.bordereau;
-  }
+    get bordereau(): BordereauVo {
+        return this.bordereauService.bordereau;
+    }
 
-   get editableBordereaus(): Array<BordereauVo> {
-    return this.bordereauService.editableBordereaus;
-   }
+    get editableBordereaus(): Array<BordereauVo> {
+        return this.bordereauService.editableBordereaus;
+    }
 
-   set editableBordereaus(value: Array<BordereauVo>) {
-    this.bordereauService.editableBordereaus = value;
-   }
+    set editableBordereaus(value: Array<BordereauVo>) {
+        this.bordereauService.editableBordereaus = value;
+    }
 
-  get createdBys(): Array<UserVo> {
-   return this.bordereauService.createdBys;
-  }
-  get updatedBys(): Array<UserVo> {
-   return this.bordereauService.updatedBys;
-  }
+    get createdBys(): Array<UserVo> {
+        return this.bordereauService.createdBys;
+    }
 
-   editBordereau() {
-    this.bordereauService.editBordereau();
-  }
+    get updatedBys(): Array<UserVo> {
+        return this.bordereauService.updatedBys;
+    }
+
+    ngOnInit(): void {
+        this.findAllcreatedBys();
+        this.findAllupdatedBys();
+    }
+
+    editBordereau() {
+        this.bordereauService.editBordereau();
+    }
+
     findAllcreatedBys() {
-     this.bordereauService.findAllcreatedBys();
-    }
-    findAllupdatedBys() {
-     this.bordereauService.findAllupdatedBys();
+        this.bordereauService.findAllcreatedBys();
     }
 
-     findBylibelle(ref: string) {
-      this.bordereauService.findBylibelle(ref);
-     }
+    findAllupdatedBys() {
+        this.bordereauService.findAllupdatedBys();
+    }
+
+    findBylibelle(ref: string) {
+        this.bordereauService.findBylibelle(ref);
+    }
 
     editHide() {
-      this.bordereauService.editHide();
+        this.bordereauService.editHide();
     }
-    
+
 
 }

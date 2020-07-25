@@ -1,133 +1,146 @@
 <div class="card col-md-12 mx-auto p-0">
     <div class="card-body p-0 from-ctn">
-            <!-- <h1 class="create-title">Add new Courrier</h1> -->
-            <ul class="nav nav-tabs mb-6" id="my-tab" role="tablist">
-                <li class="nav-item">
-                  <a class="nav-link active" id="courrier-tab" data-toggle="tab" href="#pills-courrier" role="tab" aria-controls="pills-home" aria-selected="true">Courrier</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" id="expeditor-tab" data-toggle="tab" href="#pills-expeditor" role="tab" aria-controls="pills-profile" aria-selected="false">Expeditor</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" id="pills-contact-tab" data-toggle="tab" href="#pills-tasks" role="tab" aria-controls="pills-contact" aria-selected="false">Tasks</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="pills-contact-tab" data-toggle="tab" href="#pills-services" role="tab" aria-controls="pills-services" aria-selected="false">Services</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" id="pills-contact-tab" data-toggle="tab" href="#pills-details" role="tab" aria-controls="pills-details" aria-selected="false">details</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" id="pills-contact-tab" data-toggle="tab" href="#pills-reponse" role="tab" aria-controls="pills-reponse" aria-selected="false">reponse</a>
-                  </li>
-              </ul>
-              <div class="tab-content pb-0" id="pills-tabContent">
-                <div class="tab-pane fade show active pb-0" id="pills-courrier" role="tabpanel" aria-labelledby="courrier-tab">
-                    <div class="form-row">
-                        <div class="col-md-4 mr-4" >
-                            <label  >Courrier Id</label>  
-                        </div>
-                        <div class="col-md-2" >
-                            <label  >Nature</label>
-                        </div>
-                        <div class="col-md-2" >
-                            <label  >Type</label>  
-                        </div>
-                        <div class="col-md-2" >
-                            <label  >Sent at</label>  
-                        </div>
-                       
-                     </div> 
-                    <div class="form-row" style="margin-bottom:25px">
-                        
-                        <div class="input-group col-md-4 mr-4">
-                            <input type="text"  class="form-control" [(ngModel)]="generatedId"  placeholder="Id xxx_year">
-                            <div class="input-group-append">
-                              <button class="btn btn-outline-success" (click)="generateId()"  type="button">generate</button>
-                            </div>
-                        </div>
-                        <div class="form-group col-md-2" style="margin-bottom:0;">
-                            <p-dropdown [options]="natureCourriers" styleClass="form-control" selectId="nature-courrier"
-                            [(ngModel)]="courrier.natureCourrierVo" optionLabel="libelle" dataKey="id"></p-dropdown>
-                        </div>
-                          <div class="form-group col-md-2" style="margin-bottom:0;">
-                            <p-dropdown styleClass="form-control" selectId="type-courrier" [options]="typeCourriers"
-                                [(ngModel)]="courrier.typeCourrierVo" optionLabel="libelle" dataKey="id"></p-dropdown>
-                          </div>
-                          <div class="form-group col-md-2" style="margin-bottom:0;">
-                            <p-calendar appendTo="body" [showTime]="true"[(ngModel)]="courrier.sentAt"></p-calendar>
-                        </div>
-                       
+        <!-- <h1 class="create-title">Add new Courrier</h1> -->
+        <ul class="nav nav-tabs mb-6" id="my-tab" role="tablist">
+            <li class="nav-item">
+                <a aria-controls="pills-home" aria-selected="true" class="nav-link active" data-toggle="tab" href="#pills-courrier"
+                   id="courrier-tab" role="tab">Courrier</a>
+            </li>
+            <li class="nav-item">
+                <a aria-controls="pills-profile" aria-selected="false" class="nav-link" data-toggle="tab" href="#pills-expeditor"
+                   id="expeditor-tab" role="tab">Expeditor</a>
+            </li>
+            <li class="nav-item">
+                <a aria-controls="pills-contact" aria-selected="false" class="nav-link" data-toggle="tab" href="#pills-tasks"
+                   id="pills-contact-tab" role="tab">Tasks</a>
+            </li>
+            <li class="nav-item">
+                <a aria-controls="pills-services" aria-selected="false" class="nav-link" data-toggle="tab" href="#pills-services"
+                   id="pills-contact-tab" role="tab">Services</a>
+            </li>
+            <li class="nav-item">
+                <a aria-controls="pills-details" aria-selected="false" class="nav-link" data-toggle="tab" href="#pills-details"
+                   id="pills-contact-tab" role="tab">details</a>
+            </li>
+            <li class="nav-item">
+                <a aria-controls="pills-reponse" aria-selected="false" class="nav-link" data-toggle="tab" href="#pills-reponse"
+                   id="pills-contact-tab" role="tab">reponse</a>
+            </li>
+        </ul>
+        <div class="tab-content pb-0" id="pills-tabContent">
+            <div aria-labelledby="courrier-tab" class="tab-pane fade show active pb-0" id="pills-courrier"
+                 role="tabpanel">
+                <div class="form-row">
+                    <div class="col-md-4 mr-4">
+                        <label>Courrier Id</label>
                     </div>
-                    
-                   
-                     <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="object-courrier">object</label>
-                            <p-dropdown styleClass="form-control" selectId="object-courrier" [options]="courrierObjects"
-                                [(ngModel)]="courrier.courrierObjectVo" [filter]="true" dataKey="id"></p-dropdown>
-                        </div>
-                        <div class="form-group col-md-3">
-                            <label for="linked-courrier">linked</label>
-                            <p-dropdown styleClass="form-control" selectId="linked-courrier" [options]="linkedTos"
-                                [(ngModel)]="courrier.linkedToVo" [filter]="true" dataKey="id"></p-dropdown>
-                        </div>
-                        <div class="form-group col-md-2">
-                            <label for="status-courrier">status</label>
-                            <p-dropdown styleClass="form-control" selectId="status-courrier" [options]="statuss"
-                                [(ngModel)]="courrier.statusVo" optionLabel="libelle" dataKey="id"></p-dropdown>
-                        </div>
+                    <div class="col-md-2">
+                        <label>Nature</label>
                     </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-12">
-                            <label for="subject-courrier">subject</label>
-                            <input type="text" id="subject-courrier" class="form-control" [(ngModel)]="courrier.subject">
-                        </div>
+                    <div class="col-md-2">
+                        <label>Type</label>
                     </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="description-courrier">description</label>
-                            <textarea type="text" id="description-courrier" class="form-control" [(ngModel)]="courrier.description"
-                                rows="4"></textarea>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="instruction-courrier">instruction</label>
-                            <textarea type="text" id="instruction-courrier" class="form-control" [(ngModel)]="courrier.instruction"
-                                rows="4"></textarea>
-                        </div>
+                    <div class="col-md-2">
+                        <label>Sent at</label>
                     </div>
-            
+
                 </div>
-                <div class="tab-pane fade pb-0" id="pills-expeditor" role="tabpanel" aria-labelledby="pills-profile-tab">
-                    <div class="form-row mb-7">
-                        <div class="form-group col-md-6 mr-4">
-                            <label for="expeditor">Expeditor</label>
-                            <p-dropdown styleClass="form-control" selectId="expeditor" [options]="expeditors"
-                            [(ngModel)]="courrier.expeditorVo" [filter]="true" dataKey="id"></p-dropdown>
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label for="expeditorType">Expeditor Type</label>
-                            <p-dropdown selectId="expeditorType" styleClass="form-control" [options]="expeditorTypes"
-                                [(ngModel)]="courrier.expeditorTypeVo" [filter]="true" dataKey="id"></p-dropdown>
+                <div class="form-row" style="margin-bottom:25px">
+
+                    <div class="input-group col-md-4 mr-4">
+                        <input [(ngModel)]="generatedId" class="form-control" placeholder="Id xxx_year" type="text">
+                        <div class="input-group-append">
+                            <button (click)="generateId()" class="btn btn-outline-success" type="button">generate
+                            </button>
                         </div>
                     </div>
-                    <div class="form-row mb-4">
-                        <div class="form-group col-md-6">
-                            <label for="destinator">Destinator</label>
-                            <p-dropdown  styleClass="form-control"  selectId="destinator" [options]="expeditors" [(ngModel)]="courrier.destinatorVo" [filter]="true" dataKey="id"> </p-dropdown>
-                        </div>
-                       
+                    <div class="form-group col-md-2" style="margin-bottom:0;">
+                        <p-dropdown [(ngModel)]="courrier.natureCourrierVo" [options]="natureCourriers" dataKey="id"
+                                    optionLabel="libelle" selectId="nature-courrier"
+                                    styleClass="form-control"></p-dropdown>
                     </div>
-                    <div class="for-row">
-                        <div class="form-group">
-                            <label for="description-expeditor">description</label>
-                            <textarea type="text" id="description-expeditor" class="form-control"
-                                [(ngModel)]="courrier.destinataireDesc" rows="3"></textarea>
-                        </div>
+                    <div class="form-group col-md-2" style="margin-bottom:0;">
+                        <p-dropdown [(ngModel)]="courrier.typeCourrierVo" [options]="typeCourriers" dataKey="id"
+                                    optionLabel="libelle" selectId="type-courrier"
+                                    styleClass="form-control"></p-dropdown>
+                    </div>
+                    <div class="form-group col-md-2" style="margin-bottom:0;">
+                        <p-calendar [(ngModel)]="courrier.sentAt" [showTime]="true" appendTo="body"></p-calendar>
+                    </div>
+
+                </div>
+
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="object-courrier">object</label>
+                        <p-dropdown [(ngModel)]="courrier.courrierObjectVo" [filter]="true" [options]="courrierObjects"
+                                    dataKey="id" selectId="object-courrier" styleClass="form-control"></p-dropdown>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="linked-courrier">linked</label>
+                        <p-dropdown [(ngModel)]="courrier.linkedToVo" [filter]="true" [options]="linkedTos"
+                                    dataKey="id" selectId="linked-courrier" styleClass="form-control"></p-dropdown>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="status-courrier">status</label>
+                        <p-dropdown [(ngModel)]="courrier.statusVo" [options]="statuss" dataKey="id"
+                                    optionLabel="libelle" selectId="status-courrier" styleClass="form-control"></p-dropdown>
                     </div>
                 </div>
-                 <div class="tab-pane fade pb-0" id="pills-tasks" role="tabpanel" aria-labelledby="pills-contact-tab">
-                  <div class="row">
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label for="subject-courrier">subject</label>
+                        <input [(ngModel)]="courrier.subject" class="form-control" id="subject-courrier" type="text">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="description-courrier">description</label>
+                        <textarea [(ngModel)]="courrier.description" class="form-control" id="description-courrier"
+                                  rows="4"
+                                  type="text"></textarea>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="instruction-courrier">instruction</label>
+                        <textarea [(ngModel)]="courrier.instruction" class="form-control" id="instruction-courrier"
+                                  rows="4"
+                                  type="text"></textarea>
+                    </div>
+                </div>
+
+            </div>
+            <div aria-labelledby="pills-profile-tab" class="tab-pane fade pb-0" id="pills-expeditor" role="tabpanel">
+                <div class="form-row mb-7">
+                    <div class="form-group col-md-6 mr-4">
+                        <label for="expeditor">Expeditor</label>
+                        <p-dropdown [(ngModel)]="courrier.expeditorVo" [filter]="true" [options]="expeditors"
+                                    dataKey="id" selectId="expeditor" styleClass="form-control"></p-dropdown>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="expeditorType">Expeditor Type</label>
+                        <p-dropdown [(ngModel)]="courrier.expeditorTypeVo" [filter]="true" [options]="expeditorTypes"
+                                    dataKey="id" selectId="expeditorType" styleClass="form-control"></p-dropdown>
+                    </div>
+                </div>
+                <div class="form-row mb-4">
+                    <div class="form-group col-md-6">
+                        <label for="destinator">Destinator</label>
+                        <p-dropdown [(ngModel)]="courrier.destinatorVo" [filter]="true" [options]="expeditors"
+                                    dataKey="id" selectId="destinator" styleClass="form-control"></p-dropdown>
+                    </div>
+
+                </div>
+                <div class="for-row">
+                    <div class="form-group">
+                        <label for="description-expeditor">description</label>
+                        <textarea [(ngModel)]="courrier.destinataireDesc" class="form-control" id="description-expeditor"
+                                  rows="3" type="text"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div aria-labelledby="pills-contact-tab" class="tab-pane fade pb-0" id="pills-tasks" role="tabpanel">
+                <div class="row">
 
                     <div class="col-md-6">
                         <div class="card">
@@ -136,39 +149,43 @@
                                 <div class="form-row">
                                     <div class="form-group col-12">
                                         <label for="task-title">title</label>
-                                        <input type="text" id="task-title" class="form-control" [(ngModel)]="task.title">
+                                        <input [(ngModel)]="task.title" class="form-control" id="task-title"
+                                               type="text">
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-7">
                                         <label for="task-assigne">assigne to</label>
-                                        <p-dropdown styleClass="form-control" selectId="task-assigne" [options]="users"
-                                            [(ngModel)]="task.assigneVo" [showClear]="true" optionLabel="username"
-                                            [filter]="true" dataKey="id"></p-dropdown>
+                                        <p-dropdown [(ngModel)]="task.assigneVo" [filter]="true" [options]="users"
+                                                    [showClear]="true" dataKey="id"
+                                                    optionLabel="username"
+                                                    selectId="task-assigne" styleClass="form-control"></p-dropdown>
                                     </div>
                                     <div class="form-group col-md-5">
                                         <label for="task-status">status</label>
-                                        <p-dropdown styleClass="form-control" selectId="task-status" [options]="statuss"
-                                            [(ngModel)]="task.statusVo" optionLabel="libelle" dataKey="id"></p-dropdown>
+                                        <p-dropdown [(ngModel)]="task.statusVo" [options]="statuss" dataKey="id"
+                                                    optionLabel="libelle" selectId="task-status"
+                                                    styleClass="form-control"></p-dropdown>
                                     </div>
                                 </div>
-        
+
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label for="task-description">description</label>
-                                        <textarea type="text" id="task-description" class="form-control"
-                                            [(ngModel)]="task.description" rows="3"></textarea>
+                                        <textarea [(ngModel)]="task.description" class="form-control" id="task-description"
+                                                  rows="3" type="text"></textarea>
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="task-observation">observation</label>
-                                        <textarea type="text" id="task-observation" class="form-control"
-                                            [(ngModel)]="task.observation" rows="3"></textarea>
+                                        <textarea [(ngModel)]="task.observation" class="form-control" id="task-observation"
+                                                  rows="3" type="text"></textarea>
                                     </div>
                                 </div>
                                 <div class="form-row">
-                                    <button class="btn btn-outline-success btn-block" (click)="addTask()">ajouter</button>
+                                    <button (click)="addTask()" class="btn btn-outline-success btn-block">ajouter
+                                    </button>
                                 </div>
-        
+
                                 <!-- 
                                 <div class="col-md-6 py-2">
                                     <div class="p-grid ui-fluid">
@@ -184,7 +201,7 @@
                                         </p-calendar>
                                     </div>
                                 </div> -->
-        
+
                                 <!-- <div class="col-md-6 py-2"><label>delai</label>
                                     <input type="text" class="form-control" [(ngModel)]="task.delai">
                                 </div>
@@ -197,138 +214,140 @@
                                 <div class="col-md-6 py-2"><label>reponse</label>
                                     <input type="text" class="form-control" [(ngModel)]="task.reponse">
                                 </div> -->
-        
-        
+
+
                             </div>
                         </div>
                     </div>
-        
+
                     <div class="col-md-6">
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title" style="text-align: center;">Les Taches</h5>
                                 <div class="list-group">
-                                    <div *ngFor="let p of courrier.tasksVo;let i = index" (click)="editTask(p)" class="list-group-item list-group-item-action d-flex justify-content-between">
-                                     <span>{{p.title}}</span>
-                                     <span class="badge badge-success">{{p.statusVo.libelle}}</span>
+                                    <div (click)="editTask(p)" *ngFor="let p of courrier.tasksVo;let i = index"
+                                         class="list-group-item list-group-item-action d-flex justify-content-between">
+                                        <span>{{p.title}}</span>
+                                        <span class="badge badge-success">{{p.statusVo.libelle}}</span>
                                     </div>
-                           
-                                   </div>
+
+                                </div>
                             </div>
                         </div>
                     </div>
-                  </div>
-
                 </div>
-                <div class="tab-pane fade pb-0" id="pills-services" role="tabpanel" aria-labelledby="pills-contact-tab">
-                    <div class="form-row mb-8">
-                        <div class="form-group col-md-6">
-                            <label for="coordinator">coordinator</label>
-                            <p-dropdown styleClass="form-control" selectId="coordinator" [options]="leServices"
-                                [(ngModel)]="courrier.coordinatorVo" [filter]="true" dataKey="id">
-                            </p-dropdown>
 
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="emetteur">emetteur</label>
-                            <p-dropdown styleClass="form-control" selectId="emetteur" [options]="leServices"
-                                [(ngModel)]="courrier.emetteurVo" dataKey="id" [filter]="true">
-                            </p-dropdown>
-                        </div>
-                    </div>
-                    <div class="form-row">
+            </div>
+            <div aria-labelledby="pills-contact-tab" class="tab-pane fade pb-0" id="pills-services" role="tabpanel">
+                <div class="form-row mb-8">
+                    <div class="form-group col-md-6">
+                        <label for="coordinator">coordinator</label>
+                        <p-dropdown [(ngModel)]="courrier.coordinatorVo" [filter]="true" [options]="leServices"
+                                    dataKey="id" selectId="coordinator" styleClass="form-control">
+                        </p-dropdown>
 
-                        <div class="form-group col-md-8">
-                            <p-dropdown [options]="changedServices" [(ngModel)]="courrierServiceItem.serviceVo"
-                                styleClass="form-control" autoDisplayFirst="true" optionLabel="title"
-                                [filter]="true">
-                            </p-dropdown>
-                        </div>
-                        <div class="form-group col-md-4">
-                            <button class="btn btn-outline-success btn-block" (click)="addCourrierServiceItem()">ajouter
-                                service +</button>
-                        </div>
                     </div>
-                    <div class="form-row">
-                        <div class="services-ctn">
-                            <label>services</label> <br>
-                            <span class="badge badge-primary clickable mr-2" (click)="removeCourrierServiceItem(i)"
-                                *ngFor="let item of courrier.courrierServiceItemsVo;let i = index">
+                    <div class="form-group col-md-6">
+                        <label for="emetteur">emetteur</label>
+                        <p-dropdown [(ngModel)]="courrier.emetteurVo" [filter]="true" [options]="leServices"
+                                    dataKey="id" selectId="emetteur" styleClass="form-control">
+                        </p-dropdown>
+                    </div>
+                </div>
+                <div class="form-row">
+
+                    <div class="form-group col-md-8">
+                        <p-dropdown [(ngModel)]="courrierServiceItem.serviceVo" [filter]="true"
+                                    [options]="changedServices" autoDisplayFirst="true" optionLabel="title"
+                                    styleClass="form-control">
+                        </p-dropdown>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <button (click)="addCourrierServiceItem()" class="btn btn-outline-success btn-block">ajouter
+                            service +
+                        </button>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="services-ctn">
+                        <label>services</label> <br>
+                        <span (click)="removeCourrierServiceItem(i)" *ngFor="let item of courrier.courrierServiceItemsVo;let i = index"
+                              class="badge badge-primary clickable mr-2">
                                 {{item.serviceVo.title}}
                             </span>
-                        </div>
                     </div>
                 </div>
-                 <div class="tab-pane fade pb-0" id="pills-details" role="tabpanel" aria-labelledby="pills-contact-tab" >
-                     <div class="form-row">
-                        <div class="form-group col-md-3">
-                            <label for="voie-courrier">voie</label>
-                            <p-dropdown styleClass="form-control" selectId="voie-courrier" [options]="voies"
-                                [(ngModel)]="courrier.voieVo" optionLabel="libelle" dataKey="id"></p-dropdown>
-                        </div>
-                        <div class="form-group col-md-5">
-                            <label for="relance">relance</label>
-                            <input type="text" id="relance" class="form-control" [(ngModel)]="courrier.relance">
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label for="daterelance">date relance</label><br>
-                            <p-calendar appendTo="body" [showTime]="true" [(ngModel)]="courrier.dateRelance">
-                            </p-calendar>
-                        </div>
-                     </div>
-                     <div class="form-row">
-                        <div class="form-group col-md-4">
-                            <label for="delai">delai</label>
-                            <input type="text" id="delai" class="form-control" [(ngModel)]="courrier.delai">
-                        </div>
-                        <div class="form-group col-md-3">
-                            <label for="accuse">accuse</label>
-                            <input type="text" id="accuse" class="form-control" [(ngModel)]="courrier.accuse">
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label >date accuse</label><br>
-                            <p-calendar appendTo="body" [showTime]="true" [(ngModel)]="courrier.dateAccuse">
-                            </p-calendar>
-                        </div>
-                        
+            </div>
+            <div aria-labelledby="pills-contact-tab" class="tab-pane fade pb-0" id="pills-details" role="tabpanel">
+                <div class="form-row">
+                    <div class="form-group col-md-3">
+                        <label for="voie-courrier">voie</label>
+                        <p-dropdown [(ngModel)]="courrier.voieVo" [options]="voies" dataKey="id"
+                                    optionLabel="libelle" selectId="voie-courrier" styleClass="form-control"></p-dropdown>
                     </div>
-                     <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="evaluation">evaluation</label>
-                            <p-dropdown styleClass="form-control" selectId="evaluation" [options]="evaluations"
-                                [(ngModel)]="courrier.evaluationVo" [filter]="true" dataKey="id">
-                            </p-dropdown>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="subdivision">subdivision</label>
-                            <p-dropdown styleClass="form-control" selectId="subdivision" [options]="subdivisions"
-                                [(ngModel)]="courrier.subdivisionVo" [filter]="true" dataKey="id">
-                            </p-dropdown>
-                        </div>
+                    <div class="form-group col-md-5">
+                        <label for="relance">relance</label>
+                        <input [(ngModel)]="courrier.relance" class="form-control" id="relance" type="text">
                     </div>
-                 </div>
-                 <div class="tab-pane fade pb-0" id="pills-reponse" role="tabpanel" aria-labelledby="pills-contact-tab" >
-                    <div class="form-row">
-                        <div class="form-group col-md-5">
-                            <label for="daterelance">date reponse</label><br>
-                            <p-calendar appendTo="body" [inline]="true"[(ngModel)]="courrier.dateReponse">
-                            </p-calendar>
-                        </div>
-                        <div class="form-group col-md-7">
-                            <label for="reponse">Reponse</label>
-                            <textarea type="text" id="reponse" class="form-control" [(ngModel)]="courrier.reponse"
-                                rows="8"></textarea>
-                        </div>
+                    <div class="form-group col-md-4">
+                        <label for="daterelance">date relance</label><br>
+                        <p-calendar [(ngModel)]="courrier.dateRelance" [showTime]="true" appendTo="body">
+                        </p-calendar>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="delai">delai</label>
+                        <input [(ngModel)]="courrier.delai" class="form-control" id="delai" type="text">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="accuse">accuse</label>
+                        <input [(ngModel)]="courrier.accuse" class="form-control" id="accuse" type="text">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label>date accuse</label><br>
+                        <p-calendar [(ngModel)]="courrier.dateAccuse" [showTime]="true" appendTo="body">
+                        </p-calendar>
+                    </div>
 
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="evaluation">evaluation</label>
+                        <p-dropdown [(ngModel)]="courrier.evaluationVo" [filter]="true" [options]="evaluations"
+                                    dataKey="id" selectId="evaluation" styleClass="form-control">
+                        </p-dropdown>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="subdivision">subdivision</label>
+                        <p-dropdown [(ngModel)]="courrier.subdivisionVo" [filter]="true" [options]="subdivisions"
+                                    dataKey="id" selectId="subdivision" styleClass="form-control">
+                        </p-dropdown>
                     </div>
                 </div>
-              </div>
-       
-              <div class="d-flex flex-row-reverse ">
+            </div>
+            <div aria-labelledby="pills-contact-tab" class="tab-pane fade pb-0" id="pills-reponse" role="tabpanel">
+                <div class="form-row">
+                    <div class="form-group col-md-5">
+                        <label for="daterelance">date reponse</label><br>
+                        <p-calendar [(ngModel)]="courrier.dateReponse" [inline]="true" appendTo="body">
+                        </p-calendar>
+                    </div>
+                    <div class="form-group col-md-7">
+                        <label for="reponse">Reponse</label>
+                        <textarea [(ngModel)]="courrier.reponse" class="form-control" id="reponse" rows="8"
+                                  type="text"></textarea>
+                    </div>
 
-                <div class="col-md-4 mr-2">
-                  <button class="btn btn-success btn-block" (click)="saveCourrier()">Save</button>
                 </div>
-              </div>
+            </div>
+        </div>
+
+        <div class="d-flex flex-row-reverse ">
+
+            <div class="col-md-4 mr-2">
+                <button (click)="saveCourrier()" class="btn btn-success btn-block">Save</button>
+            </div>
+        </div>
     </div>
 </div>

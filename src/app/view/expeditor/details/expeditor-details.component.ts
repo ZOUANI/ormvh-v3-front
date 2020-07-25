@@ -1,49 +1,50 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ExpeditorVo} from '../../../controller/model/expeditor.model';
 import {ExpeditorService} from '../../../controller/service/Expeditor.service';
 
 @Component({
-  selector: 'app-expeditor-details',
-  templateUrl: './expeditor-details.component.html',
-  styleUrls: ['./expeditor-details.component.css']
+    selector: 'app-expeditor-details',
+    templateUrl: './expeditor-details.component.html',
+    styleUrls: ['./expeditor-details.component.css']
 })
 
 export class ExpeditorDetailsComponent implements OnInit {
 
-  constructor(private _expeditorService : ExpeditorService) {}
+    constructor(private _expeditorService: ExpeditorService) {
+    }
 
 
-   get expeditorService (): ExpeditorService {
-    return this._expeditorService;
-  }
+    get expeditorService(): ExpeditorService {
+        return this._expeditorService;
+    }
 
-  set expeditorService (value: ExpeditorService) {
-    this._expeditorService = value ;
-  }
+    set expeditorService(value: ExpeditorService) {
+        this._expeditorService = value;
+    }
 
-  get expeditorDetail (): ExpeditorVo {
-    return this.expeditorService.expeditorDetail;
-}
+    get expeditorDetail(): ExpeditorVo {
+        return this.expeditorService.expeditorDetail;
+    }
 
-  set expeditorDetail (value: ExpeditorVo) {
-  this.expeditorService.expeditorDetail = value ;
-}
+    set expeditorDetail(value: ExpeditorVo) {
+        this.expeditorService.expeditorDetail = value;
+    }
 
 
-get expeditorShowDetail (): boolean  {
-  return this.expeditorService.expeditorShowDetail;
-}
+    get expeditorShowDetail(): boolean {
+        return this.expeditorService.expeditorShowDetail;
+    }
 
-set expeditorShowDetail (value: boolean ) {
-  this.expeditorService.expeditorShowDetail = value ;
-}
+    set expeditorShowDetail(value: boolean) {
+        this.expeditorService.expeditorShowDetail = value;
+    }
 
-  ngOnInit(): void {
+    ngOnInit(): void {
 
-  }
+    }
 
-public detailHide(){
-       this.expeditorService.detailHide();
-}
+    public detailHide() {
+        this.expeditorService.detailHide();
+    }
 
 }
