@@ -1,113 +1,104 @@
-    <app-user></app-user>
-<div class="card col-md-8 mx-auto  p-md-2">
-     <div class="card-header text-center font-weight-bold">Create Users</div> 
-    <div class="card-body">
-        
-                <div class="row py-2">
-                    <label>credentialsNonExpired</label>
-                    <input type="text" class="form-control" [(ngModel)] = "user.credentialsNonExpired">
-                </div>
-                <div class="row py-2">
-                    <label>enabled</label>
-                    <input type="text" class="form-control" [(ngModel)] = "user.enabled">
-                </div>
-                <div class="row py-2">
-                    <div class="p-grid ui-fluid">
-                        <label>createdAt</label>
-                        <p-calendar class="p-col-12" dateFormat="yy-mm-dd" [(ngModel)] = "user.createdAt"></p-calendar>
-                    </div>
-                </div>
-                <div class="row py-2">
-                    <div class="p-grid ui-fluid">
-                        <label>updatedAt</label>
-                        <p-calendar class="p-col-12" dateFormat="yy-mm-dd" [(ngModel)] = "user.updatedAt"></p-calendar>
-                    </div>
-                </div>
-                <div class="row py-2">
-                    <label>email</label>
-                    <input type="text" class="form-control" [(ngModel)] = "user.email">
-                </div>
-                <div class="row py-2">
-                    <label>accountNonExpired</label>
-                    <input type="text" class="form-control" [(ngModel)] = "user.accountNonExpired">
-                </div>
-                <div class="row py-2">
-                    <label>accountNonLocked</label>
-                    <input type="text" class="form-control" [(ngModel)] = "user.accountNonLocked">
-                </div>
-                <div class="row py-2">
-                    <label>username</label>
-                    <input type="text" class="form-control" [(ngModel)] = "user.username">
-                </div>
-                <div class="row py-2">
-                    <label>password</label>
-                    <input type="text" class="form-control" [(ngModel)] = "user.password">
-                </div>
-        
-                <div class="row" >
-                    <label>createdBy</label>
-                    <select class="form-control" [(ngModel)]="user.createdByVo.username" >
-                        <option *ngFor="let p of createdBys" [ngValue]="p.username" value="{{p.username}}">{{p.username}}</option>
-                    </select>
-                </div>
-                <div class="row" >
-                    <label>updatedBy</label>
-                    <select class="form-control" [(ngModel)]="user.updatedByVo.username" >
-                        <option *ngFor="let p of updatedBys" [ngValue]="p.username" value="{{p.username}}">{{p.username}}</option>
-                    </select>
-                </div>
-                <div class="card row">
-                    <div class="card-header">Add roles</div>
-                    <div class="card-body">
-                        <div class="row">
-                                    <div class="col-md-6 py-2">
-                                        <div class="p-grid ui-fluid">
-                                            <label>updatedAt</label>
-                                            <p-calendar class="p-col-12" dateFormat="yy-mm-dd" [(ngModel)] = "role.updatedAt"></p-calendar>
-                                        </div>
-                                    </div>
-                                <div class="col-md-6 py-2"><label>authority</label>
-                                    <input type="text" class="form-control" [(ngModel)] = "role.authority" >
-                                </div>
-                                    <div class="col-md-6 py-2">
-                                        <div class="p-grid ui-fluid">
-                                            <label>createdAt</label>
-                                            <p-calendar class="p-col-12" dateFormat="yy-mm-dd" [(ngModel)] = "role.createdAt"></p-calendar>
-                                        </div>
-                                    </div>
-                        </div>
-                        <div class="card-footer">
-                            <button class="btn btn-outline-danger btn-block" (click)="addRole()">+</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="card row table-responsive">
-                    <div class="card-header">Added roles</div>
-                    <div class="card-body">
-                        <table class="table table-hover table-striped">
-                            <thead>
-                                <th>updatedAt</th>
-                                <th>authority</th>
-                                <th>createdAt</th>
-                                    <th>updatedBy username</th>
-                                    <th>createdBy username</th>
-                                <th>Delete</th>
-                            </thead>
-                            <tbody>
-                            <tr *ngFor="let p of user.rolesVo;let i = index">
-                                    <td>{{p.updatedAt}}</td>
-                                    <td>{{p.authority}}</td>
-                                    <td>{{p.createdAt}}</td>
-                                        <td>{{p.updatedByVo.username}}</td>
-                                        <td>{{p.createdByVo.username}}</td>
-                                    <td><button class="btn btn-dark fa fa-trash" (click)="removeRole(i)"></button></td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-        <div class="modal-footer" >
-            <button class="form-control" (click)="saveUser()" >Save</button>
+<app-user></app-user>
+
+
+<div class="card m-3">
+
+    <div class="row">
+
+        <div class="col-md-5 ">
+
+            <div class="m-1">
+                <label>email</label>
+                <input type="text" class="form-control" [(ngModel)]="user.email">
+            </div>
+
+            <div class="m-1">
+                <label>username</label>
+                <input type="text" class="form-control" [(ngModel)]="user.username">
+            </div>
+
+            <span *ngFor="let r of user.rolesVo" class="badge badge-pill badge-info m-1">{{r.authority}}
+                <span  class="badge badge-pill badge-danger m-2">
+                    <i class="fa fa-times" style="cursor: pointer" (click)="removeRole(r)"></i>
+                </span>
+            </span>
+
         </div>
+        <div class="col-md-7">
+            <strong  class="m-2">
+                Pick authorities
+            </strong>
+            <ul class="list-group m-1 text-center">
+                <li style="cursor: pointer" *ngFor="let item of roles" (click)="addRole(item)" class=" list-group-item list-group-item-action">{{item.authority}}</li>
+            </ul>
+        </div>
+
     </div>
+    <button class="btn btn-info fa fa-check m-5" (click)="saveUser()">  Save</button>
+
 </div>
+
+
+<!--<div class="card col-md-8 mx-auto  p-md-2">-->
+    <!--<div class="card-header text-center font-weight-bold">Create Users</div>-->
+    <!--<div class="card-body">-->
+
+        <!--&lt;!&ndash;<div class="row py-2">&ndash;&gt;-->
+        <!--&lt;!&ndash;<label>email</label>&ndash;&gt;-->
+        <!--&lt;!&ndash;<input type="text" class="form-control" [(ngModel)]="user.email">&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<div class="row py-2">&ndash;&gt;-->
+        <!--&lt;!&ndash;<label>username</label>&ndash;&gt;-->
+        <!--&lt;!&ndash;<input type="text" class="form-control" [(ngModel)]="user.username">&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+        <!--<div class="card row">-->
+            <!--<div class="card-header">Add roles</div>-->
+            <!--<div class="card-body">-->
+                <!--<div class="row">-->
+
+                    <!--<div class="form-group">-->
+                        <!--<label for="Authority">Authority</label>-->
+                        <!--<select class="form-control" id="Authority" [(ngModel)]="role.authority">-->
+                            <!--<option *ngFor="let item of roles" [ngValue]="item.authority" value="{{item.authority}}">-->
+                                <!--{{item.authority}}-->
+                            <!--</option>-->
+                        <!--</select>-->
+                    <!--</div>-->
+
+                <!--</div>-->
+                <!--<div class="card-footer">-->
+                    <!--<button class="btn btn-outline-danger btn-block" (click)="addRole()">+</button>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="card row table-responsive">-->
+            <!--<div class="card-header">Added roles</div>-->
+            <!--<div class="card-body">-->
+                <!--<table class="table table-hover table-striped">-->
+                    <!--<thead>-->
+
+                    <!--<th>authority</th>-->
+
+
+                    <!--<th>Delete</th>-->
+                    <!--</thead>-->
+                    <!--<tbody>-->
+                    <!--<tr *ngFor="let p of user.rolesVo;let i = index">-->
+
+                        <!--<td>{{p.authority}}</td>-->
+
+                        <!--<td>-->
+                            <!--<button class="btn btn-dark fa fa-trash" (click)="removeRole(i)"></button>-->
+                        <!--</td>-->
+                    <!--</tr>-->
+                    <!--</tbody>-->
+                <!--</table>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="modal-footer">-->
+            <!--<button class="form-control" (click)="saveUser()">Save</button>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->

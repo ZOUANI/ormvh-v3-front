@@ -40,7 +40,7 @@ export class UserEditComponent implements OnInit {
   }
 
   addRole() {
-   return this.userService.addRole();
+   return this.userService.addRole(null);
   }
 
   removeRole(i: number) {

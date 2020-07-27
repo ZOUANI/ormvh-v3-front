@@ -3,13 +3,15 @@ import {HttpClient} from '@angular/common/http';
 import {UserVo} from '../model/user.model';
 import {RoleVo} from '../model/Role.model';
 import { Observable } from 'rxjs';
+import {RoleService} from './Role.service';
+import Swal from 'sweetalert2';
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
  
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient , private roleService : RoleService) { }
   private _userDetail : UserVo =  new UserVo() ;
   private _userListe  : Array<UserVo> = new Array<UserVo>();
   
@@ -115,10 +117,27 @@ public findAllUsers():Observable<Array<UserVo>> {
 
   public saveUser() {
   this.http.post<UserVo>('http://localhost:8080/generated/user/', this.user).subscribe(data=>{
-     this.userListe.push(data);
+      if (data == null){
+          Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'duplicated email or username',
+
+          })
+      }else{
+          this.userListe.push(data);
+          this.roleService.findAll();
+          this.user = new UserVo();
+          Swal.fire({
+              icon: 'success',
+              title: 'user '+ data.username +' has been saved',
+              showConfirmButton: false,
+              timer: 2500
+          });
+      }
 
   });
-  this.user.rolesVo.length = 0;
+
   }
 
   public editUser() {
@@ -128,8 +147,8 @@ public findAllUsers():Observable<Array<UserVo>> {
    
   }
 
-  public addRole() {
-  this.user.rolesVo.push(this.cloneRole(this.role));
+  public addRole(item : RoleVo) {
+  this.user.rolesVo.push(this.cloneRole(item));
   }
 
   public cloneRole(role: RoleVo) {
