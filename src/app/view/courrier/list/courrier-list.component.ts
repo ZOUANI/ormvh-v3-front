@@ -30,7 +30,10 @@ export class CourrierlistComponent implements OnInit {
     voies: VoieVo[];
     statuss: StatusVo[];
 
-
+    subject:string;
+    email:string;
+    showEmailDialog:boolean = false;
+    selectedCourrier:CourrierVo;
 
     constructor(private _courrierService: CourrierService,private statusService: StatusService,
                 private typeCourrierService: TypeCourrierService, private voieService: VoieService
@@ -195,4 +198,16 @@ findAllvoies() {
             console.log(error);
         });
     }
+
+
+    sendEmail(){
+        this.courrierService.sendEmail(this.email,this.subject,[this.selectedCourrier]);
+    }
+
+    select(courrier:CourrierVo){
+        this.selectedCourrier = courrier;
+        this.showEmailDialog = true;
+    }
+
+
 }
