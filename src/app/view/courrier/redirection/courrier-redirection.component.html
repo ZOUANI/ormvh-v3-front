@@ -1,29 +1,35 @@
 <div class="container">
-   <div class="row mt-5">
-       <div class="col-4">
-         <div class="form-row">
-             <div class="form-group col-md-6">
-                <p-dropdown styleClass="form-control" selectId="type-courrier" [options]="typeCourrierOption"
+   <div class="row mt-5 ">
+             <div class="col-md-2">
+             </div>
+             <div class="col-md-2">
+                <p-dropdown  selectId="type-courrier" [options]="typeCourrierOption"
                 [(ngModel)]="courrierCriteria.typeCourrierVo" optionLabel="libelle" dataKey="id"></p-dropdown>
              </div>
-             <div class="col-md-5">
+             <div class="col-md-6">
+             <p-calendar  [showIcon]="true"  styleClass="dateRelance" [(ngModel)]="courrierCriteria.dateRelance">
+            </p-calendar>
+            <div class="btn-ctn">
                 <button class="btn btn-success btn-block" (click)="findCourriers()">Search</button>
              </div>
-         </div>
-         <div class="form-row">
-            <p-calendar [inline]="true" [(ngModel)]="courrierCriteria.dateRelance">
-            </p-calendar>
-         </div>
-       </div>
-       <div class="col-8">
+             </div>
+             
+<!--            
         <div class="d-flex flex-row-reverse">
             <div class="col-md-3 mr-2 mb-3">
                 <button class="btn btn-success btn-block" (click)="showEmailDialog = true">email</button>
             </div>
-        </div>
+        </div> -->
 
-        <div class="card">
-            
+        <div class="card mt-5">
+            <div class="card-header">
+                
+                <label class="switch">
+                    <input type="checkbox"
+                      (change)="selectOrDeselectAll()">
+                    <span class="slider round"></span>
+                  </label>
+            </div>
             <div class="card-body">
                 <!-- <h5 class="card-title" style="text-align: center;">Courriers</h5> -->
                 <p-accordion styleClass="services" [multiple]="true">
@@ -32,9 +38,11 @@
                         >
                            <ng-template pTemplate="header">
                                <tr>
-                                   <th>
-                                   </th>
+                                   <th style="width: 3em">
+                                    <p-tableHeaderCheckbox name="{{item.key.title}}" inputId="{{item.key.title}}"></p-tableHeaderCheckbox>
+                                </th>
                                    <th>idCourrier </th>
+                                   <th>subject</th>
                                    <th >status</th>
                                    <th >Date</th>
                                    
@@ -49,9 +57,11 @@
                                    <td>
                                        {{courrier.idCourrier}}
                                    </td>
-                                
                                    <td>
-                                    <span class="badge badge-success">{{courrier.statusVo.libelle}}</span>
+                                    {{courrier.subject}}
+                                   </td>
+                                   <td>
+                                    <span class="badge badge-success">{{courrier.statusVo?.libelle}}</span>
                                    </td>
                                    <td>
                                        <span >{{courrier.dateRelance}}</span>
@@ -88,7 +98,6 @@
                 </div> -->
             </div>
         </div>
-       </div>
    </div>    
 </div>
 <p-dialog styleClass="sendEmail" header="Send Email" position="center" [(visible)]="showEmailDialog">
@@ -162,48 +171,3 @@
          </div>
      </div>
 </p-dialog>
-
-
-<!-- <p-table  [value]="customers" [(selection)]="selectedCustomers" dataKey="id" styleClass="ui-table-customers" [rowHover]="true"
- >
-   
-    <ng-template pTemplate="header">
-        <tr>
-            <th>
-                <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
-            </th>
-            <th>idCourrier </th>
-            <th >status</th>
-            <th >Date</th>
-            
-        </tr>
-       
-    </ng-template>
-    <ng-template pTemplate="body" let-courrier>
-        <tr class="ui-selectable-row">
-            <td>
-                <p-tableCheckbox [value]="courrier"></p-tableCheckbox>
-            </td>
-            <td>
-                <span class="ui-column-title">Name</span>
-                {{courrier.idCourrier}}
-            </td>
-         
-            <td>
-                <span class="ui-column-title">Status</span>
-                <span [class]="'customer-badge status-' + courrier.status.libelle">{{courrier.status.libelle}}</span>
-            </td>
-            <td>
-                <span class="ui-column-title">Date</span>
-                <span >{{courrier.dateRelance}}</span>
-            </td>
-           
-           
-        </tr>
-    </ng-template>
-    <ng-template pTemplate="emptymessage">
-        <tr>
-            <td colspan="8" style="text-align:left">No customers found.</td>
-        </tr>
-    </ng-template>
-</p-table> -->
