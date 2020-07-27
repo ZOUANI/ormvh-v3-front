@@ -1,6 +1,6 @@
 .linkedCourrierDialog{
   background-color: #fff !important;
-  width: 70%;
+  width: 60%;
   height: 800px !important;
   box-shadow: 3px 4px 5px -1px rgba(0,0,0,0.58) !important;}
 .linkedCourrierDialog .ui-dialog-titlebar{
@@ -10,12 +10,15 @@
 }
 .linkedCourrierDialog.ui-dialog .ui-dialog-content{
   padding:0 !important;
+  height: 100%;
   border: 0;
   }
 h2 {
   margin: 5%;
   text-align: center;
-  font-size: 2rem;
+  font-size: 12px;
+  font-family: sans-serif;
+
   font-weight: 100;
 }
 
@@ -24,10 +27,10 @@ h2 {
 }
 
 .big-title {
-  color: #24b47e;
+  font-family: sans-serif;
+
   text-transform: uppercase;
-  font-weight: 600;
-  letter-spacing: 2px;
+  font-weight: 300;
   text-align: center;
 }
 
@@ -36,6 +39,7 @@ h2 {
   flex-direction: column;
   width: 50vw;
   margin: 5% auto;
+  margin-left: 0;
 }
 .timeline__event {
   background: #fff;

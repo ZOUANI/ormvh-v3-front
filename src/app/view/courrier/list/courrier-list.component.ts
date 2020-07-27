@@ -38,8 +38,10 @@ export class CourrierlistComponent implements OnInit {
         this.courrierService.detail(courrier);
     }
     showNewCorrierDialog(){
-        this.courrierService.courrier = new CourrierVo();
+        this.courrierService.courrier = null;
         this.courrierService.addNewCourrier = true;
+        this.courrierService.onEdit = false;
+        this.courrierService.onDetail = false;
 
     }
     get addNewCourrier():boolean{

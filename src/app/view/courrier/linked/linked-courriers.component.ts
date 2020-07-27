@@ -17,9 +17,8 @@ export class LinkedCourriersComponent implements OnInit {
   ngOnInit(): void {
   
   }
-  
-  showdetail(courrier:CourrierVo){
-   this.courrierService.detailShow(courrier);
+  detail(courrier:CourrierVo){
+   this.courrierService.detail(courrier);
   }
   get showLinkedCourrier():boolean{
     return this.courrierService.showLinkedCourrier;

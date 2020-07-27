@@ -9,7 +9,7 @@
         </div>
         <div class="row">
           <div class="col-md-3">
-            <button class="btn btn-success btn-block" (click)="addNewCourrier=true">ajouter courrier</button>
+            <button class="btn btn-success btn-block" (click)="showNewCorrierDialog()">ajouter courrier</button>
           </div>
         </div>
         <div class="card-body table-responsive">
@@ -37,10 +37,11 @@
                 <td>{{p.voieVo?.libelle}}</td>
                 <td>{{p.linkedToVo?.idCourrier}}</td>
                 <td>
-                  <button class="btn btn-warning btn-sm fa fa-pencil-square-o mx-md-1" (click)="edit(p)"></button>
-                  <button class="btn btn-warning btn-sm fa fa-external-link mx-md-1" (click)="showLinked(p)"></button>
-                  <button class="btn btn-danger btn-sm fa fa-trash mx-md-1" (click)="delete(p)"></button>
                   <button class="btn btn-warning btn-sm fa fa-external-link mx-md-1" (click)="detail(p)"></button>
+                  <button class="btn btn-warning btn-sm fa fa-pencil-square-o mx-md-1" (click)="edit(p)"></button>
+                  <button class="btn btn-warning btn-sm fa fa-code-fork mx-md-1" (click)="showLinked(p)"></button>
+                  <button class="btn btn-warning btn-sm fa fa-envelope mx-md-1"></button>
+                  <button class="btn btn-danger btn-sm fa fa-trash mx-md-1" (click)="delete(p)"></button>
                 </td>
   
             </tr>

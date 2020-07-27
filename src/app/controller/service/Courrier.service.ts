@@ -18,14 +18,31 @@ export class CourrierService {
    edit(courrier:CourrierVo){
        this.courrier = courrier;
        this.onEdit = true;
+       this.onDetail = false;
+
        this.addNewCourrier = true;
    }
    
    detail(courrier:CourrierVo){
     this.courrier = courrier;
     this.onDetail = true;
+    this.onEdit = false;
     this.addNewCourrier = true;
    }
+
+   courriersService:Map<LeServiceVo ,Array<CourrierVo>>;
+    
+    findCourrierByRelance(courrier:CourrierVo){
+  this.http.post<Map<LeServiceVo ,Array<CourrierVo>>>('http://localhost:8080/generated/courrier/couriersusceptiblerelance',courrier).subscribe(data=>{
+    this.courriersService = data;
+});
+    }
+    
+
+
+    sendEmail(email:string,subject: string, courriers: CourrierVo[]) {
+        this.http.post<number>('http://localhost:8080/generated/courrier/sendcouriers/to/'+email+'/subject/' +subject,courriers);
+    }
     constructor(private http: HttpClient, private expeditorService: ExpeditorService) {
     }
 
@@ -714,11 +731,13 @@ export class CourrierService {
     }
 
     public editCourrier() {
+        console.log(this.courrier);
         this.http.put <CourrierVo>('http://localhost:8080/generated/courrier/', this.courrier).subscribe(data => {
-               if(data!= null){
+            console.log(this.courrier);
+
                 this.addNewCourrier = false;   
                 this.courrier= null;
-               }
+               
     });
       
 
@@ -726,9 +745,7 @@ export class CourrierService {
 
 
     public addTask() {
-        console.log(this.task);
         let clone = this.cloneTask(this.task);
-        console.log(clone);
         this.courrier.tasksVo.push(clone);
         this.task = null;
         this.task.assigneVo = clone.assigneVo;

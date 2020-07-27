@@ -130,10 +130,13 @@ import { InterceptorService } from './controller/service/auth/interceptor.servic
 import { ErrorInterceptorService } from './controller/service/auth/error-interceptor.service';
 import { AuthGuard } from './controller/service/auth/auth.guard';
 import {DialogModule} from 'primeng/dialog';
+import {AccordionModule} from 'primeng/accordion';
 
 import { TranslateModule, TranslateLoader, TranslateFakeLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { LinkedCourriersComponent } from './view/courrier/linked/linked-courriers.component';
+import { CourrierRedirectionComponent } from './view/courrier/redirection/courrier-redirection.component';
+import {TableModule} from 'primeng/table';
 
 export function httpLoaderFactory(http: HttpClient){
     return new TranslateHttpLoader(http);
@@ -252,8 +255,8 @@ export function httpLoaderFactory(http: HttpClient){
         DashboardComponent,
         LoginComponent,
         CreateExpeditorComponent,
-        LinkedCourriersComponent
-
+        LinkedCourriersComponent,
+        CourrierRedirectionComponent
     ],
     imports: [
         BrowserModule,
@@ -273,7 +276,9 @@ export function httpLoaderFactory(http: HttpClient){
         MenuModule,
         DropdownModule,
         ChartModule,
-        DialogModule
+        DialogModule,
+        AccordionModule,
+        TableModule
     ],
     providers: [
         {
