@@ -14,6 +14,10 @@ import {ExpeditorVo} from '../../../controller/model/Expeditor.model';
 import {TypeCourrierVo} from '../../../controller/model/TypeCourrier.model';
 import {VoieVo} from '../../../controller/model/Voie.model';
 import {LeServiceVo} from '../../../controller/model/LeService.model';
+import {EmployeeVo} from "../../../controller/model/Employee.model";
+import {TypeCourrierService} from "../../../controller/service/TypeCourrier.service";
+import {VoieService} from "../../../controller/service/Voie.service";
+import {StatusService} from "../../../controller/service/Status.service";
 
 @Component({
     selector: 'app-courrier-list',
@@ -22,13 +26,25 @@ import {LeServiceVo} from '../../../controller/model/LeService.model';
     encapsulation: ViewEncapsulation.None
 })
 export class CourrierlistComponent implements OnInit {
+    typeCourriers: TypeCourrierVo[];
+    voies: VoieVo[];
+    statuss: StatusVo[];
 
-    constructor(private _courrierService: CourrierService) {
+    subject:string;
+    email:string;
+    showEmailDialog:boolean = false;
+    selectedCourrier:CourrierVo;
+
+    constructor(private _courrierService: CourrierService,private statusService: StatusService,
+                private typeCourrierService: TypeCourrierService, private voieService: VoieService
+    ) {
     }
 
 
     ngOnInit(): void {
-
+        this.findAlltypeCourriers()
+        this.findAllvoies()
+        this.findAllstatuss()
     }
 
     edit(courrier: CourrierVo) {
@@ -39,11 +55,22 @@ export class CourrierlistComponent implements OnInit {
         this.courrierService.detail(courrier);
     }
 
-    showNewCorrierDialog() {
+    showNewCorrierDialogArrive() {
         this.courrierService.courrier = null;
         this.courrierService.addNewCourrier = true;
         this.courrierService.onEdit = false;
         this.courrierService.onDetail = false;
+        this.courrierService.courrier.typeCourrierVo.libelle = 'Arrivee';
+
+    }
+
+    showNewCorrierDialogSortie() {
+        this.courrierService.courrier = null;
+        this.courrierService.addNewCourrier = true;
+        this.courrierService.onEdit = false;
+        this.courrierService.onDetail = false;
+        this.courrierService.courrier.typeCourrierVo.libelle = 'Sortie';
+
 
     }
 
@@ -172,5 +199,50 @@ export class CourrierlistComponent implements OnInit {
     print(){
         this._courrierService.print(this.courriersSelected);
     }
+
+
+    findAlltypeCourriers() {
+        this.typeCourrierService.findAlltypeCourriers().subscribe(data => {
+
+            if (data != null) {
+                this.typeCourriers = data;
+            }
+        }, error => {
+            console.log(error);
+        });
+    }
+
+
+
+findAllvoies() {
+    this.voieService.findAllvoies().subscribe(data => {
+        if (data != null) {
+            this.voies = data;
+        }
+    }, error => {
+        console.log(error);
+    });
+}
+
+    findAllstatuss() {
+        this.statusService.findAllstatuss().subscribe(data => {
+            if (data != null) {
+                this.statuss = data;
+            }
+        }, error => {
+            console.log(error);
+        });
+    }
+
+
+    sendEmail(){
+        this.courrierService.sendEmail(this.email,this.subject,[this.selectedCourrier]);
+    }
+
+    select(courrier:CourrierVo){
+        this.selectedCourrier = courrier;
+        this.showEmailDialog = true;
+    }
+
 
 }

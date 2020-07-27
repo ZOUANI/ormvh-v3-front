@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Create Bordereau </h5>
+                <h5 class="modal-title">{{"STATEMENT.CREATE_STATEMENT" | translate}}</h5>
                 <button (click)="createHide()" aria-label="Close" class="close" type="button">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -14,7 +14,7 @@
                         <div class="row">
                             <div class="col-md-6 py-2">
                                 <div class="p-grid ui-fluid">
-                                    <label>dateBordereaux</label>
+                                    <label>{{"STATEMENT.STATEMENT_DATE" | translate}}</label>
                                     <p-calendar [(ngModel)]="bordereau.dateBordereaux" class="p-col-12"
                                                 dateFormat="yy-mm-dd"></p-calendar>
                                 </div>
@@ -34,16 +34,16 @@
 <!--                                </div>-->
 <!--                            </div>-->
                             <div class="col-md-6 py-2">
-                                <label>description</label>
-                                <input [(ngModel)]="bordereau.description" class="form-control" type="text">
+                                <label>{{"STATEMENT.DESCRIPTION" | translate}}</label>
+                                <input [(ngModel)]="bordereau.description" class="form-control" type="text" placeholder="{{'STATEMENT.DESCRIPTION' | translate}}">
                             </div>
                             <div class="col-md-6 py-2">
-                                <label>nombrePieceJointe</label>
-                                <input [(ngModel)]="bordereau.nombrePieceJointe" class="form-control" type="text">
+                                <label>{{"STATEMENT.ATTACHMENTS_NUMBER" | translate}}</label>
+                                <input [(ngModel)]="bordereau.nombrePieceJointe" class="form-control" type="text" placeholder="{{'STATEMENT.ATTACHMENTS_NUMBER' | translate}}">
                             </div>
                             <div class="col-md-6 py-2">
-                                <label>libelle</label>
-                                <input [(ngModel)]="bordereau.libelle" class="form-control" type="text">
+                                <label>{{"STATEMENT.LABEL" | translate}}</label>
+                                <input [(ngModel)]="bordereau.libelle" class="form-control" type="text" placeholder="{{'STATEMENT.LABEL' | translate}}">
                             </div>
                         </div>
 <!--                        <div class="row">-->
@@ -61,7 +61,7 @@
 <!--                            </select>-->
 <!--                        </div>-->
                         <div class="modal-footer">
-                            <button (click)="saveBordereau()" class="form-control">Save</button>
+                            <button (click)="saveBordereau()" class="form-control">{{"COMMONS.SAVE" | translate}}</button>
                         </div>
                     </div>
                 </div>

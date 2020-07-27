@@ -70,6 +70,14 @@ export class CourrierCreateComponent implements OnInit {
     set onDetail(value:boolean){
         this.courrierService.onDetail = value;
     }
+
+    get onCreate():boolean{
+        return this.courrierService.onCreate;
+    }
+
+    set onCreate(value:boolean){
+        this.courrierService.onCreate = value;
+    }
     get addNewCourrier():boolean{
       return this.courrierService.addNewCourrier ;
       }
@@ -89,6 +97,7 @@ export class CourrierCreateComponent implements OnInit {
         this.findAllstatuss();
         this.findAlltypeCourriers();
         this.findAllUSer();
+
     }
 
 
@@ -286,9 +295,9 @@ export class CourrierCreateComponent implements OnInit {
 
     findAlltypeCourriers() {
         this.typeCourrierService.findAlltypeCourriers().subscribe(data => {
+
             if (data != null) {
                 this.typeCourriers = data;
-                this.courrier.typeCourrierVo = this.typeCourriers[0];
             }
         }, error => {
             console.log(error);
@@ -346,4 +355,6 @@ export class CourrierCreateComponent implements OnInit {
         this.courrierService.verifyId(this.generatedId)
         console.log(this.generatedId)
     }
+
+
 }

@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {CourrierService} from '../../controller/service/Courrier.service';
+import {SelectItem} from 'primeng/api';
+import {LeServiceService} from '../../controller/service/LeService.service';
 
 @Component({
     selector: 'app-dashboard',
@@ -14,14 +16,16 @@ export class DashboardComponent implements OnInit {
     rangeDates: any;
     tmpData = false;
     tmpData1 = false;
+    leServices: SelectItem[];
+    leServiceTitle: any;
 
-    constructor(private courrierService: CourrierService) {
+    constructor(private courrierService: CourrierService, private _leServiceService: LeServiceService) {
     }
 
     setArrivedDepartedChart() {
         setTimeout(() => {
             this.data2 = {
-                labels: ['Arrivée ' + this.totalArrivedCourriers().valueOf() * 100 / this.totalCourriers() + '%', 'Départ ' + this.totalDepartCourriers().valueOf() * 100 / this.totalCourriers() + '%'],
+                labels: ['Arrivée ' + Math.round(this.totalArrivedCourriers().valueOf() * 100 / this.totalCourriers()) + '%', 'Départ ' + Math.round(this.totalDepartCourriers().valueOf() * 100 / this.totalCourriers()) + '%'],
                 datasets: [
                     {
                         data: [this.totalArrivedCourriers().valueOf(), this.totalDepartCourriers().valueOf()],
@@ -47,7 +51,7 @@ export class DashboardComponent implements OnInit {
     setStatusCourrierChart() {
         setTimeout(() => {
             this.data1 = {
-                labels: ['Ouverts ' + this.totalOpenCourriers().valueOf() * 100 / this.totalCourriers() + '%', 'En cours ' + this.totalEncoursCourriers().valueOf() * 100 / this.totalCourriers() + '%', 'Traités ' + this.totalTraitedCourriers().valueOf() * 100 / this.totalCourriers() + '%'],
+                labels: ['Ouverts ' + Math.round(this.totalOpenCourriers().valueOf() * 100 / this.totalCourriers()) + '%', 'En cours ' + Math.round(this.totalEncoursCourriers().valueOf() * 100 / this.totalCourriers()) + '%', 'Traités ' + Math.round(this.totalTraitedCourriers().valueOf() * 100 / this.totalCourriers()) + '%'],
                 datasets: [
                     {
                         data: [this.totalOpenCourriers().valueOf(), this.totalEncoursCourriers().valueOf(), this.totalTraitedCourriers().valueOf()],
@@ -71,25 +75,29 @@ export class DashboardComponent implements OnInit {
         }, 700);
     }
 
+
     reset() {
         this.ngOnInit();
-        /* setTimeout(() => {
-             console.log(this.courrierService.arrivedCourriers);
-         }, 700);*/
-
     }
 
     ngOnInit(): void {
-        this.courrierService.countAll();
-        this.courrierService.findNumberArrivedCourriers();
-        this.courrierService.findNumberDepartCourriers();
-        this.courrierService.findNumberEncoursCourriers();
-        this.courrierService.findNumberTraitedCourriers();
-        this.courrierService.findNumberOpenCourriers();
-        this.courrierService.findNumberAccusedCourriers();
-        this.courrierService.findNumberResponedCourriers();
+        this.courrierService.getStatsByDate(null, null, null);
         this.setStatusCourrierChart();
         this.setArrivedDepartedChart();
+        this.findAllServices();
+    }
+
+    findAllServices() {
+        this._leServiceService.findAllServices().subscribe(data => {
+            this.leServices = [{label: 'none', value: null}];
+            if (data != null) {
+                for (const item of data) {
+                    this.leServices.push({label: item.title, value: item});
+                }
+            }
+        }, error => {
+            this.leServices = [{label: 'none', value: null}];
+        });
     }
 
     totalCourriers() {
@@ -125,36 +133,39 @@ export class DashboardComponent implements OnInit {
     }
 
     filterCourriers() {
-        let date1 = (this.rangeDates[0] as Date);
-        let date2 = (this.rangeDates[1] as Date);
-        date1.setDate(date1.getDate() + 1);
-        //console.log(date1.toISOString().substring(0, 10));
-        console.log(date2);
-        console.log(date1.toISOString().substring(0, 10));
-        if (date2 == null) {
-            this.courrierService.countByDate(date1.toISOString().substring(0, 10));
-            this.courrierService.countArrivedCourriersByDate(date1.toISOString().substring(0, 10));
-            this.courrierService.countDepartCourriersByDate(date1.toISOString().substring(0, 10));
-            this.courrierService.countEnCoursCourriersByDate(date1.toISOString().substring(0, 10));
-            this.courrierService.countTraitedCourriersByDate(date1.toISOString().substring(0, 10));
-            this.courrierService.countOpenCourriersByDate(date1.toISOString().substring(0, 10));
-            this.courrierService.countAccusedCourriersByDate(date1.toISOString().substring(0, 10));
-            this.courrierService.countResponseCourriersByDate(date1.toISOString().substring(0, 10));
-            this.setArrivedDepartedChart();
-            this.setStatusCourrierChart();
+        if (this.rangeDates != undefined) {
+            let date1 = (this.rangeDates[0] as Date);
+            let date2 = (this.rangeDates[1] as Date);
+            date1.setDate(date1.getDate());
+            if (this.leServiceTitle == undefined) {
+                if (date2 == null) {
+                    this.courrierService.getStatsByDate(date1.toISOString().substring(0, 10), null, null);
+                    this.setArrivedDepartedChart();
+                    this.setStatusCourrierChart();
+                } else {
+                    date2.setDate(date2.getDate());
+                    this.courrierService.getStatsByDate(date1.toISOString().substring(0, 10), date2.toISOString().substring(0, 10), null);
+                    this.setArrivedDepartedChart();
+                    this.setStatusCourrierChart();
+                }
+            } else {
+                if (date2 == null) {
+                    this.courrierService.getStatsByDate(date1.toISOString().substring(0, 10), null, this.leServiceTitle.title);
+                    this.setArrivedDepartedChart();
+                    this.setStatusCourrierChart();
+                } else {
+                    date2.setDate(date2.getDate());
+                    this.courrierService.getStatsByDate(date1.toISOString().substring(0, 10), date2.toISOString().substring(0, 10), this.leServiceTitle.title);
+                    this.setArrivedDepartedChart();
+                    this.setStatusCourrierChart();
+                }
+            }
         } else {
-            date2.setDate(date2.getDate() + 1);
-            this.courrierService.countByTwoDates(date1.toISOString().substring(0, 10), date2.toISOString().substring(0, 10));
-            this.courrierService.countArrivedCourriersByTwoDate(date1.toISOString().substring(0, 10), date2.toISOString().substring(0, 10));
-            this.courrierService.countDepartCourriersByTwoDate(date1.toISOString().substring(0, 10), date2.toISOString().substring(0, 10));
-            this.courrierService.countEnCoursCourriersByTwoDate(date1.toISOString().substring(0, 10), date2.toISOString().substring(0, 10));
-            this.courrierService.countTraitedCourriersByTwoDate(date1.toISOString().substring(0, 10), date2.toISOString().substring(0, 10));
-            this.courrierService.countOpenCourriersByTwoDate(date1.toISOString().substring(0, 10), date2.toISOString().substring(0, 10));
-            this.courrierService.countAccusedCourriersByTwoDates(date1.toISOString().substring(0, 10), date2.toISOString().substring(0, 10));
-            this.courrierService.countResponseCourriersByTwoDates(date1.toISOString().substring(0, 10), date2.toISOString().substring(0, 10));
+            this.courrierService.getStatsByDate(null, null, this.leServiceTitle.title);
             this.setArrivedDepartedChart();
             this.setStatusCourrierChart();
         }
+
     }
 
 

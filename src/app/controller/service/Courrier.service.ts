@@ -15,43 +15,44 @@ import {ExpeditorVo} from '../model/Expeditor.model';
 export class CourrierService {
     onEdit: boolean=false;
     onDetail:boolean=false;
+    onCreate : boolean=false;
    edit(courrier:CourrierVo){
        this.courrier = courrier;
        this.onEdit = true;
        this.onDetail = false;
 
-       this.addNewCourrier = true;
-   }
-   
-   detail(courrier:CourrierVo){
-    this.courrier = courrier;
-    this.onDetail = true;
-    this.onEdit = false;
-    this.addNewCourrier = true;
-   }
-
-   courriersService:Map<LeServiceVo ,Array<CourrierVo>>;
-    
-    findCourrierByRelance(courrier:CourrierVo){
-  this.http.post<Map<LeServiceVo ,Array<CourrierVo>>>('http://localhost:8080/generated/courrier/couriersusceptiblerelance',courrier).subscribe(data=>{
-    this.courriersService = data;
-});
+        this.addNewCourrier = true;
     }
-    
 
-
-    sendEmail(email:string,subject: string, courriers: CourrierVo[]) {
-        this.http.post<number>('http://localhost:8080/generated/courrier/sendcouriers/to/'+email+'/subject/' +subject,courriers);
+    detail(courrier: CourrierVo) {
+        this.courrier = courrier;
+        this.onDetail = true;
+        this.onEdit = false;
+        this.addNewCourrier = true;
     }
+
+    courriersService: Map<LeServiceVo, Array<CourrierVo>>;
+
+    findCourrierByRelance(courrier: CourrierVo) {
+        this.http.post<Map<LeServiceVo, Array<CourrierVo>>>('http://localhost:8080/generated/courrier/couriersusceptiblerelance', courrier).subscribe(data => {
+            this.courriersService = data;
+        });
+    }
+
+
+    sendEmail(email: string, subject: string, courriers: CourrierVo[]) {
+        this.http.post<number>('http://localhost:8080/generated/courrier/sendcouriers/to/' + email + '/subject/' + subject, courriers);
+    }
+
     constructor(private http: HttpClient, private expeditorService: ExpeditorService) {
     }
 
 
     addNewCourrier: boolean = false;
-    showLinkedCourrier:boolean = false;
-    linkedToThisCourrier:CourrierVo;
+    showLinkedCourrier: boolean = false;
+    linkedToThisCourrier: CourrierVo;
     linkedCourrier: Array<CourrierVo> = new Array<CourrierVo>();
-    
+
     private _courrierDetail: CourrierVo = new CourrierVo();
     private _courrierListe: Array<CourrierVo> = new Array<CourrierVo>();
 
@@ -302,6 +303,42 @@ export class CourrierService {
             }
         );
     }
+
+    public getStatsByDate(date1: string, date2: string, titleCoordinator: string) {
+        this.http.get <Array<number>>('http://localhost:8080/generated/courrier/stats/dateMin/' + date1 + '/dateMax/' + date2 + '/titleCoordinator/' + titleCoordinator).subscribe(
+            value => {
+                if (value != null) {
+                    console.log(value);
+                    this.nbrOfArived = value[0];
+                    this.nbrOfDeparted = value[1];
+                    this.nbrOfOpen = value[2];
+                    this.nbrOfEnCours = value[3];
+                    this.nbrOfTraited = value[4];
+                    this.nbrOfAccused = value[5];
+                    this.nbrOfResponed = value[6];
+                    this.nbrOfAll = value[7];
+                }
+            }
+        );
+    }
+
+    /* public getStatsByDateAndLeService(date1: string, date2: string, leServiceTitle) {
+         this.http.get <Array<number>>('http://localhost:8080/generated/courrier/stats/dateMin/' + date1 + '/dateMax/' + date2 + '/leServiceCoordinatorTitle/' + leServiceTitle).subscribe(
+             value => {
+                 if (value != null) {
+                     //console.log(value);
+                     this.nbrOfArived = value[0];
+                     this.nbrOfDeparted = value[1];
+                     this.nbrOfOpen = value[2];
+                     this.nbrOfEnCours = value[3];
+                     this.nbrOfTraited = value[4];
+                     this.nbrOfAccused = value[5];
+                     this.nbrOfResponed = value[6];
+                     this.nbrOfAll = value[7];
+                 }
+             }
+         );
+     }*/
 
     public countAll() {
         this.http.get <number>('http://localhost:8080/generated/courrier/countAll').subscribe(
@@ -735,11 +772,11 @@ export class CourrierService {
         this.http.put <CourrierVo>('http://localhost:8080/generated/courrier/', this.courrier).subscribe(data => {
             console.log(this.courrier);
 
-                this.addNewCourrier = false;   
-                this.courrier= null;
-               
-    });
-      
+            this.addNewCourrier = false;
+            this.courrier = null;
+
+        });
+
 
     }
 
@@ -846,15 +883,15 @@ export class CourrierService {
                 this.findAll();
             });
     }
-  
+
     findLinkedCourrier(courrier: CourrierVo) {
         this.linkedToThisCourrier = courrier;
-        this.http.get<CourrierVo[]>('http://localhost:8080/generated/courrier/linked/'+courrier.id).subscribe(data=>{
-            if(data!=null){
-                this.linkedCourrier = data;
-                this.showLinkedCourrier= true;
+        this.http.get<CourrierVo[]>('http://localhost:8080/generated/courrier/linked/' + courrier.id).subscribe(data => {
+                if (data != null) {
+                    this.linkedCourrier = data;
+                    this.showLinkedCourrier = true;
+                }
             }
-        }
         );
     }
 
