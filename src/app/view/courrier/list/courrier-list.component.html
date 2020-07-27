@@ -1,58 +1,120 @@
 <div class="container">
     <div class="row">
-      <div class="card col-12">
-        <div class="card-header bg-transparent">
-          <div class="float-left px-1">
-            <h5>List of {{"MAILING.MAILING" | translate}}</h5>
-          </div>
-          <button class="btn btn-success btn-sm fa fa-plus float-right" (click)="showReservation()">{{"MAILING.RESERVE_MAILING" | translate}}</button>
+        <div class="card col-12">
+            <div class="card-header bg-transparent">
+                <div class="float-left px-1">
+                    <h5>List of {{"MAILING.MAILING" | translate}}</h5>
+                </div>
+
+                <button id="buttonRES" class="btn  btn-sm fa fa-plus float-right" (click)="showReservation()">
+                    {{"MAILING.RESERVE_MAILING" | translate}}
+                </button>
+                <button id="buttonArrive" class="btn  btn-sm fa fa-plus float-right"
+                        (click)="showNewCorrierDialogArrive()">Ajouter courier d'arriver
+                </button>
+                <button id="buttonDepart" class="btn  btn-sm fa fa-plus float-right"
+                        (click)="showNewCorrierDialogSortie()">Ajouter courier de sortie
+                </button>
+
+            </div>
+
+            <div class="row">
+                <div class="card col-12">
+                    <div class="card-header bg-transparent">
+                        <div class="float-left px-1 row">
+
+                            <div class="form-group col">
+                                <label for="Reference">idCourier</label>
+                                <input type="text" [(ngModel)]="courrierSearch.idCourrier" class="form-control" id="Reference">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="date">sent date</label>
+                                <input type="date" [(ngModel)]="courrierSearch.sentAt" class="form-control" id="date"
+                                >
+                            </div>
+                            <div class="form-group col">
+                                <label for="type">Type</label>
+                                <select [(ngModel)]="courrierSearch.typeCourrierVo" class="form-control col-12" class="form-control" id="type">
+                                    <option [ngValue]=null >--select--</option>
+                                        <option *ngFor="let p of typeCourriers" [ngValue]="p">{{p.libelle}}</option>
+                                </select>
+                            </div>
+                            <div class="form-group col">
+                                <label for="status">Status</label>
+                                <select [(ngModel)]="courrierSearch.statusVo" class="form-control col-12" class="form-control" id="status">
+                                    <option [ngValue]=null >--select--</option>
+                                    <option *ngFor="let p of statuss" [ngValue]="p">{{p.libelle}}</option>
+                                </select>
+                            </div>
+                            <div class="form-group col">
+                                <label for="voie">Voie</label>
+                                <select [(ngModel)]="courrierSearch.voieVo" class="form-control col-12" class="form-control" id="voie">
+                                    <option [ngValue]=null >--select--</option>
+                                    <option *ngFor="let p of voies" [ngValue]="p">{{p.libelle}}</option>
+                                </select>
+                            </div>
+                            <div style="margin-top: 31px " class="ml-3">
+                                <button  (click)="findCourrier(courrierSearch)" class="btn btn-outline-info btn-lg fa fa-search"
+                                ></button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="card-body table-responsive">
+
+                <table class="table table-hover col-md-12">
+                    <thead class="thead-dark">
+
+                    <th>{{"MAILING.ID" | translate}}</th>
+                    <th>{{"MAILING.SUBJECT" | translate}}</th>
+                    <th>{{"MAILING.CREATED_AT" | translate}}</th>
+                    <th>{{"MAILING.STATUS" | translate}}</th>
+                    <th>{{"MAILING.TYPE" | translate}}</th>
+                    <th>{{"MAILING.TRACK" | translate}}</th>
+                    <th>{{"MAILING.LINKED_TO" | translate}}</th>
+                    <th>{{"MAILING.ACTIONS" | translate}}</th>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let p of courrierListe">
+
+                        <td>{{p.idCourrier}}</td>
+                        <td>{{p.subject}}</td>
+                        <td>{{p.createdAt}}</td>
+                        <td> <span
+                                [ngStyle]="{'background-color':p.statusVo?.color}"
+                                class="badge badge-pill">{{p.statusVo?.libelle}}</span>
+                        </td>
+                        <td> <span
+                                [ngStyle]="{'background-color':p.typeCourrierVo?.color}"
+                                class="badge badge-pill">{{p.typeCourrierVo?.libelle}}</span>
+                        </td>
+                        <td>{{p.voieVo?.libelle}}</td>
+                        <td>{{p.linkedToVo?.idCourrier}}</td>
+                        <td>
+                            <button class="btn btn-warning btn-sm fa fa-external-link mx-md-1"
+                                    (click)="detail(p)"></button>
+                            <button class="btn btn-warning btn-sm fa fa-pencil-square-o mx-md-1"
+                                    (click)="edit(p)"></button>
+                            <button class="btn btn-warning btn-sm fa fa-code-fork mx-md-1"
+                                    (click)="showLinked(p)"></button>
+                            <button class="btn btn-warning btn-sm fa fa-envelope mx-md-1"></button>
+                            <button class="btn btn-danger btn-sm fa fa-trash mx-md-1" (click)="delete(p)"></button>
+                        </td>
+
+                    </tr>
+
+                    <app-courrier-create></app-courrier-create>
+                    <app-courrier-linked></app-courrier-linked>
+
+                    <app-courrier-details *ngIf="courrierShowDetail"></app-courrier-details>
+                    <app-courrier-reservation *ngIf="reservationShow"></app-courrier-reservation>
+                    </tbody>
+                </table>
+            </div>
         </div>
-        <div class="row">
-          <div class="col-md-3">
-            <button class="btn btn-success btn-block" (click)="showNewCorrierDialog()">ajouter courrier</button>
-          </div>
-        </div>
-        <div class="card-body table-responsive">
-  
-          <table class="table table-hover col-md-12">
-            <thead class="thead-dark">
-  
-              <th>{{"MAILING.ID" | translate}}</th>
-              <th>{{"MAILING.SUBJECT" | translate}}</th>
-              <th>{{"MAILING.CREATED_AT" | translate}}</th>
-              <th>{{"MAILING.STATUS" | translate}}</th>
-              <th>{{"MAILING.TYPE" | translate}}</th>
-              <th>{{"MAILING.TRACK" | translate}}</th>
-              <th>{{"MAILING.LINKED_TO" | translate}}</th>
-              <th>{{"MAILING.ACTIONS" | translate}}</th>
-            </thead>
-            <tbody>
-              <tr *ngFor="let p of courrierListe">
-  
-                <td>{{p.idCourrier}}</td>
-                <td>{{p.subject}}</td>
-                <td>{{p.createdAt}}</td>
-                <td>{{p.statusVo?.libelle}}</td>
-                <td><span class="badge badge-pill badge-warning">{{p.typeCourrierVo?.libelle}}</span></td>
-                <td>{{p.voieVo?.libelle}}</td>
-                <td>{{p.linkedToVo?.idCourrier}}</td>
-                <td>
-                  <button class="btn btn-warning btn-sm fa fa-external-link mx-md-1" (click)="detail(p)"></button>
-                  <button class="btn btn-warning btn-sm fa fa-pencil-square-o mx-md-1" (click)="edit(p)"></button>
-                  <button class="btn btn-warning btn-sm fa fa-code-fork mx-md-1" (click)="showLinked(p)"></button>
-                  <button class="btn btn-warning btn-sm fa fa-envelope mx-md-1"></button>
-                  <button class="btn btn-danger btn-sm fa fa-trash mx-md-1" (click)="delete(p)"></button>
-                </td>
-  
-            </tr>
-  
-            <app-courrier-create  ></app-courrier-create>
-            <app-courrier-linked></app-courrier-linked>
-  
-            <app-courrier-details *ngIf="courrierShowDetail" ></app-courrier-details>
-            <app-courrier-reservation *ngIf="reservationShow"></app-courrier-reservation>
-          </tbody>
-        </table>
-      </div>
     </div>
-  </div>

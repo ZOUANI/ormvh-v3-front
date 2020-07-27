@@ -15,6 +15,7 @@ import {ExpeditorVo} from '../model/Expeditor.model';
 export class CourrierService {
     onEdit: boolean=false;
     onDetail:boolean=false;
+    onCreate : boolean=false;
    edit(courrier:CourrierVo){
        this.courrier = courrier;
        this.onEdit = true;

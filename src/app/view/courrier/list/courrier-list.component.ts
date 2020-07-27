@@ -14,6 +14,10 @@ import {ExpeditorVo} from '../../../controller/model/Expeditor.model';
 import {TypeCourrierVo} from '../../../controller/model/TypeCourrier.model';
 import {VoieVo} from '../../../controller/model/Voie.model';
 import {LeServiceVo} from '../../../controller/model/LeService.model';
+import {EmployeeVo} from "../../../controller/model/Employee.model";
+import {TypeCourrierService} from "../../../controller/service/TypeCourrier.service";
+import {VoieService} from "../../../controller/service/Voie.service";
+import {StatusService} from "../../../controller/service/Status.service";
 
 @Component({
     selector: 'app-courrier-list',
@@ -22,34 +26,59 @@ import {LeServiceVo} from '../../../controller/model/LeService.model';
     encapsulation: ViewEncapsulation.None
 })
 export class CourrierlistComponent implements OnInit {
-    
-    constructor(private _courrierService: CourrierService) {
+    typeCourriers: TypeCourrierVo[];
+    voies: VoieVo[];
+    statuss: StatusVo[];
+
+
+
+    constructor(private _courrierService: CourrierService,private statusService: StatusService,
+                private typeCourrierService: TypeCourrierService, private voieService: VoieService
+    ) {
     }
 
-   
+
     ngOnInit(): void {
-
+        this.findAlltypeCourriers()
+        this.findAllvoies()
+        this.findAllstatuss()
     }
 
-    edit(courrier:CourrierVo){
+    edit(courrier: CourrierVo) {
         this.courrierService.edit(courrier);
     }
-    detail(courrier:CourrierVo){
+
+    detail(courrier: CourrierVo) {
         this.courrierService.detail(courrier);
     }
-    showNewCorrierDialog(){
+
+    showNewCorrierDialogArrive() {
         this.courrierService.courrier = null;
         this.courrierService.addNewCourrier = true;
         this.courrierService.onEdit = false;
         this.courrierService.onDetail = false;
+        this.courrierService.courrier.typeCourrierVo.libelle = 'Arrivee';
 
     }
-    get addNewCourrier():boolean{
-    return this.courrierService.addNewCourrier ;
+
+    showNewCorrierDialogSortie() {
+        this.courrierService.courrier = null;
+        this.courrierService.addNewCourrier = true;
+        this.courrierService.onEdit = false;
+        this.courrierService.onDetail = false;
+        this.courrierService.courrier.typeCourrierVo.libelle = 'Sortie';
+
+
     }
-    set addNewCourrier(value:boolean){
+
+    get addNewCourrier(): boolean {
+        return this.courrierService.addNewCourrier;
+    }
+
+    set addNewCourrier(value: boolean) {
         this.courrierService.addNewCourrier = value;
     }
+
     get courrierService(): CourrierService {
         return this._courrierService;
     }
@@ -90,19 +119,20 @@ export class CourrierlistComponent implements OnInit {
     set courrierShowDetail(value: boolean) {
         this.courrierService.courrierShowDetail = value;
     }
-    
-         
-    showLinked(courrier:CourrierVo){
+
+
+    showLinked(courrier: CourrierVo) {
         this.courrierService.findLinkedCourrier(courrier);
     }
 
-     get showLinkedCourrier():boolean{
-         return this.courrierService.showLinkedCourrier;
-     }
+    get showLinkedCourrier(): boolean {
+        return this.courrierService.showLinkedCourrier;
+    }
 
-     set showLinkedCourrier(value:boolean){
+    set showLinkedCourrier(value: boolean) {
         this.courrierService.showLinkedCourrier = value;
-     }
+    }
+
     delete(pojo: CourrierVo) {
         this.courrierService.delete(pojo);
     }
@@ -132,4 +162,37 @@ export class CourrierlistComponent implements OnInit {
         this.courrierService.reservationShow = value;
     }
 
+
+    findAlltypeCourriers() {
+        this.typeCourrierService.findAlltypeCourriers().subscribe(data => {
+
+            if (data != null) {
+                this.typeCourriers = data;
+            }
+        }, error => {
+            console.log(error);
+        });
+    }
+
+
+
+findAllvoies() {
+    this.voieService.findAllvoies().subscribe(data => {
+        if (data != null) {
+            this.voies = data;
+        }
+    }, error => {
+        console.log(error);
+    });
+}
+
+    findAllstatuss() {
+        this.statusService.findAllstatuss().subscribe(data => {
+            if (data != null) {
+                this.statuss = data;
+            }
+        }, error => {
+            console.log(error);
+        });
+    }
 }
