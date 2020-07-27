@@ -1,179 +1,181 @@
-<div class="modal" tabindex="-1" role="dialog" style="display: block;background-color: #000000bf;">
-  <div class="modal-dialog modal-dialog-scrollable" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">details of Courrier </h5>
-        <button type="button" class="close" aria-label="Close" (click)="detailHide()">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <table class="table table-hover">
-          <thead class="thead-dark">
-            <th>Field</th>
-            <th>Value</th>
-          </thead>
-          <tbody>
-           <tr >
-             <td>id</td>
-             <td>{{courrierDetail.id}} </td>
-           </tr>
-           <tr >
-             <td>idCourrier</td>
-             <td>{{courrierDetail.idCourrier}} </td>
-           </tr>
-           <tr >
-             <td>subject</td>
-             <td>{{courrierDetail.subject}} </td>
-           </tr>
-           <tr >
-             <td>description</td>
-             <td>{{courrierDetail.description}} </td>
-           </tr>
-           <tr >
-             <td>createdAt</td>
-             <td>{{courrierDetail.createdAt}} </td>
-           </tr>
-           <tr >
-             <td>updatedAt</td>
-             <td>{{courrierDetail.updatedAt}} </td>
-           </tr>
-           <tr >
-             <td>createdBy</td>
-           <td>{{courrierDetail.createdByVo.username}} </td>
-           </tr>
-           <tr >
-             <td>updatedBy</td>
-           <td>{{courrierDetail.updatedByVo.username}} </td>
-           </tr>
-           <tr >
-             <td>delai</td>
-             <td>{{courrierDetail.delai}} </td>
-           </tr>
-           <tr >
-             <td>relance</td>
-             <td>{{courrierDetail.relance}} </td>
-           </tr>
-           <tr >
-             <td>dateRelance</td>
-             <td>{{courrierDetail.dateRelance}} </td>
-           </tr>
-           <tr >
-             <td>accuse</td>
-             <td>{{courrierDetail.accuse}} </td>
-           </tr>
-           <tr >
-             <td>reponse</td>
-             <td>{{courrierDetail.reponse}} </td>
-           </tr>
-           <tr >
-             <td>dateAccuse</td>
-             <td>{{courrierDetail.dateAccuse}} </td>
-           </tr>
-           <tr >
-             <td>dateReponse</td>
-             <td>{{courrierDetail.dateReponse}} </td>
-           </tr>
-           <tr >
-             <td>status</td>
-           <td>{{courrierDetail.statusVo.libelle}} </td>
-           </tr>
-           <tr >
-             <td>typeCourrier</td>
-           <td>{{courrierDetail.typeCourrierVo.libelle}} </td>
-           </tr>
-           <tr >
-             <td>receivedAt</td>
-             <td>{{courrierDetail.receivedAt}} </td>
-           </tr>
-           <tr >
-             <td>instruction</td>
-             <td>{{courrierDetail.instruction}} </td>
-           </tr>
-           <tr >
-             <td>expediteurDesc</td>
-             <td>{{courrierDetail.expediteurDesc}} </td>
-           </tr>
-           <tr >
-             <td>sentAt</td>
-             <td>{{courrierDetail.sentAt}} </td>
-           </tr>
-           <tr >
-             <td>destinataireDesc</td>
-             <td>{{courrierDetail.destinataireDesc}} </td>
-           </tr>
-           <tr >
-             <td>destinataireVille</td>
-             <td>{{courrierDetail.destinataireVille}} </td>
-           </tr>
-           <tr >
-             <td>courrierObject</td>
-           <td>{{courrierDetail.courrierObjectVo.title}} </td>
-           </tr>
-           <tr >
-             <td>voie</td>
-           <td>{{courrierDetail.voieVo.libelle}} </td>
-           </tr>
-           <tr >
-             <td>natureCourrier</td>
-           <td>{{courrierDetail.natureCourrierVo.libelle}} </td>
-           </tr>
-           <tr >
-             <td>linkedTo</td>
-           <td>{{courrierDetail.linkedToVo.idCourrier}} </td>
-           </tr>
-           <tr >
-             <td>expeditor</td>
-           <td>{{courrierDetail.expeditorVo.title}} </td>
-           </tr>
-           <tr >
-             <td>destinator</td>
-           <td>{{courrierDetail.destinatorVo.title}} </td>
-           </tr>
-           <tr >
-             <td>coordinator</td>
-           <td>{{courrierDetail.coordinatorVo.title}} </td>
-           </tr>
-           <tr >
-             <td>emetteur</td>
-           <td>{{courrierDetail.emetteurVo.title}} </td>
-           </tr>
-           <tr >
-             <td>evaluation</td>
-           <td>{{courrierDetail.evaluationVo.title}} </td>
-           </tr>
-           <tr >
-             <td>expeditorType</td>
-           <td>{{courrierDetail.expeditorTypeVo.title}} </td>
-           </tr>
-           <tr >
-             <td>subdivision</td>
-           <td>{{courrierDetail.subdivisionVo.title}} </td>
-           </tr>
-           <tr >
-             <td>tasks</td>
-             <td> <ul>
-               <li *ngFor="let p of courrierDetail.tasksVo">
-          
-                {{p.id}}   {{p.title}} 
-               </li>
-             </ul>
-             </td>
-           </tr>
-           <tr >
-             <td>courrierServiceItems</td>
-             <td> <ul>
-               <li *ngFor="let p of courrierDetail.courrierServiceItemsVo">
-          
-                {{p.id}}  
-               </li>
-             </ul>
-             </td>
-           </tr>
-          </tbody>
-        </table>
-      </div>
+<div class="modal" role="dialog" style="display: block;background-color: #000000bf;" tabindex="-1">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">details of Courrier </h5>
+                <button (click)="detailHide()" aria-label="Close" class="close" type="button">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-hover">
+                    <thead class="thead-dark">
+                    <th>Field</th>
+                    <th>Value</th>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>id</td>
+                        <td>{{courrierDetail.id}} </td>
+                    </tr>
+                    <tr>
+                        <td>idCourrier</td>
+                        <td>{{courrierDetail.idCourrier}} </td>
+                    </tr>
+                    <tr>
+                        <td>subject</td>
+                        <td>{{courrierDetail.subject}} </td>
+                    </tr>
+                    <tr>
+                        <td>description</td>
+                        <td>{{courrierDetail.description}} </td>
+                    </tr>
+                    <tr>
+                        <td>createdAt</td>
+                        <td>{{courrierDetail.createdAt}} </td>
+                    </tr>
+                    <tr>
+                        <td>updatedAt</td>
+                        <td>{{courrierDetail.updatedAt}} </td>
+                    </tr>
+                    <tr>
+                        <td>createdBy</td>
+                        <td>{{courrierDetail.createdByVo.username}} </td>
+                    </tr>
+                    <tr>
+                        <td>updatedBy</td>
+                        <td>{{courrierDetail.updatedByVo.username}} </td>
+                    </tr>
+                    <tr>
+                        <td>delai</td>
+                        <td>{{courrierDetail.delai}} </td>
+                    </tr>
+                    <tr>
+                        <td>relance</td>
+                        <td>{{courrierDetail.relance}} </td>
+                    </tr>
+                    <tr>
+                        <td>dateRelance</td>
+                        <td>{{courrierDetail.dateRelance}} </td>
+                    </tr>
+                    <tr>
+                        <td>accuse</td>
+                        <td>{{courrierDetail.accuse}} </td>
+                    </tr>
+                    <tr>
+                        <td>reponse</td>
+                        <td>{{courrierDetail.reponse}} </td>
+                    </tr>
+                    <tr>
+                        <td>dateAccuse</td>
+                        <td>{{courrierDetail.dateAccuse}} </td>
+                    </tr>
+                    <tr>
+                        <td>dateReponse</td>
+                        <td>{{courrierDetail.dateReponse}} </td>
+                    </tr>
+                    <tr>
+                        <td>status</td>
+                        <td>{{courrierDetail.statusVo.libelle}} </td>
+                    </tr>
+                    <tr>
+                        <td>typeCourrier</td>
+                        <td>{{courrierDetail.typeCourrierVo.libelle}} </td>
+                    </tr>
+                    <tr>
+                        <td>receivedAt</td>
+                        <td>{{courrierDetail.receivedAt}} </td>
+                    </tr>
+                    <tr>
+                        <td>instruction</td>
+                        <td>{{courrierDetail.instruction}} </td>
+                    </tr>
+                    <tr>
+                        <td>expediteurDesc</td>
+                        <td>{{courrierDetail.expediteurDesc}} </td>
+                    </tr>
+                    <tr>
+                        <td>sentAt</td>
+                        <td>{{courrierDetail.sentAt}} </td>
+                    </tr>
+                    <tr>
+                        <td>destinataireDesc</td>
+                        <td>{{courrierDetail.destinataireDesc}} </td>
+                    </tr>
+                    <tr>
+                        <td>destinataireVille</td>
+                        <td>{{courrierDetail.destinataireVille}} </td>
+                    </tr>
+                    <tr>
+                        <td>courrierObject</td>
+                        <td>{{courrierDetail.courrierObjectVo.title}} </td>
+                    </tr>
+                    <tr>
+                        <td>voie</td>
+                        <td>{{courrierDetail.voieVo.libelle}} </td>
+                    </tr>
+                    <tr>
+                        <td>natureCourrier</td>
+                        <td>{{courrierDetail.natureCourrierVo.libelle}} </td>
+                    </tr>
+                    <tr>
+                        <td>linkedTo</td>
+                        <td>{{courrierDetail.linkedToVo.idCourrier}} </td>
+                    </tr>
+                    <tr>
+                        <td>expeditor</td>
+                        <td>{{courrierDetail.expeditorVo.title}} </td>
+                    </tr>
+                    <tr>
+                        <td>destinator</td>
+                        <td>{{courrierDetail.destinatorVo.title}} </td>
+                    </tr>
+                    <tr>
+                        <td>coordinator</td>
+                        <td>{{courrierDetail.coordinatorVo.title}} </td>
+                    </tr>
+                    <tr>
+                        <td>emetteur</td>
+                        <td>{{courrierDetail.emetteurVo.title}} </td>
+                    </tr>
+                    <tr>
+                        <td>evaluation</td>
+                        <td>{{courrierDetail.evaluationVo.title}} </td>
+                    </tr>
+                    <tr>
+                        <td>expeditorType</td>
+                        <td>{{courrierDetail.expeditorTypeVo.title}} </td>
+                    </tr>
+                    <tr>
+                        <td>subdivision</td>
+                        <td>{{courrierDetail.subdivisionVo.title}} </td>
+                    </tr>
+                    <tr>
+                        <td>tasks</td>
+                        <td>
+                            <ul>
+                                <li *ngFor="let p of courrierDetail.tasksVo">
 
+                                    {{p.id}}   {{p.title}}
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>courrierServiceItems</td>
+                        <td>
+                            <ul>
+                                <li *ngFor="let p of courrierDetail.courrierServiceItemsVo">
+
+                                    {{p.id}}
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
     </div>
-  </div>
 </div>

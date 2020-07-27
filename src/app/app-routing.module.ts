@@ -89,6 +89,8 @@ import {CourrierComponent} from './view/courrier/courrier.component';
 import {CourrierReservationComponent} from './view/courrier/reservation/courrier-reservation.component';
 import {DashboardComponent} from './view/dashboard/dashboard.component';
 import {LoginComponent} from './view/login/login.component';
+import {CreateExpeditorComponent} from "./view/courrier/createExpeditor/createExpeditor.component";
+import { CourrierRedirectionComponent } from './view/courrier/redirection/courrier-redirection.component';
 
 const routes: Routes = [
         {
@@ -161,7 +163,9 @@ const routes: Routes = [
                 {path: 'create', component: CourrierCreateComponent},
                 {path: 'details', component: CourrierDetailsComponent},
                 {path: 'edit', component: CourrierEditComponent},
-                {path: 'reservation', component: CourrierReservationComponent}
+                {path: 'reservation', component: CourrierReservationComponent},
+                {path: 'createExpeditor', component: CreateExpeditorComponent},
+                {path:'redirection',component:CourrierRedirectionComponent}
 
             ]
         },

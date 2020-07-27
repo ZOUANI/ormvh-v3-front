@@ -1,0 +1,60 @@
+.slected{
+    background-color: #22c738;
+    color: white;
+}
+.clickable{
+    cursor: pointer;
+}
+
+label{
+    font-weight: bold;
+}
+
+.sendEmail{
+    background-color: #fff !important;
+    width: 50%;
+    height: 600px !important;
+    box-shadow: 3px 4px 5px -1px rgba(0,0,0,0.58) !important;}
+  .sendEmail .ui-dialog-titlebar{
+    background-color: #fff !important;
+    font-weight: 700;
+    font-size: 16px;
+  }
+
+  .sendEmail.ui-dialog .ui-dialog-content{
+
+    height: 100%;
+    }
+
+    
+
+
+    .services .ui-accordion-header:not(.ui-state-disabled).ui-state-active a {
+      background-color: #212529 !important;
+      border: 1px solid #212529 !important;
+    }
+    .services .ui-accordion-header:not(.ui-state-disabled).ui-state-active:hover a {
+        background-color: #212529 !important;
+      border: 1px solid #212529 !important;
+    }
+
+    .services .ui-accordion-content {
+      padding: 0 !important;
+  }
+  .services .ui-accordion-header a:focus {
+    box-shadow: none !important;
+}
+    
+
+
+.ui-table-customers .customer-badge.status-Ouvert {
+  background-color: #C8E6C9;
+  color: #256029;
+}
+
+
+
+
+
+  
+    

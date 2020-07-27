@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {CourrierVo} from '../../../controller/model/courrier.model';
 import {CourrierService} from '../../../controller/service/Courrier.service';
 import {UserVo} from '../../../controller/model/User.model';
@@ -18,18 +18,38 @@ import {LeServiceVo} from '../../../controller/model/LeService.model';
 @Component({
     selector: 'app-courrier-list',
     templateUrl: './courrier-list.component.html',
-    styleUrls: ['./courrier-list.component.css']
+    styleUrls: ['./courrier-list.component.css'],
+    encapsulation: ViewEncapsulation.None
 })
 export class CourrierlistComponent implements OnInit {
-
+    
     constructor(private _courrierService: CourrierService) {
     }
 
-
+   
     ngOnInit(): void {
 
     }
 
+    edit(courrier:CourrierVo){
+        this.courrierService.edit(courrier);
+    }
+    detail(courrier:CourrierVo){
+        this.courrierService.detail(courrier);
+    }
+    showNewCorrierDialog(){
+        this.courrierService.courrier = null;
+        this.courrierService.addNewCourrier = true;
+        this.courrierService.onEdit = false;
+        this.courrierService.onDetail = false;
+
+    }
+    get addNewCourrier():boolean{
+    return this.courrierService.addNewCourrier ;
+    }
+    set addNewCourrier(value:boolean){
+        this.courrierService.addNewCourrier = value;
+    }
     get courrierService(): CourrierService {
         return this._courrierService;
     }
@@ -70,8 +90,19 @@ export class CourrierlistComponent implements OnInit {
     set courrierShowDetail(value: boolean) {
         this.courrierService.courrierShowDetail = value;
     }
+    
+         
+    showLinked(courrier:CourrierVo){
+        this.courrierService.findLinkedCourrier(courrier);
+    }
 
+     get showLinkedCourrier():boolean{
+         return this.courrierService.showLinkedCourrier;
+     }
 
+     set showLinkedCourrier(value:boolean){
+        this.courrierService.showLinkedCourrier = value;
+     }
     delete(pojo: CourrierVo) {
         this.courrierService.delete(pojo);
     }

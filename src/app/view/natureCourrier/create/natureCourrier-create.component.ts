@@ -4,38 +4,41 @@ import {NatureCourrierVo} from '../../../controller/model/natureCourrier.model';
 import {UserVo} from '../../../controller/model/User.model';
 
 @Component({
-  selector: 'app-natureCourrier-create',
-  templateUrl: './natureCourrier-create.component.html',
-  styleUrls: ['./natureCourrier-create.component.css']
+    selector: 'app-natureCourrier-create',
+    templateUrl: './natureCourrier-create.component.html',
+    styleUrls: ['./natureCourrier-create.component.css']
 })
 export class NatureCourrierCreateComponent implements OnInit {
-  constructor(private natureCourrierService: NatureCourrierService) { }
-
-   ngOnInit(): void {
-      this.findAllcreatedBys();
-      this.findAllupdatedBys();
+    constructor(private natureCourrierService: NatureCourrierService) {
     }
 
-   get natureCourrier(): NatureCourrierVo {
-    return this.natureCourrierService.natureCourrier;
-  }
+    get natureCourrier(): NatureCourrierVo {
+        return this.natureCourrierService.natureCourrier;
+    }
 
-  get createdBys(): Array<UserVo> {
-   return this.natureCourrierService.createdBys;
-  }
-  get updatedBys(): Array<UserVo> {
-   return this.natureCourrierService.updatedBys;
-  }
+    get createdBys(): Array<UserVo> {
+        return this.natureCourrierService.createdBys;
+    }
 
-   saveNatureCourrier() {
-    this.natureCourrierService.saveNatureCourrier();
-  }
+    get updatedBys(): Array<UserVo> {
+        return this.natureCourrierService.updatedBys;
+    }
 
-   findAllcreatedBys() {
-     this.natureCourrierService.findAllcreatedBys();
-   }
-   findAllupdatedBys() {
-     this.natureCourrierService.findAllupdatedBys();
-   }
+    ngOnInit(): void {
+        this.findAllcreatedBys();
+        this.findAllupdatedBys();
+    }
+
+    saveNatureCourrier() {
+        this.natureCourrierService.saveNatureCourrier();
+    }
+
+    findAllcreatedBys() {
+        this.natureCourrierService.findAllcreatedBys();
+    }
+
+    findAllupdatedBys() {
+        this.natureCourrierService.findAllupdatedBys();
+    }
 
 }

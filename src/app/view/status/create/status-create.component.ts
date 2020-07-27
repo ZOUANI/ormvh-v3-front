@@ -4,48 +4,52 @@ import {StatusVo} from '../../../controller/model/status.model';
 import {UserVo} from '../../../controller/model/User.model';
 
 @Component({
-  selector: 'app-status-create',
-  templateUrl: './status-create.component.html',
-  styleUrls: ['./status-create.component.css']
+    selector: 'app-status-create',
+    templateUrl: './status-create.component.html',
+    styleUrls: ['./status-create.component.css']
 })
 export class StatusCreateComponent implements OnInit {
-  constructor(private statusService: StatusService) { }
-
-   ngOnInit(): void {
-      this.findAllcreatedBys();
-      this.findAllupdatedBys();
+    constructor(private statusService: StatusService) {
     }
 
-   get status(): StatusVo {
-    return this.statusService.status;
-  }
+    get status(): StatusVo {
+        return this.statusService.status;
+    }
 
-  get createdBys(): Array<UserVo> {
-   return this.statusService.createdBys;
-  }
-  get updatedBys(): Array<UserVo> {
-   return this.statusService.updatedBys;
-  }
+    get createdBys(): Array<UserVo> {
+        return this.statusService.createdBys;
+    }
 
-   saveStatus() {
-    this.statusService.saveStatus();
-  }
+    get updatedBys(): Array<UserVo> {
+        return this.statusService.updatedBys;
+    }
 
-   findAllcreatedBys() {
-     this.statusService.findAllcreatedBys();
-   }
-   findAllupdatedBys() {
-     this.statusService.findAllupdatedBys();
-   }
+    get statusShowCreate(): boolean {
+        return this.statusService.statusShowCreate;
+    }
 
-get statusShowCreate (): boolean  {
-  return this.statusService.statusShowCreate;
-}
+    set statusShowCreate(value: boolean) {
+        this.statusService.statusShowCreate = value;
+    }
 
-set statusShowCreate (value: boolean ) {
-  this.statusService.statusShowCreate = value ;
-}
-public createHide(){
-       this.statusService.createHide();
-}
+    ngOnInit(): void {
+        this.findAllcreatedBys();
+        this.findAllupdatedBys();
+    }
+
+    saveStatus() {
+        this.statusService.saveStatus();
+    }
+
+    findAllcreatedBys() {
+        this.statusService.findAllcreatedBys();
+    }
+
+    findAllupdatedBys() {
+        this.statusService.findAllupdatedBys();
+    }
+
+    public createHide() {
+        this.statusService.createHide();
+    }
 }

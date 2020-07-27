@@ -1,79 +1,79 @@
-<div class="modal" tabindex="-1" role="dialog" style="display: block;background-color: #000000bf;">
-  <div class="modal-dialog modal-dialog-scrollable" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">details of Expeditor </h5>
-        <button type="button" class="close" aria-label="Close" (click)="detailHide()">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <table class="table table-hover">
-          <thead class="thead-dark">
-            <th>Field</th>
-            <th>Value</th>
-          </thead>
-          <tbody>
-           <tr >
-             <td>id</td>
-             <td>{{expeditorDetail.id}} </td>
-           </tr>
-           <tr >
-             <td>title</td>
-             <td>{{expeditorDetail.title}} </td>
-           </tr>
-           <tr >
-             <td>titleArab</td>
-             <td>{{expeditorDetail.titleArab}} </td>
-           </tr>
-           <tr >
-             <td>code</td>
-             <td>{{expeditorDetail.code}} </td>
-           </tr>
-           <tr >
-             <td>description</td>
-             <td>{{expeditorDetail.description}} </td>
-           </tr>
-           <tr >
-             <td>nature</td>
-             <td>{{expeditorDetail.nature}} </td>
-           </tr>
-           <tr >
-             <td>age</td>
-             <td>{{expeditorDetail.age}} </td>
-           </tr>
-           <tr >
-             <td>sexe</td>
-           <td>{{expeditorDetail.sexeVo.libelle}} </td>
-           </tr>
-           <tr >
-             <td>nationality</td>
-           <td>{{expeditorDetail.nationalityVo.libelle}} </td>
-           </tr>
-           <tr >
-             <td>adress</td>
-             <td>{{expeditorDetail.adress}} </td>
-           </tr>
-           <tr >
-             <td>createdAt</td>
-             <td>{{expeditorDetail.createdAt}} </td>
-           </tr>
-           <tr >
-             <td>updatedAt</td>
-             <td>{{expeditorDetail.updatedAt}} </td>
-           </tr>
-           <tr >
-             <td>createdBy</td>
-           <td>{{expeditorDetail.createdByVo.username}} </td>
-           </tr>
-           <tr >
-             <td>updatedBy</td>
-           <td>{{expeditorDetail.updatedByVo.username}} </td>
-           </tr>
-          </tbody>
-        </table>
-      </div>
+<div class="modal" role="dialog" style="display: block;background-color: #000000bf;" tabindex="-1">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">details of Expeditor </h5>
+                <button (click)="detailHide()" aria-label="Close" class="close" type="button">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-hover">
+                    <thead class="thead-dark">
+                    <th>Field</th>
+                    <th>Value</th>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>id</td>
+                        <td>{{expeditorDetail.id}} </td>
+                    </tr>
+                    <tr>
+                        <td>title</td>
+                        <td>{{expeditorDetail.title}} </td>
+                    </tr>
+                    <tr>
+                        <td>titleArab</td>
+                        <td>{{expeditorDetail.titleArab}} </td>
+                    </tr>
+                    <tr>
+                        <td>code</td>
+                        <td>{{expeditorDetail.code}} </td>
+                    </tr>
+                    <tr>
+                        <td>description</td>
+                        <td>{{expeditorDetail.description}} </td>
+                    </tr>
+                    <tr>
+                        <td>nature</td>
+                        <td>{{expeditorDetail.nature}} </td>
+                    </tr>
+                    <tr>
+                        <td>age</td>
+                        <td>{{expeditorDetail.age}} </td>
+                    </tr>
+                    <tr>
+                        <td>sexe</td>
+                        <td>{{expeditorDetail.sexeVo.libelle}} </td>
+                    </tr>
+                    <tr>
+                        <td>nationality</td>
+                        <td>{{expeditorDetail.nationalityVo.libelle}} </td>
+                    </tr>
+                    <tr>
+                        <td>adress</td>
+                        <td>{{expeditorDetail.adress}} </td>
+                    </tr>
+                    <tr>
+                        <td>createdAt</td>
+                        <td>{{expeditorDetail.createdAt}} </td>
+                    </tr>
+                    <tr>
+                        <td>updatedAt</td>
+                        <td>{{expeditorDetail.updatedAt}} </td>
+                    </tr>
+                    <tr>
+                        <td>createdBy</td>
+                        <td>{{expeditorDetail.createdByVo.username}} </td>
+                    </tr>
+                    <tr>
+                        <td>updatedBy</td>
+                        <td>{{expeditorDetail.updatedByVo.username}} </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
 
+        </div>
     </div>
-  </div>
 </div>

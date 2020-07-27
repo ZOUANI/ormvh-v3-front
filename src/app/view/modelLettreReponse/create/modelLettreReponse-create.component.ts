@@ -5,45 +5,50 @@ import {UserVo} from '../../../controller/model/User.model';
 import {CategorieModelLettreReponseVo} from '../../../controller/model/CategorieModelLettreReponse.model';
 
 @Component({
-  selector: 'app-modelLettreReponse-create',
-  templateUrl: './modelLettreReponse-create.component.html',
-  styleUrls: ['./modelLettreReponse-create.component.css']
+    selector: 'app-modelLettreReponse-create',
+    templateUrl: './modelLettreReponse-create.component.html',
+    styleUrls: ['./modelLettreReponse-create.component.css']
 })
 export class ModelLettreReponseCreateComponent implements OnInit {
-  constructor(private modelLettreReponseService: ModelLettreReponseService) { }
-
-   ngOnInit(): void {
-      this.findAllcategorieModelLettreReponses();
-      this.findAllcreatedBys();
-      this.findAllupdatedBys();
+    constructor(private modelLettreReponseService: ModelLettreReponseService) {
     }
 
-   get modelLettreReponse(): ModelLettreReponseVo {
-    return this.modelLettreReponseService.modelLettreReponse;
-  }
+    get modelLettreReponse(): ModelLettreReponseVo {
+        return this.modelLettreReponseService.modelLettreReponse;
+    }
 
-  get categorieModelLettreReponses(): Array<CategorieModelLettreReponseVo> {
-   return this.modelLettreReponseService.categorieModelLettreReponses;
-  }
-  get createdBys(): Array<UserVo> {
-   return this.modelLettreReponseService.createdBys;
-  }
-  get updatedBys(): Array<UserVo> {
-   return this.modelLettreReponseService.updatedBys;
-  }
+    get categorieModelLettreReponses(): Array<CategorieModelLettreReponseVo> {
+        return this.modelLettreReponseService.categorieModelLettreReponses;
+    }
 
-   saveModelLettreReponse() {
-    this.modelLettreReponseService.saveModelLettreReponse();
-  }
+    get createdBys(): Array<UserVo> {
+        return this.modelLettreReponseService.createdBys;
+    }
 
-   findAllcategorieModelLettreReponses() {
-     this.modelLettreReponseService.findAllcategorieModelLettreReponses();
-   }
-   findAllcreatedBys() {
-     this.modelLettreReponseService.findAllcreatedBys();
-   }
-   findAllupdatedBys() {
-     this.modelLettreReponseService.findAllupdatedBys();
-   }
+    get updatedBys(): Array<UserVo> {
+        return this.modelLettreReponseService.updatedBys;
+    }
+
+    ngOnInit(): void {
+        this.findAllcategorieModelLettreReponses();
+        this.findAllcreatedBys();
+        this.findAllupdatedBys();
+    }
+
+    saveModelLettreReponse() {
+        this.modelLettreReponseService.saveModelLettreReponse();
+    }
+
+    findAllcategorieModelLettreReponses() {
+        this.modelLettreReponseService.findAllcategorieModelLettreReponses();
+    }
+
+    findAllcreatedBys() {
+        this.modelLettreReponseService.findAllcreatedBys();
+    }
+
+    findAllupdatedBys() {
+        this.modelLettreReponseService.findAllupdatedBys();
+    }
 
 }

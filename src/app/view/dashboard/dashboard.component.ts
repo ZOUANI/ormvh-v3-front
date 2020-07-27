@@ -71,49 +71,57 @@ export class DashboardComponent implements OnInit {
         }, 700);
     }
 
+    reset() {
+        this.ngOnInit();
+        /* setTimeout(() => {
+             console.log(this.courrierService.arrivedCourriers);
+         }, 700);*/
+
+    }
+
     ngOnInit(): void {
-        this.courrierService.findAll();
-        this.courrierService.findAllArrivedCourriers();
-        this.courrierService.findAllDepartCourriers();
-        this.courrierService.findAllEnCoursCourriers();
-        this.courrierService.findAllTraitedCourriers();
-        this.courrierService.findAllOpenCourriers();
-        this.courrierService.findAllAccusedCourriers();
-        this.courrierService.findAllResponseCourriers();
+        this.courrierService.countAll();
+        this.courrierService.findNumberArrivedCourriers();
+        this.courrierService.findNumberDepartCourriers();
+        this.courrierService.findNumberEncoursCourriers();
+        this.courrierService.findNumberTraitedCourriers();
+        this.courrierService.findNumberOpenCourriers();
+        this.courrierService.findNumberAccusedCourriers();
+        this.courrierService.findNumberResponedCourriers();
         this.setStatusCourrierChart();
         this.setArrivedDepartedChart();
     }
 
     totalCourriers() {
-        return this.courrierService.courrierListe.length;
+        return this.courrierService.nbrOfAll;
     }
 
     totalDepartCourriers() {
-        return this.courrierService.departCourriers.length;
+        return this.courrierService.nbrOfDeparted;
     }
 
     totalArrivedCourriers() {
-        return this.courrierService.arrivedCourriers.length;
+        return this.courrierService.nbrOfArived;
     }
 
     totalOpenCourriers() {
-        return this.courrierService.ouvertCourriers.length;
+        return this.courrierService.nbrOfOpen;
     }
 
     totalEncoursCourriers() {
-        return this.courrierService.enCoursCourriers.length;
+        return this.courrierService.nbrOfEnCours;
     }
 
     totalTraitedCourriers() {
-        return this.courrierService.traitedCourriers.length;
+        return this.courrierService.nbrOfTraited;
     }
 
     totalAccusedCourriers() {
-        return this.courrierService.accusedCourriers.length;
+        return this.courrierService.nbrOfAccused;
     }
 
     totalResponseCourriers() {
-        return this.courrierService.responseCourriers.length;
+        return this.courrierService.nbrOfResponed;
     }
 
     filterCourriers() {
@@ -124,26 +132,26 @@ export class DashboardComponent implements OnInit {
         console.log(date2);
         console.log(date1.toISOString().substring(0, 10));
         if (date2 == null) {
-            this.courrierService.findByDate(date1.toISOString().substring(0, 10));
-            this.courrierService.findAllArrivedCourriersByDate(date1.toISOString().substring(0, 10));
-            this.courrierService.findAllDepartCourriersByDate(date1.toISOString().substring(0, 10));
-            this.courrierService.findAllEnCoursCourriersByDate(date1.toISOString().substring(0, 10));
-            this.courrierService.findAllTraitedCourriersByDate(date1.toISOString().substring(0, 10));
-            this.courrierService.findAllOpenCourriersByDate(date1.toISOString().substring(0, 10));
-            this.courrierService.findAllAccusedCourriersByDate(date1.toISOString().substring(0, 10));
-            this.courrierService.findAllResponseCourriersByDate(date1.toISOString().substring(0, 10));
+            this.courrierService.countByDate(date1.toISOString().substring(0, 10));
+            this.courrierService.countArrivedCourriersByDate(date1.toISOString().substring(0, 10));
+            this.courrierService.countDepartCourriersByDate(date1.toISOString().substring(0, 10));
+            this.courrierService.countEnCoursCourriersByDate(date1.toISOString().substring(0, 10));
+            this.courrierService.countTraitedCourriersByDate(date1.toISOString().substring(0, 10));
+            this.courrierService.countOpenCourriersByDate(date1.toISOString().substring(0, 10));
+            this.courrierService.countAccusedCourriersByDate(date1.toISOString().substring(0, 10));
+            this.courrierService.countResponseCourriersByDate(date1.toISOString().substring(0, 10));
             this.setArrivedDepartedChart();
             this.setStatusCourrierChart();
         } else {
             date2.setDate(date2.getDate() + 1);
-            this.courrierService.findByTwoDates(date1.toISOString().substring(0, 10), date2.toISOString().substring(0, 10));
-            this.courrierService.findAllArrivedCourriersByTwoDate(date1.toISOString().substring(0, 10), date2.toISOString().substring(0, 10));
-            this.courrierService.findAllDepartCourriersByTwoDate(date1.toISOString().substring(0, 10), date2.toISOString().substring(0, 10));
-            this.courrierService.findAllEnCoursCourriersByTwoDate(date1.toISOString().substring(0, 10), date2.toISOString().substring(0, 10));
-            this.courrierService.findAllTraitedCourriersByTwoDate(date1.toISOString().substring(0, 10), date2.toISOString().substring(0, 10));
-            this.courrierService.findAllOpenCourriersByTwoDate(date1.toISOString().substring(0, 10), date2.toISOString().substring(0, 10));
-            this.courrierService.findAllAccusedCourriersByTwoDates(date1.toISOString().substring(0, 10), date2.toISOString().substring(0, 10));
-            this.courrierService.findAllResponseCourriersByTwoDates(date1.toISOString().substring(0, 10), date2.toISOString().substring(0, 10));
+            this.courrierService.countByTwoDates(date1.toISOString().substring(0, 10), date2.toISOString().substring(0, 10));
+            this.courrierService.countArrivedCourriersByTwoDate(date1.toISOString().substring(0, 10), date2.toISOString().substring(0, 10));
+            this.courrierService.countDepartCourriersByTwoDate(date1.toISOString().substring(0, 10), date2.toISOString().substring(0, 10));
+            this.courrierService.countEnCoursCourriersByTwoDate(date1.toISOString().substring(0, 10), date2.toISOString().substring(0, 10));
+            this.courrierService.countTraitedCourriersByTwoDate(date1.toISOString().substring(0, 10), date2.toISOString().substring(0, 10));
+            this.courrierService.countOpenCourriersByTwoDate(date1.toISOString().substring(0, 10), date2.toISOString().substring(0, 10));
+            this.courrierService.countAccusedCourriersByTwoDates(date1.toISOString().substring(0, 10), date2.toISOString().substring(0, 10));
+            this.courrierService.countResponseCourriersByTwoDates(date1.toISOString().substring(0, 10), date2.toISOString().substring(0, 10));
             this.setArrivedDepartedChart();
             this.setStatusCourrierChart();
         }

@@ -4,54 +4,58 @@ import {CourrierObjectVo} from '../../../controller/model/courrierObject.model';
 import {UserVo} from '../../../controller/model/User.model';
 
 @Component({
-  selector: 'app-courrierObject-edit',
-  templateUrl: './courrierObject-edit.component.html',
-  styleUrls: ['./courrierObject-edit.component.css']
+    selector: 'app-courrierObject-edit',
+    templateUrl: './courrierObject-edit.component.html',
+    styleUrls: ['./courrierObject-edit.component.css']
 })
 export class CourrierObjectEditComponent implements OnInit {
-  constructor(private courrierObjectService: CourrierObjectService) { }
-
-   ngOnInit(): void {
-       this.findAllcreatedBys();
-       this.findAllupdatedBys();
+    constructor(private courrierObjectService: CourrierObjectService) {
     }
 
-   get courrierObject(): CourrierObjectVo {
-    return this.courrierObjectService.courrierObject;
-  }
+    get courrierObject(): CourrierObjectVo {
+        return this.courrierObjectService.courrierObject;
+    }
 
-   get editableCourrierObjects(): Array<CourrierObjectVo> {
-    return this.courrierObjectService.editableCourrierObjects;
-   }
+    get editableCourrierObjects(): Array<CourrierObjectVo> {
+        return this.courrierObjectService.editableCourrierObjects;
+    }
 
-   set editableCourrierObjects(value: Array<CourrierObjectVo>) {
-    this.courrierObjectService.editableCourrierObjects = value;
-   }
+    set editableCourrierObjects(value: Array<CourrierObjectVo>) {
+        this.courrierObjectService.editableCourrierObjects = value;
+    }
 
-  get createdBys(): Array<UserVo> {
-   return this.courrierObjectService.createdBys;
-  }
-  get updatedBys(): Array<UserVo> {
-   return this.courrierObjectService.updatedBys;
-  }
+    get createdBys(): Array<UserVo> {
+        return this.courrierObjectService.createdBys;
+    }
 
-   editCourrierObject() {
-    this.courrierObjectService.editCourrierObject();
-  }
+    get updatedBys(): Array<UserVo> {
+        return this.courrierObjectService.updatedBys;
+    }
+
+    ngOnInit(): void {
+        this.findAllcreatedBys();
+        this.findAllupdatedBys();
+    }
+
+    editCourrierObject() {
+        this.courrierObjectService.editCourrierObject();
+    }
+
     findAllcreatedBys() {
-     this.courrierObjectService.findAllcreatedBys();
-    }
-    findAllupdatedBys() {
-     this.courrierObjectService.findAllupdatedBys();
+        this.courrierObjectService.findAllcreatedBys();
     }
 
-     findBytitle(ref: string) {
-      this.courrierObjectService.findBytitle(ref);
-     }
+    findAllupdatedBys() {
+        this.courrierObjectService.findAllupdatedBys();
+    }
+
+    findBytitle(ref: string) {
+        this.courrierObjectService.findBytitle(ref);
+    }
 
     editHide() {
-      this.courrierObjectService.editHide();
+        this.courrierObjectService.editHide();
     }
-    
+
 
 }

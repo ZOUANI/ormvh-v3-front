@@ -1,9 +1,9 @@
-<div class="modal" tabindex="-1" role="dialog" style="display: block;background-color: #000000bf;">
+<div class="modal" role="dialog" style="display: block;background-color: #000000bf;" tabindex="-1">
     <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Reserve Courrier</h5>
-                <button type="button" class="close" aria-label="Close" (click)="reservationHide()">
+                <h5 class="modal-title">{{"MAILING.RESERVE_MAILING" | translate}}</h5>
+                <button (click)="reservationHide()" aria-label="Close" class="close" type="button">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -18,17 +18,21 @@
                             <div class="form-group col-md-7">
                                 <div class="input-group mb-1">
                                     <div class="input-group-prepend">
-                                        <button class="btn btn-outline-primary" (click)="generateId()" type="button">Generate</button>
+                                        <button (click)="generateId()" class="btn btn-outline-primary"
+                                                type="button">{{"MAILING.GENERATE" | translate}}</button>
                                     </div>
-                                    <input type="text" class="form-control" [(ngModel)]="generatedId" placeholder="idCourier xxx_year">
+                                    <input [(ngModel)]="generatedId" class="form-control" placeholder="idCourier xxx_year"
+                                           type="text">
                                 </div>
                             </div>
 
                             <div class="form-group col-md-5">
-                                    <input type="text" class="form-control" [(ngModel)]="nbr" placeholder="nombre des couriers">
+                                <input [(ngModel)]="nbr" class="form-control" placeholder="nombre des couriers"
+                                       type="text">
                             </div>
 
-                            <button class="btn btn-outline-primary btn-block -align-center" (click)="reserve()">Reserve</button>
+                            <button (click)="reserve()"
+                                    class="btn btn-outline-primary btn-block -align-center">{{"MAILING.RESERVE" | translate}}</button>
                         </div>
 
 
@@ -38,4 +42,3 @@
         </div>
     </div>
 </div>
-

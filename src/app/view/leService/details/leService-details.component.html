@@ -1,59 +1,59 @@
-<div class="modal" tabindex="-1" role="dialog" style="display: block;background-color: #000000bf;">
-  <div class="modal-dialog modal-dialog-scrollable" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">details of LeService </h5>
-        <button type="button" class="close" aria-label="Close" (click)="detailHide()">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <table class="table table-hover">
-          <thead class="thead-dark">
-            <th>Field</th>
-            <th>Value</th>
-          </thead>
-          <tbody>
-           <tr >
-             <td>id</td>
-             <td>{{leServiceDetail.id}} </td>
-           </tr>
-           <tr >
-             <td>title</td>
-             <td>{{leServiceDetail.title}} </td>
-           </tr>
-           <tr >
-             <td>libelleArab</td>
-             <td>{{leServiceDetail.libelleArab}} </td>
-           </tr>
-           <tr >
-             <td>code</td>
-             <td>{{leServiceDetail.code}} </td>
-           </tr>
-           <tr >
-             <td>description</td>
-             <td>{{leServiceDetail.description}} </td>
-           </tr>
-           <tr >
-             <td>createdAt</td>
-             <td>{{leServiceDetail.createdAt}} </td>
-           </tr>
-           <tr >
-             <td>updatedAt</td>
-             <td>{{leServiceDetail.updatedAt}} </td>
-           </tr>
-           <tr >
-             <td>createdBy</td>
-           <td>{{leServiceDetail.createdByVo.username}} </td>
-           </tr>
-           <tr >
-             <td>updatedBy</td>
-           <td>{{leServiceDetail.updatedByVo.username}} </td>
-           </tr>
-          </tbody>
-        </table>
-      </div>
+<div class="modal" role="dialog" style="display: block;background-color: #000000bf;" tabindex="-1">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">details of LeService </h5>
+                <button (click)="detailHide()" aria-label="Close" class="close" type="button">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-hover">
+                    <thead class="thead-dark">
+                    <th>Field</th>
+                    <th>Value</th>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>id</td>
+                        <td>{{leServiceDetail.id}} </td>
+                    </tr>
+                    <tr>
+                        <td>title</td>
+                        <td>{{leServiceDetail.title}} </td>
+                    </tr>
+                    <tr>
+                        <td>libelleArab</td>
+                        <td>{{leServiceDetail.libelleArab}} </td>
+                    </tr>
+                    <tr>
+                        <td>code</td>
+                        <td>{{leServiceDetail.code}} </td>
+                    </tr>
+                    <tr>
+                        <td>description</td>
+                        <td>{{leServiceDetail.description}} </td>
+                    </tr>
+                    <tr>
+                        <td>createdAt</td>
+                        <td>{{leServiceDetail.createdAt}} </td>
+                    </tr>
+                    <tr>
+                        <td>updatedAt</td>
+                        <td>{{leServiceDetail.updatedAt}} </td>
+                    </tr>
+                    <tr>
+                        <td>createdBy</td>
+                        <td>{{leServiceDetail.createdByVo.username}} </td>
+                    </tr>
+                    <tr>
+                        <td>updatedBy</td>
+                        <td>{{leServiceDetail.updatedByVo.username}} </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
 
+        </div>
     </div>
-  </div>
 </div>

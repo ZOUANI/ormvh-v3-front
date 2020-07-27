@@ -1,47 +1,58 @@
 <div class="container">
-  <div class="row">
+    <div class="row">
+      <div class="card col-12">
+        <div class="card-header bg-transparent">
+          <div class="float-left px-1">
+            <h5>List of {{"MAILING.MAILING" | translate}}</h5>
+          </div>
+          <button class="btn btn-success btn-sm fa fa-plus float-right" (click)="showReservation()">{{"MAILING.RESERVE_MAILING" | translate}}</button>
+        </div>
+        <div class="row">
+          <div class="col-md-3">
+            <button class="btn btn-success btn-block" (click)="showNewCorrierDialog()">ajouter courrier</button>
+          </div>
+        </div>
+        <div class="card-body table-responsive">
   
-</div>
-<div class="row">
-  <div class="card col-12">
-    <div class="card-header bg-transparent">
-      <div class="float-left px-1"> <h5>List of courriers. </h5></div>
-      <button class="btn btn-success btn-sm fa fa-plus float-right" (click)="showReservation()">Reserve Couriers</button>
-    </div>
-    <div class="card-body table-responsive">
-
-      <table class="table table-hover col-md-12">
-        <thead class="thead-dark">
-
-          <th>id</th>
-          <th>subject</th>
-          <th>createdAt</th>
-          <th>status</th>
-          <th>type</th>
-          <th>voie</th>
-          <th>linkedTo</th>
-          <th>Actions</th>
-        </thead>
-        <tbody>
-          <tr *ngFor="let p of courrierListe">
-
-            <td>{{p.idCourrier}}</td>
-            <td>{{p.subject}}</td>
-            <td>{{p.createdAt}}</td>
-            <td>{{p.statusVo?.libelle}}</td>
-            <td><span class="badge badge-pill badge-warning">{{p.typeCourrierVo?.libelle}}</span></td>
-            <td>{{p.voieVo?.libelle}}</td>
-            <td>{{p.linkedToVo?.idCourrier}}</td>
-            <td><button class="btn btn-danger btn-sm fa fa-trash mx-md-1" (click)="delete(p)"></button>
-              <button class="btn btn-warning btn-sm fa fa-external-link mx-md-1" (click)="detailShow(p)"></button>
-            </td>
-
-          </tr>
-          <app-courrier-details *ngIf="courrierShowDetail"></app-courrier-details>
-          <app-courrier-reservation *ngIf="reservationShow"></app-courrier-reservation>
-        </tbody>
-      </table>
+          <table class="table table-hover col-md-12">
+            <thead class="thead-dark">
+  
+              <th>{{"MAILING.ID" | translate}}</th>
+              <th>{{"MAILING.SUBJECT" | translate}}</th>
+              <th>{{"MAILING.CREATED_AT" | translate}}</th>
+              <th>{{"MAILING.STATUS" | translate}}</th>
+              <th>{{"MAILING.TYPE" | translate}}</th>
+              <th>{{"MAILING.TRACK" | translate}}</th>
+              <th>{{"MAILING.LINKED_TO" | translate}}</th>
+              <th>{{"MAILING.ACTIONS" | translate}}</th>
+            </thead>
+            <tbody>
+              <tr *ngFor="let p of courrierListe">
+  
+                <td>{{p.idCourrier}}</td>
+                <td>{{p.subject}}</td>
+                <td>{{p.createdAt}}</td>
+                <td>{{p.statusVo?.libelle}}</td>
+                <td><span class="badge badge-pill badge-warning">{{p.typeCourrierVo?.libelle}}</span></td>
+                <td>{{p.voieVo?.libelle}}</td>
+                <td>{{p.linkedToVo?.idCourrier}}</td>
+                <td>
+                  <button class="btn btn-warning btn-sm fa fa-external-link mx-md-1" (click)="detail(p)"></button>
+                  <button class="btn btn-warning btn-sm fa fa-pencil-square-o mx-md-1" (click)="edit(p)"></button>
+                  <button class="btn btn-warning btn-sm fa fa-code-fork mx-md-1" (click)="showLinked(p)"></button>
+                  <button class="btn btn-warning btn-sm fa fa-envelope mx-md-1"></button>
+                  <button class="btn btn-danger btn-sm fa fa-trash mx-md-1" (click)="delete(p)"></button>
+                </td>
+  
+            </tr>
+  
+            <app-courrier-create  ></app-courrier-create>
+            <app-courrier-linked></app-courrier-linked>
+  
+            <app-courrier-details *ngIf="courrierShowDetail" ></app-courrier-details>
+            <app-courrier-reservation *ngIf="reservationShow"></app-courrier-reservation>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
-</div>
-</div>
