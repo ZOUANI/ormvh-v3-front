@@ -3,13 +3,13 @@
       <div class="card col-12">
         <div class="card-header bg-transparent">
           <div class="float-left px-1">
-            <h5>List of {{"MAILING.MAILING" | translate}}</h5>
+            <h5>{{"MAILING.MAILING_LIST" | translate}}</h5>
           </div>
           <button class="btn btn-success btn-sm fa fa-plus float-right" (click)="showReservation()">{{"MAILING.RESERVE_MAILING" | translate}}</button>
         </div>
         <div class="row">
           <div class="col-md-3">
-            <button class="btn btn-success btn-block" (click)="showNewCorrierDialog()">ajouter courrier</button>
+            <button class="btn btn-success btn-block" (click)="showNewCorrierDialog()">{{"MAILING.ADD_MAILING" | translate}}</button>
           </div>
         </div>
         <div class="card-body table-responsive">
@@ -19,12 +19,12 @@
   
               <th>{{"MAILING.ID" | translate}}</th>
               <th>{{"MAILING.SUBJECT" | translate}}</th>
-              <th>{{"MAILING.CREATED_AT" | translate}}</th>
+              <th>{{"COMMONS.CREATED_AT" | translate}}</th>
               <th>{{"MAILING.STATUS" | translate}}</th>
               <th>{{"MAILING.TYPE" | translate}}</th>
               <th>{{"MAILING.TRACK" | translate}}</th>
               <th>{{"MAILING.LINKED_TO" | translate}}</th>
-              <th>{{"MAILING.ACTIONS" | translate}}</th>
+              <th>{{"COMMONS.ACTIONS" | translate}}</th>
             </thead>
             <tbody>
               <tr *ngFor="let p of courrierListe">

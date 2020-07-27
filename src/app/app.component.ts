@@ -32,7 +32,7 @@ export class AppComponent {
 
   constructor(private authService: AuthenticationService, public translateService: TranslateService) {
     translateService.addLangs(this.languages.map(lg => lg.abbrv).concat());
-    translateService.setDefaultLang('en');
+    translateService.setDefaultLang('fr');
     const browserLang = translateService.getBrowserLang();
     translateService.use(browserLang.match(/en|fr|ar/) ? browserLang : 'en');
     this.openBar = false;
