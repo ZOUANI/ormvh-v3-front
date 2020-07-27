@@ -24,6 +24,7 @@ import { StatusVo } from 'src/app/controller/model/status.model';
     subject:string;
     email:string;
     showEmailDialog:boolean = false;
+    selectAllBolean:boolean = false;
         ngOnInit(): void {
         
         this.courriersService = new Map<LeServiceVo ,Array<CourrierVo>>();
@@ -90,10 +91,35 @@ import { StatusVo } from 'src/app/controller/model/status.model';
        this.courriersService.set(service,courrierrs);
 
        this.findTypeCourrier();
-    
    
     }
 
+    selectAll(){
+        for(let courriers of this.courriersService.values()){
+            for(let courrier of courriers){
+                if(!this.courrierSelected.includes(courrier)){
+                    this.courrierSelected.push(courrier);
+                  console.log("zid");
+                }
+            }
+        }
+    }
+
+    
+
+    selectOrDeselectAll(){
+        this.selectAll();
+
+    //  if(this.selectAllBolean){
+    //         this.courrierSelected = new Array<CourrierVo>();
+    //         this.selectAllBolean = false;
+    //  }else{
+    //     console.log(this.selectAllBolean);
+
+    //      this.selectAll();
+    //      this.selectAllBolean = true;
+    //  }
+    }
     get courriersService():Map<LeServiceVo ,Array<CourrierVo>>{
         return this.courrierService.courriersService;
     }
