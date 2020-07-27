@@ -50,7 +50,6 @@ export class AppComponent {
             { label: 'STATEMENT', routerLink: '/bordereau/list', icon: 'fa fa-file-text-o' },
             { label: 'EXPEDITOR', routerLink: '/expeditor/list', icon: 'fa fa-ship' },
             { label: 'EVALUATION', routerLink: '/evaluation/list', icon: 'fa fa-check-square-o' },
-            { label: 'RELANCE', routerLink: '/courrier/redirection', icon: 'fa fa-envelope' }
             // { label: 'Service Item', routerLink: '/courrierServiceItem/list', icon: 'fa fa-wrench' },
             // { label: 'Tâche', routerLink: '/task/list', icon: 'fa fa-tasks' },
           ]
