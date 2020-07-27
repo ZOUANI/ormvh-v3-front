@@ -13,8 +13,19 @@ import {ExpeditorVo} from '../model/Expeditor.model';
     providedIn: 'root'
 })
 export class CourrierService {
+    onEdit: boolean=false;
+    onDetail:boolean=false;
+   edit(courrier:CourrierVo){
+       this.courrier = courrier;
+       this.onEdit = true;
+       this.addNewCourrier = true;
+   }
    
-
+   detail(courrier:CourrierVo){
+    this.courrier = courrier;
+    this.onDetail = true;
+    this.addNewCourrier = true;
+   }
     constructor(private http: HttpClient, private expeditorService: ExpeditorService) {
     }
 
@@ -704,9 +715,12 @@ export class CourrierService {
 
     public editCourrier() {
         this.http.put <CourrierVo>('http://localhost:8080/generated/courrier/', this.courrier).subscribe(data => {
-        });
-        this.courrier.tasksVo.length = 0;
-        this.courrier.courrierServiceItemsVo.length = 0;
+               if(data!= null){
+                this.addNewCourrier = false;   
+                this.courrier= null;
+               }
+    });
+      
 
     }
 

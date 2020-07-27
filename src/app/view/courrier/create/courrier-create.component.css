@@ -12,6 +12,7 @@
   .addCourrierDialog.ui-dialog .ui-dialog-content{
     padding:0 !important;
     border: 0;
+    height:100%;
     }
   
   .create-title{

@@ -43,7 +43,8 @@ export class CourrierCreateComponent implements OnInit {
     typeCourriers: TypeCourrierVo[];
     showEditTask: boolean = false;
     editableTask: TaskVo;
-
+    
+    
     constructor(private courrierService: CourrierService,
                 private voieService: VoieService,
                 private courrierObjectService: CourrierObjectService,
@@ -58,6 +59,17 @@ export class CourrierCreateComponent implements OnInit {
                 private userService: UserService) {
     }
 
+    get onEdit():boolean{
+     return this.courrierService.onEdit;
+    }
+
+    get onDetail():boolean{
+        return this.courrierService.onDetail;
+    }
+
+    set onDetail(value:boolean){
+        this.courrierService.onDetail = value;
+    }
     get addNewCourrier():boolean{
       return this.courrierService.addNewCourrier ;
       }
@@ -143,11 +155,14 @@ export class CourrierCreateComponent implements OnInit {
     }
 
     saveCourrier() {
-        this.courrier.idCourrier = this.generatedId
-        this.courrierService.saveCourrier();
-        this.generatedId = ''
-        this.courrierService.verifyIdCourier = ''
-
+        if(!this.courrier.idCourrier){
+            this.courrier.idCourrier = this.generatedId
+            this.courrierService.saveCourrier();
+            this.generatedId = ''
+            this.courrierService.verifyIdCourier = ''    
+        }
+        else 
+        this.courrierService.editCourrier();
     }
 
     findAllcourrierObjects() {

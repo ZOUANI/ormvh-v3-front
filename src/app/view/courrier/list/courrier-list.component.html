@@ -37,9 +37,10 @@
                 <td>{{p.voieVo?.libelle}}</td>
                 <td>{{p.linkedToVo?.idCourrier}}</td>
                 <td>
+                  <button class="btn btn-warning btn-sm fa fa-pencil-square-o mx-md-1" (click)="edit(p)"></button>
                   <button class="btn btn-warning btn-sm fa fa-external-link mx-md-1" (click)="showLinked(p)"></button>
                   <button class="btn btn-danger btn-sm fa fa-trash mx-md-1" (click)="delete(p)"></button>
-                  <button class="btn btn-warning btn-sm fa fa-external-link mx-md-1" (click)="detailShow(p)"></button>
+                  <button class="btn btn-warning btn-sm fa fa-external-link mx-md-1" (click)="detail(p)"></button>
                 </td>
   
             </tr>

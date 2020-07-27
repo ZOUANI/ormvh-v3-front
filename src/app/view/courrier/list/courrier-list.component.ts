@@ -31,8 +31,14 @@ export class CourrierlistComponent implements OnInit {
 
     }
 
-   
+    edit(courrier:CourrierVo){
+        this.courrierService.edit(courrier);
+    }
+    detail(courrier:CourrierVo){
+        this.courrierService.detail(courrier);
+    }
     showNewCorrierDialog(){
+        this.courrierService.courrier = new CourrierVo();
         this.courrierService.addNewCourrier = true;
 
     }
