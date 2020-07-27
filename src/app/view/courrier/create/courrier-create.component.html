@@ -1,4 +1,4 @@
-<p-dialog styleClass="addCourrierDialog" header="Add new Courrier" position="center" [(visible)]="addNewCourrier">
+<p-dialog styleClass="addCourrierDialog" header="{{message}}" position="center" [(visible)]="addNewCourrier">
 
     <div class="card col-md-12 mx-auto p-0">
         <div class="card-body p-0 from-ctn">
@@ -24,8 +24,8 @@
                     <a class="nav-link" id="pills-contact-tab" data-toggle="tab" href="#pills-details" role="tab"
                         aria-controls="pills-details" aria-selected="false">details</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="pills-contact-tab" data-toggle="tab" href="#pills-history" role="tab"
+                <li class="nav-item" *ngIf="onDetail">
+                    <a class="nav-link" id="pills-contact-tab"  data-toggle="tab" href="#pills-history" role="tab"
                         aria-controls="pills-reponse" aria-selected="false">history</a>
                 </li>
             </ul>
@@ -307,7 +307,7 @@
                             <label for="accuse">accuse</label>
                              <br>
                             <label class="switch">
-                                <input id="accuse" type="checkbox"   [checked]="courrier.accuse"
+                                <input id="accuse" [disabled]="onDetail" type="checkbox"   [checked]="courrier.accuse"
                                 (change)="courrier.accuse= !courrier.accuse">
                                 <span class="slider round"></span>
                               </label>
@@ -322,13 +322,13 @@
                             <label for="reponse">reponse</label>
                             <br>
                             <label class="switch">
-                                <input id="accuse" type="checkbox"   [checked]="courrier.reponse"
+                                <input id="accuse" [disabled]="onDetail" type="checkbox"   [checked]="courrier.reponse"
                                 (change)="courrier.reponse= !courrier.reponse">
                                 <span class="slider round"></span>
                               </label>
 
                         </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group  col-md-4">
                             <label>date reponse</label><br>
                             <p-calendar [disabled]="onDetail" appendTo="body" [showTime]="true" [(ngModel)]="courrier.dateReponse">
                             </p-calendar>
@@ -355,15 +355,15 @@
 
                         <div class="col-6">
                             <label>Created By</label> <br>
-                             <label class="mb-4">{{courrier.createdByVo?.username}}</label>
-                             <label>Created At </label>
-                            <label >{{courrier.createdAt}}</label>
+                             <label class="mb-4">{{courrier.createdByVo?.username}}</label> <br>
+                             <label>Created At </label> <br>
+                            <label >{{courrier.createdAt}}</label> <br>
                         </div>
                         <div class="col-6">
-                            <label> Updated By</label>
-                             <label class="mb-4">{{courrier.createdByVo?.username}}</label>
-                             <label>Created At </label>
-                             <label >{{courrier.updatedAt}}</label>
+                            <label> Updated By</label> <br>
+                             <label class="mb-4">{{courrier.createdByVo?.username}}</label> <br>
+                             <label>Updated At </label> <br>
+                             <label >{{courrier.updatedAt}}</label> <br>
                         </div>
                         <!-- <div class="form-group col-md-5">
                             <label for="daterelance">date reponse</label><br>

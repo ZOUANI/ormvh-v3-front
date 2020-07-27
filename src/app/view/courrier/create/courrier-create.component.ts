@@ -309,6 +309,15 @@ export class CourrierCreateComponent implements OnInit {
         this.courrierService.showCreateExpeditor()
     }
 
+    get message():string{
+        if(this.onDetail)
+         return "Detail";
+         else if(this.onEdit)
+           return "Edit Courrier";
+        else 
+           return "Add new Courrier";
+    }
+
     get createExpeditorShow(): boolean {
         return this.courrierService.createExpeditorShow;
     }
