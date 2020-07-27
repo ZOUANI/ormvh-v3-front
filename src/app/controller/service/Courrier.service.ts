@@ -13,6 +13,9 @@ import {ExpeditorVo} from '../model/Expeditor.model';
     providedIn: 'root'
 })
 export class CourrierService {
+
+
+
     onEdit: boolean=false;
     onDetail:boolean=false;
     onCreate : boolean=false;
@@ -188,6 +191,9 @@ export class CourrierService {
         }
         return this._courrier;
     }
+
+    
+
 
     set courrier(value: CourrierVo) {
         this._courrier = value;

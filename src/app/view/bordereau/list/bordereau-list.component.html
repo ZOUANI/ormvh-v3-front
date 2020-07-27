@@ -6,7 +6,7 @@
 
                     <button aria-controls="search" aria-expanded="true" class="btn btn-info  btn-sm fa fa-filter"
                             data-target="#search" data-toggle="collapse">
-                        <h5 class="float-right">Search Forms</h5>
+                        <h5 class="float-right">{{'COMMONS.SEARCH' | translate}}</h5>
                     </button>
 
                 </div>
@@ -18,28 +18,28 @@
                                 <div class="form-row">
 
                                     <div class="input-group  col-3  my-2">
-                                        <small class="text-muted col-12">id</small>
+                                        <small class="text-muted col-12">{{'STATEMENT.ID' | translate}}</small>
                                         <input [(ngModel)]="bordereauSearch.id" class="form-control col-12" placeholder="id"
                                                type="text">
                                     </div>
                                     <div class="input-group  col-3  my-2">
-                                        <small class="text-muted col-12">libelle</small>
+                                        <small class="text-muted col-12">{{'STATEMENT.LABEL' | translate}}</small>
                                         <input [(ngModel)]="bordereauSearch.libelle" class="form-control col-12" placeholder="libelle"
                                                type="text">
                                     </div>
                                     <div class="input-group  col-3  my-2">
-                                        <small class="text-muted col-12">description</small>
+                                        <small class="text-muted col-12">{{'STATEMENT.DESCRIPTION' | translate}}</small>
                                         <input [(ngModel)]="bordereauSearch.description" class="form-control col-12" placeholder="description"
                                                type="text">
                                     </div>
                                     <div class="input-group  col-4  my-2">
                                         <div class="col-5  mx-1 px-1">
-                                            <small class="text-muted">nombrePieceJointe Min</small>
+                                            <small class="text-muted">{{'STATEMENT.ATTACHMENTS_NUMBER_MIN' | translate}}</small>
                                             <input [(ngModel)]="bordereauSearch.nombrePieceJointeMin" class="form-control" placeholder="Min nombrePieceJointe"
                                                    type="text">
                                         </div>
                                         <div class="col-5  mx-1 px-1 ">
-                                            <small class="text-muted">nombrePieceJointe Min</small>
+                                            <small class="text-muted">{{'STATEMENT.ATTACHMENTS_NUMBER_MAX' | translate}}</small>
                                             <input [(ngModel)]="bordereauSearch.nombrePieceJointeMax" class="form-control" placeholder="Max nombrePieceJointe"
                                                    type="text">
                                         </div>
@@ -47,14 +47,14 @@
                                     <div class="input-group  col-4  my-2">
                                         <div class="col-5 mx-1 px-1">
                                             <div class="p-grid ui-fluid">
-                                                <small class="text-muted">dateBordereaux Min</small>
+                                                <small class="text-muted">{{'STATEMENT.STATEMENT_DATE_MIN' | translate}}</small>
                                                 <p-calendar [(ngModel)]="bordereauSearch.dateBordereauxMin" class="p-col-12"
                                                             dateFormat="yy-mm-dd"></p-calendar>
                                             </div>
                                         </div>
                                         <div class="col-5 mx-1 px-1">
                                             <div class="p-grid ui-fluid">
-                                                <small class="text-muted">dateBordereaux Max</small>
+                                                <small class="text-muted">{{'STATEMENT.STATEMENT_DATE_MIN' | translate}}</small>
                                                 <p-calendar [(ngModel)]="bordereauSearch.dateBordereauxMax" class="p-col-12"
                                                             dateFormat="yy-mm-dd"></p-calendar>
                                             </div>
@@ -120,10 +120,9 @@
     <div class="row">
         <div class="card col-12">
             <div class="card-header bg-transparent">
-                <div class="float-left px-1"><h5>List of bordereaus. </h5></div>
+                <div class="float-left px-1"><h5>{{'STATEMENT.STATEMENT_LIST' | translate}}</h5></div>
 
-                <button (click)="createShow()" class="btn btn-success btn-sm fa fa-plus float-right"> Create a new
-                    bordereau
+                <button (click)="createShow()" class="btn btn-success btn-sm fa fa-plus float-right">{{'STATEMENT.CREATE_STATEMENT' | translate}}
                 </button>
 
             </div>
@@ -132,16 +131,16 @@
                 <table class="table table-hover col-md-12">
                     <thead class="thead-dark">
 
-                    <th>id</th>
-                    <th>libelle</th>
-                    <th>description</th>
-                    <th>nombrePieceJointe</th>
-                    <th>dateBordereaux</th>
+                    <th>{{'STATEMENT.ID' | translate}}</th>
+                    <th>{{'STATEMENT.LABEL' | translate}}</th>
+                    <th>{{'STATEMENT.DESCRIPTION' | translate}}</th>
+                    <th>{{'STATEMENT.ATTACHMENTS_NUMBER' | translate}}</th>
+                    <th>{{'STATEMENT.STATEMENT_DATE' | translate}}</th>
 <!--                    <th>createdAt</th>-->
 <!--                    <th>updatedAt</th>-->
 <!--                    <th>createdBy reference</th>-->
 <!--                    <th>updatedBy reference</th>-->
-                    <th>Actions</th>
+                    <th>{{'COMMONS.ACTIONS' | translate}}</th>
                     </thead>
                     <tbody>
                     <tr *ngFor="let p of bordereauListe">
