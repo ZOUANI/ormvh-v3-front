@@ -956,4 +956,13 @@ export class CourrierService {
         this._createExpeditorShow = value;
     }
 
+    public print(courriers :Array<CourrierVo>){
+        const httpOptions = {
+            responseType  : 'blob' as 'json'
+        };
+        return this.http.post("http://localhost:8080/generated/courrier/pdf",courriers,httpOptions).subscribe((resultBlob: Blob) => {
+            var downloadURL = URL.createObjectURL(resultBlob);
+            window.open(downloadURL);});
+    }
+
 }

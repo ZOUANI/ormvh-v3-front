@@ -22,34 +22,39 @@ import {LeServiceVo} from '../../../controller/model/LeService.model';
     encapsulation: ViewEncapsulation.None
 })
 export class CourrierlistComponent implements OnInit {
-    
+
     constructor(private _courrierService: CourrierService) {
     }
 
-   
+
     ngOnInit(): void {
 
     }
 
-    edit(courrier:CourrierVo){
+    edit(courrier: CourrierVo) {
         this.courrierService.edit(courrier);
     }
-    detail(courrier:CourrierVo){
+
+    detail(courrier: CourrierVo) {
         this.courrierService.detail(courrier);
     }
-    showNewCorrierDialog(){
+
+    showNewCorrierDialog() {
         this.courrierService.courrier = null;
         this.courrierService.addNewCourrier = true;
         this.courrierService.onEdit = false;
         this.courrierService.onDetail = false;
 
     }
-    get addNewCourrier():boolean{
-    return this.courrierService.addNewCourrier ;
+
+    get addNewCourrier(): boolean {
+        return this.courrierService.addNewCourrier;
     }
-    set addNewCourrier(value:boolean){
+
+    set addNewCourrier(value: boolean) {
         this.courrierService.addNewCourrier = value;
     }
+
     get courrierService(): CourrierService {
         return this._courrierService;
     }
@@ -90,19 +95,20 @@ export class CourrierlistComponent implements OnInit {
     set courrierShowDetail(value: boolean) {
         this.courrierService.courrierShowDetail = value;
     }
-    
-         
-    showLinked(courrier:CourrierVo){
+
+
+    showLinked(courrier: CourrierVo) {
         this.courrierService.findLinkedCourrier(courrier);
     }
 
-     get showLinkedCourrier():boolean{
-         return this.courrierService.showLinkedCourrier;
-     }
+    get showLinkedCourrier(): boolean {
+        return this.courrierService.showLinkedCourrier;
+    }
 
-     set showLinkedCourrier(value:boolean){
+    set showLinkedCourrier(value: boolean) {
         this.courrierService.showLinkedCourrier = value;
-     }
+    }
+
     delete(pojo: CourrierVo) {
         this.courrierService.delete(pojo);
     }
@@ -130,6 +136,41 @@ export class CourrierlistComponent implements OnInit {
 
     set reservationShow(value: boolean) {
         this.courrierService.reservationShow = value;
+    }
+
+
+    rowSelected(p: CourrierVo) {
+        if (this.exist(p)) {
+            this.deleteSelected(p);
+        } else {
+            let cloned = new CourrierVo();
+            cloned.idCourrier = p.idCourrier;
+            this.courriersSelected.push(cloned);
+        }
+
+    }
+
+    public courriersSelected = Array<CourrierVo>();
+
+    exist(p: CourrierVo): boolean {
+        for (let item of  this.courriersSelected) {
+            if (item.idCourrier == p.idCourrier) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    deleteSelected(p) {
+        for (let item of  this.courriersSelected) {
+            if (item.idCourrier == p.idCourrier) {
+                this.courriersSelected.splice(this.courriersSelected.indexOf(item), 1);
+            }
+        }
+    }
+
+    print(){
+        this._courrierService.print(this.courriersSelected);
     }
 
 }
