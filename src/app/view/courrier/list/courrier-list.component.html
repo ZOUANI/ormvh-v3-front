@@ -3,13 +3,13 @@
       <div class="card col-12">
         <div class="card-header bg-transparent">
           <div class="float-left px-1">
-            <h5>List of {{"MAILING.MAILING" | translate}}</h5>
+            <h5>{{"MAILING.MAILING_LIST" | translate}}</h5>
           </div>
           <button class="btn btn-success btn-sm fa fa-plus float-right" (click)="showReservation()">{{"MAILING.RESERVE_MAILING" | translate}}</button>
         </div>
         <div class="row">
           <div class="col-md-3">
-            <button class="btn btn-success btn-block" (click)="showNewCorrierDialog()">ajouter courrier</button>
+            <button class="btn btn-success btn-block" (click)="showNewCorrierDialog()">{{"MAILING.ADD_MAILING" | translate}}</button>
           </div>
         </div>
         <div class="card-body table-responsive">
@@ -19,12 +19,12 @@
   
               <th>{{"MAILING.ID" | translate}}</th>
               <th>{{"MAILING.SUBJECT" | translate}}</th>
-              <th>{{"MAILING.CREATED_AT" | translate}}</th>
+              <th>{{"COMMONS.CREATED_AT" | translate}}</th>
               <th>{{"MAILING.STATUS" | translate}}</th>
               <th>{{"MAILING.TYPE" | translate}}</th>
               <th>{{"MAILING.TRACK" | translate}}</th>
               <th>{{"MAILING.LINKED_TO" | translate}}</th>
-              <th>{{"MAILING.ACTIONS" | translate}}</th>
+              <th>{{"COMMONS.ACTIONS" | translate}}</th>
             </thead>
             <tbody>
               <tr *ngFor="let p of courrierListe">
@@ -36,23 +36,53 @@
                 <td><span class="badge badge-pill badge-warning">{{p.typeCourrierVo?.libelle}}</span></td>
                 <td>{{p.voieVo?.libelle}}</td>
                 <td>{{p.linkedToVo?.idCourrier}}</td>
-                <td>
-                  <button class="btn btn-warning btn-sm fa fa-external-link mx-md-1" (click)="detail(p)"></button>
-                  <button class="btn btn-warning btn-sm fa fa-pencil-square-o mx-md-1" (click)="edit(p)"></button>
+                <td class="col-2">
+                  <button class="btn btn-info btn-sm fa fa-external-link mx-md-1" (click)="detail(p)"></button>
+                  <button class="btn btn-success btn-sm fa fa-pencil-square-o mx-md-1" (click)="edit(p)"></button>
                   <button class="btn btn-warning btn-sm fa fa-code-fork mx-md-1" (click)="showLinked(p)"></button>
-                  <button class="btn btn-warning btn-sm fa fa-envelope mx-md-1"></button>
+                  <button class="btn btn-primary btn-sm fa fa-envelope mx-md-1" (click)="select(p)"></button>
                   <button class="btn btn-danger btn-sm fa fa-trash mx-md-1" (click)="delete(p)"></button>
                 </td>
   
             </tr>
   
-            <app-courrier-create  ></app-courrier-create>
+            <app-courrier-create ></app-courrier-create>
             <app-courrier-linked></app-courrier-linked>
-  
-            <app-courrier-details *ngIf="courrierShowDetail" ></app-courrier-details>
             <app-courrier-reservation *ngIf="reservationShow"></app-courrier-reservation>
           </tbody>
         </table>
       </div>
     </div>
   </div>
+
+  <p-dialog styleClass="sendEmail" header="Send Email" position="center" [(visible)]="showEmailDialog">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+               <div class="form-row">
+                  <div class="form-group col-md-12">
+                      <label for="email">email</label>
+                      <input type="email" id="email" class="form-control"
+                          [(ngModel)]="email">
+                  </div>
+               </div>
+                <div class="form-row">
+                  <div class="form-group col-md-12">
+                      <label for="subject">subject</label>
+                      <input type="text" id="subject" class="form-control"
+                          [(ngModel)]="subject">
+                  </div>
+                </div>
+           
+                
+              <div class="d-flex flex-row-reverse ">
+                  <div class="col-md-4 mr-2">
+                      <button class="btn btn-success btn-block" (click)="sendEmail()">envoyer</button>
+                  </div>
+              </div>
+            </div>
+            
+        </div>
+    </div>
+</p-dialog>
+

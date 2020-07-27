@@ -1,0 +1,17 @@
+
+.sendEmail{
+    background-color: #fff !important;
+    width: 40%;
+    height: 300px !important;
+    box-shadow: 3px 4px 5px -1px rgba(0,0,0,0.58) !important;}
+  .sendEmail .ui-dialog-titlebar{
+    background-color: #fff !important;
+    font-weight: 700;
+    font-size: 16px;
+  }
+  .sendEmail.ui-dialog .ui-dialog-content{
+
+    height: 100%;
+    }
+
+    

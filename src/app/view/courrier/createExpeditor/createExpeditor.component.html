@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Create Expeditor</h5>
+                <h5 class="modal-title">{{"EXPEDITOR.CREATE_EXPEDITOR" | translate}}</h5>
                 <button (click)="createExpeditorHide()" aria-label="Close" class="close" type="button">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -13,12 +13,12 @@
 
                     <div class="form-row">
                         <div class="form-group col-md-4">
-                            <label>title</label>
+                            <label>{{"MAILING.TITLE" | translate}}</label>
                             <input [(ngModel)]="expeditor.title" class="form-control" type="text">
                         </div>
 
                         <div class="form-group col-md-4">
-                            <label>code</label>
+                            <label>{{"MAILING_OBJECT.CODE" | translate}}</label>
                             <input [(ngModel)]="expeditor.code" class="form-control" type="text">
                         </div>
                         <div class="form-group col-md-4">
@@ -38,11 +38,11 @@
                         <!--</div>-->
                         <!--</div>-->
                         <div class="form-group col-md-4">
-                            <label>description</label>
+                            <label>{{"MAILING.DESCRIPTION" | translate}}</label>
                             <input [(ngModel)]="expeditor.description" class="form-control" type="text">
                         </div>
                         <div class="form-group col-md-4">
-                            <label>nature</label>
+                            <label>{{"MAILING.NATURE" | translate}}</label>
                             <input [(ngModel)]="expeditor.nature" class="form-control" type="text">
                         </div>
                         <div class="form-group col-md-4">
@@ -50,12 +50,12 @@
                             <input [(ngModel)]="expeditor.age" class="form-control" type="text">
                         </div>
                         <div class="form-group col-md-4">
-                            <label>titleArab</label>
+                            <label>{{"MAILING_OBJECT.ARAB_TITLE" | translate}}</label>
                             <input [(ngModel)]="expeditor.titleArab" class="form-control" type="text">
                         </div>
 
                         <div class="form-group col-md-4">
-                            <label>sexe</label>
+                            <label>{{"MODELS.GENDER" | translate}}</label>
                             <select [(ngModel)]="expeditor.sexeVo.libelle" class="form-control">
                                 <option *ngFor="let p of sexes" [ngValue]="p.libelle" value="{{p.libelle}}">
                                     {{p.libelle}}
@@ -63,7 +63,7 @@
                             </select>
                         </div>
                         <div class="form-group col-md-4">
-                            <label>nationality</label>
+                            <label>{{"MODELS.NATIONALITY" | translate}}</label>
                             <select [(ngModel)]="expeditor.nationalityVo.libelle" class="form-control">
                                 <option *ngFor="let p of nationalitys" [ngValue]="p.libelle" value="{{p.libelle}}">
                                     {{p.libelle}}
@@ -86,7 +86,7 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button (click)="saveExpeditor()" class="form-control">Save</button>
+                        <button (click)="saveExpeditor()" class="form-control">{{"COMMONS.SAVE" | translate}}</button>
                     </div>
 
                 </div>

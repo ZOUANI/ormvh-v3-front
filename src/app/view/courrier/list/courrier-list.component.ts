@@ -26,7 +26,11 @@ export class CourrierlistComponent implements OnInit {
     constructor(private _courrierService: CourrierService) {
     }
 
-   
+    subject:string;
+    email:string;
+    showEmailDialog:boolean = false;
+    selectedCourrier:CourrierVo;
+
     ngOnInit(): void {
 
     }
@@ -36,6 +40,14 @@ export class CourrierlistComponent implements OnInit {
     }
     detail(courrier:CourrierVo){
         this.courrierService.detail(courrier);
+    }
+    sendEmail(){
+        this.courrierService.sendEmail(this.email,this.subject,[this.selectedCourrier]);
+    }
+
+    select(courrier:CourrierVo){
+       this.selectedCourrier = courrier;
+       this.showEmailDialog = true;
     }
     showNewCorrierDialog(){
         this.courrierService.courrier = null;

@@ -13,13 +13,15 @@ import {ExpeditorVo} from '../model/Expeditor.model';
     providedIn: 'root'
 })
 export class CourrierService {
-    onEdit: boolean = false;
-    onDetail: boolean = false;
 
-    edit(courrier: CourrierVo) {
-        this.courrier = courrier;
-        this.onEdit = true;
-        this.onDetail = false;
+
+
+    onEdit: boolean=false;
+    onDetail:boolean=false;
+   edit(courrier:CourrierVo){
+       this.courrier = courrier;
+       this.onEdit = true;
+       this.onDetail = false;
 
         this.addNewCourrier = true;
     }
@@ -188,6 +190,9 @@ export class CourrierService {
         }
         return this._courrier;
     }
+
+
+
 
     set courrier(value: CourrierVo) {
         this._courrier = value;
