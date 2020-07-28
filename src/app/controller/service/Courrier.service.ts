@@ -16,10 +16,16 @@ export class CourrierService {
     onEdit: boolean=false;
     onDetail:boolean=false;
     onCreate : boolean=false;
-   edit(courrier:CourrierVo){
-       this.courrier = courrier;
-       this.onEdit = true;
-       this.onDetail = false;
+
+    edit(courrier:CourrierVo){
+        this.courrier = courrier;
+        if(this.courrier.courrierServiceItemsVo == null)
+            this.courrier.courrierServiceItemsVo = new Array<CourrierServiceItemVo>();
+        if(this.courrier.tasksVo == null)
+            this.courrier.tasksVo = new Array<TaskVo>();
+
+        this.onEdit = true;
+        this.onDetail = false;
 
         this.addNewCourrier = true;
     }

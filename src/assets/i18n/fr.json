@@ -24,7 +24,8 @@
         "DASHBOARD": "Statistique",
         "TASK": "Tâche",
         "DETAILS": "Détails",
-        "HISTORY": "Historique"
+        "HISTORY": "Historique",
+        "RELANCE": "Relance"
     },
     "MAILING": {
         "ACCUSED": "Accusé",

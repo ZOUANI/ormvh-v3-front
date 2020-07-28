@@ -24,7 +24,8 @@
         "DASHBOARD": "الاحصاء",
         "TASK": "المهمة",
         "DETAILS": "التفاصيل",
-        "HISTORY": "التاريخ"
+        "HISTORY": "التاريخ",
+        "RELANCE": "التذكير"
     },
     "MAILING": {
         "ADD_MAILING": "أَضف بريد",
