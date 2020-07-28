@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {UserVo} from '../../../controller/model/user.model';
 import {UserService} from '../../../controller/service/User.service';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-user-list',
@@ -9,7 +10,7 @@ import {UserService} from '../../../controller/service/User.service';
 })
 export class UserlistComponent implements OnInit {
 
-    constructor(private _userService: UserService) {
+    constructor(private _userService: UserService , private router : Router) {
     }
 
     get createdBys(): Array<UserVo> {
@@ -91,6 +92,12 @@ export class UserlistComponent implements OnInit {
 
     findAllupdatedBys() {
         this.userService.findAllupdatedBys();
+    }
+
+    setUserToUpdate(p){
+        this._userService.userToUpdate = p;
+        this.router.navigate(['/user/edit']);
+
     }
 
 }

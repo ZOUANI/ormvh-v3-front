@@ -124,21 +124,16 @@
             </div>
             <div class="card-body table-responsive">
 
-                <table class="table table-hover col-md-12">
+                <table class="table table-hover col-md-12 text-center">
                     <thead class="thead-dark">
 
                     <th>id</th>
                     <th>username</th>
-<!--                    <th>password</th>-->
                     <th>email</th>
                     <th>accountNonExpired</th>
                     <th>accountNonLocked</th>
                     <th>credentialsNonExpired</th>
                     <th>enabled</th>
-<!--                    <th>createdAt</th>-->
-<!--                    <th>updatedAt</th>-->
-<!--                    <th>createdBy reference</th>-->
-<!--                    <th>updatedBy reference</th>-->
                     <th>Actions</th>
                     </thead>
                     <tbody>
@@ -146,24 +141,25 @@
 
                         <td>{{p.id}}</td>
                         <td>{{p.username}}</td>
-<!--                        <td>{{p.password}}</td>-->
                         <td>{{p.email}}</td>
-                        <td>{{p.accountNonExpired}}</td>
-                        <td>{{p.accountNonLocked}}</td>
-                        <td>{{p.credentialsNonExpired}}</td>
-                        <td>{{p.enabled}}</td>
-<!--                        <td>{{p.createdAt}}</td>-->
-<!--                        <td>{{p.updatedAt}}</td>-->
-<!--                        <td>{{p.createdByVo?.username}}</td>-->
-<!--                        <td>{{p.updatedByVo?.username}}</td>-->
-
+                        <td>
+                            <span class="badge badge-pill" [ngClass]="p.accountNonExpired? 'badge-success':'badge-danger'"  >{{p.accountNonExpired?'Yes':'No'}}</span>
+                        </td>
+                        <td>
+                            <span class="badge badge-pill" [ngClass]="p.accountNonLocked? 'badge-success':'badge-danger'"  >{{p.accountNonLocked?'Yes':'No'}}</span>
+                        </td>
+                        <td>
+                            <span class="badge badge-pill" [ngClass]="p.credentialsNonExpired? 'badge-success':'badge-danger'"  >{{p.credentialsNonExpired?'Yes':'No'}}</span>
+                        </td>
+                        <td>
+                            <span class="badge badge-pill" [ngClass]="p.enabled? 'badge-success':'badge-danger'"  >{{p.enabled?'Yes':'No'}}</span>
+                        </td>
 
                         <td>
                             <button (click)="delete(p)" class="btn btn-danger btn-sm fa fa-trash mx-md-1"></button>
+                            <button (click)="setUserToUpdate(p)" class="btn btn-danger btn-sm fa fa-edit mx-md-1"></button>
                             <button (click)="detailShow(p)"
                                     class="btn btn-warning btn-sm fa fa-external-link mx-md-1"></button>
-
-
                         </td>
 
                     </tr>
