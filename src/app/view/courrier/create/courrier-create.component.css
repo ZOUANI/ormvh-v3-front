@@ -1,8 +1,11 @@
 .addCourrierDialog{
     background-color: #fff !important;
-  
     width: 65%;
     height: 800px !important;
+    font-size: 16px;
+    font-family: "Source Sans Pro", sans-serif;
+    color: #4a5568;
+    line-height: 1.45;
     box-shadow: 3px 4px 5px -1px rgba(0,0,0,0.58) !important;}
   .addCourrierDialog .ui-dialog-titlebar{
     background-color: #fff !important;
@@ -154,3 +157,55 @@
     .slider.round:before {
       border-radius: 50%;
     }
+    .hover-effect:hover{
+      font-size: 11px;
+      width: bold;
+      color: #000;
+    }
+
+
+
+
+
+
+    .panel-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.panel p {
+  margin-bottom: 16px;
+}
+
+hr {
+  background: #edf2f7;
+  height: 1px;
+  border: 0;
+  margin: 24px 0 16px;
+}
+.rds{
+  border-radius: 10px;
+
+}
+.panel {
+  width: 400px;
+  height: 400px;
+  max-width: 90%;
+  margin: 0 auto 0;
+  box-shadow: 0 4px 6px -1px rgba(34, 18, 18, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  padding: 24px;
+  border-radius: 10px;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,.125);
+  position: relative;
+}
+
+.deselect{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: block;
+  font-size: 11px;
+}
