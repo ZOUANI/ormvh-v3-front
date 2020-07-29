@@ -11,6 +11,7 @@ export class UserVo {
     public id: string;
     public username: string;
     public password: string;
+    public passwordChanged: boolean;
     public createdAtMax: string;
     public createdAtMin: string;
     public updatedAtMax: string;

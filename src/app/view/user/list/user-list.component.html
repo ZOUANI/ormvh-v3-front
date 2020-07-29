@@ -127,7 +127,6 @@
                 <table class="table table-hover col-md-12 text-center">
                     <thead class="thead-dark">
 
-                    <th>id</th>
                     <th>username</th>
                     <th>email</th>
                     <th>accountNonExpired</th>
@@ -135,11 +134,11 @@
                     <th>credentialsNonExpired</th>
                     <th>enabled</th>
                     <th>Actions</th>
+
                     </thead>
                     <tbody>
                     <tr *ngFor="let p of userListe">
 
-                        <td>{{p.id}}</td>
                         <td>{{p.username}}</td>
                         <td>{{p.email}}</td>
                         <td>
@@ -156,10 +155,9 @@
                         </td>
 
                         <td>
+                            <button (click)="detailShow(p)" class="btn btn-warning btn-sm fa fa-external-link mx-md-1"></button>
+                            <button (click)="setUserToUpdate(p)" class="btn btn-primary btn-sm fa fa-edit mx-md-1"></button>
                             <button (click)="delete(p)" class="btn btn-danger btn-sm fa fa-trash mx-md-1"></button>
-                            <button (click)="setUserToUpdate(p)" class="btn btn-danger btn-sm fa fa-edit mx-md-1"></button>
-                            <button (click)="detailShow(p)"
-                                    class="btn btn-warning btn-sm fa fa-external-link mx-md-1"></button>
                         </td>
 
                     </tr>
