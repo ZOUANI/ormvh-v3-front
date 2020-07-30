@@ -20,8 +20,8 @@ export class CourrierVo {
   public destinataireVille: string;
   public relance: string;
   public dateRelance: string;
-  public accuse: string;
-  public reponse: string;
+  public accuse: boolean;
+  public reponse: boolean;
   public dateAccuse: string;
   public dateReponse: string;
   public receivedAt: string;
@@ -50,7 +50,7 @@ export class CourrierVo {
      public updatedAtMin: string ;
      public delaiMax: string ;
      public delaiMin: string ;
-      public courrierObjectVo: CourrierObjectVo;;
+      public courrierObjectVo: CourrierObjectVo;
       public voieVo: VoieVo ;
       public natureCourrierVo: NatureCourrierVo ;
       public linkedToVo: CourrierVo;
@@ -62,7 +62,7 @@ export class CourrierVo {
       public expeditorTypeVo: ExpeditorTypeVo;
       public subdivisionVo: SubdivisionVo;
       public statusVo: StatusVo ;
-      public typeCourrierVo: TypeCourrierVo ;
+      public typeCourrierVo: TypeCourrierVo = new TypeCourrierVo() ;
       public createdByVo: UserVo ;
       public updatedByVo: UserVo ;
   public tasksVo: Array<TaskVo> = new Array<TaskVo>();

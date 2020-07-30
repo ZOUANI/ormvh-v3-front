@@ -1,60 +1,65 @@
-<div class="modal" tabindex="-1" role="dialog" style="display: block;background-color: #000000bf;">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">edit Bordereau </h5>
-        <button type="button" class="close" aria-label="Close" (click)="editHide()">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-<div class="card col-md-12 mx-auto  p-md-2">
-   
-    <div class="card-body">
-        <div class="row">
-                <div class="col-md-6 py-2">
-                        <label>dateBordereaux</label>
-                        <input type="date" class="col-md-12" [(ngModel)] = "bordereau.dateBordereaux">
-                </div>
-                <div class="col-md-6 py-2">
-                        <label>createdAt</label>
-                        <input type="date" class="col-md-12" [(ngModel)] = "bordereau.createdAt">
-                </div>
-                <div class="col-md-6 py-2">
-                        <label>updatedAt</label>
-                        <input type="date" class="col-md-12" [(ngModel)] = "bordereau.updatedAt">
-                </div>
-                <div class="col-md-6 py-2">
-                    <label>description</label>
-                    <input type="text" class="form-control" [placeholder]="bordereau.description" [(ngModel)] = "bordereau.description">
-                </div>
-                <div class="col-md-6 py-2">
-                    <label>nombrePieceJointe</label>
-                    <input type="text" class="form-control" [placeholder]="bordereau.nombrePieceJointe" [(ngModel)] = "bordereau.nombrePieceJointe">
-                </div>
-                <div class="col-md-6 py-2">
-                    <label>libelle</label>
-                    <input type="text" class="form-control" [placeholder]="bordereau.libelle" [(ngModel)] = "bordereau.libelle">
+<div class="modal" role="dialog" style="display: block;background-color: #000000bf;" tabindex="-1">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">{{"STATEMENT.EDIT_STATEMENT" | translate}}</h5>
+                <button (click)="editHide()" aria-label="Close" class="close" type="button">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="card col-md-12 mx-auto  p-md-2">
+
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6 py-2">
+                                <label>{{"STATEMENT.STATEMENT_DATE" | translate}}</label>
+                                <input [(ngModel)]="bordereau.dateBordereaux" class="col-md-12" type="date">
+                            </div>
+<!--                            <div class="col-md-6 py-2">-->
+<!--                                <label>createdAt</label>-->
+<!--                                <input [(ngModel)]="bordereau.createdAt" class="col-md-12" type="date">-->
+<!--                            </div>-->
+<!--                            <div class="col-md-6 py-2">-->
+<!--                                <label>updatedAt</label>-->
+<!--                                <input [(ngModel)]="bordereau.updatedAt" class="col-md-12" type="date">-->
+<!--                            </div>-->
+                            <div class="col-md-6 py-2">
+                                <label>{{"STATEMENT.DESCRIPTION" | translate}}</label>
+                                <input [(ngModel)]="bordereau.description" [placeholder]="bordereau.description" class="form-control"
+                                       type="text" placeholder="{{'STATEMENT.DESCRIPTION' | translate}}">
+                            </div>
+                            <div class="col-md-6 py-2">
+                                <label>{{"STATEMENT.ATTACHMENTS_NUMBER" | translate}}</label>
+                                <input [(ngModel)]="bordereau.nombrePieceJointe" [placeholder]="bordereau.nombrePieceJointe" class="form-control"
+                                       type="text"  placeholder="{{'STATEMENT.ATTACHMENTS_NUMBER' | translate}}">
+                            </div>
+                            <div class="col-md-6 py-2">
+                                <label>{{"STATEMENT.LABEL" | translate}}</label>
+                                <input [(ngModel)]="bordereau.libelle" [placeholder]="bordereau.libelle" class="form-control"
+                                       type="text" placeholder="{{'STATEMENT.LABEL' | translate}}">
+                            </div>
+                        </div>
+<!--                        <div class="row m-md-2 p-md-1">-->
+<!--                            <label>createdBy</label>-->
+<!--                            <select [(ngModel)]="bordereau.createdByVo.username" class="form-control">-->
+<!--                                <option *ngFor="let p of createdBys" [ngValue]="p.username"-->
+<!--                                        value="{{p.username}}">{{p.username}}</option>-->
+<!--                            </select>-->
+<!--                        </div>-->
+<!--                        <div class="row m-md-2 p-md-1">-->
+<!--                            <label>updatedBy</label>-->
+<!--                            <select [(ngModel)]="bordereau.updatedByVo.username" class="form-control">-->
+<!--                                <option *ngFor="let p of updatedBys" [ngValue]="p.username"-->
+<!--                                        value="{{p.username}}">{{p.username}}</option>-->
+<!--                            </select>-->
+<!--                        </div>-->
+                        <div class="card-footer">
+                            <button (click)="editBordereau()" class="form-control">{{'COMMONS.UPDATE' | translate}}</button>
+                        </div>
+                    </div>
                 </div>
             </div>
-                <div class="row m-md-2 p-md-1" >
-                    <label>createdBy</label>
-                    <select class="form-control" [(ngModel)]="bordereau.createdByVo.username" >
-                        <option *ngFor="let p of createdBys" [ngValue]="p.username" value="{{p.username}}">{{p.username}}</option>
-                    </select>
-                </div>
-                <div class="row m-md-2 p-md-1" >
-                    <label>updatedBy</label>
-                    <select class="form-control" [(ngModel)]="bordereau.updatedByVo.username" >
-                        <option *ngFor="let p of updatedBys" [ngValue]="p.username" value="{{p.username}}">{{p.username}}</option>
-                    </select>
-                </div>
-        <div class="card-footer" >
-            <button class="form-control" (click)="editBordereau()" >Edit</button>
         </div>
     </div>
 </div>
-       </div>
-	   </div>
-	   </div>
-	   </div>

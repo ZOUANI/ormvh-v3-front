@@ -3,34 +3,34 @@ import {TypeCourrierService} from '../../../controller/service/TypeCourrier.serv
 import {TypeCourrierVo} from '../../../controller/model/typeCourrier.model';
 
 @Component({
-  selector: 'app-typeCourrier-create',
-  templateUrl: './typeCourrier-create.component.html',
-  styleUrls: ['./typeCourrier-create.component.css']
+    selector: 'app-typeCourrier-create',
+    templateUrl: './typeCourrier-create.component.html',
+    styleUrls: ['./typeCourrier-create.component.css']
 })
 export class TypeCourrierCreateComponent implements OnInit {
-  constructor(private typeCourrierService: TypeCourrierService) { }
-
-   ngOnInit(): void {
+    constructor(private typeCourrierService: TypeCourrierService) {
     }
 
-   get typeCourrier(): TypeCourrierVo {
-    return this.typeCourrierService.typeCourrier;
-  }
+    get typeCourrier(): TypeCourrierVo {
+        return this.typeCourrierService.typeCourrier;
+    }
 
+    get typeCourrierShowCreate(): boolean {
+        return this.typeCourrierService.typeCourrierShowCreate;
+    }
 
-   saveTypeCourrier() {
-    this.typeCourrierService.saveTypeCourrier();
-  }
+    set typeCourrierShowCreate(value: boolean) {
+        this.typeCourrierService.typeCourrierShowCreate = value;
+    }
 
+    ngOnInit(): void {
+    }
 
-get typeCourrierShowCreate (): boolean  {
-  return this.typeCourrierService.typeCourrierShowCreate;
-}
+    saveTypeCourrier() {
+        this.typeCourrierService.saveTypeCourrier();
+    }
 
-set typeCourrierShowCreate (value: boolean ) {
-  this.typeCourrierService.typeCourrierShowCreate = value ;
-}
-public createHide(){
-       this.typeCourrierService.createHide();
-}
+    public createHide() {
+        this.typeCourrierService.createHide();
+    }
 }

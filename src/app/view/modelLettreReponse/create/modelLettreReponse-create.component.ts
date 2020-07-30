@@ -6,9 +6,9 @@ import {CategorieModelLettreReponseVo} from '../../../controller/model/Categorie
 import {FormBuilder, FormGroup} from '@angular/forms';
 
 @Component({
-  selector: 'app-modelLettreReponse-create',
-  templateUrl: './modelLettreReponse-create.component.html',
-  styleUrls: ['./modelLettreReponse-create.component.css']
+    selector: 'app-modelLettreReponse-create',
+    templateUrl: './modelLettreReponse-create.component.html',
+    styleUrls: ['./modelLettreReponse-create.component.css']
 })
 export class ModelLettreReponseCreateComponent implements OnInit {
   constructor(private modelLettreReponseService: ModelLettreReponseService,

@@ -1,27 +1,16 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {CourrierService} from "../../../controller/service/Courrier.service";
 
 @Component({
     templateUrl: './courrier-reservation.component.html',
     selector: 'app-courrier-reservation'
 })
-export class CourrierReservationComponent   {
+export class CourrierReservationComponent {
 
-    nbr : number
+    nbr: number
 
-    constructor(protected courrierService: CourrierService) {}
-
-
-    public reservationHide() {
-        this.courrierService.reservationHide();
+    constructor(protected courrierService: CourrierService) {
     }
-
-
-    generateId():void{
-        this.courrierService.generateIdReserve();
-
-    }
-
 
     get generatedId() {
         return this.courrierService.generatedId2;
@@ -35,20 +24,29 @@ export class CourrierReservationComponent   {
         return this.courrierService.reserveCourier;
     }
 
-
-    reserve():void{
-    this.reserveCourier.idCourrier=this.generatedId
-    this.courrierService.reserve(this.reserveCourier.idCourrier,this.nbr)
-        this.courrierService.reservationShow=false
-        this.generatedId=''
-
-
-    }
-    get reservationShow (): boolean  {
+    get reservationShow(): boolean {
         return this.courrierService.reservationShow;
     }
 
-    set reservationShow (value: boolean ) {
-        this.courrierService.reservationShow = value ;
+    set reservationShow(value: boolean) {
+        this.courrierService.reservationShow = value;
+    }
+
+    public reservationHide() {
+        this.courrierService.reservationHide();
+    }
+
+    generateId(): void {
+        this.courrierService.generateIdReserve();
+
+    }
+
+    reserve(): void {
+        this.reserveCourier.idCourrier = this.generatedId
+        this.courrierService.reserve(this.reserveCourier.idCourrier, this.nbr)
+        this.courrierService.reservationShow = false
+        this.generatedId = ''
+
+
     }
 }

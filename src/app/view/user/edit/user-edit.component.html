@@ -1,117 +1,102 @@
-     <app-user></app-user>
-<div class="card col-md-8 mx-auto  p-md-2">
-    <div class="card-header text-center font-weight-bold">Edit Users</div> 
-    <div class="card-body">
-            <div class="row my-1 ">
-                <label>Available Users</label>
-                <select class="form-control" [(ngModel)]="user.username" (click)="findByusername(user.username)" >
-                    <option *ngFor="let p of editableUsers" [ngValue]="p.username" value="{{p.username}}">{{p.username}}</option>
-                </select>
-            </div>
-        
-                <div class="row py-2">
-                    <label>credentialsNonExpired</label>
-                    <input type="text" class="form-control" [placeholder]="user.credentialsNonExpired" [(ngModel)] = "user.credentialsNonExpired">
-                </div>
-                <div class="row py-2">
-                    <label>enabled</label>
-                    <input type="text" class="form-control" [placeholder]="user.enabled" [(ngModel)] = "user.enabled">
-                </div>
-                <div class="row py-2">
-                        <label>createdAt</label>
-                        <input type="date" class="col-md-12" [(ngModel)] = "user.createdAt">
-                </div>
-                <div class="row py-2">
-                        <label>updatedAt</label>
-                        <input type="date" class="col-md-12" [(ngModel)] = "user.updatedAt">
-                </div>
-                <div class="row py-2">
-                    <label>email</label>
-                    <input type="text" class="form-control" [placeholder]="user.email" [(ngModel)] = "user.email">
-                </div>
-                <div class="row py-2">
-                    <label>accountNonExpired</label>
-                    <input type="text" class="form-control" [placeholder]="user.accountNonExpired" [(ngModel)] = "user.accountNonExpired">
-                </div>
-                <div class="row py-2">
-                    <label>accountNonLocked</label>
-                    <input type="text" class="form-control" [placeholder]="user.accountNonLocked" [(ngModel)] = "user.accountNonLocked">
-                </div>
-                <div class="row py-2">
-                    <label>username</label>
-                    <input type="text" class="form-control" [placeholder]="user.username" [(ngModel)] = "user.username">
-                </div>
-                <div class="row py-2">
-                    <label>password</label>
-                    <input type="text" class="form-control" [placeholder]="user.password" [(ngModel)] = "user.password">
-                </div>
-            
-                <div class="row m-md-2 p-md-1" >
-                    <label>createdBy</label>
-                    <select class="form-control" [(ngModel)]="user.createdByVo.username" >
-                        <option *ngFor="let p of createdBys" [ngValue]="p.username" value="{{p.username}}">{{p.username}}</option>
-                    </select>
-                </div>
-                <div class="row m-md-2 p-md-1" >
-                    <label>updatedBy</label>
-                    <select class="form-control" [(ngModel)]="user.updatedByVo.username" >
-                        <option *ngFor="let p of updatedBys" [ngValue]="p.username" value="{{p.username}}">{{p.username}}</option>
-                    </select>
-                </div>
-                <div class="card row">
-                    <div class="card-header">Add roles</div>
-                    <div class="card-body">
-                        <div class="row">
-                                    <div class="col-md-6 py-2">
-                                            <label>updatedAt</label>
-                                            <input class="col-md-12" [(ngModel)] = "role.updatedAt">
-                                    </div>
-                                <div class="col-md-6 py-2"><label>authority</label>
-                                    <input type="text" class="form-control" [(ngModel)] = "role.authority" >
-                                </div>
-                                    <div class="col-md-6 py-2">
-                                            <label>createdAt</label>
-                                            <input class="col-md-12" [(ngModel)] = "role.createdAt">
-                                    </div>
-                                    <div class="col-md-6 py-2"><label>updatedBy username</label>
-                                        <input type="text" class="form-control" [(ngModel)] = "role.updatedByVo.username">
-                                    </div>
-                                    <div class="col-md-6 py-2"><label>createdBy username</label>
-                                        <input type="text" class="form-control" [(ngModel)] = "role.createdByVo.username">
-                                    </div>
-                        </div>
-                        <div class="card-footer">
-                            <button class="btn btn-outline-danger btn-block" (click)="addRole()">+</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="card row m-md-2 p-md-1 table-responsive">
-                    <div class="card-header">Added roles</div>
-                    <div class="card-body">
-                        <table class="table table-hover table-striped">
-                            <thead>
-                                    <th>updatedAt</th>
-                                    <th>authority</th>
-                                    <th>createdAt</th>
-                                    <th>updatedBy username</th>
-                                    <th>createdBy username</th>
-                                <th>Delete</th>
-                            </thead>
-                            <tbody>
-                            <tr *ngFor="let p of user.rolesVo;let i = index">
-                                    <td>{{p.updatedAt}}</td>
-                                    <td>{{p.authority}}</td>
-                                    <td>{{p.createdAt}}</td>
-                                        <td>{{p.updatedByVo.username}}</td>
-                                        <td>{{p.createdByVo.username}}</td>
-                                    <td><button class="btn btn-dark fa fa-trash" (click)="removeRole(i)"></button></td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-        <div class="card-footer" >
-            <button class="form-control" (click)="editUser()" >Edit</button>
+<app-user></app-user>
+
+<div class="row m-4">
+
+    <div class="col-md-4  ">
+
+        <div class="alert alert-primary" role="alert">
+            User Information
         </div>
+
+        <div class=" ">
+            <label>username</label>
+            <input [(ngModel)]="user.username" [placeholder]="user.username" class="form-control" type="text">
+        </div>
+
+        <div class="">
+            <label>email</label>
+            <input [(ngModel)]="user.email" [placeholder]="user.email" class="form-control" type="text">
+        </div>
+
+
+
     </div>
+
+    <div class="col-md-4  ">
+
+        <div class="alert alert-primary" role="alert">
+            Account confidentiality
+        </div>
+
+        <div class=" bg-warning mb-3">
+            <i class="fa fa-warning mr-3 ml-3 text-light"></i>
+            <label class="text-light">password</label>
+            <button class="btn btn-link fa fa-undo float-right"> Reset </button>
+        </div>
+
+        <div class="mb-2">
+            <label class="form-check-label">
+                <input type="checkbox" [checked]="user.credentialsNonExpired" (click)="switchCredentialsNonExpired()">
+                Credentials Non Expired
+            </label>
+        </div>
+
+        <div class="mb-2">
+            <label class="form-check-label">
+                <input type="checkbox" [checked]="user.enabled" (click)="switchEnabled()"> Enabled
+            </label>
+        </div>
+
+        <div class="mb-2">
+            <label class="form-check-label">
+                <input type="checkbox" [checked]="user.accountNonExpired" (click)="switchAccountNonExpired()"> Account
+                Non Expired
+            </label>
+        </div>
+
+        <div class="mb-2">
+            <label class="form-check-label">
+                <input type="checkbox" [checked]="user.accountNonLocked" (click)="switchAccountNonLocked()"> Account Non
+                Locked
+            </label>
+        </div>
+
+
+
+    </div>
+
+    <div class="col-md-4 ">
+
+        <div class="alert alert-primary" role="alert">
+            User Authorities
+        </div>
+
+        <span *ngFor="let r of user.rolesVo" class="badge badge-pill badge-info m-1">{{r?.authority}}
+                <span class="badge badge-pill badge-danger m-2">
+                    <i class="fa fa-times" style="cursor: pointer" (click)="removeRole(r)"></i>
+                </span>
+        </span>
+
+        <div class="dropdown">
+            <button class="btn btn-info btn-block fa fa-plus " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="cursor: no-drop" >
+                <button *ngFor="let r of roles"  [disabled]="existRole(r)" (click)="addRole(r)" class="dropdown-item btn">{{r?.authority}}</button>
+            </div>
+        </div>
+
+
+
+
+
+    </div>
+    <!--<div class="alert alert-primary" role="alert">-->
+        <!--actions-->
+    <!--</div>-->
+
+            <button (click)="editUser()" class="btn btn-primary btn-block m-5 fa fa-edit m-1 "> Edit</button>
+
+
+
 </div>

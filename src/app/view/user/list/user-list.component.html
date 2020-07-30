@@ -1,159 +1,170 @@
-     <app-user></app-user>
+<app-user></app-user>
 
 <div class="container">
-  <div class="row">
-    <div id="accordion" class="col-12 my-3">
-      <div class="card">
-        <div class="card-header border-0 bg-white" id="headingSearch">
-          
-            <button class="btn btn-info  btn-sm fa fa-filter" data-toggle="collapse" data-target="#search" aria-expanded="true" aria-controls="search">
-              <h5 class="float-right">Search Forms</h5>
-            </button>
-         
+    <div class="row">
+        <div class="col-12 my-3" id="accordion">
+            <div class="card">
+                <div class="card-header border-0 bg-white" id="headingSearch">
+
+                    <button aria-controls="search" aria-expanded="true" class="btn btn-info  btn-sm fa fa-filter"
+                            data-target="#search" data-toggle="collapse">
+                        <h5 class="float-right">Search Forms</h5>
+                    </button>
+
+                </div>
+
+                <div aria-labelledby="headingSearch" class="collapse" data-parent="#accordion" id="search">
+                    <div class="card-body">
+                        <div class="container">
+                            <div class="row">
+                                <div class="form-row">
+
+                                    <div class="input-group  col-3  my-2">
+                                        <small class="text-muted col-12">id</small>
+                                        <input [(ngModel)]="userSearch.id" class="form-control col-12" placeholder="id"
+                                               type="text">
+                                    </div>
+                                    <div class="input-group  col-3  my-2">
+                                        <small class="text-muted col-12">username</small>
+                                        <input [(ngModel)]="userSearch.username" class="form-control col-12" placeholder="username"
+                                               type="text">
+                                    </div>
+                                    <div class="input-group  col-3  my-2">
+                                        <small class="text-muted col-12">password</small>
+                                        <input [(ngModel)]="userSearch.password" class="form-control col-12" placeholder="password"
+                                               type="text">
+                                    </div>
+                                    <div class="input-group  col-3  my-2">
+                                        <small class="text-muted col-12">email</small>
+                                        <input [(ngModel)]="userSearch.email" class="form-control col-12" placeholder="email"
+                                               type="text">
+                                    </div>
+                                    <div class="input-group  col-3  my-2">
+                                        <small class="text-muted col-12">accountNonExpired</small>
+                                        <input [(ngModel)]="userSearch.accountNonExpired" class="form-control col-12" placeholder="accountNonExpired"
+                                               type="text">
+                                    </div>
+                                    <div class="input-group  col-3  my-2">
+                                        <small class="text-muted col-12">accountNonLocked</small>
+                                        <input [(ngModel)]="userSearch.accountNonLocked" class="form-control col-12" placeholder="accountNonLocked"
+                                               type="text">
+                                    </div>
+                                    <div class="input-group  col-3  my-2">
+                                        <small class="text-muted col-12">credentialsNonExpired</small>
+                                        <input [(ngModel)]="userSearch.credentialsNonExpired" class="form-control col-12"
+                                               placeholder="credentialsNonExpired"
+                                               type="text">
+                                    </div>
+                                    <div class="input-group  col-3  my-2">
+                                        <small class="text-muted col-12">enabled</small>
+                                        <input [(ngModel)]="userSearch.enabled" class="form-control col-12" placeholder="enabled"
+                                               type="text">
+                                    </div>
+<!--                                    <div class="input-group  col-4  my-2">-->
+<!--                                        <div class="col-5 mx-1 px-1">-->
+<!--                                            <div class="p-grid ui-fluid">-->
+<!--                                                <small class="text-muted">createdAt Min</small>-->
+<!--                                                <p-calendar [(ngModel)]="userSearch.createdAtMin" class="p-col-12"-->
+<!--                                                            dateFormat="yy-mm-dd"></p-calendar>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                        <div class="col-5 mx-1 px-1">-->
+<!--                                            <div class="p-grid ui-fluid">-->
+<!--                                                <small class="text-muted">createdAt Max</small>-->
+<!--                                                <p-calendar [(ngModel)]="userSearch.createdAtMax" class="p-col-12"-->
+<!--                                                            dateFormat="yy-mm-dd"></p-calendar>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+
+<!--                                    </div>-->
+<!--                                    <div class="input-group  col-4  my-2">-->
+<!--                                        <div class="col-5 mx-1 px-1">-->
+<!--                                            <div class="p-grid ui-fluid">-->
+<!--                                                <small class="text-muted">updatedAt Min</small>-->
+<!--                                                <p-calendar [(ngModel)]="userSearch.updatedAtMin" class="p-col-12"-->
+<!--                                                            dateFormat="yy-mm-dd"></p-calendar>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                        <div class="col-5 mx-1 px-1">-->
+<!--                                            <div class="p-grid ui-fluid">-->
+<!--                                                <small class="text-muted">updatedAt Max</small>-->
+<!--                                                <p-calendar [(ngModel)]="userSearch.updatedAtMax" class="p-col-12"-->
+<!--                                                            dateFormat="yy-mm-dd"></p-calendar>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+
+<!--                                    </div>-->
+<!--                                    <div class="input-group  col-4 my-2">-->
+<!--                                        <small class="text-muted col-12">createdBy</small>-->
+<!--                                        <select [(ngModel)]="userSearch.createdByVo" class="form-control col-12">-->
+<!--                                            <option *ngFor="let p of createdBys" [ngValue]="p">{{p.username}}</option>-->
+<!--                                        </select>-->
+<!--                                    </div>-->
+<!--                                    <div class="input-group  col-4 my-2">-->
+<!--                                        <small class="text-muted col-12">updatedBy</small>-->
+<!--                                        <select [(ngModel)]="userSearch.updatedByVo" class="form-control col-12">-->
+<!--                                            <option *ngFor="let p of updatedBys" [ngValue]="p">{{p.username}}</option>-->
+<!--                                        </select>-->
+<!--                                    </div>-->
+                                </div>
+                            </div>
+                            <button (click)="findUser(userSearch)"
+                                    class="btn btn-info btn-sm fa fa-search float-right px-5 py-2 my-4"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+    </div>
+    <div class="row">
+        <div class="card col-12">
+            <div class="card-header bg-transparent">
+                <div class="float-left px-1"><h5>List of users. </h5></div>
 
-        <div id="search" class="collapse" aria-labelledby="headingSearch" data-parent="#accordion">
-          <div class="card-body">
-            <div class="container">
-              <div class = "row">
-               <div class="form-row">
-   
-              <div class="input-group  col-3  my-2">
-<small class="text-muted col-12">id</small>
-<input type="text" class="form-control col-12" placeholder="id" [(ngModel)]="userSearch.id">
-             </div>
-              <div class="input-group  col-3  my-2">
-<small class="text-muted col-12">username</small>
-<input type="text" class="form-control col-12" placeholder="username" [(ngModel)]="userSearch.username">
-             </div>
-              <div class="input-group  col-3  my-2">
-<small class="text-muted col-12">password</small>
-<input type="text" class="form-control col-12" placeholder="password" [(ngModel)]="userSearch.password">
-             </div>
-              <div class="input-group  col-3  my-2">
-<small class="text-muted col-12">email</small>
-<input type="text" class="form-control col-12" placeholder="email" [(ngModel)]="userSearch.email">
-             </div>
-              <div class="input-group  col-3  my-2">
-<small class="text-muted col-12">accountNonExpired</small>
-<input type="text" class="form-control col-12" placeholder="accountNonExpired" [(ngModel)]="userSearch.accountNonExpired">
-             </div>
-              <div class="input-group  col-3  my-2">
-<small class="text-muted col-12">accountNonLocked</small>
-<input type="text" class="form-control col-12" placeholder="accountNonLocked" [(ngModel)]="userSearch.accountNonLocked">
-             </div>
-              <div class="input-group  col-3  my-2">
-<small class="text-muted col-12">credentialsNonExpired</small>
-<input type="text" class="form-control col-12" placeholder="credentialsNonExpired" [(ngModel)]="userSearch.credentialsNonExpired">
-             </div>
-              <div class="input-group  col-3  my-2">
-<small class="text-muted col-12">enabled</small>
-<input type="text" class="form-control col-12" placeholder="enabled" [(ngModel)]="userSearch.enabled">
-             </div>
-              <div class="input-group  col-4  my-2">
-    <div class="col-5 mx-1 px-1">
-                    <div class="p-grid ui-fluid">
-                        <small class="text-muted">createdAt Min</small>
-                        <p-calendar class="p-col-12" dateFormat="yy-mm-dd" [(ngModel)] = "userSearch.createdAtMin"></p-calendar>
-                    </div>
-    </div>
-    <div class="col-5 mx-1 px-1">
-                    <div class="p-grid ui-fluid">
-                        <small class="text-muted">createdAt Max</small>
-                        <p-calendar class="p-col-12" dateFormat="yy-mm-dd" [(ngModel)] = "userSearch.createdAtMax"></p-calendar>
-                    </div>
-    </div>
+            </div>
+            <div class="card-body table-responsive">
 
-             </div>
-              <div class="input-group  col-4  my-2">
-    <div class="col-5 mx-1 px-1">
-                    <div class="p-grid ui-fluid">
-                        <small class="text-muted">updatedAt Min</small>
-                        <p-calendar class="p-col-12" dateFormat="yy-mm-dd" [(ngModel)] = "userSearch.updatedAtMin"></p-calendar>
-                    </div>
-    </div>
-    <div class="col-5 mx-1 px-1">
-                    <div class="p-grid ui-fluid">
-                        <small class="text-muted">updatedAt Max</small>
-                        <p-calendar class="p-col-12" dateFormat="yy-mm-dd" [(ngModel)] = "userSearch.updatedAtMax"></p-calendar>
-                    </div>
-    </div>
+                <table class="table table-hover col-md-12 text-center">
+                    <thead class="thead-dark">
 
-             </div>
-                <div class="input-group  col-4 my-2">
-                   <small class="text-muted col-12">createdBy</small>
-                    <select class="form-control col-12" [(ngModel)]="userSearch.createdByVo" >
-                        <option *ngFor="let p of createdBys" [ngValue]="p" >{{p.username}}</option>
-                    </select>
-                 </div>
-                <div class="input-group  col-4 my-2">
-                   <small class="text-muted col-12">updatedBy</small>
-                    <select class="form-control col-12" [(ngModel)]="userSearch.updatedByVo" >
-                        <option *ngFor="let p of updatedBys" [ngValue]="p" >{{p.username}}</option>
-                    </select>
-                 </div>
-              </div>    
-          </div>
-           <button class="btn btn-info btn-sm fa fa-search float-right px-5 py-2 my-4" (click)="findUser(userSearch)"></button>
+                    <th>username</th>
+                    <th>email</th>
+                    <th>accountNonExpired</th>
+                    <th>accountNonLocked</th>
+                    <th>credentialsNonExpired</th>
+                    <th>enabled</th>
+                    <th>Actions</th>
+
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let p of userListe">
+
+                        <td>{{p.username}}</td>
+                        <td>{{p.email}}</td>
+                        <td>
+                            <span class="badge badge-pill" [ngClass]="p.accountNonExpired? 'badge-success':'badge-danger'"  >{{p.accountNonExpired?'Yes':'No'}}</span>
+                        </td>
+                        <td>
+                            <span class="badge badge-pill" [ngClass]="p.accountNonLocked? 'badge-success':'badge-danger'"  >{{p.accountNonLocked?'Yes':'No'}}</span>
+                        </td>
+                        <td>
+                            <span class="badge badge-pill" [ngClass]="p.credentialsNonExpired? 'badge-success':'badge-danger'"  >{{p.credentialsNonExpired?'Yes':'No'}}</span>
+                        </td>
+                        <td>
+                            <span class="badge badge-pill" [ngClass]="p.enabled? 'badge-success':'badge-danger'"  >{{p.enabled?'Yes':'No'}}</span>
+                        </td>
+
+                        <td>
+                            <button (click)="detailShow(p)" class="btn btn-warning btn-sm fa fa-external-link mx-md-1"></button>
+                            <button (click)="setUserToUpdate(p)" class="btn btn-primary btn-sm fa fa-edit mx-md-1"></button>
+                            <button (click)="delete(p)" class="btn btn-danger btn-sm fa fa-trash mx-md-1"></button>
+                        </td>
+
+                    </tr>
+                    <app-user-details *ngIf="userShowDetail"></app-user-details>
+                    </tbody>
+                </table>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
-</div>
-  </div>
-<div class="row">
-  <div class="card col-12">
-    <div class="card-header bg-transparent">
-    <div class="float-left px-1"> <h5>List of users. </h5></div>
-
-    </div>
-    <div class="card-body table-responsive">
-
-      <table class="table table-hover col-md-12">
-        <thead class="thead-dark">
-
-          <th>id</th>
-          <th>username</th>
-          <th>password</th>
-          <th>email</th>
-          <th>accountNonExpired</th>
-          <th>accountNonLocked</th>
-          <th>credentialsNonExpired</th>
-          <th>enabled</th>
-          <th>createdAt</th>
-          <th>updatedAt</th>
-            <th>createdBy reference</th>
-            <th>updatedBy reference</th>
-     <th>Actions</th>
-  </thead>
-  <tbody>
-  <tr *ngFor="let p of userListe">
-
-           <td>{{p.id}}</td>
-           <td>{{p.username}}</td>
-           <td>{{p.password}}</td>
-           <td>{{p.email}}</td>
-           <td>{{p.accountNonExpired}}</td>
-           <td>{{p.accountNonLocked}}</td>
-           <td>{{p.credentialsNonExpired}}</td>
-           <td>{{p.enabled}}</td>
-           <td>{{p.createdAt}}</td>
-           <td>{{p.updatedAt}}</td>
-            <td>{{p.createdByVo?.username}}</td>
-            <td>{{p.updatedByVo?.username}}</td>
- 
-
-<td><button class="btn btn-danger btn-sm fa fa-trash mx-md-1" (click)="delete(p)"></button>
-  <button class="btn btn-warning btn-sm fa fa-external-link mx-md-1" (click)="detailShow(p)"></button>
-  
-
-</td>
-
-</tr>
-<app-user-details *ngIf="userShowDetail"></app-user-details>
-</tbody>
-</table>
-</div>
-</div>
-</div>
 </div>

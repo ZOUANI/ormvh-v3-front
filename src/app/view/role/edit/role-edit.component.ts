@@ -4,54 +4,58 @@ import {RoleVo} from '../../../controller/model/role.model';
 import {UserVo} from '../../../controller/model/User.model';
 
 @Component({
-  selector: 'app-role-edit',
-  templateUrl: './role-edit.component.html',
-  styleUrls: ['./role-edit.component.css']
+    selector: 'app-role-edit',
+    templateUrl: './role-edit.component.html',
+    styleUrls: ['./role-edit.component.css']
 })
 export class RoleEditComponent implements OnInit {
-  constructor(private roleService: RoleService) { }
-
-   ngOnInit(): void {
-       this.findAllupdatedBys();
-       this.findAllcreatedBys();
+    constructor(private roleService: RoleService) {
     }
 
-   get role(): RoleVo {
-    return this.roleService.role;
-  }
+    get role(): RoleVo {
+        return this.roleService.role;
+    }
 
-   get editableRoles(): Array<RoleVo> {
-    return this.roleService.editableRoles;
-   }
+    get editableRoles(): Array<RoleVo> {
+        return this.roleService.editableRoles;
+    }
 
-   set editableRoles(value: Array<RoleVo>) {
-    this.roleService.editableRoles = value;
-   }
+    set editableRoles(value: Array<RoleVo>) {
+        this.roleService.editableRoles = value;
+    }
 
-  get updatedBys(): Array<UserVo> {
-   return this.roleService.updatedBys;
-  }
-  get createdBys(): Array<UserVo> {
-   return this.roleService.createdBys;
-  }
+    get updatedBys(): Array<UserVo> {
+        return this.roleService.updatedBys;
+    }
 
-   editRole() {
-    this.roleService.editRole();
-  }
+    get createdBys(): Array<UserVo> {
+        return this.roleService.createdBys;
+    }
+
+    ngOnInit(): void {
+        this.findAllupdatedBys();
+        this.findAllcreatedBys();
+    }
+
+    editRole() {
+        this.roleService.editRole();
+    }
+
     findAllupdatedBys() {
-     this.roleService.findAllupdatedBys();
-    }
-    findAllcreatedBys() {
-     this.roleService.findAllcreatedBys();
+        this.roleService.findAllupdatedBys();
     }
 
-     findByauthority(ref: string) {
-      this.roleService.findByauthority(ref);
-     }
+    findAllcreatedBys() {
+        this.roleService.findAllcreatedBys();
+    }
+
+    findByauthority(ref: string) {
+        this.roleService.findByauthority(ref);
+    }
 
     editHide() {
-      this.roleService.editHide();
+        this.roleService.editHide();
     }
-    
+
 
 }

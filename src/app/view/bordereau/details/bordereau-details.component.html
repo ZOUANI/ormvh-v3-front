@@ -1,59 +1,59 @@
-<div class="modal" tabindex="-1" role="dialog" style="display: block;background-color: #000000bf;">
-  <div class="modal-dialog modal-dialog-scrollable" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">details of Bordereau </h5>
-        <button type="button" class="close" aria-label="Close" (click)="detailHide()">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <table class="table table-hover">
-          <thead class="thead-dark">
-            <th>Field</th>
-            <th>Value</th>
-          </thead>
-          <tbody>
-           <tr >
-             <td>id</td>
-             <td>{{bordereauDetail.id}} </td>
-           </tr>
-           <tr >
-             <td>libelle</td>
-             <td>{{bordereauDetail.libelle}} </td>
-           </tr>
-           <tr >
-             <td>description</td>
-             <td>{{bordereauDetail.description}} </td>
-           </tr>
-           <tr >
-             <td>nombrePieceJointe</td>
-             <td>{{bordereauDetail.nombrePieceJointe}} </td>
-           </tr>
-           <tr >
-             <td>dateBordereaux</td>
-             <td>{{bordereauDetail.dateBordereaux}} </td>
-           </tr>
-           <tr >
-             <td>createdAt</td>
-             <td>{{bordereauDetail.createdAt}} </td>
-           </tr>
-           <tr >
-             <td>updatedAt</td>
-             <td>{{bordereauDetail.updatedAt}} </td>
-           </tr>
-           <tr >
-             <td>createdBy</td>
-           <td>{{bordereauDetail.createdByVo.username}} </td>
-           </tr>
-           <tr >
-             <td>updatedBy</td>
-           <td>{{bordereauDetail.updatedByVo.username}} </td>
-           </tr>
-          </tbody>
-        </table>
-      </div>
+<div class="modal" role="dialog" style="display: block;background-color: #000000bf;" tabindex="-1">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">{{'COMMONS.DETAILS' | translate}}</h5>
+                <button (click)="detailHide()" aria-label="Close" class="close" type="button">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-hover">
+                    <thead class="thead-dark">
+                    <th>{{"COMMONS.FIELD" | translate}}</th>
+                    <th>{{"COMMONS.VALUE" | translate}}</th>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>{{"STATEMENT.ID" | translate}}</td>
+                        <td>{{bordereauDetail.id}} </td>
+                    </tr>
+                    <tr>
+                        <td>{{"STATEMENT.LABEL" | translate}}</td>
+                        <td>{{bordereauDetail.libelle}} </td>
+                    </tr>
+                    <tr>
+                        <td>{{"STATEMENT.DESCRIPTION" | translate}}</td>
+                        <td>{{bordereauDetail.description}} </td>
+                    </tr>
+                    <tr>
+                        <td>{{"STATEMENT.ATTACHMENTS_NUMBER" | translate}}</td>
+                        <td>{{bordereauDetail.nombrePieceJointe}} </td>
+                    </tr>
+                    <tr>
+                        <td>{{"STATEMENT.STATEMENT_DATE" | translate}}</td>
+                        <td>{{bordereauDetail.dateBordereaux}} </td>
+                    </tr>
+                    <tr>
+                        <td>{{"COMMONS.CREATED_AT" | translate}}</td>
+                        <td>{{bordereauDetail.createdAt}} </td>
+                    </tr>
+                    <tr>
+                        <td>{{"COMMONS.UPDATED_AT" | translate}}</td>
+                        <td>{{bordereauDetail.updatedAt}} </td>
+                    </tr>
+                    <tr>
+                        <td>{{"COMMONS.CREATED_BY" | translate}}</td>
+                        <td>{{bordereauDetail.createdByVo.username}} </td>
+                    </tr>
+                    <tr>
+                        <td>{{"COMMONS.UPDATED_BY" | translate}}</td>
+                        <td>{{bordereauDetail.updatedByVo.username}} </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
 
+        </div>
     </div>
-  </div>
 </div>

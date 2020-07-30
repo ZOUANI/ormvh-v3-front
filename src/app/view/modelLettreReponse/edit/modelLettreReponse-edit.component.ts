@@ -6,9 +6,9 @@ import {CategorieModelLettreReponseVo} from '../../../controller/model/Categorie
 import {FormBuilder, FormGroup} from '@angular/forms';
 
 @Component({
-  selector: 'app-modelLettreReponse-edit',
-  templateUrl: './modelLettreReponse-edit.component.html',
-  styleUrls: ['./modelLettreReponse-edit.component.css']
+    selector: 'app-modelLettreReponse-edit',
+    templateUrl: './modelLettreReponse-edit.component.html',
+    styleUrls: ['./modelLettreReponse-edit.component.css']
 })
 export class ModelLettreReponseEditComponent implements OnInit {
   constructor(private modelLettreReponseService: ModelLettreReponseService,
@@ -31,36 +31,32 @@ export class ModelLettreReponseEditComponent implements OnInit {
     return this.modelLettreReponseService.modelLettreReponse;
   }
 
-   get editableModelLettreReponses(): Array<ModelLettreReponseVo> {
-    return this.modelLettreReponseService.editableModelLettreReponses;
-   }
+    set editableModelLettreReponses(value: Array<ModelLettreReponseVo>) {
+        this.modelLettreReponseService.editableModelLettreReponses = value;
+    }
 
-   set editableModelLettreReponses(value: Array<ModelLettreReponseVo>) {
-    this.modelLettreReponseService.editableModelLettreReponses = value;
-   }
+    get categorieModelLettreReponses(): Array<CategorieModelLettreReponseVo> {
+        return this.modelLettreReponseService.categorieModelLettreReponses;
+    }
 
-  get categorieModelLettreReponses(): Array<CategorieModelLettreReponseVo> {
-   return this.modelLettreReponseService.categorieModelLettreReponses;
-  }
-  get createdBys(): Array<UserVo> {
-   return this.modelLettreReponseService.createdBys;
-  }
-  get updatedBys(): Array<UserVo> {
-   return this.modelLettreReponseService.updatedBys;
-  }
+    get createdBys(): Array<UserVo> {
+        return this.modelLettreReponseService.createdBys;
+    }
 
    editModelLettreReponse() {
        this.uploadFile();
    // this.modelLettreReponseService.editModelLettreReponse();
   }
     findAllcategorieModelLettreReponses() {
-     this.modelLettreReponseService.findAllcategorieModelLettreReponses();
+        this.modelLettreReponseService.findAllcategorieModelLettreReponses();
     }
+
     findAllcreatedBys() {
-     this.modelLettreReponseService.findAllcreatedBys();
+        this.modelLettreReponseService.findAllcreatedBys();
     }
+
     findAllupdatedBys() {
-     this.modelLettreReponseService.findAllupdatedBys();
+        this.modelLettreReponseService.findAllupdatedBys();
     }
 
      findBylibelle(ref: string) {

@@ -5,7 +5,9 @@ export class StatusVo {
   public updatedAt: string;
   public libelleArab: string;
   public code: string;
-  public id: string;
+    public color: string;
+
+    public id: string;
   public libelle: string;
      public createdAtMax: string ;
      public createdAtMin: string ;

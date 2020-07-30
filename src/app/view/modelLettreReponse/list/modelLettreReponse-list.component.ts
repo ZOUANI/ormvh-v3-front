@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ModelLettreReponseVo} from '../../../controller/model/modelLettreReponse.model';
 import {ModelLettreReponseService} from '../../../controller/service/ModelLettreReponse.service';
 import {UserVo} from '../../../controller/model/User.model';
@@ -7,9 +7,9 @@ import {MessageService} from 'primeng';
 import {LettreModel} from '../../../controller/model/lettre-model.model';
 import { saveAs } from 'file-saver';
 @Component({
-  selector: 'app-modelLettreReponse-list',
-  templateUrl: './modelLettreReponse-list.component.html',
-  styleUrls: ['./modelLettreReponse-list.component.css']
+    selector: 'app-modelLettreReponse-list',
+    templateUrl: './modelLettreReponse-list.component.html',
+    styleUrls: ['./modelLettreReponse-list.component.css']
 })
 export class ModelLettreReponselistComponent implements OnInit {
 
@@ -57,6 +57,9 @@ set modelLettreReponseSearch(value: ModelLettreReponseVo) {
   this.modelLettreReponseService.modelLettreReponseSearch = value ;
 }
 
+    set modelLettreReponseSearch(value: ModelLettreReponseVo) {
+        this.modelLettreReponseService.modelLettreReponseSearch = value;
+    }
 
 get modelLettreReponseShowDetail(): boolean  {
   return this.modelLettreReponseService.modelLettreReponseShowDetail;

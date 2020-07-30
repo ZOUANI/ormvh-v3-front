@@ -1,60 +1,68 @@
-<div class="modal" tabindex="-1" role="dialog" style="display: block;background-color: #000000bf;">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Create Status </h5>
-        <button type="button" class="close" aria-label="Close" (click)="createHide()">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-<div class="card col-md-12 mx-auto  p-md-2">
-    
-    <div class="card-body">
-        <div class="row">
-                <div class="col-md-6 py-2">
-                    <div class="p-grid ui-fluid">
-                        <label>createdAt</label>
-                        <p-calendar class="p-col-12" dateFormat="yy-mm-dd" [(ngModel)] = "status.createdAt"></p-calendar>
+<div class="modal" role="dialog" style="display: block;background-color: #000000bf;" tabindex="-1">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Create Status </h5>
+                <button (click)="createHide()" aria-label="Close" class="close" type="button">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="card col-md-12 mx-auto  p-md-2">
+
+                    <div class="card-body">
+                        <div class="row">
+<!--                            <div class="col-md-6 py-2">-->
+<!--                                <div class="p-grid ui-fluid">-->
+<!--                                    <label>createdAt</label>-->
+<!--                                    <p-calendar [(ngModel)]="status.createdAt" class="p-col-12"-->
+<!--                                                dateFormat="yy-mm-dd"></p-calendar>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="col-md-6 py-2">-->
+<!--                                <div class="p-grid ui-fluid">-->
+<!--                                    <label>updatedAt</label>-->
+<!--                                    <p-calendar [(ngModel)]="status.updatedAt" class="p-col-12"-->
+<!--                                                dateFormat="yy-mm-dd"></p-calendar>-->
+<!--                                </div>-->
+<!--                            </div>-->
+                            <div class="col-md-6 py-2">
+                                <label>libelleArab</label>
+                                <input [(ngModel)]="status.libelleArab" class="form-control" type="text">
+                            </div>
+                            <div class="col-md-6 py-2">
+                                <label>code</label>
+                                <input [(ngModel)]="status.code" class="form-control" type="text">
+                            </div>
+                            <div class="col-md-6 py-2">
+                                <label>libelle</label>
+                                <input [(ngModel)]="status.libelle" class="form-control" type="text">
+                            </div>
+                            <div class="col-md-6 py-2">
+                                <label>color</label>
+                                <input [(ngModel)]="status.color" class="form-control" type="color">
+                            </div>
+                        </div>
+<!--                        <div class="row">-->
+<!--                            <label>createdBy</label>-->
+<!--                            <select [(ngModel)]="status.createdByVo.username" class="form-control">-->
+<!--                                <option *ngFor="let p of createdBys" [ngValue]="p.username"-->
+<!--                                        value="{{p.username}}">{{p.username}}</option>-->
+<!--                            </select>-->
+<!--                        </div>-->
+<!--                        <div class="row">-->
+<!--                            <label>updatedBy</label>-->
+<!--                            <select [(ngModel)]="status.updatedByVo.username" class="form-control">-->
+<!--                                <option *ngFor="let p of updatedBys" [ngValue]="p.username"-->
+<!--                                        value="{{p.username}}">{{p.username}}</option>-->
+<!--                            </select>-->
+<!--                        </div>-->
+                        <div class="modal-footer">
+                            <button (click)="saveStatus()" class="form-control">Save</button>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-6 py-2">
-                    <div class="p-grid ui-fluid">
-                        <label>updatedAt</label>
-                        <p-calendar class="p-col-12" dateFormat="yy-mm-dd" [(ngModel)] = "status.updatedAt"></p-calendar>
-                    </div>
-                </div>
-                <div class="col-md-6 py-2">
-                    <label>libelleArab</label>
-                    <input type="text" class="form-control" [(ngModel)] = "status.libelleArab">
-                </div>
-                <div class="col-md-6 py-2">
-                    <label>code</label>
-                    <input type="text" class="form-control" [(ngModel)] = "status.code">
-                </div>
-                <div class="col-md-6 py-2">
-                    <label>libelle</label>
-                    <input type="text" class="form-control" [(ngModel)] = "status.libelle">
-                </div>
-        </div>
-                <div class="row" >
-                    <label>createdBy</label>
-                    <select class="form-control" [(ngModel)]="status.createdByVo.username" >
-                        <option *ngFor="let p of createdBys" [ngValue]="p.username" value="{{p.username}}">{{p.username}}</option>
-                    </select>
-                </div>
-                <div class="row" >
-                    <label>updatedBy</label>
-                    <select class="form-control" [(ngModel)]="status.updatedByVo.username" >
-                        <option *ngFor="let p of updatedBys" [ngValue]="p.username" value="{{p.username}}">{{p.username}}</option>
-                    </select>
-                </div>
-        <div class="modal-footer" >
-            <button class="form-control" (click)="saveStatus()" >Save</button>
+            </div>
         </div>
     </div>
 </div>
-       </div>
-	   </div>
-	   </div>
-	   </div>

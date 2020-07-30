@@ -21,7 +21,8 @@
         "EXPEDITOR_TYPE":"Expeditor type",
         "NATIONALITY":"Nationality",
         "GENDER":"Gender",
-        "DASHBOARD":"Statistic"
+        "DASHBOARD":"Statistic",
+        "RELANCE":"Relance"
     },
     "MAILING": {
         "MAILING": "Mailing",

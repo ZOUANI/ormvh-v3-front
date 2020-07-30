@@ -1,84 +1,91 @@
-
 <div class="container">
-  <div class="row">
-    <div id="accordion" class="col-12 my-3">
-      <div class="card">
-        <div class="card-header border-0 bg-white" id="headingSearch">
-          
-            <button class="btn btn-info  btn-sm fa fa-filter" data-toggle="collapse" data-target="#search" aria-expanded="true" aria-controls="search">
-              <h5 class="float-right">Search Forms</h5>
-            </button>
-         
+    <div class="row">
+        <div class="col-12 my-3" id="accordion">
+            <div class="card">
+                <div class="card-header border-0 bg-white" id="headingSearch">
+
+                    <button aria-controls="search" aria-expanded="true" class="btn btn-info  btn-sm fa fa-filter"
+                            data-target="#search" data-toggle="collapse">
+                        <h5 class="float-right">Search Forms</h5>
+                    </button>
+
+                </div>
+
+                <div aria-labelledby="headingSearch" class="collapse" data-parent="#accordion" id="search">
+                    <div class="card-body">
+                        <div class="container">
+                            <div class="row">
+                                <div class="form-row">
+
+                                    <div class="input-group  col-3  my-2">
+                                        <small class="text-muted col-12">id</small>
+                                        <input [(ngModel)]="sexeSearch.id" class="form-control col-12" placeholder="id"
+                                               type="text">
+                                    </div>
+                                    <div class="input-group  col-3  my-2">
+                                        <small class="text-muted col-12">libelle</small>
+                                        <input [(ngModel)]="sexeSearch.libelle" class="form-control col-12" placeholder="libelle"
+                                               type="text">
+                                    </div>
+                                    <div class="input-group  col-3  my-2">
+                                        <small class="text-muted col-12">libelleArab</small>
+                                        <input [(ngModel)]="sexeSearch.libelleArab" class="form-control col-12" placeholder="libelleArab"
+                                               type="text">
+                                    </div>
+                                </div>
+                            </div>
+                            <button (click)="findSexe(sexeSearch)"
+                                    class="btn btn-info btn-sm fa fa-search float-right px-5 py-2 my-4"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+    </div>
+    <div class="row">
+        <div class="card col-12">
+            <div class="card-header bg-transparent">
+                <div class="float-left px-1"><h5>List of sexes. </h5></div>
 
-        <div id="search" class="collapse" aria-labelledby="headingSearch" data-parent="#accordion">
-          <div class="card-body">
-            <div class="container">
-              <div class = "row">
-               <div class="form-row">
-   
-              <div class="input-group  col-3  my-2">
-<small class="text-muted col-12">id</small>
-<input type="text" class="form-control col-12" placeholder="id" [(ngModel)]="sexeSearch.id">
-             </div>
-              <div class="input-group  col-3  my-2">
-<small class="text-muted col-12">libelle</small>
-<input type="text" class="form-control col-12" placeholder="libelle" [(ngModel)]="sexeSearch.libelle">
-             </div>
-              <div class="input-group  col-3  my-2">
-<small class="text-muted col-12">libelleArab</small>
-<input type="text" class="form-control col-12" placeholder="libelleArab" [(ngModel)]="sexeSearch.libelleArab">
-             </div>
-              </div>    
-          </div>
-           <button class="btn btn-info btn-sm fa fa-search float-right px-5 py-2 my-4" (click)="findSexe(sexeSearch)"></button>
+                <button (click)="createShow()" class="btn btn-success btn-sm fa fa-plus float-right"> Create a new
+                    sexe
+                </button>
+
+            </div>
+            <div class="card-body table-responsive">
+
+                <table class="table table-hover col-md-12">
+                    <thead class="thead-dark">
+
+                    <th>id</th>
+                    <th>libelle</th>
+                    <th>libelleArab</th>
+                    <th>Actions</th>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let p of sexeListe">
+
+                        <td>{{p.id}}</td>
+                        <td>{{p.libelle}}</td>
+                        <td>{{p.libelleArab}}</td>
+
+
+                        <td>
+                            <button (click)="delete(p)" class="btn btn-danger btn-sm fa fa-trash mx-md-1"></button>
+                            <button (click)="detailShow(p)"
+                                    class="btn btn-warning btn-sm fa fa-external-link mx-md-1"></button>
+                            <button (click)="editShow(p)" class="btn btn-info btn-sm fa fa-pencil mx-md-1"></button>
+
+
+                        </td>
+
+                    </tr>
+                    <app-sexe-edit *ngIf="sexeShowEdit"></app-sexe-edit>
+                    <app-sexe-create *ngIf="sexeShowCreate"></app-sexe-create>
+                    <app-sexe-details *ngIf="sexeShowDetail"></app-sexe-details>
+                    </tbody>
+                </table>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
-</div>
-  </div>
-<div class="row">
-  <div class="card col-12">
-    <div class="card-header bg-transparent">
-    <div class="float-left px-1"> <h5>List of sexes. </h5></div>
-
-          <button class="btn btn-success btn-sm fa fa-plus float-right" (click)="createShow()"> Create a new sexe</button>
-          
-    </div>
-    <div class="card-body table-responsive">
-
-      <table class="table table-hover col-md-12">
-        <thead class="thead-dark">
-
-          <th>id</th>
-          <th>libelle</th>
-          <th>libelleArab</th>
-     <th>Actions</th>
-  </thead>
-  <tbody>
-  <tr *ngFor="let p of sexeListe">
-
-           <td>{{p.id}}</td>
-           <td>{{p.libelle}}</td>
-           <td>{{p.libelleArab}}</td>
- 
-
-<td><button class="btn btn-danger btn-sm fa fa-trash mx-md-1" (click)="delete(p)"></button>
-  <button class="btn btn-warning btn-sm fa fa-external-link mx-md-1" (click)="detailShow(p)"></button>
-    <button class="btn btn-info btn-sm fa fa-pencil mx-md-1" (click)="editShow(p)"></button>
-  
-  
-
-</td>
-
-</tr>
-  <app-sexe-edit *ngIf="sexeShowEdit"></app-sexe-edit>
-  <app-sexe-create *ngIf="sexeShowCreate"></app-sexe-create>
-<app-sexe-details *ngIf="sexeShowDetail"></app-sexe-details>
-</tbody>
-</table>
-</div>
-</div>
-</div>
 </div>

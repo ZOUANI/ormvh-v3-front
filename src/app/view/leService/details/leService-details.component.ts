@@ -1,49 +1,50 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {LeServiceVo} from '../../../controller/model/leService.model';
 import {LeServiceService} from '../../../controller/service/LeService.service';
 
 @Component({
-  selector: 'app-leService-details',
-  templateUrl: './leService-details.component.html',
-  styleUrls: ['./leService-details.component.css']
+    selector: 'app-leService-details',
+    templateUrl: './leService-details.component.html',
+    styleUrls: ['./leService-details.component.css']
 })
 
 export class LeServiceDetailsComponent implements OnInit {
 
-  constructor(private _leServiceService : LeServiceService) {}
+    constructor(private _leServiceService: LeServiceService) {
+    }
 
 
-   get leServiceService (): LeServiceService {
-    return this._leServiceService;
-  }
+    get leServiceService(): LeServiceService {
+        return this._leServiceService;
+    }
 
-  set leServiceService (value: LeServiceService) {
-    this._leServiceService = value ;
-  }
+    set leServiceService(value: LeServiceService) {
+        this._leServiceService = value;
+    }
 
-  get leServiceDetail (): LeServiceVo {
-    return this.leServiceService.leServiceDetail;
-}
+    get leServiceDetail(): LeServiceVo {
+        return this.leServiceService.leServiceDetail;
+    }
 
-  set leServiceDetail (value: LeServiceVo) {
-  this.leServiceService.leServiceDetail = value ;
-}
+    set leServiceDetail(value: LeServiceVo) {
+        this.leServiceService.leServiceDetail = value;
+    }
 
 
-get leServiceShowDetail (): boolean  {
-  return this.leServiceService.leServiceShowDetail;
-}
+    get leServiceShowDetail(): boolean {
+        return this.leServiceService.leServiceShowDetail;
+    }
 
-set leServiceShowDetail (value: boolean ) {
-  this.leServiceService.leServiceShowDetail = value ;
-}
+    set leServiceShowDetail(value: boolean) {
+        this.leServiceService.leServiceShowDetail = value;
+    }
 
-  ngOnInit(): void {
+    ngOnInit(): void {
 
-  }
+    }
 
-public detailHide(){
-       this.leServiceService.detailHide();
-}
+    public detailHide() {
+        this.leServiceService.detailHide();
+    }
 
 }

@@ -1,36 +1,38 @@
-<div class="modal" tabindex="-1" role="dialog" style="display: block;background-color: #000000bf;">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">edit CourrierServiceItem </h5>
-        <button type="button" class="close" aria-label="Close" (click)="editHide()">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-<div class="card col-md-12 mx-auto  p-md-2">
-   
-    <div class="card-body">
-        <div class="row">
+<div class="modal" role="dialog" style="display: block;background-color: #000000bf;" tabindex="-1">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">edit CourrierServiceItem </h5>
+                <button (click)="editHide()" aria-label="Close" class="close" type="button">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-                <div class="row m-md-2 p-md-1" >
-                    <label>courrier</label>
-                    <select class="form-control" [(ngModel)]="courrierServiceItem.courrierVo.idCourrier" >
-                        <option *ngFor="let p of courriers" [ngValue]="p.idCourrier" value="{{p.idCourrier}}">{{p.idCourrier}}</option>
-                    </select>
+            <div class="modal-body">
+                <div class="card col-md-12 mx-auto  p-md-2">
+
+                    <div class="card-body">
+                        <div class="row">
+                        </div>
+                        <div class="row m-md-2 p-md-1">
+                            <label>courrier</label>
+                            <select [(ngModel)]="courrierServiceItem.courrierVo.idCourrier" class="form-control">
+                                <option *ngFor="let p of courriers" [ngValue]="p.idCourrier"
+                                        value="{{p.idCourrier}}">{{p.idCourrier}}</option>
+                            </select>
+                        </div>
+                        <div class="row m-md-2 p-md-1">
+                            <label>service</label>
+                            <select [(ngModel)]="courrierServiceItem.serviceVo.title" class="form-control">
+                                <option *ngFor="let p of services" [ngValue]="p.title"
+                                        value="{{p.title}}">{{p.title}}</option>
+                            </select>
+                        </div>
+                        <div class="card-footer">
+                            <button (click)="editCourrierServiceItem()" class="form-control">Edit</button>
+                        </div>
+                    </div>
                 </div>
-                <div class="row m-md-2 p-md-1" >
-                    <label>service</label>
-                    <select class="form-control" [(ngModel)]="courrierServiceItem.serviceVo.title" >
-                        <option *ngFor="let p of services" [ngValue]="p.title" value="{{p.title}}">{{p.title}}</option>
-                    </select>
-                </div>
-        <div class="card-footer" >
-            <button class="form-control" (click)="editCourrierServiceItem()" >Edit</button>
+            </div>
         </div>
     </div>
 </div>
-       </div>
-	   </div>
-	   </div>
-	   </div>

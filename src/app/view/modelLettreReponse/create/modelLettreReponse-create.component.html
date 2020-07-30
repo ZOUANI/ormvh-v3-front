@@ -1,4 +1,4 @@
-    <app-modelLettreReponse></app-modelLettreReponse>
+<app-modelLettreReponse></app-modelLettreReponse>
 <div class="card col-md-10 mx-auto  p-md-2">
      <div class="card-header text-center font-weight-bold">Create ModelLettreReponses</div>
     <p-toast></p-toast>
@@ -8,9 +8,10 @@
                 <label>createdAt</label> <br>
                 <p-calendar class="p-col-12"  dateFormat="yy-mm-dd" [(ngModel)] = "modelLettreReponse.createdAt"></p-calendar>
             </div>
-            <div class="col-md-6 p-grid ui-fluid">
-                <label>updatedAt</label><br>
-                <p-calendar class="p-col-12"  dateFormat="yy-mm-dd" [(ngModel)] = "modelLettreReponse.updatedAt"></p-calendar>
+            <div class="col-md-6">
+                <label>code</label>
+                <input [(ngModel)]="modelLettreReponse.code" class="form-control" type="text">
+
             </div>
         </div>
         <br>-->
@@ -54,8 +55,9 @@
             </div>
             <div class="col-md-6">
                 <label>categorieModelLettreReponse</label>
-                <select class="form-control" [(ngModel)]="modelLettreReponse.categorieModelLettreReponseVo.libelle" >
-                    <option *ngFor="let p of categorieModelLettreReponses" [ngValue]="p.libelle" value="{{p.libelle}}">{{p.libelle}}</option>
+                <select [(ngModel)]="modelLettreReponse.categorieModelLettreReponseVo.libelle" class="form-control">
+                    <option *ngFor="let p of categorieModelLettreReponses" [ngValue]="p.libelle"
+                            value="{{p.libelle}}">{{p.libelle}}</option>
                 </select>
             </div>
         </div>
@@ -75,8 +77,8 @@
                    </div>
                </div>-->
         <br>
-        <div style="text-align: center" >
-            <button style="width: 60%" class="btn btn-outline-info" (click)="saveModelLettreReponse()" >Save</button>
+        <div style="text-align: center">
+            <button (click)="saveModelLettreReponse()" class="btn btn-outline-info" style="width: 60%">Save</button>
         </div>
     </div>
 </div>

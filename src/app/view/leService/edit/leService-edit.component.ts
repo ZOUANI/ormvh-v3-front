@@ -4,54 +4,58 @@ import {LeServiceVo} from '../../../controller/model/leService.model';
 import {UserVo} from '../../../controller/model/User.model';
 
 @Component({
-  selector: 'app-leService-edit',
-  templateUrl: './leService-edit.component.html',
-  styleUrls: ['./leService-edit.component.css']
+    selector: 'app-leService-edit',
+    templateUrl: './leService-edit.component.html',
+    styleUrls: ['./leService-edit.component.css']
 })
 export class LeServiceEditComponent implements OnInit {
-  constructor(private leServiceService: LeServiceService) { }
-
-   ngOnInit(): void {
-       this.findAllcreatedBys();
-       this.findAllupdatedBys();
+    constructor(private leServiceService: LeServiceService) {
     }
 
-   get leService(): LeServiceVo {
-    return this.leServiceService.leService;
-  }
+    get leService(): LeServiceVo {
+        return this.leServiceService.leService;
+    }
 
-   get editableLeServices(): Array<LeServiceVo> {
-    return this.leServiceService.editableLeServices;
-   }
+    get editableLeServices(): Array<LeServiceVo> {
+        return this.leServiceService.editableLeServices;
+    }
 
-   set editableLeServices(value: Array<LeServiceVo>) {
-    this.leServiceService.editableLeServices = value;
-   }
+    set editableLeServices(value: Array<LeServiceVo>) {
+        this.leServiceService.editableLeServices = value;
+    }
 
-  get createdBys(): Array<UserVo> {
-   return this.leServiceService.createdBys;
-  }
-  get updatedBys(): Array<UserVo> {
-   return this.leServiceService.updatedBys;
-  }
+    get createdBys(): Array<UserVo> {
+        return this.leServiceService.createdBys;
+    }
 
-   editLeService() {
-    this.leServiceService.editLeService();
-  }
+    get updatedBys(): Array<UserVo> {
+        return this.leServiceService.updatedBys;
+    }
+
+    ngOnInit(): void {
+        this.findAllcreatedBys();
+        this.findAllupdatedBys();
+    }
+
+    editLeService() {
+        this.leServiceService.editLeService();
+    }
+
     findAllcreatedBys() {
-     this.leServiceService.findAllcreatedBys();
-    }
-    findAllupdatedBys() {
-     this.leServiceService.findAllupdatedBys();
+        this.leServiceService.findAllcreatedBys();
     }
 
-     findBytitle(ref: string) {
-      this.leServiceService.findBytitle(ref);
-     }
+    findAllupdatedBys() {
+        this.leServiceService.findAllupdatedBys();
+    }
+
+    findBytitle(ref: string) {
+        this.leServiceService.findBytitle(ref);
+    }
 
     editHide() {
-      this.leServiceService.editHide();
+        this.leServiceService.editHide();
     }
-    
+
 
 }

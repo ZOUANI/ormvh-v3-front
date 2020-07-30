@@ -5,48 +5,52 @@ import {CourrierVo} from '../../../controller/model/Courrier.model';
 import {LeServiceVo} from '../../../controller/model/LeService.model';
 
 @Component({
-  selector: 'app-courrierServiceItem-create',
-  templateUrl: './courrierServiceItem-create.component.html',
-  styleUrls: ['./courrierServiceItem-create.component.css']
+    selector: 'app-courrierServiceItem-create',
+    templateUrl: './courrierServiceItem-create.component.html',
+    styleUrls: ['./courrierServiceItem-create.component.css']
 })
 export class CourrierServiceItemCreateComponent implements OnInit {
-  constructor(private courrierServiceItemService: CourrierServiceItemService) { }
-
-   ngOnInit(): void {
-      this.findAllcourriers();
-      this.findAllservices();
+    constructor(private courrierServiceItemService: CourrierServiceItemService) {
     }
 
-   get courrierServiceItem(): CourrierServiceItemVo {
-    return this.courrierServiceItemService.courrierServiceItem;
-  }
+    get courrierServiceItem(): CourrierServiceItemVo {
+        return this.courrierServiceItemService.courrierServiceItem;
+    }
 
-  get courriers(): Array<CourrierVo> {
-   return this.courrierServiceItemService.courriers;
-  }
-  get services(): Array<LeServiceVo> {
-   return this.courrierServiceItemService.services;
-  }
+    get courriers(): Array<CourrierVo> {
+        return this.courrierServiceItemService.courriers;
+    }
 
-   saveCourrierServiceItem() {
-    this.courrierServiceItemService.saveCourrierServiceItem();
-  }
+    get services(): Array<LeServiceVo> {
+        return this.courrierServiceItemService.services;
+    }
 
-   findAllcourriers() {
-     this.courrierServiceItemService.findAllcourriers();
-   }
-   findAllservices() {
-     this.courrierServiceItemService.findAllservices();
-   }
+    get courrierServiceItemShowCreate(): boolean {
+        return this.courrierServiceItemService.courrierServiceItemShowCreate;
+    }
 
-get courrierServiceItemShowCreate (): boolean  {
-  return this.courrierServiceItemService.courrierServiceItemShowCreate;
-}
+    set courrierServiceItemShowCreate(value: boolean) {
+        this.courrierServiceItemService.courrierServiceItemShowCreate = value;
+    }
 
-set courrierServiceItemShowCreate (value: boolean ) {
-  this.courrierServiceItemService.courrierServiceItemShowCreate = value ;
-}
-public createHide(){
-       this.courrierServiceItemService.createHide();
-}
+    ngOnInit(): void {
+        this.findAllcourriers();
+        this.findAllservices();
+    }
+
+    saveCourrierServiceItem() {
+        this.courrierServiceItemService.saveCourrierServiceItem();
+    }
+
+    findAllcourriers() {
+        this.courrierServiceItemService.findAllcourriers();
+    }
+
+    findAllservices() {
+        this.courrierServiceItemService.findAllservices();
+    }
+
+    public createHide() {
+        this.courrierServiceItemService.createHide();
+    }
 }
