@@ -3,6 +3,7 @@ import {ModelLettreReponseService} from '../../../controller/service/ModelLettre
 import {ModelLettreReponseVo} from '../../../controller/model/modelLettreReponse.model';
 import {UserVo} from '../../../controller/model/User.model';
 import {CategorieModelLettreReponseVo} from '../../../controller/model/CategorieModelLettreReponse.model';
+import {FormBuilder, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-modelLettreReponse-create',
@@ -10,13 +11,8 @@ import {CategorieModelLettreReponseVo} from '../../../controller/model/Categorie
   styleUrls: ['./modelLettreReponse-create.component.css']
 })
 export class ModelLettreReponseCreateComponent implements OnInit {
-  constructor(private modelLettreReponseService: ModelLettreReponseService) { }
-
-   ngOnInit(): void {
-      this.findAllcategorieModelLettreReponses();
-      this.findAllcreatedBys();
-      this.findAllupdatedBys();
-    }
+  constructor(private modelLettreReponseService: ModelLettreReponseService,
+              private formBuilder: FormBuilder) { }
 
    get modelLettreReponse(): ModelLettreReponseVo {
     return this.modelLettreReponseService.modelLettreReponse;
@@ -31,9 +27,21 @@ export class ModelLettreReponseCreateComponent implements OnInit {
   get updatedBys(): Array<UserVo> {
    return this.modelLettreReponseService.updatedBys;
   }
+    selectedFile: File;
+    uploadForm: FormGroup;
+
+   ngOnInit(): void {
+      this.findAllcategorieModelLettreReponses();
+      this.findAllcreatedBys();
+      this.findAllupdatedBys();
+      this.uploadForm = this.formBuilder.group({
+           profile: ['']
+       });
+    }
 
    saveModelLettreReponse() {
-    this.modelLettreReponseService.saveModelLettreReponse();
+       this.uploadFile();
+   // this.modelLettreReponseService.saveModelLettreReponse();
   }
 
    findAllcategorieModelLettreReponses() {
@@ -45,5 +53,19 @@ export class ModelLettreReponseCreateComponent implements OnInit {
    findAllupdatedBys() {
      this.modelLettreReponseService.findAllupdatedBys();
    }
-
+    public onFileChanged(event) {
+        this.selectedFile = event.target.files[0];
+        document.getElementById('lebel1').innerText = this.selectedFile.name;
+        this.modelLettreReponse.chemin =  this.selectedFile.name;
+        this.uploadForm.get('profile').setValue(this.selectedFile);
+        console.log(this.selectedFile);
+    }
+uploadFile() {
+    console.log(this.selectedFile);
+    this.uploadForm.get('profile').setValue(this.selectedFile);
+    console.log(this.selectedFile);
+    const formData = new FormData();
+    formData.append('file', this.uploadForm.get('profile').value);
+    this.modelLettreReponseService.uploadFile(formData);
+}
 }

@@ -1,5 +1,4 @@
      <app-modelLettreReponse></app-modelLettreReponse>
-
 <div class="container">
   <div class="row">
     <div id="accordion" class="col-12 my-3">
@@ -99,10 +98,42 @@
   <div class="card col-12">
     <div class="card-header bg-transparent">
     <div class="float-left px-1"> <h5>List of modelLettreReponses. </h5></div>
-
+        <p-dialog [(visible)]="display" style="width: 350px; height: 250px">
+            <p-header id="header">
+                <i class="fa fa-download" aria-hidden="true"></i>
+                {{header}}</p-header>
+            <p-progressBar *ngIf="show == true" [value]="value"></p-progressBar>
+            <div class="row">
+            <div class="col-md-2">
+                <img src="../assets/images/{{imageName}}" style="width: 140px;height: 100px"/>
+                <br>
+                <label>{{this.lettreModel}}</label>
+            </div>
+                <div class="col-md-10">
+                    <div class="row">
+                    <div class="col-md-2">
+                        <label>URL :</label>
+                    </div>
+                    <div class="col-md-10">
+                        <div>{{this.url + (this.chihaja)}}</div>
+                    </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label>TYPE :</label>
+                        </div>
+                        <div class="col-md-10">
+                            <div >{{letttreModelType}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p-footer>
+                <button type="button" style="margin-right: 300px" pButton icon="pi pi-check" (click)="display=false" label="ok"></button>
+            </p-footer>
+        </p-dialog>
     </div>
     <div class="card-body table-responsive">
-
       <table class="table table-hover table-bordered col-md-12" style="text-align: center">
         <thead class="thead-dark">
 
@@ -135,13 +166,10 @@
 
 <td><button class="btn btn-danger btn-sm fa fa-trash mx-md-1" style="margin-right: 5px" (click)="delete(p)"></button>
   <button class="btn btn-warning btn-sm fa fa-external-link mx-md-1" style="margin-right: 5px" (click)="detailShow(p)"></button>
-    <button class="btn btn-success btn-sm fa fa-download mx-md-1"></button>
-
-
+    <button class="btn btn-success btn-sm fa fa-download mx-md-1" (click)="download(p)"></button>
 </td>
-
 </tr>
-<app-modelLettreReponse-details *ngIf="modelLettreReponseShowDetail"></app-modelLettreReponse-details>
+  <app-modelLettreReponse-details *ngIf="modelLettreReponseShowDetail"></app-modelLettreReponse-details>
 </tbody>
 </table>
 </div>

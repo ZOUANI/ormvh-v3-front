@@ -1,5 +1,6 @@
 import {UserVo} from './User.model';
 import {CategorieModelLettreReponseVo} from './CategorieModelLettreReponse.model';
+import {LettreModel} from './lettre-model.model';
 
 export class ModelLettreReponseVo {
   public createdAt: string;
@@ -7,6 +8,7 @@ export class ModelLettreReponseVo {
   public libelleArab: string;
   public code: string;
   public chemin: string;
+  public lettreModel: LettreModel = new LettreModel();
   public id: string;
   public libelle: string;
      public createdAtMax: string ;
