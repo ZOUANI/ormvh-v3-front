@@ -57,10 +57,6 @@ set modelLettreReponseSearch(value: ModelLettreReponseVo) {
   this.modelLettreReponseService.modelLettreReponseSearch = value ;
 }
 
-    set modelLettreReponseSearch(value: ModelLettreReponseVo) {
-        this.modelLettreReponseService.modelLettreReponseSearch = value;
-    }
-
 get modelLettreReponseShowDetail(): boolean  {
   return this.modelLettreReponseService.modelLettreReponseShowDetail;
 }
@@ -154,7 +150,7 @@ header: string;
               clearInterval(interval);
           }
       }, 1000);
-      this.url = 'C:/Users/hp/Desktop/PROJET ZOUANI/ormvh-v3-back/';
+      this.url = 'ormvh-v3-back/';
   }
    delete( pojo: ModelLettreReponseVo ) {
     this.modelLettreReponseService.delete(pojo);

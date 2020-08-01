@@ -137,7 +137,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { LinkedCourriersComponent } from './view/courrier/linked/linked-courriers.component';
 import { CourrierRedirectionComponent } from './view/courrier/redirection/courrier-redirection.component';
 import {TableModule} from 'primeng/table';
-import {FileUploadModule, MessageService, ToastModule} from 'primeng';
+import {FileUploadModule, MessageService, ProgressBarModule, ToastModule} from 'primeng';
 
 export function httpLoaderFactory(http: HttpClient){
     return new TranslateHttpLoader(http);
@@ -281,7 +281,9 @@ export function httpLoaderFactory(http: HttpClient){
         ChartModule,
         DialogModule,
         AccordionModule,
-        TableModule
+        TableModule,
+        ProgressBarModule,
+        ToastModule
     ],
     providers: [
         {

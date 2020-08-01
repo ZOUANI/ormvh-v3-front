@@ -13,8 +13,26 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 export class ModelLettreReponseEditComponent implements OnInit {
   constructor(private modelLettreReponseService: ModelLettreReponseService,
               private formBuilder: FormBuilder) { }
+    get editableModelLettreReponses(): Array<ModelLettreReponseVo> {
+        return this.modelLettreReponseService.editableModelLettreReponses;
+    }
+    set editableModelLettreReponses(value: Array<ModelLettreReponseVo>) {
+        this.modelLettreReponseService.editableModelLettreReponses = value;
+    }
+
+    get categorieModelLettreReponses(): Array<CategorieModelLettreReponseVo> {
+        return this.modelLettreReponseService.categorieModelLettreReponses;
+    }
+
+    get createdBys(): Array<UserVo> {
+        return this.modelLettreReponseService.createdBys;
+    }
+    get modelLettreReponse(): ModelLettreReponseVo {
+        return this.modelLettreReponseService.modelLettreReponse;
+    }
     selectedFile: File;
     uploadForm: FormGroup;
+    dispnible: boolean;
    ngOnInit(): void {
        this.uploadForm = this.formBuilder.group({
            profile: ['']
@@ -26,21 +44,6 @@ export class ModelLettreReponseEditComponent implements OnInit {
     }
     findAll() {
         this.modelLettreReponseService.findAll();
-    }
-   get modelLettreReponse(): ModelLettreReponseVo {
-    return this.modelLettreReponseService.modelLettreReponse;
-  }
-
-    set editableModelLettreReponses(value: Array<ModelLettreReponseVo>) {
-        this.modelLettreReponseService.editableModelLettreReponses = value;
-    }
-
-    get categorieModelLettreReponses(): Array<CategorieModelLettreReponseVo> {
-        return this.modelLettreReponseService.categorieModelLettreReponses;
-    }
-
-    get createdBys(): Array<UserVo> {
-        return this.modelLettreReponseService.createdBys;
     }
 
    editModelLettreReponse() {
@@ -69,19 +72,18 @@ export class ModelLettreReponseEditComponent implements OnInit {
         this.uploadForm.get('profile').setValue(this.selectedFile);
         console.log(this.selectedFile);
     }
-    dispnible: boolean;
     uploadFile() {
-       if(this.selectedFile === undefined){
+       if (this.selectedFile === undefined) {
            this.dispnible = false;
        } else {
            this.dispnible = true;
        }
-           console.log(this.selectedFile);
-           this.uploadForm.get('profile').setValue(this.selectedFile);
-           console.log(this.selectedFile);
-           const formData = new FormData();
-           formData.append('file', this.uploadForm.get('profile').value);
-           this.modelLettreReponseService.uploadFileEdit(formData, this.dispnible);
+       console.log(this.selectedFile);
+       this.uploadForm.get('profile').setValue(this.selectedFile);
+       console.log(this.selectedFile);
+       const formData = new FormData();
+       formData.append('file', this.uploadForm.get('profile').value);
+       this.modelLettreReponseService.uploadFileEdit(formData, this.dispnible);
     }
 
 }
