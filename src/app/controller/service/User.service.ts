@@ -276,6 +276,7 @@ export class UserService {
                         title: 'Le mot de passe a été changé, Veuillez réconnecter',
                         showConfirmButton: true
                     });
+                    this.userPasswordReset = new UserVo();
                     this.authService.logout();
                     this.router.navigate(["login"]);
                 }
