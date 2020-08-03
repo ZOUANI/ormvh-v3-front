@@ -7,3 +7,28 @@
     transform: translate(-50%, -50%);
 }
 
+.mat-form-field {
+    width: 100%;
+}
+
+.images {
+    background-image: url("/assets/images/back1.jpg");
+    /* Mumkiin tbddl back1 w tddir back2 wlla back3 w chuuf lli 3jbattk  */
+    position: relative;
+}
+
+.mat-card {
+    margin-bottom: 70px;
+}
+
+.signin-btn:active:hover:focus {
+    border: 0 transparent;
+}
+
+@media (max-width: 768px) {
+    .fs {
+        display: none;
+    }
+}
+
+
