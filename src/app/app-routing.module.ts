@@ -91,6 +91,7 @@ import {DashboardComponent} from './view/dashboard/dashboard.component';
 import {LoginComponent} from './view/login/login.component';
 import {CreateExpeditorComponent} from "./view/courrier/createExpeditor/createExpeditor.component";
 import { CourrierRedirectionComponent } from './view/courrier/redirection/courrier-redirection.component';
+import {PasswordResetComponent} from './view/password-reset/password-reset.component';
 
 const routes: Routes = [
         {
@@ -269,6 +270,7 @@ const routes: Routes = [
 
 
         {path: 'login', component: LoginComponent},
+        {path: 'resetPassword', component: PasswordResetComponent},
         {path: '', redirectTo: '/login', pathMatch: 'full'},
     ]
 ;

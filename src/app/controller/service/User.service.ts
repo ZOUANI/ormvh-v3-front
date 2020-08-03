@@ -6,6 +6,7 @@ import {Observable} from 'rxjs';
 import {RoleService} from './Role.service';
 import Swal from 'sweetalert2';
 import {Router} from '@angular/router';
+import {AuthenticationService} from './auth/authentication.service';
 
 @Injectable({
     providedIn: 'root'
@@ -13,9 +14,9 @@ import {Router} from '@angular/router';
 export class UserService {
 
 
-    constructor(private http: HttpClient, private roleService: RoleService , private router : Router) {
+    constructor(private http: HttpClient, private roleService: RoleService , private router : Router , private authService : AuthenticationService) {
     }
-
+    public userPasswordReset = new UserVo();
     public userToUpdate = new UserVo();
 
     private _userDetail: UserVo = new UserVo();
@@ -260,5 +261,35 @@ export class UserService {
 
         this.userShowDetail = false;
         this.userDetail = null;
+    }
+
+    public resetPassword(){
+        this.userPasswordReset.username = this.authService.authenticatedUser.username;
+        this.http.post<any>('http://localhost:8080/generated/user/password-reset',
+                            this.userPasswordReset
+        ).subscribe(
+            data=>{
+                if (data == 1) {
+                    Swal.fire({
+                        position: 'top',
+                        icon: 'success',
+                        title: 'Le mot de passe a été changé, Veuillez réconnecter',
+                        showConfirmButton: true
+                    });
+                    this.authService.logout();
+                    this.router.navigate(["login"]);
+                }
+                if (data == -1) {
+                    Swal.fire({
+                        position: 'top',
+                        icon: 'warning',
+                        title: 'mot de passe non valide, Veuillez réessayer',
+                        showConfirmButton: true
+                    });
+                }
+            },error1 => {
+                console.log(error1);
+            }
+        );
     }
 }
