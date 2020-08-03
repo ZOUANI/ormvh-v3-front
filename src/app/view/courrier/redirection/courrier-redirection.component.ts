@@ -99,16 +99,69 @@ import { StatusVo } from 'src/app/controller/model/status.model';
             for(let courrier of courriers){
                 if(!this.courrierSelected.includes(courrier)){
                     this.courrierSelected.push(courrier);
-                  console.log("zid");
                 }
             }
         }
     }
+    selectOrDeslect(courrier:CourrierVo){
+        let index = this.courrierSelected.indexOf(courrier);
+        if(index<0){
+            this.courrierSelected.push(courrier);
+        }
+        else{
+            this.courrierSelected.splice(index,1);
+        }
+            
+    }
 
-    
-
+    exist(courrier: CourrierVo): boolean {
+        for (let item of  this.courrierSelected) {
+            if (item.idCourrier == courrier.idCourrier) {
+                return true;
+            }
+        }
+        return false;
+    }
+     
+    selectAllService(service:LeServiceVo){
+      
+        if(!this.isAllServiceSelected(service)){
+            for (const courrier of this.courriersService.get(service)) {
+                if(!this.exist(courrier))
+                   this.courrierSelected.push(courrier);
+            }
+        }
+    }
+    isAllServiceSelected(service:LeServiceVo):boolean{
+        for (const courrier of this.courriersService.get(service)) {
+            if(!this.exist(courrier))
+            return false;
+        }
+        return true;
+    }
+    deselectAllService(service:LeServiceVo){
+        for (const courrier of this.courriersService.get(service)) {
+            let index = this.courrierSelected.indexOf(courrier);
+                this.courrierSelected.splice(index,1);
+        }
+    }
+    allSelected():boolean{
+        for(let courriers of this.courriersService.values()){
+            for(let courrier of courriers){
+                if(!this.courrierSelected.includes(courrier)){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
     selectOrDeselectAll(){
+        if(!this.allSelected())
         this.selectAll();
+        else{
+            this.courrierSelected = new Array<CourrierVo>();
+        }
+
 
     //  if(this.selectAllBolean){
     //         this.courrierSelected = new Array<CourrierVo>();
@@ -128,16 +181,7 @@ import { StatusVo } from 'src/app/controller/model/status.model';
     }
 
   
-    select(courrier:CourrierVo){
-        let index = this.courrierSelected.indexOf(courrier);
-        if(index<0){
-            this.courrierSelected.push(courrier);
-        }
-        else{
-            this.courrierSelected.splice(index,1);
-        }
-    }
-
+   
     sendEmail(){
         console.log(this.courrierSelected);
         this.courrierService.sendEmail(this.email,this.subject,this.courrierSelected);
@@ -150,6 +194,8 @@ import { StatusVo } from 'src/app/controller/model/status.model';
         });
     }
     findCourriers(){
-        this.courrierService.findCourrierByRelance(this.courrierCriteria)
+        console.log(this.courrierSelected);
+
+       // this.courrierService.findCourrierByRelance(this.courrierCriteria)
     }
   }
