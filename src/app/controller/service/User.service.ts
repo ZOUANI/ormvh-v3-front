@@ -292,4 +292,32 @@ export class UserService {
             }
         );
     }
+
+    public initPassword(){
+        this.http.post<any>('http://localhost:8080/generated/user/init-password/'+this.userToUpdate.username,null).subscribe(
+            data=>{
+                if (data != null) {
+                    Swal.fire({
+                        position: 'top',
+                        icon: 'success',
+                        title: 'password changed ',
+                        showConfirmButton: true
+                    });
+
+                }
+                if (data == null) {
+                    Swal.fire({
+                        position: 'top',
+                        icon: 'warning',
+                        title: 'cannot init password',
+                        showConfirmButton: true
+                    });
+                }
+            },error1 => {
+                console.log(error1);
+            }
+        );
+    }
+
+
 }
