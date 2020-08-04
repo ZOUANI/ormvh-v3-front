@@ -1,4 +1,6 @@
 import {Component, OnInit,ViewEncapsulation} from '@angular/core';
+import { DatePipe } from '@angular/common'
+
 import { CourrierVo } from 'src/app/controller/model/Courrier.model';
 import { TypeCourrierService } from 'src/app/controller/service/TypeCourrier.service';
 import { CourrierService } from 'src/app/controller/service/Courrier.service';
@@ -14,81 +16,83 @@ import { StatusVo } from 'src/app/controller/model/status.model';
   export class CourrierRedirectionComponent implements OnInit {
   
 
-    constructor(private courrierService: CourrierService,private typeCourrierService: TypeCourrierService){
+    constructor(private courrierService: CourrierService,private typeCourrierService: TypeCourrierService,private datepipe: DatePipe){
 
     }
     
     courrierCriteria:CourrierVo = new CourrierVo();
     typeCourrierOption: TypeCourrierVo[];
     courrierSelected:CourrierVo[] = [];
+     currentDate :Date = new Date();
+     date:Date = new Date();
     subject:string;
     email:string;
     showEmailDialog:boolean = false;
     selectAllBolean:boolean = false;
         ngOnInit(): void {
         
-        this.courriersService = new Map<LeServiceVo ,Array<CourrierVo>>();
+        this.courriersService = new Map<string ,Array<CourrierVo>>();
         
-        let courrierrs:CourrierVo[] = new Array<CourrierVo>();
-              
-              let courrier = new CourrierVo();
-        courrier.subject = "lorem 1 lorem lorema ldjsnnzc ajda da";
-        courrier.id = '1';
-        courrier.idCourrier ="0001-2020";
-        courrier.dateRelance = "27/07/2020";
-        courrier.statusVo = new StatusVo();
-        courrier.statusVo.libelle = "Ouvert";
-        courrierrs.push(courrier);
-        courrier = new CourrierVo();
-        courrier.subject = "lorem 2 lorem lorema ldjsnnzc ajda da";
-        courrier.id = '2';
-        courrier.idCourrier ="0002-2020";
-        courrier.dateRelance = "27/07/2020";
-        courrier.statusVo = new StatusVo();
-        courrier.statusVo.libelle = "Ouvert";
-        courrierrs.push(courrier);
-        courrier = new CourrierVo();
-        courrier.subject = "lorem 3 lorem lorema ldjsnnzc ajda da";
-        courrier.id = '3';
-        courrier.idCourrier ="0003-2020";
-        courrier.dateRelance = "27/07/2020";
-        courrier.statusVo = new StatusVo();
-        courrier.statusVo.libelle = "Ouvert";
-        courrierrs.push(courrier);
-        courrier = new CourrierVo();
+    //     let courrierrs:CourrierVo[] = new Array<CourrierVo>();
+      
+    //           let courrier = new CourrierVo();
+    //     courrier.subject = "lorem 1 lorem lorema ldjsnnzc ajda da";
+    //     courrier.id = '1';
+    //     courrier.idCourrier ="0001-2020";
+    //     courrier.dateRelance = "27/07/2020";
+    //     courrier.statusVo = new StatusVo();
+    //     courrier.statusVo.libelle = "Ouvert";
+    //     courrierrs.push(courrier);
+    //     courrier = new CourrierVo();
+    //     courrier.subject = "lorem 2 lorem lorema ldjsnnzc ajda da";
+    //     courrier.id = '2';
+    //     courrier.idCourrier ="0002-2020";
+    //     courrier.dateRelance = "27/07/2020";
+    //     courrier.statusVo = new StatusVo();
+    //     courrier.statusVo.libelle = "Ouvert";
+    //     courrierrs.push(courrier);
+    //     courrier = new CourrierVo();
+    //     courrier.subject = "lorem 3 lorem lorema ldjsnnzc ajda da";
+    //     courrier.id = '3';
+    //     courrier.idCourrier ="0003-2020";
+    //     courrier.dateRelance = "27/07/2020";
+    //     courrier.statusVo = new StatusVo();
+    //     courrier.statusVo.libelle = "Ouvert";
+    //     courrierrs.push(courrier);
+    //     courrier = new CourrierVo();
 
-        let service = new LeServiceVo();
-        service.title = "service 1"
-       this.courriersService.set(service,courrierrs);
+    //     let service = new LeServiceVo();
+    //     service.title = "service 1"
+    //    this.courriersService.set(service,courrierrs);
 
-       courrierrs = new Array<CourrierVo>();
+    //    courrierrs = new Array<CourrierVo>();
      
-       courrier.subject = "lorem 4 lorem lorema ldjsnnzc ajda da";
-       courrier.id = '4';
-       courrier.idCourrier ="0004-2020";
-       courrier.dateRelance = "27/07/2020";
-       courrier.statusVo = new StatusVo();
-       courrier.statusVo.libelle = "Ouvert";
-       courrierrs.push(courrier);
-       courrier = new CourrierVo();
-       courrier.subject = "lorem 5 lorem lorema ldjsnnzc ajda da";
-       courrier.id = '5';
-       courrier.idCourrier ="0005-2020";
-       courrier.dateRelance = "27/07/2020";
-       courrier.statusVo = new StatusVo();
-       courrier.statusVo.libelle = "Ouvert";
-       courrierrs.push(courrier);
-       courrier = new CourrierVo();
-       courrier.subject = "lorem 6 lorem lorema ldjsnnzc ajda da";
-       courrier.id = '6';
-       courrier.idCourrier ="0006-2020";
-       courrier.dateRelance = "27/07/2020";
-       courrier.statusVo = new StatusVo();
-       courrier.statusVo.libelle = "Ouvert";
-       courrierrs.push(courrier);
-        service = new LeServiceVo();
-        service.title = "service 2"
-       this.courriersService.set(service,courrierrs);
+    //    courrier.subject = "lorem 4 lorem lorema ldjsnnzc ajda da";
+    //    courrier.id = '4';
+    //    courrier.idCourrier ="0004-2020";
+    //    courrier.dateRelance = "27/07/2020";
+    //    courrier.statusVo = new StatusVo();
+    //    courrier.statusVo.libelle = "Ouvert";
+    //    courrierrs.push(courrier);
+    //    courrier = new CourrierVo();
+    //    courrier.subject = "lorem 5 lorem lorema ldjsnnzc ajda da";
+    //    courrier.id = '5';
+    //    courrier.idCourrier ="0005-2020";
+    //    courrier.dateRelance = "27/07/2020";
+    //    courrier.statusVo = new StatusVo();
+    //    courrier.statusVo.libelle = "Ouvert";
+    //    courrierrs.push(courrier);
+    //    courrier = new CourrierVo();
+    //    courrier.subject = "lorem 6 lorem lorema ldjsnnzc ajda da";
+    //    courrier.id = '6';
+    //    courrier.idCourrier ="0006-2020";
+    //    courrier.dateRelance = "27/07/2020";
+    //    courrier.statusVo = new StatusVo();
+    //    courrier.statusVo.libelle = "Ouvert";
+    //    courrierrs.push(courrier);
+    //     service = new LeServiceVo();
+    //     service.title = "service 2"
+    //    this.courriersService.set(service,courrierrs);
 
        this.findTypeCourrier();
    
@@ -123,7 +127,7 @@ import { StatusVo } from 'src/app/controller/model/status.model';
         return false;
     }
      
-    selectAllService(service:LeServiceVo){
+    selectAllService(service:string){
       
         if(!this.isAllServiceSelected(service)){
             for (const courrier of this.courriersService.get(service)) {
@@ -132,20 +136,22 @@ import { StatusVo } from 'src/app/controller/model/status.model';
             }
         }
     }
-    isAllServiceSelected(service:LeServiceVo):boolean{
+    isAllServiceSelected(service:string):boolean{
         for (const courrier of this.courriersService.get(service)) {
             if(!this.exist(courrier))
             return false;
         }
         return true;
     }
-    deselectAllService(service:LeServiceVo){
+    deselectAllService(service:string){
         for (const courrier of this.courriersService.get(service)) {
             let index = this.courrierSelected.indexOf(courrier);
                 this.courrierSelected.splice(index,1);
         }
     }
     allSelected():boolean{
+        if(!this.courriersService || this.courriersService.size==0)
+        return false;
         for(let courriers of this.courriersService.values()){
             for(let courrier of courriers){
                 if(!this.courrierSelected.includes(courrier)){
@@ -173,10 +179,10 @@ import { StatusVo } from 'src/app/controller/model/status.model';
     //      this.selectAllBolean = true;
     //  }
     }
-    get courriersService():Map<LeServiceVo ,Array<CourrierVo>>{
+    get courriersService():Map<string ,Array<CourrierVo>>{
         return this.courrierService.courriersService;
     }
-    set courriersService(value:Map<LeServiceVo ,Array<CourrierVo>>){
+    set courriersService(value:Map<string ,Array<CourrierVo>>){
         this.courrierService.courriersService = value;
     }
 
@@ -184,18 +190,19 @@ import { StatusVo } from 'src/app/controller/model/status.model';
    
     sendEmail(){
         console.log(this.courrierSelected);
-        this.courrierService.sendEmail(this.email,this.subject,this.courrierSelected);
+        this.courrierService.sendListCourriers(this.courrierSelected);
     }
 
     findTypeCourrier(){
         this.typeCourrierService.findAlltypeCourriers().subscribe(data=>{
             this.typeCourrierOption = data;
             this.courrierCriteria.typeCourrierVo = this.typeCourrierOption[0];
+              this.courrierCriteria.dateRelance =  this.datepipe.transform(this.date, 'yyyy-MM-dd'); 
+        this.courrierService.findCourrierByRelance(this.courrierCriteria)
         });
     }
     findCourriers(){
-        console.log(this.courrierSelected);
-
-       // this.courrierService.findCourrierByRelance(this.courrierCriteria)
+        this.courrierCriteria.dateRelance =  this.datepipe.transform(this.date, 'yyyy-MM-dd'); 
+        this.courrierService.findCourrierByRelance(this.courrierCriteria)
     }
   }

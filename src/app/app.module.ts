@@ -137,6 +137,8 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { LinkedCourriersComponent } from './view/courrier/linked/linked-courriers.component';
 import { CourrierRedirectionComponent } from './view/courrier/redirection/courrier-redirection.component';
 import {TableModule} from 'primeng/table';
+import { CourrierEmailComponent } from './view/courrier/email/courrier-email.component';
+import { DatePipe } from '@angular/common';
 
 export function httpLoaderFactory(http: HttpClient){
     return new TranslateHttpLoader(http);
@@ -256,7 +258,8 @@ export function httpLoaderFactory(http: HttpClient){
         LoginComponent,
         CreateExpeditorComponent,
         LinkedCourriersComponent,
-        CourrierRedirectionComponent
+        CourrierRedirectionComponent,
+        CourrierEmailComponent
     ],
     imports: [
         BrowserModule,
@@ -292,6 +295,7 @@ export function httpLoaderFactory(http: HttpClient){
             multi: true
         },
         AuthGuard,
+        DatePipe
     ],
     bootstrap: [AppComponent]
 })
