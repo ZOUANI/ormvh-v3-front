@@ -35,7 +35,11 @@ export class AuthenticationService {
                 let jwt = resp.headers.get('Authorization');
                 this.saveToken(jwt);
                 this.loadInfos();
-                this.router.navigate(['courrier/list']);
+                if (this.authenticatedUser.passwordChanged) {
+                    this.router.navigate(['courrier/list']);
+                }else {
+                    this.router.navigate(['resetPassword']);
+                }
             }, error1 => {
                 console.log(error1)
             }

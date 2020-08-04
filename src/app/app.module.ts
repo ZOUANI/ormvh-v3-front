@@ -139,8 +139,10 @@ import { CourrierRedirectionComponent } from './view/courrier/redirection/courri
 import {TableModule} from 'primeng/table';
 import {FileUploadModule, MessageService, ProgressBarModule, ToastModule} from 'primeng';
 
+import { DatePipe } from '@angular/common';
+import { PasswordResetComponent } from './view/password-reset/password-reset.component';
+import { CourrierEmailComponent } from './view/courrier/email/courrier-email.component';
 export function httpLoaderFactory(http: HttpClient){
-    return new TranslateHttpLoader(http);
 }
 @NgModule({
     declarations: [
@@ -257,7 +259,9 @@ export function httpLoaderFactory(http: HttpClient){
         LoginComponent,
         CreateExpeditorComponent,
         LinkedCourriersComponent,
-        CourrierRedirectionComponent
+        CourrierRedirectionComponent,
+        CourrierEmailComponent,
+        PasswordResetComponent
     ],
     imports: [
         FormsModule,
@@ -298,6 +302,7 @@ export function httpLoaderFactory(http: HttpClient){
         },
         MessageService,
         AuthGuard,
+        DatePipe
     ],
     bootstrap: [AppComponent]
 })
