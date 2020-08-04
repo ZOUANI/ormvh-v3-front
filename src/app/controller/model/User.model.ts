@@ -16,6 +16,10 @@ export class UserVo {
     public createdAtMin: string;
     public updatedAtMax: string;
     public updatedAtMin: string;
+
+    public  newPassword: string;
+    public  confirmPassword: string;
+
     private _createdByVo: UserVo;
     private _updatedByVo: UserVo;
     public rolesVo: Array<RoleVo> = new Array<RoleVo>();

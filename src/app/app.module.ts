@@ -137,11 +137,10 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { LinkedCourriersComponent } from './view/courrier/linked/linked-courriers.component';
 import { CourrierRedirectionComponent } from './view/courrier/redirection/courrier-redirection.component';
 import {TableModule} from 'primeng/table';
-import { CourrierEmailComponent } from './view/courrier/email/courrier-email.component';
 import { DatePipe } from '@angular/common';
-
+import { PasswordResetComponent } from './view/password-reset/password-reset.component';
+import { CourrierEmailComponent } from './view/courrier/email/courrier-email.component';
 export function httpLoaderFactory(http: HttpClient){
-    return new TranslateHttpLoader(http);
 }
 @NgModule({
     declarations: [
@@ -259,7 +258,8 @@ export function httpLoaderFactory(http: HttpClient){
         CreateExpeditorComponent,
         LinkedCourriersComponent,
         CourrierRedirectionComponent,
-        CourrierEmailComponent
+        CourrierEmailComponent,
+        PasswordResetComponent
     ],
     imports: [
         BrowserModule,

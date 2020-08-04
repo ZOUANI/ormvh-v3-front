@@ -102,6 +102,9 @@ export class UserEditComponent implements OnInit {
         return false;
     }
 
+    initPassword(){
+        return this.userService.initPassword();
+    }
 
 
 }
