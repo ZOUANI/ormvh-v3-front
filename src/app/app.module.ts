@@ -141,6 +141,7 @@ import { DatePipe } from '@angular/common';
 import { PasswordResetComponent } from './view/password-reset/password-reset.component';
 import { CourrierEmailComponent } from './view/courrier/email/courrier-email.component';
 export function httpLoaderFactory(http: HttpClient){
+    return new TranslateHttpLoader(http);
 }
 @NgModule({
     declarations: [
