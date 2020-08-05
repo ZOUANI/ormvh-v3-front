@@ -17,10 +17,7 @@ export class UserlistComponent implements OnInit {
         this.findAll();
         this.findAllcreatedBys();
         this.findAllupdatedBys();
-        this.userSearch.enabled = false;
-        this.userSearch.accountNonExpired = false;
-        this.userSearch.accountNonLocked = false;
-        this.userSearch.credentialsNonExpired = false;
+        this.initBooleanParams();
     }
 
 
@@ -124,7 +121,15 @@ export class UserlistComponent implements OnInit {
 
     initSearch(){
         this.userSearch = new UserVo();
+        this.initBooleanParams();
         this.userService.findAll();
+    }
+
+    initBooleanParams(){
+        this.userSearch.enabled = false;
+        this.userSearch.accountNonExpired = false;
+        this.userSearch.accountNonLocked = false;
+        this.userSearch.credentialsNonExpired = false;
     }
 
 
