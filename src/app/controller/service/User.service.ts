@@ -199,7 +199,8 @@ export class UserService {
         this.http.post<Array<UserVo>>('http://localhost:8080/generated/user/search/', pojo).subscribe(
             value => {
                 this.userListe = value;
-            });
+            }
+            );
     }
 
     public detailShow(pojo: UserVo) {

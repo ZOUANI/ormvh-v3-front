@@ -10,8 +10,19 @@ import {Router} from '@angular/router';
 })
 export class UserlistComponent implements OnInit {
 
-    constructor(private _userService: UserService , private router : Router) {
+    constructor(private _userService: UserService, private router: Router) {
     }
+
+    ngOnInit(): void {
+        this.findAll();
+        this.findAllcreatedBys();
+        this.findAllupdatedBys();
+        this.userSearch.enabled = false;
+        this.userSearch.accountNonExpired = false;
+        this.userSearch.accountNonLocked = false;
+        this.userSearch.credentialsNonExpired = false;
+    }
+
 
     get createdBys(): Array<UserVo> {
         return this.userService.createdBys;
@@ -61,11 +72,6 @@ export class UserlistComponent implements OnInit {
         this.userService.userShowDetail = value;
     }
 
-    ngOnInit(): void {
-        this.findAll();
-        this.findAllcreatedBys();
-        this.findAllupdatedBys();
-    }
 
     delete(pojo: UserVo) {
         this.userService.delete(pojo);
@@ -94,10 +100,32 @@ export class UserlistComponent implements OnInit {
         this.userService.findAllupdatedBys();
     }
 
-    setUserToUpdate(p){
+    setUserToUpdate(p) {
         this._userService.userToUpdate = p;
         this.router.navigate(['/user/edit']);
 
     }
+
+    switchCredentialsNonExpired() {
+            this.userSearch.credentialsNonExpired = !this.userSearch.credentialsNonExpired;
+    }
+
+    switchEnabled() {
+            this.userSearch.enabled = !this.userSearch.enabled;
+    }
+
+    switchAccountNonExpired() {
+            this.userSearch.accountNonExpired = !this.userSearch.accountNonExpired;
+    }
+
+    switchAccountNonLocked() {
+            this.userSearch.accountNonLocked = !this.userSearch.accountNonLocked;
+    }
+
+    initSearch(){
+        this.userSearch = new UserVo();
+        this.userService.findAll();
+    }
+
 
 }
