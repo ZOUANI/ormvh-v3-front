@@ -3,117 +3,8 @@
 <div class="container">
     <div class="row">
         <div class="col-12 my-3" id="accordion">
-            <!--<div class="card">-->
-                <!--<div class="card-header border-0 bg-white" id="headingSearch">-->
 
-                    <!--<button aria-controls="search" aria-expanded="true" class="btn btn-info  btn-sm fa fa-filter"-->
-                            <!--data-target="#search" data-toggle="collapse">-->
-                        <!--<h5 class="float-right">Search Forms</h5>-->
-                    <!--</button>-->
 
-                <!--</div>-->
-
-                <!--<div aria-labelledby="headingSearch" class="collapse" data-parent="#accordion" id="search">-->
-                    <!--<div class="card-body">-->
-                        <!--<div class="container">-->
-                            <!--<div class="row">-->
-                                <!--<div class="form-row">-->
-
-                                    <!--<div class="input-group  col-3  my-2">-->
-                                        <!--<small class="text-muted col-12">id</small>-->
-                                        <!--<input [(ngModel)]="userSearch.id" class="form-control col-12" placeholder="id"-->
-                                               <!--type="text">-->
-                                    <!--</div>-->
-                                    <!--<div class="input-group  col-3  my-2">-->
-                                        <!--<small class="text-muted col-12">username</small>-->
-                                        <!--<input [(ngModel)]="userSearch.username" class="form-control col-12" placeholder="username"-->
-                                               <!--type="text">-->
-                                    <!--</div>-->
-                                    <!--<div class="input-group  col-3  my-2">-->
-                                        <!--<small class="text-muted col-12">password</small>-->
-                                        <!--<input [(ngModel)]="userSearch.password" class="form-control col-12" placeholder="password"-->
-                                               <!--type="text">-->
-                                    <!--</div>-->
-                                    <!--<div class="input-group  col-3  my-2">-->
-                                        <!--<small class="text-muted col-12">email</small>-->
-                                        <!--<input [(ngModel)]="userSearch.email" class="form-control col-12" placeholder="email"-->
-                                               <!--type="text">-->
-                                    <!--</div>-->
-                                    <!--<div class="input-group  col-3  my-2">-->
-                                        <!--<small class="text-muted col-12">accountNonExpired</small>-->
-                                        <!--<input [(ngModel)]="userSearch.accountNonExpired" class="form-control col-12" placeholder="accountNonExpired"-->
-                                               <!--type="text">-->
-                                    <!--</div>-->
-                                    <!--<div class="input-group  col-3  my-2">-->
-                                        <!--<small class="text-muted col-12">accountNonLocked</small>-->
-                                        <!--<input [(ngModel)]="userSearch.accountNonLocked" class="form-control col-12" placeholder="accountNonLocked"-->
-                                               <!--type="text">-->
-                                    <!--</div>-->
-                                    <!--<div class="input-group  col-3  my-2">-->
-                                        <!--<small class="text-muted col-12">credentialsNonExpired</small>-->
-                                        <!--<input [(ngModel)]="userSearch.credentialsNonExpired" class="form-control col-12"-->
-                                               <!--placeholder="credentialsNonExpired"-->
-                                               <!--type="text">-->
-                                    <!--</div>-->
-                                    <!--<div class="input-group  col-3  my-2">-->
-                                        <!--<small class="text-muted col-12">enabled</small>-->
-                                        <!--<input [(ngModel)]="userSearch.enabled" class="form-control col-12" placeholder="enabled"-->
-                                               <!--type="text">-->
-                                    <!--</div>-->
-<!--&lt;!&ndash;                                    <div class="input-group  col-4  my-2">&ndash;&gt;-->
-<!--&lt;!&ndash;                                        <div class="col-5 mx-1 px-1">&ndash;&gt;-->
-<!--&lt;!&ndash;                                            <div class="p-grid ui-fluid">&ndash;&gt;-->
-<!--&lt;!&ndash;                                                <small class="text-muted">createdAt Min</small>&ndash;&gt;-->
-<!--&lt;!&ndash;                                                <p-calendar [(ngModel)]="userSearch.createdAtMin" class="p-col-12"&ndash;&gt;-->
-<!--&lt;!&ndash;                                                            dateFormat="yy-mm-dd"></p-calendar>&ndash;&gt;-->
-<!--&lt;!&ndash;                                            </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                                        </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                                        <div class="col-5 mx-1 px-1">&ndash;&gt;-->
-<!--&lt;!&ndash;                                            <div class="p-grid ui-fluid">&ndash;&gt;-->
-<!--&lt;!&ndash;                                                <small class="text-muted">createdAt Max</small>&ndash;&gt;-->
-<!--&lt;!&ndash;                                                <p-calendar [(ngModel)]="userSearch.createdAtMax" class="p-col-12"&ndash;&gt;-->
-<!--&lt;!&ndash;                                                            dateFormat="yy-mm-dd"></p-calendar>&ndash;&gt;-->
-<!--&lt;!&ndash;                                            </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                                        </div>&ndash;&gt;-->
-
-<!--&lt;!&ndash;                                    </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                                    <div class="input-group  col-4  my-2">&ndash;&gt;-->
-<!--&lt;!&ndash;                                        <div class="col-5 mx-1 px-1">&ndash;&gt;-->
-<!--&lt;!&ndash;                                            <div class="p-grid ui-fluid">&ndash;&gt;-->
-<!--&lt;!&ndash;                                                <small class="text-muted">updatedAt Min</small>&ndash;&gt;-->
-<!--&lt;!&ndash;                                                <p-calendar [(ngModel)]="userSearch.updatedAtMin" class="p-col-12"&ndash;&gt;-->
-<!--&lt;!&ndash;                                                            dateFormat="yy-mm-dd"></p-calendar>&ndash;&gt;-->
-<!--&lt;!&ndash;                                            </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                                        </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                                        <div class="col-5 mx-1 px-1">&ndash;&gt;-->
-<!--&lt;!&ndash;                                            <div class="p-grid ui-fluid">&ndash;&gt;-->
-<!--&lt;!&ndash;                                                <small class="text-muted">updatedAt Max</small>&ndash;&gt;-->
-<!--&lt;!&ndash;                                                <p-calendar [(ngModel)]="userSearch.updatedAtMax" class="p-col-12"&ndash;&gt;-->
-<!--&lt;!&ndash;                                                            dateFormat="yy-mm-dd"></p-calendar>&ndash;&gt;-->
-<!--&lt;!&ndash;                                            </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                                        </div>&ndash;&gt;-->
-
-<!--&lt;!&ndash;                                    </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                                    <div class="input-group  col-4 my-2">&ndash;&gt;-->
-<!--&lt;!&ndash;                                        <small class="text-muted col-12">createdBy</small>&ndash;&gt;-->
-<!--&lt;!&ndash;                                        <select [(ngModel)]="userSearch.createdByVo" class="form-control col-12">&ndash;&gt;-->
-<!--&lt;!&ndash;                                            <option *ngFor="let p of createdBys" [ngValue]="p">{{p.username}}</option>&ndash;&gt;-->
-<!--&lt;!&ndash;                                        </select>&ndash;&gt;-->
-<!--&lt;!&ndash;                                    </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                                    <div class="input-group  col-4 my-2">&ndash;&gt;-->
-<!--&lt;!&ndash;                                        <small class="text-muted col-12">updatedBy</small>&ndash;&gt;-->
-<!--&lt;!&ndash;                                        <select [(ngModel)]="userSearch.updatedByVo" class="form-control col-12">&ndash;&gt;-->
-<!--&lt;!&ndash;                                            <option *ngFor="let p of updatedBys" [ngValue]="p">{{p.username}}</option>&ndash;&gt;-->
-<!--&lt;!&ndash;                                        </select>&ndash;&gt;-->
-<!--&lt;!&ndash;                                    </div>&ndash;&gt;-->
-                                <!--</div>-->
-                            <!--</div>-->
-                            <!--<button (click)="findUser(userSearch)"-->
-                                    <!--class="btn btn-info btn-sm fa fa-search float-right px-5 py-2 my-4"></button>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
         </div>
     </div>
     <div class="row">
@@ -124,39 +15,40 @@
 
                     <div class="form-group col">
                         <!--<label for="Reference">Username</label>-->
-                        <input type="text" [(ngModel)]="userSearch.username" placeholder="Username" class="form-control" id="Reference">
+                        <input type="text" [(ngModel)]="userSearch.username" placeholder='{{"USER.USERNAME" | translate}}' class="form-control" id="Reference">
                     </div>
 
 
                     <div class="form-group col">
                         <!--<label for="Email">Email</label>-->
-                        <input type="text" [(ngModel)]="userSearch.email" placeholder="Email" class="form-control" id="Email">
+                        <input type="text" [(ngModel)]="userSearch.email" placeholder='{{"USER.EMAIL" | translate}}' class="form-control" id="Email">
                     </div>
 
                     <div class="col text-center">
                         <label class="form-check-label">
                             <input type="checkbox" [checked]="userSearch.credentialsNonExpired" (click)="switchCredentialsNonExpired()">
-                            Credentials Non Expired
+                            {{"USER.CREDENTIALS_NON_EXPIRED" | translate}}
                         </label>
                     </div>
 
                     <div class="col text-center">
                         <label class="form-check-label">
-                            <input type="checkbox" [checked]="userSearch.enabled" (click)="switchEnabled()"> Enabled
+                            <input type="checkbox" [checked]="userSearch.enabled" (click)="switchEnabled()">
+                            {{"USER.ENABLED" | translate}}
                         </label>
                     </div>
 
                     <div class="col text-center">
                         <label class="form-check-label">
-                            <input type="checkbox" [checked]="userSearch.accountNonExpired" (click)="switchAccountNonExpired()"> Account
-                            Non Expired
+                            <input type="checkbox" [checked]="userSearch.accountNonExpired" (click)="switchAccountNonExpired()">
+                            {{"USER.ACCOUNT_NON_EXPIRED" | translate}}
                         </label>
                     </div>
 
                     <div class="col text-center">
                         <label class="form-check-label">
-                            <input type="checkbox" [checked]="userSearch.accountNonLocked" (click)="switchAccountNonLocked()"> Account Non
-                            Locked
+                            <input type="checkbox" [checked]="userSearch.accountNonLocked" (click)="switchAccountNonLocked()">
+                            {{"USER.ACCOUNT_NON_LOCKED" | translate}}
                         </label>
                     </div>
 
@@ -178,13 +70,13 @@
                 <table class="table table-hover col-md-12 text-center">
                     <thead class="thead-dark">
 
-                    <th>username</th>
-                    <th>email</th>
-                    <th>accountNonExpired</th>
-                    <th>accountNonLocked</th>
-                    <th>credentialsNonExpired</th>
-                    <th>enabled</th>
-                    <th>Actions</th>
+                    <th>{{"USER.USERNAME" | translate}}</th>
+                    <th>{{"USER.EMAIL" | translate}}</th>
+                    <th>{{"USER.ACCOUNT_NON_EXPIRED" | translate}}</th>
+                    <th>{{"USER.ACCOUNT_NON_LOCKED" | translate}}</th>
+                    <th>{{"USER.CREDENTIALS_NON_EXPIRED" | translate}}</th>
+                    <th>{{"USER.ENABLED" | translate}}</th>
+                    <th>{{"USER.ACTIONS" | translate}}</th>
 
                     </thead>
                     <tbody>
