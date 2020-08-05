@@ -37,17 +37,27 @@ export class CourrierService {
         this.addNewCourrier = true;
     }
 
-    courriersService: Map<LeServiceVo, Array<CourrierVo>>;
+    courriersService: Map<string, Array<CourrierVo>>;
+    showEmailDialog:boolean = false;
+    selectedCourrier: CourrierVo ;
 
     findCourrierByRelance(courrier: CourrierVo) {
-        this.http.post<Map<LeServiceVo, Array<CourrierVo>>>('http://localhost:8080/generated/courrier/couriersusceptiblerelance', courrier).subscribe(data => {
-            this.courriersService = data;
+        this.http.post('http://localhost:8080/generated/courrier/couriersusceptiblerelance', courrier).subscribe(data => {
+        let entries  = Object.entries(data);
+        console.log(data);
+      this.courriersService = new Map<string, Array<CourrierVo>>(entries);
+
+        console.log(this.courriersService);   
+
         });
     }
 
-
-    sendEmail(email: string, subject: string, courriers: CourrierVo[]) {
-        this.http.post<number>('http://localhost:8080/generated/courrier/sendcouriers/to/' + email + '/subject/' + subject, courriers);
+    sendListCourriers(courriers:CourrierVo[]){
+        this.http.post<number>('http://localhost:8080/generated/courrier/sendcourierrelance/',courriers);
+       
+    }
+    sendEmail(email: string, subject: string, body: string) {
+        this.http.post<number>('http://localhost:8080/generated/courrier/sendcourierredirection/to/' + email + '/subject/' + subject+"/content/"+body,null);
     }
 
     constructor(private http: HttpClient, private expeditorService: ExpeditorService) {

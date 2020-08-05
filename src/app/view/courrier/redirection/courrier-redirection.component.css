@@ -1,7 +1,4 @@
-.slected{
-    background-color: #22c738;
-    color: white;
-}
+
 .clickable{
     cursor: pointer;
 }
@@ -10,6 +7,78 @@ label{
     font-weight: bold;
 }
 
+
+
+
+.selectAll{
+  display: inline-block;
+}
+
+
+.selectAll label{
+  display: inline-block;
+  background-color: rgba(255, 255, 255, .9);
+  border: 2px solid #005f7f;
+  color: #005f7f;
+  border-radius: 10px;
+  white-space: nowrap;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: all .2s;
+}
+
+.selectAll label {
+  padding: 4px;
+  cursor: pointer;
+}
+
+.selectAll label::before {
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  
+  font-weight: 900;
+  font-size: 12px;
+  padding: 2px 6px 2px 2px;
+    transition: transform .3s ease-in-out;
+}
+
+
+
+.selectAll input[type="checkbox"]:checked + label {
+  background-color: #005f7f;
+  color: #fff;
+  transition: all .2s;
+}
+
+.selectAll input[type="checkbox"] {
+display: absolute;
+}
+.selectAll input[type="checkbox"] {
+position: absolute;
+opacity: 0;
+}
+
+
+
+
+
+
+
+
+
+.type-courrier{
+  min-width: 150px !important;
+  margin-right: 10px;
+}
+.dateRelance .ui-inputtext{
+width: 150px;
+}
 .sendEmail{
     background-color: #fff !important;
     width: 50%;
@@ -22,13 +91,13 @@ label{
   }
 
   .dateRelance .ui-button:enabled:hover {
-    background-color: #22c738;
+    background-color: #005f7f;
     color: #ffffff;
-    border-color: #22c738;
+    border-color: #005f7f;
 }
 .dateRelance .ui-button{
-    background-color: #22c738;
-    border: 1px solid #22c738;
+    background-color: #005f7f;
+    border: 1px solid #005f7f;
   
 }
   .sendEmail.ui-dialog .ui-dialog-content{
@@ -43,23 +112,79 @@ label{
     height: 20px;
     margin-left: 10px;
   }
+  .btn-search{
+    margin-left: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #005f7f ;
+  }
+  .btn-search:hover{
+    font-weight: bolder;
+    color: #005f7f ;
+  }
+  .btn-send{
+    padding: 0px 12px;
+    font-size: 26px;
+    line-height: 35px;
+    color: #005f7f ;
+    display: inline-block;
+    /* background-color:#005f7f ; */
+  }
+  .btn-send:hover{
+   
+    color: #005f7f ;
+    /* background-color:#005f7f ; */
+  }
+  .ui-accordion-header a {
+    background-color: #FFF !important;
+    border: 0px solid #DBDBDB !important;
+   color: #005f7f !important;
+    /* font-famiy: 'Roboto Condensed', "Helvetica Neue", Arial, sans-serif; */
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin: 20px;
+}
+.ui-accordion .ui-accordion-header a .ui-accordion-toggle-icon {
+  color: #005f7f !important;
+  font-size: 16px;
+    font-weight: 600;
+}
+.services p-accordiontab {
+  display: block;
+  border: 1px solid #DBDBDB ;
+  margin-bottom: 20px;
+  border-radius: 3px;
+  border-left: 5px solid #005f7f;
+}
 
+
+  .services .ui-accordion-header:not(.ui-state-active):not(.ui-state-disabled):hover a {
+    background-color: #FFF !important;
+     border: 0px solid #DBDBDB !important;
+}
     .services .ui-accordion-header:not(.ui-state-disabled).ui-state-active a {
-      background-color: #212529 !important;
-      border: 1px solid #212529 !important;
-    }
-    .services .ui-accordion-header:not(.ui-state-disabled).ui-state-active:hover a {
-        background-color: #212529 !important;
-      border: 1px solid #212529 !important;
-    }
+      background-color: #FFF !important;
+      border: 0px solid #DBDBDB !important;
+      /* margin-bottom: 10px; */
+      border: 0px !IMPORTANT;
+        }
+   
+  
+  .services .ui-accordion-header {
+     margin-bottom: 0px !important; 
+     background-color: #FFF !important;
+     border: 0px solid #DBDBDB !important;
+}
 
     .services .ui-accordion-content {
       padding: 0 !important;
+      border :0px !important;
   }
   .services .ui-accordion-header a:focus {
     box-shadow: none !important;
 }
-    
+
 
 
 .ui-table-customers .customer-badge.status-Ouvert {
@@ -73,8 +198,8 @@ label{
 .switch {
   position: relative;
   display: inline-block;
-  width: 60px;
-  height: 34px;
+  width: 40px;
+  height: 24px;
 }
 
 /* Hide default HTML checkbox */
@@ -102,8 +227,8 @@ label{
 .slider:before {
   position: absolute;
   content: "";
-  height: 26px;
-  width: 26px;
+  height: 16px;
+  width: 16px;
   left: 4px;
   bottom: 4px;
   background-color: white;
@@ -120,27 +245,30 @@ input:focus+.slider {
 }
 
 input:checked+.slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
+  -webkit-transform: translateX(16px);
+  -ms-transform: translateX(16px);
+  transform: translateX(16px);
 }
 
 /* Rounded sliders */
 .slider.round {
-  border-radius: 34px;
+  border-radius: 24px;
 }
 
 .slider.round:before {
   border-radius: 50%;
 }
 
-  
+  .table-ctn{
+    padding: 10px 20px;
+  }
     
 
 .table {
   width: 100%;
-  margin-bottom: 1rem;
-  background-color: transparent
+  background-color: transparent;
+  margin-bottom: 0;
+  border: 1px solid #DBDBDB;
 }
 
 
@@ -150,74 +278,80 @@ input:checked+.slider:before {
 }
 
 .table thead th {
-  vertical-align: bottom;
+  vertical-align: middle;
   border-bottom: 2px solid #dee2e6
 }
 
 .table th {
-  padding: 1rem;
-  vertical-align: top;
-  border-top: 1px solid #dee2e6
+  padding: 0px 6px;
+  vertical-align: middle;
+  border-top: 1px solid #dee2e6;
+  
 }
+.table td {
+  vertical-align: middle;
 
-.table th,
-.table thead th {
-  font-weight: 500
+  padding: 6px;
 }
-
-th {
-  text-align: inherit
+.customtable td{
+padding: 15px 6px;
 }
-
 .m-b-20 {
   margin-bottom: 20px
 }
+.slected{
+  border-left: 4px solid #005f7f;
+}
 
-.customcheckbox {
+
+.table input[type=checkbox] + label {
   display: block;
-  position: relative;
-  padding-left: 24px;
-  font-weight: 100;
-  margin-bottom: 12px;
+  margin: 3.2px;
   cursor: pointer;
-  font-size: 22px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none
+  padding: 3.2px;
+  padding-top: 0;
 }
 
-.customcheckbox input {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer
+.table input[type=checkbox] {
+  display: none;
 }
 
-.checkmark {
-  position: absolute;
-  top: -3px;
-  left: 0;
-  height: 20px;
-  width: 20px;
-  background-color: #CDCDCD;
-  border-radius: 6px
+.table input[type=checkbox] + label:before {
+  padding-top: 0;
+
+  box-sizing: content-box;
+  content: "\2714";
+  border: 1.594px solid #000;
+  border-radius: 3.2px;
+  display: block;
+  width: 16px;
+  height: 16px;
+  padding-left: 3.2px;
+  padding-bottom: 4.8px;
+  margin-right: 3.2px;
+  vertical-align: bottom;
+  color: transparent;
+  transition: .2s;
 }
 
-.customcheckbox input:checked~.checkmark {
-  background-color: #2196BB
+.table input[type=checkbox] + label:active:before {
+  transform: scale(0);
 }
 
-.customcheckbox .checkmark:after {
-  left: 8px;
-  top: 4px;
-  width: 5px;
-  height: 10px;
-  border: solid white;
-  border-width: 0 3px 3px 0;
-  -webkit-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  transform: rotate(45deg)
+.table input[type=checkbox]:checked + label:before {
+  background-color: #005f7f;
+  border-color: #005f7f;
+  color: #fff;
+}
+/* MediumSeaGreen */
+
+.table input[type=checkbox]:disabled + label:before {
+  transform: scale(1);
+  border-color: #aaa;
 }
 
-
-
+.table input[type=checkbox]:checked:disabled + label:before {
+  transform: scale(1);
+  background-color: #bfb;
+  border-color: #bfb;
+}
