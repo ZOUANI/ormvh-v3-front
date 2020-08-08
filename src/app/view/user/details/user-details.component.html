@@ -33,19 +33,19 @@
                 <table class="table">
 
                     <tr>
-                        <td>accountNonExpired</td>
+                        <td>{{"USER.ACCOUNT_NON_EXPIRED" | translate}}</td>
                         <td class="badge badge-pill" [ngClass]="userDetail.accountNonExpired? 'badge-success':'badge-danger'">{{userDetail.accountNonExpired?'Yes':'No'}} </td>
                     </tr>
                     <tr>
-                        <td>accountNonLocked</td>
+                        <td>{{"USER.ACCOUNT_NON_LOCKED" | translate}}</td>
                         <td class="badge badge-pill" [ngClass]="userDetail.accountNonLocked? 'badge-success':'badge-danger'">{{userDetail.accountNonLocked?'Yes':'No'}} </td>
                     </tr>
                     <tr>
-                        <td>credentialsNonExpired</td>
+                        <td>{{"USER.CREDENTIALS_NON_EXPIRED" | translate}}</td>
                         <td class="badge badge-pill" [ngClass]="userDetail.credentialsNonExpired? 'badge-success':'badge-danger'">{{userDetail.credentialsNonExpired?'Yes':'No'}} </td>
                     </tr>
                     <tr>
-                        <td>enabled</td>
+                        <td>{{"USER.ENABLED" | translate}}</td>
                         <td class="badge badge-pill" [ngClass]="userDetail.enabled? 'badge-success':'badge-danger'">{{userDetail.enabled?'Yes':'No'}} </td>
                     </tr>
                 </table>
