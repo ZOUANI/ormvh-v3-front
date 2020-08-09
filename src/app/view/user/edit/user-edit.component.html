@@ -9,12 +9,12 @@
         </div>
 
         <div class=" ">
-            <label>username</label>
+            <label>{{"USER.USERNAME" | translate}}</label>
             <input [(ngModel)]="user.username" [placeholder]="user.username" class="form-control" type="text">
         </div>
 
         <div class="">
-            <label>email</label>
+            <label>{{"USER.EMAIL" | translate}}</label>
             <input [(ngModel)]="user.email" [placeholder]="user.email" class="form-control" type="text">
         </div>
 
@@ -37,27 +37,27 @@
         <div class="mb-2">
             <label class="form-check-label">
                 <input type="checkbox" [checked]="user.credentialsNonExpired" (click)="switchCredentialsNonExpired()">
-                Credentials Non Expired
+                {{"USER.CREDENTIALS_NON_EXPIRED" | translate}}
             </label>
         </div>
 
         <div class="mb-2">
             <label class="form-check-label">
-                <input type="checkbox" [checked]="user.enabled" (click)="switchEnabled()"> Enabled
+                <input type="checkbox" [checked]="user.enabled" (click)="switchEnabled()"> {{"USER.ENABLED" | translate}}
             </label>
         </div>
 
         <div class="mb-2">
             <label class="form-check-label">
-                <input type="checkbox" [checked]="user.accountNonExpired" (click)="switchAccountNonExpired()"> Account
-                Non Expired
+                <input type="checkbox" [checked]="user.accountNonExpired" (click)="switchAccountNonExpired()">
+                {{"USER.ACCOUNT_NON_EXPIRED" | translate}}
             </label>
         </div>
 
         <div class="mb-2">
             <label class="form-check-label">
-                <input type="checkbox" [checked]="user.accountNonLocked" (click)="switchAccountNonLocked()"> Account Non
-                Locked
+                <input type="checkbox" [checked]="user.accountNonLocked" (click)="switchAccountNonLocked()">
+                {{"USER.ACCOUNT_NON_LOCKED" | translate}}
             </label>
         </div>
 

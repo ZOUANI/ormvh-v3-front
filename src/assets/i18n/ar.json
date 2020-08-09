@@ -148,5 +148,15 @@
     "COURRIER_STATS": "إحصائيات البريد",
     "OUVERT_COURS_TRAITE": "تمت معالجتها / يتم معالجتها / مفتوح",
     "ARRIVEE_DEPART": "أرسلت / استقبال"
+  },
+
+  "USER": {
+    "USERNAME": "اسم المستخدم",
+    "EMAIL": "البريد الإلكتروني",
+    "ACCOUNT_NON_EXPIRED": "الحساب غير منتهي الصلاحية",
+    "ACCOUNT_NON_LOCKED": "الحساب غير مقفل",
+    "CREDENTIALS_NON_EXPIRED": "صلاحيات غير منتهية",
+    "ENABLED": "مرخص له",
+    "ACTIONS" : "خيارات"
   }
 }

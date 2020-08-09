@@ -68,5 +68,15 @@
         "DELETE": "Delete",
         "RESERVE_MAILING": "Reserve mailing",
         "RESERVE": "Reserve"
+    },
+
+    "USER": {
+        "USERNAME": "username",
+        "EMAIL": "email",
+        "ACCOUNT_NON_EXPIRED": "Account No Expired",
+        "ACCOUNT_NON_LOCKED": "Account No Locked",
+        "CREDENTIALS_NON_EXPIRED": "Credentials No Expired",
+        "ENABLED": "Enabled",
+        "ACTIONS" : "Actions"
     }
 }
