@@ -49,8 +49,7 @@ export class CourrierCreateComponent implements OnInit {
     editableTask: TaskVo;
     onEditTask:boolean =false;
     onSelectTask:boolean = false;
-    delaiNatureCourrier:string;
-    relanceNatureCourrier:string;
+
 
 
     
@@ -431,8 +430,7 @@ export class CourrierCreateComponent implements OnInit {
         this.findAllstatuss();
         this.findAlltypeCourriers();
         this.findAllUSer();
-        this.courrier.delai='hhhhhh';
-        this.courrier.relance=this.delaiNatureCourrier;
+
 
        }
     }
