@@ -92,7 +92,7 @@
                         </div>
                         <div class="form-group col-md-3">
                             <label for="linked-courrier">{{"MAILING.LINKED_TO" | translate}}</label>
-                            <p-dropdown [disabled]="onDetail" styleClass="form-control" selectId="linked-courrier" [options]="linkedTos"
+                            <p-dropdown [disabled]="onDetail" styleClass="form-control" [showClear]="true" placeholder="not linked"  selectId="linked-courrier" [options]="linkedTos"
                                 [(ngModel)]="courrier.linkedToVo" optionLabel="idCourrier" [filter]="true" dataKey="id"></p-dropdown>
                         </div>
                         <div class="form-group col-md-2">
