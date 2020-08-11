@@ -11,8 +11,8 @@ export class TaskVo {
   public processedAt: string;
   public delai: string;
   public relance: string;
-  public accuse: string;
-  public reponse: string;
+  public accuse: boolean;
+  public reponse: boolean;
   public id: string;
   public title: string;
   public description: string;

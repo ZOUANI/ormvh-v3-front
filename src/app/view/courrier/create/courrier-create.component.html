@@ -62,7 +62,7 @@
                         </div>
                         <div class="form-group col-md-2" style="margin-bottom:0;">
                             <p-dropdown [disabled]="onDetail"  [options]="natureCourriers" styleClass="form-control" selectId="nature-courrier"
-                                [(ngModel)]="courrier.natureCourrierVo" optionLabel="libelle" dataKey="id"></p-dropdown>
+                                [(ngModel)]="courrier.natureCourrierVo" (onClick)="DetailInterfacedefaulteValue(courrier.natureCourrierVo)" optionLabel="libelle" dataKey="id"></p-dropdown>
                         </div>
                         <!--<div class="form-group col-md-2" style="margin-bottom:0;">-->
                             <!--<p-dropdown [disabled]="!onEdit"  styleClass="form-control" selectId="type-courrier" [options]="typeCourriers"-->
@@ -78,7 +78,7 @@
                         </div>
                         <!--[selected]="courrier.typeCourrierVo.code == t.code"-->
                         <div class="form-group col-md-2" style="margin-bottom:0;">
-                            <p-calendar [disabled]="onDetail" appendTo="body" [showTime]="true" [(ngModel)]="courrier.sentAt"></p-calendar>
+                            <p-calendar id="pcalander" [disabled]="onDetail" appendTo="body" [showTime]="true" [(ngModel)]="courrier.sentAt"></p-calendar>
                         </div>
 
                     </div>
@@ -168,6 +168,15 @@
                                 <hr>
                                 <p>{{editableTask.observation}}</p>
                                 <hr>
+                                <p>{{editableTask.dateAccuse}}</p>
+                                <hr>
+                                <p>{{editableTask.dateReponse}}</p>
+                                <hr>
+                                <p>accuse:{{editableTask.accuse}}</p>
+                                <hr>
+                                <p>reponse:{{editableTask.reponse}}</p>
+                                <hr>
+
                                 <div class="d-flex justify-content-between">
                                     <span *ngIf="editableTask.assigneVo"><i class="pi pi-user"></i> {{editableTask.assigneVo.username}}</span>
                                      <span class="badge badge-success" *ngIf="editableTask">{{editableTask.statusVo.libelle}}</span>
@@ -195,6 +204,40 @@
                                             <p-dropdown styleClass="form-control" selectId="task-status" [options]="statuss"
                                                 [(ngModel)]="editableTask.statusVo" optionLabel="libelle" dataKey="id"></p-dropdown>
                                         </div>
+                                        <!--add chekbox+datpicker-->
+                                        <div class="form-group col-md-6">
+                                            <label for="accuse">{{"TASK.ACCUSED" | translate}}</label>
+                                            <br>
+                                            <label class="switch">
+                                                <input id="accuse" [disabled]="onDetail" type="checkbox"   [checked]="task.accuse" [(ngModel)]="editableTask.accuse"
+                                                       (click)="boolenAccuse(editableTask)" >
+                                                <span class="slider round"></span>
+                                            </label>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="accuse">{{"TASK.RESPONSE" | translate}}</label>
+                                            <br>
+                                            <label class="switch">
+                                                <input id="accuse" [disabled]="onDetail" type="checkbox"   [checked]="task.reponse" [(ngModel)]="editableTask.reponse"
+                                                       (click)="boolenReponse(editableTask)">
+                                                <span class="slider round"></span>
+                                            </label>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <div class="p-grid ui-fluid">
+                                                <label>dateAccuse</label>
+                                                <p-calendar class="p-col-12" dateFormat="yy-mm-dd" [(ngModel)]="editableTask.dateAccuse" *ngIf="editableTask.accuse==true">
+                                                </p-calendar>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <div class="p-grid ui-fluid">
+                                                <label>dateReponse</label>
+                                                <p-calendar class="p-col-12" dateFormat="yy-mm-dd" [(ngModel)]="editableTask.dateReponse" *ngIf="editableTask.reponse==true">
+                                                </p-calendar>
+                                            </div>
+                                        </div>
+                                        <!--end-->
                                     </div>
                     
                                     <div class="form-row">
@@ -248,14 +291,53 @@
                                                 [options]="statuss" [(ngModel)]="task.statusVo" optionLabel="libelle"
                                                 dataKey="id"></p-dropdown>
                                         </div>
+
                                     </div>
 
+
+
                                     <div class="form-row">
+                                        <!--add chekbox+datpicker-->
+                                        <div class="form-group col-md-6">
+                                            <label for="accuse">{{"TASK.ACCUSED" | translate}}</label>
+                                            <br>
+                                            <label class="switch">
+                                                <input id="accuse" [disabled]="onDetail" type="checkbox"   [checked]="task.accuse"
+                                                    (click)="boolenAccuse(task)"  >
+                                                <span class="slider round"></span>
+                                            </label>
+                                        </div>
+                                        <div class="form-group col-md-2">
+                                            <label for="reponse">{{"TASK.RESPONSE" | translate}}</label>
+                                            <br>
+                                            <label class="switch">
+                                                <input id="accuse" [disabled]="onDetail" type="checkbox"   [checked]="task.reponse"
+                                                       (click)="boolenReponse(task)">
+                                                <span class="slider round"></span>
+                                            </label>
+
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <div class="p-grid ui-fluid">
+                                                <label>dateAccuse</label>
+                                                <p-calendar  class="p-col-12" dateFormat="yy-mm-dd" [(ngModel)]="task.dateAccuse" *ngIf="task.accuse==true">
+                                                </p-calendar>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <div class="p-grid ui-fluid">
+                                                <label>dateReponse</label>
+                                                <p-calendar class="p-col-12" dateFormat="yy-mm-dd" [(ngModel)]="task.dateReponse" *ngIf="task.reponse==true">
+                                                </p-calendar>
+                                            </div>
+                                        </div>
+                                        <!--end-->
                                         <div class="form-group col-md-6">
                                             <label for="task-description">{{"TASK.DESCRIPTION" | translate}}</label>
                                             <textarea type="text" id="task-description" class="form-control"
                                                 [(ngModel)]="task.description" rows="3"></textarea>
                                         </div>
+
                                         <div class="form-group col-md-6">
                                             <label for="task-observation">{{"TASK.OBSERVATION" | translate}}</label>
                                             <textarea type="text" id="task-observation" class="form-control"
@@ -267,7 +349,7 @@
                                             (click)="addTask()">{{"COMMONS.ADD" | translate}}</button>
                                     </div>
 
-                                    <!-- 
+                                    <!--
                                 <div class="col-md-6 py-2">
                                     <div class="p-grid ui-fluid">
                                         <label>dateAccuse</label>
@@ -389,7 +471,7 @@
                         </div>
                         <div class="form-group col-md-3">
                             <label for="relance">{{"TASK.BOOST" | translate}}</label>
-                            <input type="text" [disabled]="onDetail" id="relance" class="form-control" [(ngModel)]="courrier.relance">
+                            <input type="text" [disabled]="onDetail" id="relance" class="form-control" [(ngModel)]="courrier.relance" >
                         </div>
                         
                         <div class="form-group col-md-4">
@@ -427,7 +509,7 @@
                         </div>
                         <div class="form-group  col-md-4">
                             <label>{{"TASK.RESPONSE_DATE" | translate}}</label><br>
-                            <p-calendar [disabled]="onDetail" appendTo="body" [showTime]="true" [(ngModel)]="courrier.dateReponse">
+                            <p-calendar id="teesst" [disabled]="onDetail" appendTo="body" [showTime]="true" [(ngModel)]="courrier.dateReponse">
                             </p-calendar>
                         </div>
 
