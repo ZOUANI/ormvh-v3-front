@@ -22,6 +22,7 @@ import {SelectItem} from 'primeng/api';
 import {UserService} from 'src/app/controller/service/User.service';
 import {LeServiceVo} from 'src/app/controller/model/LeService.model';
 import * as $ from 'jquery';
+import {moment} from "ngx-bootstrap/chronos/test/chain";
 @Component({
   selector: 'app-courrier-create',
   templateUrl: './courrier-create.component.html',
@@ -48,6 +49,10 @@ export class CourrierCreateComponent implements OnInit {
     editableTask: TaskVo;
     onEditTask:boolean =false;
     onSelectTask:boolean = false;
+
+
+
+    
     
 
     constructor(private courrierService: CourrierService,
@@ -62,6 +67,28 @@ export class CourrierCreateComponent implements OnInit {
                 private natureCourrierService: NatureCourrierService,
                 private subdivisionService: SubdivisionService,
                 private userService: UserService) {
+
+    }
+
+    boolenAccuse(task:TaskVo){
+        if (task.accuse==false){
+            task.accuse=true;
+        }else{
+            task.accuse=false
+        }
+       console.log(task.accuse+"hhh");
+    }
+    boolenReponse(task:TaskVo){
+        if (task.reponse==false){
+            task.reponse=true;
+        }else{
+            task.reponse=false
+        }
+        console.log(task.accuse+"hhh");
+    }
+    DetailInterfacedefaulteValue(naturcorier:NatureCourrierVo){
+        this.courrier.delai=naturcorier.delai;
+        this.courrier.relance=naturcorier.relance;
     }
 
     get onEdit():boolean{
@@ -76,7 +103,7 @@ export class CourrierCreateComponent implements OnInit {
         this.courrierService.onDetail = value;
     }
 
-    get onCreate():boolean{
+    get onCreate(): boolean{
         return this.courrierService.onCreate;
     }
 
@@ -102,6 +129,8 @@ export class CourrierCreateComponent implements OnInit {
         this.findAllstatuss();
         this.findAlltypeCourriers();
         this.findAllUSer();
+        this.courrier;
+
 
     }
 
@@ -139,13 +168,13 @@ export class CourrierCreateComponent implements OnInit {
         this.onEditTask = false;
 
     }
-    editTask(task:TaskVo){
+    editTask(task: TaskVo ) {
         this.editableTask = task;
         this.onSelectTask = false;
         this.onEditTask = true;
     }
     deleteTaskDirct(task:TaskVo){
-        let index = this.courrier.tasksVo.indexOf(task);
+        const index = this.courrier.tasksVo.indexOf(task);
         if (index != -1){ 
         this.courrier.tasksVo.splice(index, 1);
           if(this.editableTask==task){
@@ -401,6 +430,8 @@ export class CourrierCreateComponent implements OnInit {
         this.findAllstatuss();
         this.findAlltypeCourriers();
         this.findAllUSer();
+
+
        }
     }
 

@@ -145,5 +145,15 @@
     "COURRIER_STATS": "Statistiques \"Courrier\"",
     "OUVERT_COURS_TRAITE": "Ouvert/En cours/Traité",
     "ARRIVEE_DEPART": "Arrivée/Départ"
+  },
+
+  "USER": {
+    "USERNAME": "Nom d'utilisateur",
+    "EMAIL": "email",
+    "ACCOUNT_NON_EXPIRED": "Compte non expiré",
+    "ACCOUNT_NON_LOCKED": "Compte non verrouillé",
+    "CREDENTIALS_NON_EXPIRED": "Identifiants non expirés",
+    "ENABLED": "Activée",
+    "ACTIONS" : "Options"
   }
 }

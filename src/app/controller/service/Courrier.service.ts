@@ -803,6 +803,7 @@ export class CourrierService {
         this.task = null;
         this.task.assigneVo = clone.assigneVo;
         this.task.statusVo = clone.statusVo;
+
     }
 
     public cloneTask(task: TaskVo) {
@@ -817,6 +818,8 @@ export class CourrierService {
         myTaskClone.observation = task.observation;
         myTaskClone.assigneVo = task.assigneVo;
         myTaskClone.statusVo = task.statusVo;
+        myTaskClone.dateAccuse = task.dateAccuse;
+        myTaskClone.dateReponse = task.dateReponse;
         return myTaskClone;
     }
 

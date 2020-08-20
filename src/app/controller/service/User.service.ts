@@ -196,10 +196,12 @@ export class UserService {
     }
 
     public findUser(pojo: UserVo) {
+        console.log(pojo);
         this.http.post<Array<UserVo>>('http://localhost:8080/generated/user/search/', pojo).subscribe(
             value => {
                 this.userListe = value;
-            });
+            }
+            );
     }
 
     public detailShow(pojo: UserVo) {
@@ -314,6 +316,17 @@ export class UserService {
                         showConfirmButton: true
                     });
                 }
+            },error1 => {
+                console.log(error1);
+            }
+        );
+    }
+
+    getCurrentUser(){
+        this.http.get<UserVo>('http://localhost:8080/generated/user/currentUser').subscribe(
+            data=>{
+                this.userShowDetail = true;
+                this.detailShow(data);
             },error1 => {
                 console.log(error1);
             }
