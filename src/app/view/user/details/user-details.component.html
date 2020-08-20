@@ -34,19 +34,23 @@
 
                     <tr>
                         <td>{{"USER.ACCOUNT_NON_EXPIRED" | translate}}</td>
-                        <td class="badge badge-pill" [ngClass]="userDetail.accountNonExpired? 'badge-success':'badge-danger'">{{userDetail.accountNonExpired?'Yes':'No'}} </td>
+                        <td class="badge badge-pill"
+                            [ngClass]="userDetail.accountNonExpired? 'badge-success':'badge-danger'">{{userDetail.accountNonExpired ? 'Yes' : 'No'}} </td>
                     </tr>
                     <tr>
                         <td>{{"USER.ACCOUNT_NON_LOCKED" | translate}}</td>
-                        <td class="badge badge-pill" [ngClass]="userDetail.accountNonLocked? 'badge-success':'badge-danger'">{{userDetail.accountNonLocked?'Yes':'No'}} </td>
+                        <td class="badge badge-pill"
+                            [ngClass]="userDetail.accountNonLocked? 'badge-success':'badge-danger'">{{userDetail.accountNonLocked ? 'Yes' : 'No'}} </td>
                     </tr>
                     <tr>
                         <td>{{"USER.CREDENTIALS_NON_EXPIRED" | translate}}</td>
-                        <td class="badge badge-pill" [ngClass]="userDetail.credentialsNonExpired? 'badge-success':'badge-danger'">{{userDetail.credentialsNonExpired?'Yes':'No'}} </td>
+                        <td class="badge badge-pill"
+                            [ngClass]="userDetail.credentialsNonExpired? 'badge-success':'badge-danger'">{{userDetail.credentialsNonExpired ? 'Yes' : 'No'}} </td>
                     </tr>
                     <tr>
                         <td>{{"USER.ENABLED" | translate}}</td>
-                        <td class="badge badge-pill" [ngClass]="userDetail.enabled? 'badge-success':'badge-danger'">{{userDetail.enabled?'Yes':'No'}} </td>
+                        <td class="badge badge-pill"
+                            [ngClass]="userDetail.enabled? 'badge-success':'badge-danger'">{{userDetail.enabled ? 'Yes' : 'No'}} </td>
                     </tr>
                 </table>
 
@@ -54,7 +58,8 @@
                     <i class="fa fa-cog mr-2"></i> Authorities
                 </div>
                 <div class="m-2">
-                    <span class="badge badge-pill badge-info mr-4" *ngFor="let p of userDetail.rolesVo">{{p.authority}}</span>
+                    <span class="badge badge-pill badge-info mr-4"
+                          *ngFor="let p of userDetail.rolesVo">{{p.authority}}</span>
                 </div>
 
                 <div class="alert alert-primary" role="alert">
@@ -62,32 +67,27 @@
                 </div>
 
 
-                    <table class="table">
-                        <tr>
-                            <td>Created At</td>
-                            <td>{{userDetail.createdAt}}</td>
-                        </tr>
+                <table class="table">
+                    <tr>
+                        <td>Created At</td>
+                        <td>{{userDetail.createdAt}}</td>
+                    </tr>
 
-                        <tr>
-                            <td>Created By</td>
-                            <td>{{userDetail.createdByVo?.username}}</td>
-                        </tr>
+                    <tr>
+                        <td>Created By</td>
+                        <td>{{userDetail.createdByVo?.username}}</td>
+                    </tr>
 
-                        <tr>
-                            <td>Updated At</td>
-                            <td>{{userDetail.updatedAt}}</td>
-                        </tr>
+                    <tr>
+                        <td>Updated At</td>
+                        <td>{{userDetail.updatedAt}}</td>
+                    </tr>
 
-                        <tr>
-                            <td>Updated By</td>
-                            <td>{{userDetail.updatedByVo?.username}}</td>
-                        </tr>
-                    </table>
-
-
-
-
-
+                    <tr>
+                        <td>Updated By</td>
+                        <td>{{userDetail.updatedByVo?.username}}</td>
+                    </tr>
+                </table>
 
 
             </div>

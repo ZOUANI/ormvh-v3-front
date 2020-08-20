@@ -19,27 +19,32 @@
 
                                     <div class="input-group  col-3  my-2">
                                         <small class="text-muted col-12">id</small>
-                                        <input [(ngModel)]="leServiceSearch.id" class="form-control col-12" placeholder="id"
+                                        <input [(ngModel)]="leServiceSearch.id" class="form-control col-12"
+                                               placeholder="id"
                                                type="text">
                                     </div>
                                     <div class="input-group  col-3  my-2">
                                         <small class="text-muted col-12">title</small>
-                                        <input [(ngModel)]="leServiceSearch.title" class="form-control col-12" placeholder="title"
+                                        <input [(ngModel)]="leServiceSearch.title" class="form-control col-12"
+                                               placeholder="title"
                                                type="text">
                                     </div>
                                     <div class="input-group  col-3  my-2">
                                         <small class="text-muted col-12">libelleArab</small>
-                                        <input [(ngModel)]="leServiceSearch.libelleArab" class="form-control col-12" placeholder="libelleArab"
+                                        <input [(ngModel)]="leServiceSearch.libelleArab" class="form-control col-12"
+                                               placeholder="libelleArab"
                                                type="text">
                                     </div>
                                     <div class="input-group  col-3  my-2">
                                         <small class="text-muted col-12">code</small>
-                                        <input [(ngModel)]="leServiceSearch.code" class="form-control col-12" placeholder="code"
+                                        <input [(ngModel)]="leServiceSearch.code" class="form-control col-12"
+                                               placeholder="code"
                                                type="text">
                                     </div>
                                     <div class="input-group  col-3  my-2">
                                         <small class="text-muted col-12">description</small>
-                                        <input [(ngModel)]="leServiceSearch.description" class="form-control col-12" placeholder="description"
+                                        <input [(ngModel)]="leServiceSearch.description" class="form-control col-12"
+                                               placeholder="description"
                                                type="text">
                                     </div>
                                     <div class="input-group  col-4  my-2">
@@ -60,34 +65,34 @@
 
                                     </div>
                                     <div class="input-group  col-4  my-2">
-<!--                                        <div class="col-5 mx-1 px-1">-->
-<!--                                            <div class="p-grid ui-fluid">-->
-<!--                                                <small class="text-muted">updatedAt Min</small>-->
-<!--                                                <p-calendar [(ngModel)]="leServiceSearch.updatedAtMin" class="p-col-12"-->
-<!--                                                            dateFormat="yy-mm-dd"></p-calendar>-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                                        <div class="col-5 mx-1 px-1">-->
-<!--                                            <div class="p-grid ui-fluid">-->
-<!--                                                <small class="text-muted">updatedAt Max</small>-->
-<!--                                                <p-calendar [(ngModel)]="leServiceSearch.updatedAtMax" class="p-col-12"-->
-<!--                                                            dateFormat="yy-mm-dd"></p-calendar>-->
-<!--                                            </div>-->
-<!--                                        </div>-->
+                                        <!--                                        <div class="col-5 mx-1 px-1">-->
+                                        <!--                                            <div class="p-grid ui-fluid">-->
+                                        <!--                                                <small class="text-muted">updatedAt Min</small>-->
+                                        <!--                                                <p-calendar [(ngModel)]="leServiceSearch.updatedAtMin" class="p-col-12"-->
+                                        <!--                                                            dateFormat="yy-mm-dd"></p-calendar>-->
+                                        <!--                                            </div>-->
+                                        <!--                                        </div>-->
+                                        <!--                                        <div class="col-5 mx-1 px-1">-->
+                                        <!--                                            <div class="p-grid ui-fluid">-->
+                                        <!--                                                <small class="text-muted">updatedAt Max</small>-->
+                                        <!--                                                <p-calendar [(ngModel)]="leServiceSearch.updatedAtMax" class="p-col-12"-->
+                                        <!--                                                            dateFormat="yy-mm-dd"></p-calendar>-->
+                                        <!--                                            </div>-->
+                                        <!--                                        </div>-->
 
                                     </div>
-<!--                                    <div class="input-group  col-4 my-2">-->
-<!--                                        <small class="text-muted col-12">createdBy</small>-->
-<!--                                        <select [(ngModel)]="leServiceSearch.createdByVo" class="form-control col-12">-->
-<!--                                            <option *ngFor="let p of createdBys" [ngValue]="p">{{p.username}}</option>-->
-<!--                                        </select>-->
-<!--                                    </div>-->
-<!--                                    <div class="input-group  col-4 my-2">-->
-<!--                                        <small class="text-muted col-12">updatedBy</small>-->
-<!--                                        <select [(ngModel)]="leServiceSearch.updatedByVo" class="form-control col-12">-->
-<!--                                            <option *ngFor="let p of updatedBys" [ngValue]="p">{{p.username}}</option>-->
-<!--                                        </select>-->
-<!--                                    </div>-->
+                                    <!--                                    <div class="input-group  col-4 my-2">-->
+                                    <!--                                        <small class="text-muted col-12">createdBy</small>-->
+                                    <!--                                        <select [(ngModel)]="leServiceSearch.createdByVo" class="form-control col-12">-->
+                                    <!--                                            <option *ngFor="let p of createdBys" [ngValue]="p">{{p.username}}</option>-->
+                                    <!--                                        </select>-->
+                                    <!--                                    </div>-->
+                                    <!--                                    <div class="input-group  col-4 my-2">-->
+                                    <!--                                        <small class="text-muted col-12">updatedBy</small>-->
+                                    <!--                                        <select [(ngModel)]="leServiceSearch.updatedByVo" class="form-control col-12">-->
+                                    <!--                                            <option *ngFor="let p of updatedBys" [ngValue]="p">{{p.username}}</option>-->
+                                    <!--                                        </select>-->
+                                    <!--                                    </div>-->
                                 </div>
                             </div>
                             <button (click)="findLeService(leServiceSearch)"
@@ -118,10 +123,10 @@
                     <th>libelleArab</th>
                     <th>code</th>
                     <th>description</th>
-<!--                    <th>createdAt</th>-->
-<!--                    <th>updatedAt</th>-->
-<!--                    <th>createdBy reference</th>-->
-<!--                    <th>updatedBy reference</th>-->
+                    <!--                    <th>createdAt</th>-->
+                    <!--                    <th>updatedAt</th>-->
+                    <!--                    <th>createdBy reference</th>-->
+                    <!--                    <th>updatedBy reference</th>-->
                     <th>Actions</th>
                     </thead>
                     <tbody>
@@ -132,10 +137,10 @@
                         <td>{{p.libelleArab}}</td>
                         <td>{{p.code}}</td>
                         <td>{{p.description}}</td>
-<!--                        <td>{{p.createdAt}}</td>-->
-<!--                        <td>{{p.updatedAt}}</td>-->
-<!--                        <td>{{p.createdByVo?.username}}</td>-->
-<!--                        <td>{{p.updatedByVo?.username}}</td>-->
+                        <!--                        <td>{{p.createdAt}}</td>-->
+                        <!--                        <td>{{p.updatedAt}}</td>-->
+                        <!--                        <td>{{p.createdByVo?.username}}</td>-->
+                        <!--                        <td>{{p.updatedByVo?.username}}</td>-->
 
 
                         <td>

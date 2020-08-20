@@ -104,28 +104,28 @@ export class UserlistComponent implements OnInit {
     }
 
     switchCredentialsNonExpired() {
-            this.userSearch.credentialsNonExpired = !this.userSearch.credentialsNonExpired;
+        this.userSearch.credentialsNonExpired = !this.userSearch.credentialsNonExpired;
     }
 
     switchEnabled() {
-            this.userSearch.enabled = !this.userSearch.enabled;
+        this.userSearch.enabled = !this.userSearch.enabled;
     }
 
     switchAccountNonExpired() {
-            this.userSearch.accountNonExpired = !this.userSearch.accountNonExpired;
+        this.userSearch.accountNonExpired = !this.userSearch.accountNonExpired;
     }
 
     switchAccountNonLocked() {
-            this.userSearch.accountNonLocked = !this.userSearch.accountNonLocked;
+        this.userSearch.accountNonLocked = !this.userSearch.accountNonLocked;
     }
 
-    initSearch(){
+    initSearch() {
         this.userSearch = new UserVo();
         this.initBooleanParams();
         this.userService.findAll();
     }
 
-    initBooleanParams(){
+    initBooleanParams() {
         this.userSearch.enabled = false;
         this.userSearch.accountNonExpired = false;
         this.userSearch.accountNonLocked = false;

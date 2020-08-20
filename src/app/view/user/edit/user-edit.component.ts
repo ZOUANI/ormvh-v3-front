@@ -10,7 +10,7 @@ import {RoleService} from '../../../controller/service/Role.service';
     styleUrls: ['./user-edit.component.css']
 })
 export class UserEditComponent implements OnInit {
-    constructor(private userService: UserService , private roleService : RoleService) {
+    constructor(private userService: UserService, private roleService: RoleService) {
     }
 
     ngOnInit(): void {
@@ -19,7 +19,7 @@ export class UserEditComponent implements OnInit {
         this.roleService.findAll();
     }
 
-    get roles(){
+    get roles() {
         return this.roleService.roleListe;
     }
 
@@ -43,7 +43,7 @@ export class UserEditComponent implements OnInit {
     // }
 
     get role(): RoleVo {
-      return this.userService.role;
+        return this.userService.role;
     }
 
     addRole(item: RoleVo) {
@@ -57,6 +57,7 @@ export class UserEditComponent implements OnInit {
         this.user.rolesVo.splice(this.user.rolesVo.indexOf(i), 1);
         // this.roles.push(i);
     }
+
     editUser() {
         this.userService.editUser();
     }
@@ -73,36 +74,36 @@ export class UserEditComponent implements OnInit {
     //     this.userService.findByusername(ref);
     // }
 
-    switchCredentialsNonExpired(){
+    switchCredentialsNonExpired() {
         this.user.credentialsNonExpired = !this.user.credentialsNonExpired;
         console.log(this.user);
     }
 
-    switchEnabled(){
-        this.user.enabled = ! this.user.enabled;
+    switchEnabled() {
+        this.user.enabled = !this.user.enabled;
         console.log(this.user);
     }
 
-    switchAccountNonExpired(){
-        this.user.accountNonExpired = ! this.user.accountNonExpired;
+    switchAccountNonExpired() {
+        this.user.accountNonExpired = !this.user.accountNonExpired;
         console.log(this.user);
     }
 
-    switchAccountNonLocked(){
-        this.user.accountNonLocked = ! this.user.accountNonLocked;
+    switchAccountNonLocked() {
+        this.user.accountNonLocked = !this.user.accountNonLocked;
         console.log(this.user);
     }
 
-    existRole(r : RoleVo){
-        for (let item of this.user.rolesVo){
-            if (item.authority == r.authority){
+    existRole(r: RoleVo) {
+        for (let item of this.user.rolesVo) {
+            if (item.authority == r.authority) {
                 return true;
             }
         }
         return false;
     }
 
-    initPassword(){
+    initPassword() {
         return this.userService.initPassword();
     }
 

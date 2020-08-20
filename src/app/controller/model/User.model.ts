@@ -17,8 +17,8 @@ export class UserVo {
     public updatedAtMax: string;
     public updatedAtMin: string;
 
-    public  newPassword: string;
-    public  confirmPassword: string;
+    public newPassword: string;
+    public confirmPassword: string;
 
     private _createdByVo: UserVo;
     private _updatedByVo: UserVo;

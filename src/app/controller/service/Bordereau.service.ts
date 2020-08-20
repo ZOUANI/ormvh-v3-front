@@ -1,214 +1,229 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {BordereauVo} from '../model/bordereau.model';
 import {UserVo} from '../model/User.model';
+
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class BordereauService {
 
-  constructor(private http: HttpClient) { }
-  private _bordereauDetail : BordereauVo =  new BordereauVo() ;
-  private _bordereauListe  : Array<BordereauVo> = new Array<BordereauVo>();
-  
-  private _bordereauSearch : BordereauVo = new BordereauVo();
-  private _bordereau: BordereauVo =  new BordereauVo();
-  private _searchedBordereaus: Array<BordereauVo> = new Array<BordereauVo>();
-  private _editableBordereaus: Array<BordereauVo> = new Array<BordereauVo>();
-  private _createdBys: Array<UserVo> = new Array<UserVo>();
-  private _updatedBys: Array<UserVo> = new Array<UserVo>();
-   get createdBys(): Array<UserVo> {
-    return this._createdBys;
-   }
-
-   set createdBys(value: Array<UserVo>) {
-    this._createdBys = value;
-   }
-   get updatedBys(): Array<UserVo> {
-    return this._updatedBys;
-   }
-
-   set updatedBys(value: Array<UserVo>) {
-    this._updatedBys = value;
-   }
-
-  get bordereau(): BordereauVo {
-    if (this._bordereau == null) {
-      this._bordereau = new BordereauVo();
+    constructor(private http: HttpClient) {
     }
-    return this._bordereau;
-  }
 
-  set bordereau(value: BordereauVo) {
-    this._bordereau = value;
-  }
+    private _bordereauDetail: BordereauVo = new BordereauVo();
+    private _bordereauListe: Array<BordereauVo> = new Array<BordereauVo>();
 
-  get bordereauListe (): Array<BordereauVo> {
-  return this._bordereauListe;
-}
+    private _bordereauSearch: BordereauVo = new BordereauVo();
+    private _bordereau: BordereauVo = new BordereauVo();
+    private _searchedBordereaus: Array<BordereauVo> = new Array<BordereauVo>();
+    private _editableBordereaus: Array<BordereauVo> = new Array<BordereauVo>();
+    private _createdBys: Array<UserVo> = new Array<UserVo>();
+    private _updatedBys: Array<UserVo> = new Array<UserVo>();
 
-set bordereauListe (value: Array<BordereauVo>) {
-  this._bordereauListe = value ;
-}
-
-get bordereauDetail (): BordereauVo {
-  return this._bordereauDetail;
-}
-
-set bordereauDetail (value: BordereauVo) {
-  this._bordereauDetail = value ;
-}
-
-get bordereauSearch (): BordereauVo {
-  return this._bordereauSearch;
-}
-
-set bordereauSearch (value: BordereauVo) {
-  this._bordereauSearch = value ;
-}
-
-get bordereauShowDetail (): boolean  {
-  return this._bordereauShowDetail;
-}
-
-set bordereauShowDetail (value: boolean ) {
-  this._bordereauShowDetail = value ;
-}
-
-  get editableBordereaus (): Array<BordereauVo> {
-   return this._editableBordereaus;
-  }
-
-  set editableBordereaus (value: Array<BordereauVo>) {
-   this._editableBordereaus = value;
-  }
-
-  public findAll(){
-  this.http.get<Array<BordereauVo>>('http://localhost:8080/generated/bordereau/').subscribe(
-    value => {
-      if (value != null) {
-           this.bordereauListe = value;
-           this.editableBordereaus = value;
-                                                 
-      }
+    get createdBys(): Array<UserVo> {
+        return this._createdBys;
     }
-  );
-}
 
-  public saveBordereau() {
-  this.http.post<BordereauVo>('http://localhost:8080/generated/bordereau/', this.bordereau).subscribe(data=>{
-    this.createHide();
-     this.bordereauListe.push(data);
+    set createdBys(value: Array<UserVo>) {
+        this._createdBys = value;
+    }
 
-  });
-  }
+    get updatedBys(): Array<UserVo> {
+        return this._updatedBys;
+    }
 
-  public editBordereau() {
-  this.http.put<BordereauVo>('http://localhost:8080/generated/bordereau/', this.bordereau).subscribe(data=>{
-    this.editHide();
-  });
-   
-  }
+    set updatedBys(value: Array<UserVo>) {
+        this._updatedBys = value;
+    }
 
-   public findBordereau ( pojo : BordereauVo ){
-  this.http.post<Array<BordereauVo>>('http://localhost:8080/generated/bordereau/search/', pojo).subscribe(
-    value =>{
-       this.bordereauListe = value;  
-    } );
-}
+    get bordereau(): BordereauVo {
+        if (this._bordereau == null) {
+            this._bordereau = new BordereauVo();
+        }
+        return this._bordereau;
+    }
 
-public detailShow ( pojo : BordereauVo ){
-    this.bordereauDetail = pojo;
-    this.bordereauShowDetail = true;
- 
-}
+    set bordereau(value: BordereauVo) {
+        this._bordereau = value;
+    }
+
+    get bordereauListe(): Array<BordereauVo> {
+        return this._bordereauListe;
+    }
+
+    set bordereauListe(value: Array<BordereauVo>) {
+        this._bordereauListe = value;
+    }
+
+    get bordereauDetail(): BordereauVo {
+        return this._bordereauDetail;
+    }
+
+    set bordereauDetail(value: BordereauVo) {
+        this._bordereauDetail = value;
+    }
+
+    get bordereauSearch(): BordereauVo {
+        return this._bordereauSearch;
+    }
+
+    set bordereauSearch(value: BordereauVo) {
+        this._bordereauSearch = value;
+    }
+
+    get bordereauShowDetail(): boolean {
+        return this._bordereauShowDetail;
+    }
+
+    set bordereauShowDetail(value: boolean) {
+        this._bordereauShowDetail = value;
+    }
+
+    get editableBordereaus(): Array<BordereauVo> {
+        return this._editableBordereaus;
+    }
+
+    set editableBordereaus(value: Array<BordereauVo>) {
+        this._editableBordereaus = value;
+    }
+
+    public findAll() {
+        this.http.get<Array<BordereauVo>>('http://localhost:8080/generated/bordereau/').subscribe(
+            value => {
+                if (value != null) {
+                    this.bordereauListe = value;
+                    this.editableBordereaus = value;
+
+                }
+            }
+        );
+    }
+
+    public saveBordereau() {
+        this.http.post<BordereauVo>('http://localhost:8080/generated/bordereau/', this.bordereau).subscribe(data => {
+            this.createHide();
+            this.bordereauListe.push(data);
+
+        });
+    }
+
+    public editBordereau() {
+        this.http.put<BordereauVo>('http://localhost:8080/generated/bordereau/', this.bordereau).subscribe(data => {
+            this.editHide();
+        });
+
+    }
+
+    public findBordereau(pojo: BordereauVo) {
+        this.http.post<Array<BordereauVo>>('http://localhost:8080/generated/bordereau/search/', pojo).subscribe(
+            value => {
+                this.bordereauListe = value;
+            });
+    }
+
+    public detailShow(pojo: BordereauVo) {
+        this.bordereauDetail = pojo;
+        this.bordereauShowDetail = true;
+
+    }
 
 
-
-delete(pojo: BordereauVo) {
-   this.http.delete<BordereauVo>('http://localhost:8080/generated/bordereau/id/'+pojo.id).subscribe(
-        value => {
-        var index = this.bordereauListe.indexOf(pojo);
-if (index > -1) {
-   this.bordereauListe.splice(index, 1);
-}
-}
+    delete(pojo: BordereauVo) {
+        this.http.delete<BordereauVo>('http://localhost:8080/generated/bordereau/id/' + pojo.id).subscribe(
+            value => {
+                var index = this.bordereauListe.indexOf(pojo);
+                if (index > -1) {
+                    this.bordereauListe.splice(index, 1);
+                }
+            }
         );
 
 
-}
+    }
 
 
-       public findBylibelle(ref: string) {
-      this.http.get<BordereauVo>('http://localhost:8080/generated/bordereau/libelle/' + ref).subscribe(
-        value => {
-        if (value != null) { this.bordereau = value; }
-        }
+    public findBylibelle(ref: string) {
+        this.http.get<BordereauVo>('http://localhost:8080/generated/bordereau/libelle/' + ref).subscribe(
+            value => {
+                if (value != null) {
+                    this.bordereau = value;
+                }
+            }
         );
-        }
+    }
 
-            public findAllcreatedBys() {
-             this.http.get<Array<UserVo>>('http://localhost:8080/generated/user/').subscribe(
+    public findAllcreatedBys() {
+        this.http.get<Array<UserVo>>('http://localhost:8080/generated/user/').subscribe(
             value => {
-            if (value != null) { this.createdBys = value; }
+                if (value != null) {
+                    this.createdBys = value;
+                }
             }
-            );
-            }
-            public findAllupdatedBys() {
-             this.http.get<Array<UserVo>>('http://localhost:8080/generated/user/').subscribe(
+        );
+    }
+
+    public findAllupdatedBys() {
+        this.http.get<Array<UserVo>>('http://localhost:8080/generated/user/').subscribe(
             value => {
-            if (value != null) { this.updatedBys = value; }
+                if (value != null) {
+                    this.updatedBys = value;
+                }
             }
-            );
-            }
+        );
+    }
 
 
-          /***********************************************************************************************/
-        private _bordereauShowDetail : boolean;
-              public detailHide (){
+    /***********************************************************************************************/
+    private _bordereauShowDetail: boolean;
 
-       this.bordereauShowDetail = false;
-       this.bordereauDetail = null;
-                                  }
- private _bordereauShowEdit : boolean;
+    public detailHide() {
 
- private _bordereauShowCreate : boolean;
+        this.bordereauShowDetail = false;
+        this.bordereauDetail = null;
+    }
 
-get bordereauShowEdit (): boolean  {
-  return this._bordereauShowEdit;
-}
+    private _bordereauShowEdit: boolean;
 
-set bordereauShowEdit (value: boolean ) {
-  this._bordereauShowEdit = value ;
-}
-get bordereauShowCreate (): boolean  {
-  return this._bordereauShowCreate;
-}
+    private _bordereauShowCreate: boolean;
 
-set bordereauShowCreate (value: boolean ) {
-  this._bordereauShowCreate = value ;
-}
-             public editShow(pojo : BordereauVo ){
+    get bordereauShowEdit(): boolean {
+        return this._bordereauShowEdit;
+    }
 
-       this.bordereauShowEdit = true;
-       this.bordereau = pojo;
-                                  }
+    set bordereauShowEdit(value: boolean) {
+        this._bordereauShowEdit = value;
+    }
 
-              public editHide (){
+    get bordereauShowCreate(): boolean {
+        return this._bordereauShowCreate;
+    }
 
-       this.bordereauShowEdit = false;
-       this.bordereau = new BordereauVo();
-                                  }
+    set bordereauShowCreate(value: boolean) {
+        this._bordereauShowCreate = value;
+    }
 
-               public createShow(){
+    public editShow(pojo: BordereauVo) {
 
-       this.bordereauShowCreate = true;
-       this.bordereau = new BordereauVo();
-                                  }
+        this.bordereauShowEdit = true;
+        this.bordereau = pojo;
+    }
 
-              public createHide (){
+    public editHide() {
 
-       this.bordereauShowCreate = false;
-       this.bordereau = new BordereauVo();
-                                  }
+        this.bordereauShowEdit = false;
+        this.bordereau = new BordereauVo();
+    }
+
+    public createShow() {
+
+        this.bordereauShowCreate = true;
+        this.bordereau = new BordereauVo();
+    }
+
+    public createHide() {
+
+        this.bordereauShowCreate = false;
+        this.bordereau = new BordereauVo();
+    }
 }

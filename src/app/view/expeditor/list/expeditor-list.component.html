@@ -21,43 +21,51 @@
 
                                     <div class="input-group  col-3  my-2">
                                         <small class="text-muted col-12">id</small>
-                                        <input [(ngModel)]="expeditorSearch.id" class="form-control col-12" placeholder="id"
+                                        <input [(ngModel)]="expeditorSearch.id" class="form-control col-12"
+                                               placeholder="id"
                                                type="text">
                                     </div>
                                     <div class="input-group  col-3  my-2">
                                         <small class="text-muted col-12">title</small>
-                                        <input [(ngModel)]="expeditorSearch.title" class="form-control col-12" placeholder="title"
+                                        <input [(ngModel)]="expeditorSearch.title" class="form-control col-12"
+                                               placeholder="title"
                                                type="text">
                                     </div>
                                     <div class="input-group  col-3  my-2">
                                         <small class="text-muted col-12">titleArab</small>
-                                        <input [(ngModel)]="expeditorSearch.titleArab" class="form-control col-12" placeholder="titleArab"
+                                        <input [(ngModel)]="expeditorSearch.titleArab" class="form-control col-12"
+                                               placeholder="titleArab"
                                                type="text">
                                     </div>
                                     <div class="input-group  col-3  my-2">
                                         <small class="text-muted col-12">code</small>
-                                        <input [(ngModel)]="expeditorSearch.code" class="form-control col-12" placeholder="code"
+                                        <input [(ngModel)]="expeditorSearch.code" class="form-control col-12"
+                                               placeholder="code"
                                                type="text">
                                     </div>
                                     <div class="input-group  col-3  my-2">
                                         <small class="text-muted col-12">description</small>
-                                        <input [(ngModel)]="expeditorSearch.description" class="form-control col-12" placeholder="description"
+                                        <input [(ngModel)]="expeditorSearch.description" class="form-control col-12"
+                                               placeholder="description"
                                                type="text">
                                     </div>
                                     <div class="input-group  col-3  my-2">
                                         <small class="text-muted col-12">nature</small>
-                                        <input [(ngModel)]="expeditorSearch.nature" class="form-control col-12" placeholder="nature"
+                                        <input [(ngModel)]="expeditorSearch.nature" class="form-control col-12"
+                                               placeholder="nature"
                                                type="text">
                                     </div>
                                     <div class="input-group  col-4  my-2">
                                         <div class="col-5  mx-1 px-1">
                                             <small class="text-muted">age Min</small>
-                                            <input [(ngModel)]="expeditorSearch.ageMin" class="form-control" placeholder="Min age"
+                                            <input [(ngModel)]="expeditorSearch.ageMin" class="form-control"
+                                                   placeholder="Min age"
                                                    type="text">
                                         </div>
                                         <div class="col-5  mx-1 px-1 ">
                                             <small class="text-muted">age Min</small>
-                                            <input [(ngModel)]="expeditorSearch.ageMax" class="form-control" placeholder="Max age"
+                                            <input [(ngModel)]="expeditorSearch.ageMax" class="form-control"
+                                                   placeholder="Max age"
                                                    type="text">
                                         </div>
                                     </div>
@@ -75,55 +83,56 @@
                                     </div>
                                     <div class="input-group  col-3  my-2">
                                         <small class="text-muted col-12">adress</small>
-                                        <input [(ngModel)]="expeditorSearch.adress" class="form-control col-12" placeholder="adress"
+                                        <input [(ngModel)]="expeditorSearch.adress" class="form-control col-12"
+                                               placeholder="adress"
                                                type="text">
                                     </div>
-<!--                                    <div class="input-group  col-4  my-2">-->
-<!--                                        <div class="col-5 mx-1 px-1">-->
-<!--                                            <div class="p-grid ui-fluid">-->
-<!--                                                <small class="text-muted">createdAt Min</small>-->
-<!--                                                <p-calendar [(ngModel)]="expeditorSearch.createdAtMin" class="p-col-12"-->
-<!--                                                            dateFormat="yy-mm-dd"></p-calendar>-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                                        <div class="col-5 mx-1 px-1">-->
-<!--                                            <div class="p-grid ui-fluid">-->
-<!--                                                <small class="text-muted">createdAt Max</small>-->
-<!--                                                <p-calendar [(ngModel)]="expeditorSearch.createdAtMax" class="p-col-12"-->
-<!--                                                            dateFormat="yy-mm-dd"></p-calendar>-->
-<!--                                            </div>-->
-<!--                                        </div>-->
+                                    <!--                                    <div class="input-group  col-4  my-2">-->
+                                    <!--                                        <div class="col-5 mx-1 px-1">-->
+                                    <!--                                            <div class="p-grid ui-fluid">-->
+                                    <!--                                                <small class="text-muted">createdAt Min</small>-->
+                                    <!--                                                <p-calendar [(ngModel)]="expeditorSearch.createdAtMin" class="p-col-12"-->
+                                    <!--                                                            dateFormat="yy-mm-dd"></p-calendar>-->
+                                    <!--                                            </div>-->
+                                    <!--                                        </div>-->
+                                    <!--                                        <div class="col-5 mx-1 px-1">-->
+                                    <!--                                            <div class="p-grid ui-fluid">-->
+                                    <!--                                                <small class="text-muted">createdAt Max</small>-->
+                                    <!--                                                <p-calendar [(ngModel)]="expeditorSearch.createdAtMax" class="p-col-12"-->
+                                    <!--                                                            dateFormat="yy-mm-dd"></p-calendar>-->
+                                    <!--                                            </div>-->
+                                    <!--                                        </div>-->
 
-<!--                                    </div>-->
-<!--                                    <div class="input-group  col-4  my-2">-->
-<!--                                        <div class="col-5 mx-1 px-1">-->
-<!--                                            <div class="p-grid ui-fluid">-->
-<!--                                                <small class="text-muted">updatedAt Min</small>-->
-<!--                                                <p-calendar [(ngModel)]="expeditorSearch.updatedAtMin" class="p-col-12"-->
-<!--                                                            dateFormat="yy-mm-dd"></p-calendar>-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                                        <div class="col-5 mx-1 px-1">-->
-<!--                                            <div class="p-grid ui-fluid">-->
-<!--                                                <small class="text-muted">updatedAt Max</small>-->
-<!--                                                <p-calendar [(ngModel)]="expeditorSearch.updatedAtMax" class="p-col-12"-->
-<!--                                                            dateFormat="yy-mm-dd"></p-calendar>-->
-<!--                                            </div>-->
-<!--                                        </div>-->
+                                    <!--                                    </div>-->
+                                    <!--                                    <div class="input-group  col-4  my-2">-->
+                                    <!--                                        <div class="col-5 mx-1 px-1">-->
+                                    <!--                                            <div class="p-grid ui-fluid">-->
+                                    <!--                                                <small class="text-muted">updatedAt Min</small>-->
+                                    <!--                                                <p-calendar [(ngModel)]="expeditorSearch.updatedAtMin" class="p-col-12"-->
+                                    <!--                                                            dateFormat="yy-mm-dd"></p-calendar>-->
+                                    <!--                                            </div>-->
+                                    <!--                                        </div>-->
+                                    <!--                                        <div class="col-5 mx-1 px-1">-->
+                                    <!--                                            <div class="p-grid ui-fluid">-->
+                                    <!--                                                <small class="text-muted">updatedAt Max</small>-->
+                                    <!--                                                <p-calendar [(ngModel)]="expeditorSearch.updatedAtMax" class="p-col-12"-->
+                                    <!--                                                            dateFormat="yy-mm-dd"></p-calendar>-->
+                                    <!--                                            </div>-->
+                                    <!--                                        </div>-->
 
-<!--                                    </div>-->
-<!--                                    <div class="input-group  col-4 my-2">-->
-<!--                                        <small class="text-muted col-12">createdBy</small>-->
-<!--                                        <select [(ngModel)]="expeditorSearch.createdByVo" class="form-control col-12">-->
-<!--                                            <option *ngFor="let p of createdBys" [ngValue]="p">{{p.username}}</option>-->
-<!--                                        </select>-->
-<!--                                    </div>-->
-<!--                                    <div class="input-group  col-4 my-2">-->
-<!--                                        <small class="text-muted col-12">updatedBy</small>-->
-<!--                                        <select [(ngModel)]="expeditorSearch.updatedByVo" class="form-control col-12">-->
-<!--                                            <option *ngFor="let p of updatedBys" [ngValue]="p">{{p.username}}</option>-->
-<!--                                        </select>-->
-<!--                                    </div>-->
+                                    <!--                                    </div>-->
+                                    <!--                                    <div class="input-group  col-4 my-2">-->
+                                    <!--                                        <small class="text-muted col-12">createdBy</small>-->
+                                    <!--                                        <select [(ngModel)]="expeditorSearch.createdByVo" class="form-control col-12">-->
+                                    <!--                                            <option *ngFor="let p of createdBys" [ngValue]="p">{{p.username}}</option>-->
+                                    <!--                                        </select>-->
+                                    <!--                                    </div>-->
+                                    <!--                                    <div class="input-group  col-4 my-2">-->
+                                    <!--                                        <small class="text-muted col-12">updatedBy</small>-->
+                                    <!--                                        <select [(ngModel)]="expeditorSearch.updatedByVo" class="form-control col-12">-->
+                                    <!--                                            <option *ngFor="let p of updatedBys" [ngValue]="p">{{p.username}}</option>-->
+                                    <!--                                        </select>-->
+                                    <!--                                    </div>-->
                                 </div>
                             </div>
                             <button (click)="findExpeditor(expeditorSearch)"
@@ -155,10 +164,10 @@
                     <th>sexe reference</th>
                     <th>nationality reference</th>
                     <th>adress</th>
-<!--                    <th>createdAt</th>-->
-<!--                    <th>updatedAt</th>-->
-<!--                    <th>createdBy reference</th>-->
-<!--                    <th>updatedBy reference</th>-->
+                    <!--                    <th>createdAt</th>-->
+                    <!--                    <th>updatedAt</th>-->
+                    <!--                    <th>createdBy reference</th>-->
+                    <!--                    <th>updatedBy reference</th>-->
                     <th>Actions</th>
                     </thead>
                     <tbody>
@@ -174,10 +183,10 @@
                         <td>{{p.sexeVo?.libelle}}</td>
                         <td>{{p.nationalityVo?.libelle}}</td>
                         <td>{{p.adress}}</td>
-<!--                        <td>{{p.createdAt}}</td>-->
-<!--                        <td>{{p.updatedAt}}</td>-->
-<!--                        <td>{{p.createdByVo?.username}}</td>-->
-<!--                        <td>{{p.updatedByVo?.username}}</td>-->
+                        <!--                        <td>{{p.createdAt}}</td>-->
+                        <!--                        <td>{{p.updatedAt}}</td>-->
+                        <!--                        <td>{{p.createdByVo?.username}}</td>-->
+                        <!--                        <td>{{p.updatedByVo?.username}}</td>-->
 
 
                         <td>

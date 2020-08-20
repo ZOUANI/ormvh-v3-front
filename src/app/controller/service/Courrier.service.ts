@@ -13,15 +13,15 @@ import {ExpeditorVo} from '../model/Expeditor.model';
     providedIn: 'root'
 })
 export class CourrierService {
-    onEdit: boolean=false;
-    onDetail:boolean=false;
-    onCreate : boolean=false;
+    onEdit: boolean = false;
+    onDetail: boolean = false;
+    onCreate: boolean = false;
 
-    edit(courrier:CourrierVo){
+    edit(courrier: CourrierVo) {
         this.courrier = courrier;
-        if(this.courrier.courrierServiceItemsVo == null)
+        if (this.courrier.courrierServiceItemsVo == null)
             this.courrier.courrierServiceItemsVo = new Array<CourrierServiceItemVo>();
-        if(this.courrier.tasksVo == null)
+        if (this.courrier.tasksVo == null)
             this.courrier.tasksVo = new Array<TaskVo>();
 
         this.onEdit = true;
@@ -38,26 +38,27 @@ export class CourrierService {
     }
 
     courriersService: Map<string, Array<CourrierVo>>;
-    showEmailDialog:boolean = false;
-    selectedCourrier: CourrierVo ;
+    showEmailDialog: boolean = false;
+    selectedCourrier: CourrierVo;
 
     findCourrierByRelance(courrier: CourrierVo) {
         this.http.post('http://localhost:8080/generated/courrier/couriersusceptiblerelance', courrier).subscribe(data => {
-        let entries  = Object.entries(data);
-        console.log(data);
-      this.courriersService = new Map<string, Array<CourrierVo>>(entries);
+            let entries = Object.entries(data);
+            console.log(data);
+            this.courriersService = new Map<string, Array<CourrierVo>>(entries);
 
-        console.log(this.courriersService);   
+            console.log(this.courriersService);
 
         });
     }
 
-    sendListCourriers(courriers:CourrierVo[]){
-        this.http.post<number>('http://localhost:8080/generated/courrier/sendcourierrelance/',courriers);
-       
+    sendListCourriers(courriers: CourrierVo[]) {
+        this.http.post<number>('http://localhost:8080/generated/courrier/sendcourierrelance/', courriers);
+
     }
+
     sendEmail(email: string, subject: string, body: string) {
-        this.http.post<number>('http://localhost:8080/generated/courrier/sendcourierredirection/to/' + email + '/subject/' + subject+"/content/"+body,null);
+        this.http.post<number>('http://localhost:8080/generated/courrier/sendcourierredirection/to/' + email + '/subject/' + subject + "/content/" + body, null);
     }
 
     constructor(private http: HttpClient, private expeditorService: ExpeditorService) {
@@ -1012,13 +1013,14 @@ export class CourrierService {
         this._createExpeditorShow = value;
     }
 
-    public print(courriers :Array<CourrierVo>){
+    public print(courriers: Array<CourrierVo>) {
         const httpOptions = {
-            responseType  : 'blob' as 'json'
+            responseType: 'blob' as 'json'
         };
-        return this.http.post("http://localhost:8080/generated/courrier/pdf",courriers,httpOptions).subscribe((resultBlob: Blob) => {
+        return this.http.post("http://localhost:8080/generated/courrier/pdf", courriers, httpOptions).subscribe((resultBlob: Blob) => {
             var downloadURL = URL.createObjectURL(resultBlob);
-            window.open(downloadURL);});
+            window.open(downloadURL);
+        });
     }
 
 }

@@ -14,8 +14,9 @@ import {AuthenticationService} from './auth/authentication.service';
 export class UserService {
 
 
-    constructor(private http: HttpClient, private roleService: RoleService , private router : Router , private authService : AuthenticationService) {
+    constructor(private http: HttpClient, private roleService: RoleService, private router: Router, private authService: AuthenticationService) {
     }
+
     public userPasswordReset = new UserVo();
     public userToUpdate = new UserVo();
 
@@ -156,10 +157,10 @@ export class UserService {
                 Swal.fire({
                     icon: 'error',
                     title: 'Oops...',
-                    text: 'cannot update this user : '+this.userToUpdate.username,
+                    text: 'cannot update this user : ' + this.userToUpdate.username,
 
                 })
-            }else {
+            } else {
                 this.userToUpdate = new UserVo();
                 Swal.fire({
                     icon: 'success',
@@ -201,7 +202,7 @@ export class UserService {
             value => {
                 this.userListe = value;
             }
-            );
+        );
     }
 
     public detailShow(pojo: UserVo) {
@@ -265,12 +266,12 @@ export class UserService {
         this.userDetail = null;
     }
 
-    public resetPassword(){
+    public resetPassword() {
         this.userPasswordReset.username = this.authService.authenticatedUser.username;
         this.http.post<any>('http://localhost:8080/generated/user/password-reset',
-                            this.userPasswordReset
+            this.userPasswordReset
         ).subscribe(
-            data=>{
+            data => {
                 if (data == 1) {
                     Swal.fire({
                         position: 'top',
@@ -290,15 +291,15 @@ export class UserService {
                         showConfirmButton: true
                     });
                 }
-            },error1 => {
+            }, error1 => {
                 console.log(error1);
             }
         );
     }
 
-    public initPassword(){
-        this.http.post<any>('http://localhost:8080/generated/user/init-password/'+this.userToUpdate.username,null).subscribe(
-            data=>{
+    public initPassword() {
+        this.http.post<any>('http://localhost:8080/generated/user/init-password/' + this.userToUpdate.username, null).subscribe(
+            data => {
                 if (data != null) {
                     Swal.fire({
                         position: 'top',
@@ -316,18 +317,18 @@ export class UserService {
                         showConfirmButton: true
                     });
                 }
-            },error1 => {
+            }, error1 => {
                 console.log(error1);
             }
         );
     }
 
-    getCurrentUser(){
+    getCurrentUser() {
         this.http.get<UserVo>('http://localhost:8080/generated/user/currentUser').subscribe(
-            data=>{
+            data => {
                 this.userShowDetail = true;
                 this.detailShow(data);
-            },error1 => {
+            }, error1 => {
                 console.log(error1);
             }
         );

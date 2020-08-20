@@ -19,28 +19,33 @@
 
                                     <div class="input-group  col-3  my-2">
                                         <small class="text-muted col-12">{{'STATEMENT.ID' | translate}}</small>
-                                        <input [(ngModel)]="bordereauSearch.id" class="form-control col-12" placeholder="id"
+                                        <input [(ngModel)]="bordereauSearch.id" class="form-control col-12"
+                                               placeholder="id"
                                                type="text">
                                     </div>
                                     <div class="input-group  col-3  my-2">
                                         <small class="text-muted col-12">{{'STATEMENT.LABEL' | translate}}</small>
-                                        <input [(ngModel)]="bordereauSearch.libelle" class="form-control col-12" placeholder="libelle"
+                                        <input [(ngModel)]="bordereauSearch.libelle" class="form-control col-12"
+                                               placeholder="libelle"
                                                type="text">
                                     </div>
                                     <div class="input-group  col-3  my-2">
                                         <small class="text-muted col-12">{{'STATEMENT.DESCRIPTION' | translate}}</small>
-                                        <input [(ngModel)]="bordereauSearch.description" class="form-control col-12" placeholder="description"
+                                        <input [(ngModel)]="bordereauSearch.description" class="form-control col-12"
+                                               placeholder="description"
                                                type="text">
                                     </div>
                                     <div class="input-group  col-4  my-2">
                                         <div class="col-5  mx-1 px-1">
                                             <small class="text-muted">{{'STATEMENT.ATTACHMENTS_NUMBER_MIN' | translate}}</small>
-                                            <input [(ngModel)]="bordereauSearch.nombrePieceJointeMin" class="form-control" placeholder="Min nombrePieceJointe"
+                                            <input [(ngModel)]="bordereauSearch.nombrePieceJointeMin"
+                                                   class="form-control" placeholder="Min nombrePieceJointe"
                                                    type="text">
                                         </div>
                                         <div class="col-5  mx-1 px-1 ">
                                             <small class="text-muted">{{'STATEMENT.ATTACHMENTS_NUMBER_MAX' | translate}}</small>
-                                            <input [(ngModel)]="bordereauSearch.nombrePieceJointeMax" class="form-control" placeholder="Max nombrePieceJointe"
+                                            <input [(ngModel)]="bordereauSearch.nombrePieceJointeMax"
+                                                   class="form-control" placeholder="Max nombrePieceJointe"
                                                    type="text">
                                         </div>
                                     </div>
@@ -48,65 +53,67 @@
                                         <div class="col-5 mx-1 px-1">
                                             <div class="p-grid ui-fluid">
                                                 <small class="text-muted">{{'STATEMENT.STATEMENT_DATE_MIN' | translate}}</small>
-                                                <p-calendar [(ngModel)]="bordereauSearch.dateBordereauxMin" class="p-col-12"
+                                                <p-calendar [(ngModel)]="bordereauSearch.dateBordereauxMin"
+                                                            class="p-col-12"
                                                             dateFormat="yy-mm-dd"></p-calendar>
                                             </div>
                                         </div>
                                         <div class="col-5 mx-1 px-1">
                                             <div class="p-grid ui-fluid">
                                                 <small class="text-muted">{{'STATEMENT.STATEMENT_DATE_MIN' | translate}}</small>
-                                                <p-calendar [(ngModel)]="bordereauSearch.dateBordereauxMax" class="p-col-12"
+                                                <p-calendar [(ngModel)]="bordereauSearch.dateBordereauxMax"
+                                                            class="p-col-12"
                                                             dateFormat="yy-mm-dd"></p-calendar>
                                             </div>
                                         </div>
 
                                     </div>
                                     <div class="input-group  col-4  my-2">
-<!--                                        <div class="col-5 mx-1 px-1">-->
-<!--                                            <div class="p-grid ui-fluid">-->
-<!--                                                <small class="text-muted">createdAt Min</small>-->
-<!--                                                <p-calendar [(ngModel)]="bordereauSearch.createdAtMin" class="p-col-12"-->
-<!--                                                            dateFormat="yy-mm-dd"></p-calendar>-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                                        <div class="col-5 mx-1 px-1">-->
-<!--                                            <div class="p-grid ui-fluid">-->
-<!--                                                <small class="text-muted">createdAt Max</small>-->
-<!--                                                <p-calendar [(ngModel)]="bordereauSearch.createdAtMax" class="p-col-12"-->
-<!--                                                            dateFormat="yy-mm-dd"></p-calendar>-->
-<!--                                            </div>-->
-<!--                                        </div>-->
+                                        <!--                                        <div class="col-5 mx-1 px-1">-->
+                                        <!--                                            <div class="p-grid ui-fluid">-->
+                                        <!--                                                <small class="text-muted">createdAt Min</small>-->
+                                        <!--                                                <p-calendar [(ngModel)]="bordereauSearch.createdAtMin" class="p-col-12"-->
+                                        <!--                                                            dateFormat="yy-mm-dd"></p-calendar>-->
+                                        <!--                                            </div>-->
+                                        <!--                                        </div>-->
+                                        <!--                                        <div class="col-5 mx-1 px-1">-->
+                                        <!--                                            <div class="p-grid ui-fluid">-->
+                                        <!--                                                <small class="text-muted">createdAt Max</small>-->
+                                        <!--                                                <p-calendar [(ngModel)]="bordereauSearch.createdAtMax" class="p-col-12"-->
+                                        <!--                                                            dateFormat="yy-mm-dd"></p-calendar>-->
+                                        <!--                                            </div>-->
+                                        <!--                                        </div>-->
 
                                     </div>
-<!--                                    <div class="input-group  col-4  my-2">-->
-<!--                                        <div class="col-5 mx-1 px-1">-->
-<!--                                            <div class="p-grid ui-fluid">-->
-<!--                                                <small class="text-muted">updatedAt Min</small>-->
-<!--                                                <p-calendar [(ngModel)]="bordereauSearch.updatedAtMin" class="p-col-12"-->
-<!--                                                            dateFormat="yy-mm-dd"></p-calendar>-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                                        <div class="col-5 mx-1 px-1">-->
-<!--                                            <div class="p-grid ui-fluid">-->
-<!--                                                <small class="text-muted">updatedAt Max</small>-->
-<!--                                                <p-calendar [(ngModel)]="bordereauSearch.updatedAtMax" class="p-col-12"-->
-<!--                                                            dateFormat="yy-mm-dd"></p-calendar>-->
-<!--                                            </div>-->
-<!--                                        </div>-->
+                                    <!--                                    <div class="input-group  col-4  my-2">-->
+                                    <!--                                        <div class="col-5 mx-1 px-1">-->
+                                    <!--                                            <div class="p-grid ui-fluid">-->
+                                    <!--                                                <small class="text-muted">updatedAt Min</small>-->
+                                    <!--                                                <p-calendar [(ngModel)]="bordereauSearch.updatedAtMin" class="p-col-12"-->
+                                    <!--                                                            dateFormat="yy-mm-dd"></p-calendar>-->
+                                    <!--                                            </div>-->
+                                    <!--                                        </div>-->
+                                    <!--                                        <div class="col-5 mx-1 px-1">-->
+                                    <!--                                            <div class="p-grid ui-fluid">-->
+                                    <!--                                                <small class="text-muted">updatedAt Max</small>-->
+                                    <!--                                                <p-calendar [(ngModel)]="bordereauSearch.updatedAtMax" class="p-col-12"-->
+                                    <!--                                                            dateFormat="yy-mm-dd"></p-calendar>-->
+                                    <!--                                            </div>-->
+                                    <!--                                        </div>-->
 
-<!--                                    </div>-->
-<!--                                    <div class="input-group  col-4 my-2">-->
-<!--                                        <small class="text-muted col-12">createdBy</small>-->
-<!--                                        <select [(ngModel)]="bordereauSearch.createdByVo" class="form-control col-12">-->
-<!--                                            <option *ngFor="let p of createdBys" [ngValue]="p">{{p.username}}</option>-->
-<!--                                        </select>-->
-<!--                                    </div>-->
-<!--                                    <div class="input-group  col-4 my-2">-->
-<!--                                        <small class="text-muted col-12">updatedBy</small>-->
-<!--                                        <select [(ngModel)]="bordereauSearch.updatedByVo" class="form-control col-12">-->
-<!--                                            <option *ngFor="let p of updatedBys" [ngValue]="p">{{p.username}}</option>-->
-<!--                                        </select>-->
-<!--                                    </div>-->
+                                    <!--                                    </div>-->
+                                    <!--                                    <div class="input-group  col-4 my-2">-->
+                                    <!--                                        <small class="text-muted col-12">createdBy</small>-->
+                                    <!--                                        <select [(ngModel)]="bordereauSearch.createdByVo" class="form-control col-12">-->
+                                    <!--                                            <option *ngFor="let p of createdBys" [ngValue]="p">{{p.username}}</option>-->
+                                    <!--                                        </select>-->
+                                    <!--                                    </div>-->
+                                    <!--                                    <div class="input-group  col-4 my-2">-->
+                                    <!--                                        <small class="text-muted col-12">updatedBy</small>-->
+                                    <!--                                        <select [(ngModel)]="bordereauSearch.updatedByVo" class="form-control col-12">-->
+                                    <!--                                            <option *ngFor="let p of updatedBys" [ngValue]="p">{{p.username}}</option>-->
+                                    <!--                                        </select>-->
+                                    <!--                                    </div>-->
                                 </div>
                             </div>
                             <button (click)="findBordereau(bordereauSearch)"
@@ -122,7 +129,8 @@
             <div class="card-header bg-transparent">
                 <div class="float-left px-1"><h5>{{'STATEMENT.STATEMENT_LIST' | translate}}</h5></div>
 
-                <button (click)="createShow()" class="btn btn-success btn-sm fa fa-plus float-right">{{'STATEMENT.CREATE_STATEMENT' | translate}}
+                <button (click)="createShow()"
+                        class="btn btn-success btn-sm fa fa-plus float-right">{{'STATEMENT.CREATE_STATEMENT' | translate}}
                 </button>
 
             </div>
@@ -136,10 +144,10 @@
                     <th>{{'STATEMENT.DESCRIPTION' | translate}}</th>
                     <th>{{'STATEMENT.ATTACHMENTS_NUMBER' | translate}}</th>
                     <th>{{'STATEMENT.STATEMENT_DATE' | translate}}</th>
-<!--                    <th>createdAt</th>-->
-<!--                    <th>updatedAt</th>-->
-<!--                    <th>createdBy reference</th>-->
-<!--                    <th>updatedBy reference</th>-->
+                    <!--                    <th>createdAt</th>-->
+                    <!--                    <th>updatedAt</th>-->
+                    <!--                    <th>createdBy reference</th>-->
+                    <!--                    <th>updatedBy reference</th>-->
                     <th>{{'COMMONS.ACTIONS' | translate}}</th>
                     </thead>
                     <tbody>
@@ -150,10 +158,10 @@
                         <td>{{p.description}}</td>
                         <td>{{p.nombrePieceJointe}}</td>
                         <td>{{p.dateBordereaux}}</td>
-<!--                        <td>{{p.createdAt}}</td>-->
-<!--                        <td>{{p.updatedAt}}</td>-->
-<!--                        <td>{{p.createdByVo?.username}}</td>-->
-<!--                        <td>{{p.updatedByVo?.username}}</td>-->
+                        <!--                        <td>{{p.createdAt}}</td>-->
+                        <!--                        <td>{{p.updatedAt}}</td>-->
+                        <!--                        <td>{{p.createdByVo?.username}}</td>-->
+                        <!--                        <td>{{p.updatedByVo?.username}}</td>-->
 
 
                         <td>

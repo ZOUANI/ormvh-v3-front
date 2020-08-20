@@ -19,72 +19,78 @@
 
                                     <div class="input-group  col-3  my-2">
                                         <small class="text-muted col-12">{{"MAILING_OBJECT.ID" | translate}}</small>
-                                        <input [(ngModel)]="courrierObjectSearch.id" class="form-control col-12" placeholder="{{'MAILING_OBJECT.ID' | translate}}"
+                                        <input [(ngModel)]="courrierObjectSearch.id" class="form-control col-12"
+                                               placeholder="{{'MAILING_OBJECT.ID' | translate}}"
                                                type="text">
                                     </div>
                                     <div class="input-group  col-3  my-2">
                                         <small class="text-muted col-12">{{"MAILING_OBJECT.TITLE" | translate}}</small>
-                                        <input [(ngModel)]="courrierObjectSearch.title" class="form-control col-12" placeholder="{{'MAILING_OBJECT.TITLE' | translate}}"
+                                        <input [(ngModel)]="courrierObjectSearch.title" class="form-control col-12"
+                                               placeholder="{{'MAILING_OBJECT.TITLE' | translate}}"
                                                type="text">
                                     </div>
                                     <div class="input-group  col-3  my-2">
                                         <small class="text-muted col-12">{{"MAILING_OBJECT.ARAB_TITLE" | translate}}</small>
-                                        <input [(ngModel)]="courrierObjectSearch.titleArab" class="form-control col-12" placeholder="{{'MAILING_OBJECT.ARAB_TITLE' | translate}}"
+                                        <input [(ngModel)]="courrierObjectSearch.titleArab" class="form-control col-12"
+                                               placeholder="{{'MAILING_OBJECT.ARAB_TITLE' | translate}}"
                                                type="text">
                                     </div>
                                     <div class="input-group  col-3  my-2">
                                         <small class="text-muted col-12">{{"MAILING_OBJECT.CODE" | translate}}</small>
-                                        <input [(ngModel)]="courrierObjectSearch.code" class="form-control col-12" placeholder="{{'MAILING_OBJECT.ARAB_TITLE' | translate}}"
+                                        <input [(ngModel)]="courrierObjectSearch.code" class="form-control col-12"
+                                               placeholder="{{'MAILING_OBJECT.ARAB_TITLE' | translate}}"
                                                type="text">
                                     </div>
                                     <div class="input-group  col-4  my-2">
                                         <div class="col-5 mx-1 px-1">
                                             <div class="p-grid ui-fluid">
                                                 <small class="text-muted">{{"COMMONS.CREATED_AT_MIN" | translate}}</small>
-                                                <p-calendar [(ngModel)]="courrierObjectSearch.createdAtMin" class="p-col-12"
+                                                <p-calendar [(ngModel)]="courrierObjectSearch.createdAtMin"
+                                                            class="p-col-12"
                                                             dateFormat="yy-mm-dd"></p-calendar>
                                             </div>
                                         </div>
                                         <div class="col-5 mx-1 px-1">
                                             <div class="p-grid ui-fluid">
                                                 <small class="text-muted">{{"COMMONS.CREATED_AT_MAX" | translate}}</small>
-                                                <p-calendar [(ngModel)]="courrierObjectSearch.createdAtMax" class="p-col-12"
+                                                <p-calendar [(ngModel)]="courrierObjectSearch.createdAtMax"
+                                                            class="p-col-12"
                                                             dateFormat="yy-mm-dd"></p-calendar>
                                             </div>
                                         </div>
 
                                     </div>
-<!--                                    <div class="input-group  col-4  my-2">-->
-<!--                                        <div class="col-5 mx-1 px-1">-->
-<!--                                            <div class="p-grid ui-fluid">-->
-<!--                                                <small class="text-muted">updatedAt Min</small>-->
-<!--                                                <p-calendar [(ngModel)]="courrierObjectSearch.updatedAtMin" class="p-col-12"-->
-<!--                                                            dateFormat="yy-mm-dd"></p-calendar>-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                                        <div class="col-5 mx-1 px-1">-->
-<!--                                            <div class="p-grid ui-fluid">-->
-<!--                                                <small class="text-muted">updatedAt Max</small>-->
-<!--                                                <p-calendar [(ngModel)]="courrierObjectSearch.updatedAtMax" class="p-col-12"-->
-<!--                                                            dateFormat="yy-mm-dd"></p-calendar>-->
-<!--                                            </div>-->
-<!--                                        </div>-->
+                                    <!--                                    <div class="input-group  col-4  my-2">-->
+                                    <!--                                        <div class="col-5 mx-1 px-1">-->
+                                    <!--                                            <div class="p-grid ui-fluid">-->
+                                    <!--                                                <small class="text-muted">updatedAt Min</small>-->
+                                    <!--                                                <p-calendar [(ngModel)]="courrierObjectSearch.updatedAtMin" class="p-col-12"-->
+                                    <!--                                                            dateFormat="yy-mm-dd"></p-calendar>-->
+                                    <!--                                            </div>-->
+                                    <!--                                        </div>-->
+                                    <!--                                        <div class="col-5 mx-1 px-1">-->
+                                    <!--                                            <div class="p-grid ui-fluid">-->
+                                    <!--                                                <small class="text-muted">updatedAt Max</small>-->
+                                    <!--                                                <p-calendar [(ngModel)]="courrierObjectSearch.updatedAtMax" class="p-col-12"-->
+                                    <!--                                                            dateFormat="yy-mm-dd"></p-calendar>-->
+                                    <!--                                            </div>-->
+                                    <!--                                        </div>-->
 
-<!--                                    </div>-->
-<!--                                    <div class="input-group  col-4 my-2">-->
-<!--                                        <small class="text-muted col-12">createdBy</small>-->
-<!--                                        <select [(ngModel)]="courrierObjectSearch.createdByVo"-->
-<!--                                                class="form-control col-12">-->
-<!--                                            <option *ngFor="let p of createdBys" [ngValue]="p">{{p.username}}</option>-->
-<!--                                        </select>-->
-<!--                                    </div>-->
-<!--                                    <div class="input-group  col-4 my-2">-->
-<!--                                        <small class="text-muted col-12">updatedBy</small>-->
-<!--                                        <select [(ngModel)]="courrierObjectSearch.updatedByVo"-->
-<!--                                                class="form-control col-12">-->
-<!--                                            <option *ngFor="let p of updatedBys" [ngValue]="p">{{p.username}}</option>-->
-<!--                                        </select>-->
-<!--                                    </div>-->
+                                    <!--                                    </div>-->
+                                    <!--                                    <div class="input-group  col-4 my-2">-->
+                                    <!--                                        <small class="text-muted col-12">createdBy</small>-->
+                                    <!--                                        <select [(ngModel)]="courrierObjectSearch.createdByVo"-->
+                                    <!--                                                class="form-control col-12">-->
+                                    <!--                                            <option *ngFor="let p of createdBys" [ngValue]="p">{{p.username}}</option>-->
+                                    <!--                                        </select>-->
+                                    <!--                                    </div>-->
+                                    <!--                                    <div class="input-group  col-4 my-2">-->
+                                    <!--                                        <small class="text-muted col-12">updatedBy</small>-->
+                                    <!--                                        <select [(ngModel)]="courrierObjectSearch.updatedByVo"-->
+                                    <!--                                                class="form-control col-12">-->
+                                    <!--                                            <option *ngFor="let p of updatedBys" [ngValue]="p">{{p.username}}</option>-->
+                                    <!--                                        </select>-->
+                                    <!--                                    </div>-->
                                 </div>
                             </div>
                             <button (click)="findCourrierObject(courrierObjectSearch)"
@@ -100,7 +106,8 @@
             <div class="card-header bg-transparent">
                 <div class="float-left px-1"><h5>{{"MAILING_OBJECT.OBJECT_LIST" | translate}}</h5></div>
 
-                <button (click)="createShow()" class="btn btn-success btn-sm fa fa-plus float-right">{{"MAILING_OBJECT.CREATE_OBJECT" | translate}}
+                <button (click)="createShow()"
+                        class="btn btn-success btn-sm fa fa-plus float-right">{{"MAILING_OBJECT.CREATE_OBJECT" | translate}}
                 </button>
 
             </div>
@@ -113,10 +120,10 @@
                     <th>{{"MAILING_OBJECT.TITLE" | translate}}</th>
                     <th>{{"MAILING_OBJECT.ARAB_TITLE" | translate}}</th>
                     <th>{{"MAILING_OBJECT.CODE" | translate}}</th>
-<!--                    <th>createdAt</th>-->
-<!--                    <th>updatedAt</th>-->
-<!--                    <th>createdBy reference</th>-->
-<!--                    <th>updatedBy reference</th>-->
+                    <!--                    <th>createdAt</th>-->
+                    <!--                    <th>updatedAt</th>-->
+                    <!--                    <th>createdBy reference</th>-->
+                    <!--                    <th>updatedBy reference</th>-->
                     <th>{{"COMMONS.ACTIONS" | translate}}</th>
                     </thead>
                     <tbody>
@@ -126,10 +133,10 @@
                         <td>{{p.title}}</td>
                         <td>{{p.titleArab}}</td>
                         <td>{{p.code}}</td>
-<!--                        <td>{{p.createdAt}}</td>-->
-<!--                        <td>{{p.updatedAt}}</td>-->
-<!--                        <td>{{p.createdByVo?.username}}</td>-->
-<!--                        <td>{{p.updatedByVo?.username}}</td>-->
+                        <!--                        <td>{{p.createdAt}}</td>-->
+                        <!--                        <td>{{p.updatedAt}}</td>-->
+                        <!--                        <td>{{p.createdByVo?.username}}</td>-->
+                        <!--                        <td>{{p.updatedByVo?.username}}</td>-->
 
 
                         <td>

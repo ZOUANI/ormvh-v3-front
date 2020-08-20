@@ -19,7 +19,6 @@
         </div>
 
 
-
     </div>
 
     <div class="col-md-4  ">
@@ -31,7 +30,7 @@
         <div class=" bg-warning mb-3">
             <i class="fa fa-warning mr-3 ml-3 text-light"></i>
             <label class="text-light">password</label>
-            <button class="btn btn-link fa fa-undo float-right" (click)="initPassword()"> Reset </button>
+            <button class="btn btn-link fa fa-undo float-right" (click)="initPassword()"> Reset</button>
         </div>
 
         <div class="mb-2">
@@ -43,7 +42,8 @@
 
         <div class="mb-2">
             <label class="form-check-label">
-                <input type="checkbox" [checked]="user.enabled" (click)="switchEnabled()"> {{"USER.ENABLED" | translate}}
+                <input type="checkbox" [checked]="user.enabled"
+                       (click)="switchEnabled()"> {{"USER.ENABLED" | translate}}
             </label>
         </div>
 
@@ -62,7 +62,6 @@
         </div>
 
 
-
     </div>
 
     <div class="col-md-4 ">
@@ -72,31 +71,29 @@
         </div>
 
         <span *ngFor="let r of user.rolesVo" class="badge badge-pill badge-info m-1">{{r?.authority}}
-                <span class="badge badge-pill badge-danger m-2">
+            <span class="badge badge-pill badge-danger m-2">
                     <i class="fa fa-times" style="cursor: pointer" (click)="removeRole(r)"></i>
                 </span>
         </span>
 
         <div class="dropdown">
-            <button class="btn btn-info btn-block fa fa-plus " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button class="btn btn-info btn-block fa fa-plus " type="button" id="dropdownMenuButton"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
             </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="cursor: no-drop" >
-                <button *ngFor="let r of roles"  [disabled]="existRole(r)" (click)="addRole(r)" class="dropdown-item btn">{{r?.authority}}</button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="cursor: no-drop">
+                <button *ngFor="let r of roles" [disabled]="existRole(r)" (click)="addRole(r)"
+                        class="dropdown-item btn">{{r?.authority}}</button>
             </div>
         </div>
 
 
-
-
-
     </div>
     <!--<div class="alert alert-primary" role="alert">-->
-        <!--actions-->
+    <!--actions-->
     <!--</div>-->
 
-            <button (click)="editUser()" class="btn btn-primary btn-block m-5 fa fa-edit m-1 "> Edit</button>
-
+    <button (click)="editUser()" class="btn btn-primary btn-block m-5 fa fa-edit m-1 "> Edit</button>
 
 
 </div>

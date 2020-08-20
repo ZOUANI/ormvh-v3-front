@@ -147,7 +147,7 @@ export class AppComponent {
         this.authService.logout();
     }
 
-    showProfil(){
+    showProfil() {
         this.userService.getCurrentUser();
 
     }

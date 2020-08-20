@@ -1,37 +1,38 @@
-<p-dialog styleClass="addCourrierDialog" header="{{message}}" position="center" (onShow)="showDialog()" [(visible)]="addNewCourrier">
+<p-dialog styleClass="addCourrierDialog" header="{{message}}" position="center" (onShow)="showDialog()"
+          [(visible)]="addNewCourrier">
 
     <div class="card col-md-12 mx-auto p-0">
         <div class="card-body p-0 from-ctn">
             <!-- <h1 class="create-title">Add new Courrier</h1> -->
             <ul class="nav nav-tabs mb-6" id="my-tab" role="tablist">
                 <li class="nav-item">
-                    <a  class="nav-link active" id="courrier-tab" data-toggle="tab" href="#pills-courrier" role="tab"
-                        aria-controls="pills-home" aria-selected="true">{{"MODELS.MAILING" | translate}}</a>
+                    <a class="nav-link active" id="courrier-tab" data-toggle="tab" href="#pills-courrier" role="tab"
+                       aria-controls="pills-home" aria-selected="true">{{"MODELS.MAILING" | translate}}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="expeditor-tab" data-toggle="tab" href="#pills-expeditor" role="tab"
-                        aria-controls="pills-profile" aria-selected="false">{{"MODELS.EXPEDITOR" | translate}}</a>
+                       aria-controls="pills-profile" aria-selected="false">{{"MODELS.EXPEDITOR" | translate}}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="pills-contact-tab" data-toggle="tab" href="#pills-tasks" role="tab"
-                        aria-controls="pills-contact" aria-selected="false">{{"MODELS.TASK" | translate}}</a>
+                       aria-controls="pills-contact" aria-selected="false">{{"MODELS.TASK" | translate}}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="pills-contact-tab" data-toggle="tab" href="#pills-services" role="tab"
-                        aria-controls="pills-services" aria-selected="false">{{"MODELS.SERVICE" | translate}}</a>
+                       aria-controls="pills-services" aria-selected="false">{{"MODELS.SERVICE" | translate}}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="pills-contact-tab" data-toggle="tab" href="#pills-details" role="tab"
-                        aria-controls="pills-details" aria-selected="false">{{"MODELS.DETAILS" | translate}}</a>
+                       aria-controls="pills-details" aria-selected="false">{{"MODELS.DETAILS" | translate}}</a>
                 </li>
                 <li class="nav-item" *ngIf="onDetail">
-                    <a class="nav-link" id="pills-contact-tab"  data-toggle="tab" href="#pills-history" role="tab"
-                        aria-controls="pills-reponse" aria-selected="false">{{"MODELS.HISTORY" | translate}}</a>
+                    <a class="nav-link" id="pills-contact-tab" data-toggle="tab" href="#pills-history" role="tab"
+                       aria-controls="pills-reponse" aria-selected="false">{{"MODELS.HISTORY" | translate}}</a>
                 </li>
             </ul>
             <div class="tab-content pb-0" id="pills-tabContent">
                 <div class="tab-pane fade show active pb-0" id="pills-courrier" role="tabpanel"
-                    aria-labelledby="courrier-tab">
+                     aria-labelledby="courrier-tab">
                     <div class="form-row">
                         <div class="col-md-4 mr-4">
                             <label>{{"MAILING.MAILING_ID" | translate}}</label>
@@ -50,35 +51,42 @@
                     <div class="form-row" style="margin-bottom:25px">
 
                         <div class="form-group col-md-4 mr-4" *ngIf="onEdit || onDetail">
-                            <input type="text" class="form-control" disabled [(ngModel)]="courrier.idCourrier" >
-                             
+                            <input type="text" class="form-control" disabled [(ngModel)]="courrier.idCourrier">
+
                         </div>
                         <div class="input-group col-md-4 mr-4" *ngIf="!onEdit && !onDetail">
                             <input type="text" class="form-control" [(ngModel)]="generatedId" placeholder="Id xxx_year">
                             <div class="input-group-append">
                                 <button class="btn btn-outline-success" (click)="generateId()"
-                                    type="button">{{"MAILING.GENERATE" | translate}}</button>
+                                        type="button">{{"MAILING.GENERATE" | translate}}</button>
                             </div>
                         </div>
                         <div class="form-group col-md-2" style="margin-bottom:0;">
-                            <p-dropdown [disabled]="onDetail"  [options]="natureCourriers" styleClass="form-control" selectId="nature-courrier"
-                                [(ngModel)]="courrier.natureCourrierVo" (onClick)="DetailInterfacedefaulteValue(courrier.natureCourrierVo)" optionLabel="libelle" dataKey="id"></p-dropdown>
+                            <p-dropdown [disabled]="onDetail" [options]="natureCourriers" styleClass="form-control"
+                                        selectId="nature-courrier"
+                                        [(ngModel)]="courrier.natureCourrierVo"
+                                        (onClick)="DetailInterfacedefaulteValue(courrier.natureCourrierVo)"
+                                        optionLabel="libelle" dataKey="id"></p-dropdown>
                         </div>
                         <!--<div class="form-group col-md-2" style="margin-bottom:0;">-->
-                            <!--<p-dropdown [disabled]="!onEdit"  styleClass="form-control" selectId="type-courrier" [options]="typeCourriers"-->
-                                <!--[(ngModel)]="courrier.typeCourrierVo" name="courrier.typeCourrierVo" optionLabel="code" dataKey="id"></p-dropdown>-->
+                        <!--<p-dropdown [disabled]="!onEdit"  styleClass="form-control" selectId="type-courrier" [options]="typeCourriers"-->
+                        <!--[(ngModel)]="courrier.typeCourrierVo" name="courrier.typeCourrierVo" optionLabel="code" dataKey="id"></p-dropdown>-->
                         <!--</div>-->
                         <div class="form-group col-md-2" style="margin-bottom:0;">
-                            <input  class="form-control" [disabled]="true" *ngIf="!onEdit" type="text" [(ngModel)]="courrier.typeCourrierVo.libelle" />
-                            <p-dropdown  *ngIf="onEdit" styleClass="form-control" selectId="type-courrier" [options]="typeCourriers"
-                            [(ngModel)]="courrier.typeCourrierVo" name="courrier.typeCourrierVo" optionLabel="code" dataKey="id"></p-dropdown>
-                        <!--<select [(ngModel)]="courrier.typeCourrierVo.code" class="form-control" >-->
+                            <input class="form-control" [disabled]="true" *ngIf="!onEdit" type="text"
+                                   [(ngModel)]="courrier.typeCourrierVo.libelle"/>
+                            <p-dropdown *ngIf="onEdit" styleClass="form-control" selectId="type-courrier"
+                                        [options]="typeCourriers"
+                                        [(ngModel)]="courrier.typeCourrierVo" name="courrier.typeCourrierVo"
+                                        optionLabel="code" dataKey="id"></p-dropdown>
+                            <!--<select [(ngModel)]="courrier.typeCourrierVo.code" class="form-control" >-->
                             <!--<option  [selected]="courrier.typeCourrierVo.code == t.code" *ngFor="let t of typeCourriers" value="{{t.code}}"  [ngValue]="courrier.typeCourrierVo.code"  >{{t.code}}</option>-->
-                        <!--</select>-->
+                            <!--</select>-->
                         </div>
                         <!--[selected]="courrier.typeCourrierVo.code == t.code"-->
                         <div class="form-group col-md-2" style="margin-bottom:0;">
-                            <p-calendar id="pcalander" [disabled]="onDetail" appendTo="body" [showTime]="true" [(ngModel)]="courrier.sentAt"></p-calendar>
+                            <p-calendar id="pcalander" [disabled]="onDetail" appendTo="body" [showTime]="true"
+                                        [(ngModel)]="courrier.sentAt"></p-calendar>
                         </div>
 
                     </div>
@@ -87,68 +95,77 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="object-courrier">{{"MAILING.OBJECT" | translate}}</label>
-                            <p-dropdown [disabled]="onDetail" styleClass="form-control" selectId="object-courrier" [options]="courrierObjects"
-                                [(ngModel)]="courrier.courrierObjectVo" [filter]="true" dataKey="id"></p-dropdown>
+                            <p-dropdown [disabled]="onDetail" styleClass="form-control" selectId="object-courrier"
+                                        [options]="courrierObjects"
+                                        [(ngModel)]="courrier.courrierObjectVo" [filter]="true"
+                                        dataKey="id"></p-dropdown>
                         </div>
                         <div class="form-group col-md-3">
                             <label for="linked-courrier">{{"MAILING.LINKED_TO" | translate}}</label>
-                            <p-dropdown [disabled]="onDetail" styleClass="form-control" [showClear]="true" placeholder="not linked"  selectId="linked-courrier" [options]="linkedTos"
-                                [(ngModel)]="courrier.linkedToVo" optionLabel="idCourrier" [filter]="true" dataKey="id"></p-dropdown>
+                            <p-dropdown [disabled]="onDetail" styleClass="form-control" [showClear]="true"
+                                        placeholder="not linked" selectId="linked-courrier" [options]="linkedTos"
+                                        [(ngModel)]="courrier.linkedToVo" optionLabel="idCourrier" [filter]="true"
+                                        dataKey="id"></p-dropdown>
                         </div>
                         <div class="form-group col-md-2">
                             <label for="status-courrier">{{"MAILING.STATUS" | translate}}</label>
-                            <p-dropdown [disabled]="onDetail" styleClass="form-control" selectId="status-courrier" [options]="statuss"
-                                [(ngModel)]="courrier.statusVo" optionLabel="libelle" dataKey="id"></p-dropdown>
+                            <p-dropdown [disabled]="onDetail" styleClass="form-control" selectId="status-courrier"
+                                        [options]="statuss"
+                                        [(ngModel)]="courrier.statusVo" optionLabel="libelle" dataKey="id"></p-dropdown>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-12">
                             <label for="subject-courrier">{{"MAILING.SUBJECT" | translate}}</label>
                             <input [disabled]="onDetail" type="text" id="subject-courrier" class="form-control"
-                                [(ngModel)]="courrier.subject">
+                                   [(ngModel)]="courrier.subject">
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="description-courrier">{{"MAILING.DESCRIPTION" | translate}}</label>
-                            <textarea [disabled]="onDetail"  type="text" id="description-courrier" class="form-control"
-                                [(ngModel)]="courrier.description" rows="4"></textarea>
+                            <textarea [disabled]="onDetail" type="text" id="description-courrier" class="form-control"
+                                      [(ngModel)]="courrier.description" rows="4"></textarea>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="instruction-courrier">{{"MAILING.INSTRUCTION" | translate}}</label>
-                            <textarea [disabled]="onDetail"  type="text" id="instruction-courrier" class="form-control"
-                                [(ngModel)]="courrier.instruction" rows="4"></textarea>
+                            <textarea [disabled]="onDetail" type="text" id="instruction-courrier" class="form-control"
+                                      [(ngModel)]="courrier.instruction" rows="4"></textarea>
                         </div>
                     </div>
 
                 </div>
                 <div class="tab-pane fade pb-0" id="pills-expeditor" role="tabpanel"
-                    aria-labelledby="pills-profile-tab">
+                     aria-labelledby="pills-profile-tab">
                     <div class="form-row mb-7">
                         <div class="form-group col-md-6 mr-4">
                             <label for="expeditor">{{"MODELS.EXPEDITOR" | translate}}</label>
-                            <p-dropdown [disabled]="onDetail"  styleClass="form-control" selectId="expeditor" [options]="expeditors"
-                                [(ngModel)]="courrier.expeditorVo" [filter]="true" dataKey="id"></p-dropdown>
+                            <p-dropdown [disabled]="onDetail" styleClass="form-control" selectId="expeditor"
+                                        [options]="expeditors"
+                                        [(ngModel)]="courrier.expeditorVo" [filter]="true" dataKey="id"></p-dropdown>
                         </div>
                         <div class="form-group col-md-4">
                             <label for="expeditorType">{{"MODELS.EXPEDITOR_TYPE" | translate}}</label>
-                            <p-dropdown [disabled]="onDetail"  selectId="expeditorType" styleClass="form-control" [options]="expeditorTypes"
-                                [(ngModel)]="courrier.expeditorTypeVo" [filter]="true" dataKey="id"></p-dropdown>
+                            <p-dropdown [disabled]="onDetail" selectId="expeditorType" styleClass="form-control"
+                                        [options]="expeditorTypes"
+                                        [(ngModel)]="courrier.expeditorTypeVo" [filter]="true"
+                                        dataKey="id"></p-dropdown>
                         </div>
                     </div>
                     <div class="form-row mb-4">
                         <div class="form-group col-md-6">
                             <label for="destinator">{{"MAILING.DESTINATOR" | translate}}</label>
-                            <p-dropdown [disabled]="onDetail"  styleClass="form-control" selectId="destinator" [options]="expeditors"
-                                [(ngModel)]="courrier.destinatorVo" [filter]="true" dataKey="id"> </p-dropdown>
+                            <p-dropdown [disabled]="onDetail" styleClass="form-control" selectId="destinator"
+                                        [options]="expeditors"
+                                        [(ngModel)]="courrier.destinatorVo" [filter]="true" dataKey="id"></p-dropdown>
                         </div>
 
                     </div>
                     <div class="for-row">
                         <div class="form-group">
                             <label for="description-expeditor">{{"MAILING.DESCRIPTION" | translate}}</label>
-                            <textarea [disabled]="onDetail"  type="text" id="description-expeditor" class="form-control"
-                                [(ngModel)]="courrier.destinataireDesc" rows="3"></textarea>
+                            <textarea [disabled]="onDetail" type="text" id="description-expeditor" class="form-control"
+                                      [(ngModel)]="courrier.destinataireDesc" rows="3"></textarea>
                         </div>
                     </div>
                 </div>
@@ -156,10 +173,10 @@
                     <div class="row">
 
                         <div class="col-md-6">
-                            <div class="panel"  *ngIf="!onSelectTask && onDetail">
-                                  <h3 style="text-align: center;margin-top: 150px;">select task</h3>
-                              </div>
-                            <div class="panel"  *ngIf="onSelectTask">
+                            <div class="panel" *ngIf="!onSelectTask && onDetail">
+                                <h3 style="text-align: center;margin-top: 150px;">select task</h3>
+                            </div>
+                            <div class="panel" *ngIf="onSelectTask">
                                 <span class="deselect clickable" (click)="onSelectTask=false">
                                     <i class="pi pi-times"></i></span>
                                 <h1 class="panel-title">{{editableTask.title}}</h1>
@@ -178,39 +195,47 @@
                                 <hr>
 
                                 <div class="d-flex justify-content-between">
-                                    <span *ngIf="editableTask.assigneVo"><i class="pi pi-user"></i> {{editableTask.assigneVo.username}}</span>
-                                     <span class="badge badge-success" *ngIf="editableTask">{{editableTask.statusVo.libelle}}</span>
+                                    <span *ngIf="editableTask.assigneVo"><i
+                                            class="pi pi-user"></i> {{editableTask.assigneVo.username}}</span>
+                                    <span class="badge badge-success"
+                                          *ngIf="editableTask">{{editableTask.statusVo.libelle}}</span>
                                 </div>
-                                
-                              </div>
-                             
+
+                            </div>
+
                             <div class="card rds" *ngIf="onEditTask && !onDetail">
                                 <div class="card-body">
                                     <div class="form-row">
                                         <div class="form-group col-12">
                                             <label for="task-title">{{"MAILING.TITLE" | translate}}</label>
-                                            <input type="text" id="task-title" class="form-control" [(ngModel)]="editableTask.title">
+                                            <input type="text" id="task-title" class="form-control"
+                                                   [(ngModel)]="editableTask.title">
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-7">
                                             <label for="task-assigne">{{"MAILING.ASSIGNED_TO" | translate}}</label>
-                                            <p-dropdown styleClass="form-control" selectId="task-assigne" [options]="users"
-                                                [(ngModel)]="editableTask.assigneVo" [showClear]="true" optionLabel="username"
-                                                [filter]="true" dataKey="id"></p-dropdown>
+                                            <p-dropdown styleClass="form-control" selectId="task-assigne"
+                                                        [options]="users"
+                                                        [(ngModel)]="editableTask.assigneVo" [showClear]="true"
+                                                        optionLabel="username"
+                                                        [filter]="true" dataKey="id"></p-dropdown>
                                         </div>
                                         <div class="form-group col-md-5">
                                             <label for="task-status">{{"MAILING.STATUS" | translate}}</label>
-                                            <p-dropdown styleClass="form-control" selectId="task-status" [options]="statuss"
-                                                [(ngModel)]="editableTask.statusVo" optionLabel="libelle" dataKey="id"></p-dropdown>
+                                            <p-dropdown styleClass="form-control" selectId="task-status"
+                                                        [options]="statuss"
+                                                        [(ngModel)]="editableTask.statusVo" optionLabel="libelle"
+                                                        dataKey="id"></p-dropdown>
                                         </div>
                                         <!--add chekbox+datpicker-->
                                         <div class="form-group col-md-6">
                                             <label for="accuse">{{"TASK.ACCUSED" | translate}}</label>
                                             <br>
                                             <label class="switch">
-                                                <input id="accuse" [disabled]="onDetail" type="checkbox"   [checked]="task.accuse" [(ngModel)]="editableTask.accuse"
-                                                       (click)="boolenAccuse(editableTask)" >
+                                                <input id="accuse" [disabled]="onDetail" type="checkbox"
+                                                       [checked]="task.accuse" [(ngModel)]="editableTask.accuse"
+                                                       (click)="boolenAccuse(editableTask)">
                                                 <span class="slider round"></span>
                                             </label>
                                         </div>
@@ -218,82 +243,90 @@
                                             <label for="accuse">{{"TASK.RESPONSE" | translate}}</label>
                                             <br>
                                             <label class="switch">
-                                                <input id="accuse" [disabled]="onDetail" type="checkbox"   [checked]="task.reponse" [(ngModel)]="editableTask.reponse"
+                                                <input id="accuse" [disabled]="onDetail" type="checkbox"
+                                                       [checked]="task.reponse" [(ngModel)]="editableTask.reponse"
                                                        (click)="boolenReponse(editableTask)">
                                                 <span class="slider round"></span>
                                             </label>
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <div class="p-grid ui-fluid">
+                                            <div *ngIf="editableTask.accuse==true" class="p-grid ui-fluid">
                                                 <label>dateAccuse</label>
-                                                <p-calendar class="p-col-12" dateFormat="yy-mm-dd" [(ngModel)]="editableTask.dateAccuse" *ngIf="editableTask.accuse==true">
+                                                <p-calendar class="p-col-12" dateFormat="yy-mm-dd"
+                                                            [(ngModel)]="editableTask.dateAccuse"
+                                                            >
                                                 </p-calendar>
                                             </div>
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <div class="p-grid ui-fluid">
+                                            <div *ngIf="editableTask.reponse==true" class="p-grid ui-fluid">
                                                 <label>dateReponse</label>
-                                                <p-calendar class="p-col-12" dateFormat="yy-mm-dd" [(ngModel)]="editableTask.dateReponse" *ngIf="editableTask.reponse==true">
+                                                <p-calendar class="p-col-12" dateFormat="yy-mm-dd"
+                                                            [(ngModel)]="editableTask.dateReponse"
+                                                            >
                                                 </p-calendar>
                                             </div>
                                         </div>
                                         <!--end-->
                                     </div>
-                    
+
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label for="task-description">{{"MAILING.DESCRIPTION" | translate}}</label>
                                             <textarea type="text" id="task-description" class="form-control"
-                                                [(ngModel)]="editableTask.description" rows="3"></textarea>
+                                                      [(ngModel)]="editableTask.description" rows="3"></textarea>
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="task-observation">{{"MAILING.OBSERVATION" | translate}}</label>
                                             <textarea type="text" id="task-observation" class="form-control"
-                                                [(ngModel)]="editableTask.observation" rows="3"></textarea>
+                                                      [(ngModel)]="editableTask.observation" rows="3"></textarea>
                                         </div>
                                     </div>
                                     <div class="d-flex flex-row-reverse">
-                                        <button  class="btn btn-primary ml-4 mr-2" (click)="deleteTask()">
-                                            delete 
+                                        <button class="btn btn-primary ml-4 mr-2" (click)="deleteTask()">
+                                            delete
                                         </button>
-                                        <button type="button" class="btn btn-secondary" (click)="onSelectTask= false;onEditTask =false;">
+                                        <button type="button" class="btn btn-secondary"
+                                                (click)="onSelectTask= false;onEditTask =false;">
                                             {{"MAILING.CLOSE" | translate}}
                                         </button>
-                        
-                                       
+
+
                                     </div>
 
                                 </div>
                             </div>
 
 
-
-                            <div class="card rds"  *ngIf="!onSelectTask && !onEditTask && !onDetail">
+                            <div class="card rds" *ngIf="!onSelectTask && !onEditTask && !onDetail">
                                 <div class="card-body">
-                                    <h5 class="card-title" style="text-align: center;">{{"TASK.ADD_TASK" | translate}}</h5>
+                                    <h5 class="card-title"
+                                        style="text-align: center;">{{"TASK.ADD_TASK" | translate}}</h5>
                                     <div class="form-row">
                                         <div class="form-group col-12">
                                             <label for="task-title">{{"TASK.TITLE" | translate}}</label>
-                                            <input   type="text" id="task-title" class="form-control"
-                                                [(ngModel)]="task.title">
+                                            <input type="text" id="task-title" class="form-control"
+                                                   [(ngModel)]="task.title">
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-7">
                                             <label for="task-assigne">{{"TASK.ASSIGN_TO" | translate}}</label>
-                                            <p-dropdown  styleClass="form-control" selectId="task-assigne"
-                                                [options]="users" [(ngModel)]="task.assigneVo" [showClear]="true"
-                                                optionLabel="username" [filter]="true" dataKey="id"></p-dropdown>
+                                            <p-dropdown styleClass="form-control" selectId="task-assigne"
+                                                        [options]="users" [(ngModel)]="task.assigneVo"
+                                                        [showClear]="true"
+                                                        optionLabel="username" [filter]="true"
+                                                        dataKey="id"></p-dropdown>
                                         </div>
                                         <div class="form-group col-md-5">
                                             <label for="task-status">{{"MAILING.STATUS" | translate}}</label>
                                             <p-dropdown styleClass="form-control" selectId="task-status"
-                                                [options]="statuss" [(ngModel)]="task.statusVo" optionLabel="libelle"
-                                                dataKey="id"></p-dropdown>
+                                                        [options]="statuss" [(ngModel)]="task.statusVo"
+                                                        optionLabel="libelle"
+                                                        dataKey="id"></p-dropdown>
                                         </div>
 
                                     </div>
-
 
 
                                     <div class="form-row">
@@ -302,8 +335,9 @@
                                             <label for="accuse">{{"TASK.ACCUSED" | translate}}</label>
                                             <br>
                                             <label class="switch">
-                                                <input id="accuse" [disabled]="onDetail" type="checkbox"   [checked]="task.accuse"
-                                                    (click)="boolenAccuse(task)"  >
+                                                <input id="accuse" [disabled]="onDetail" type="checkbox"
+                                                       [checked]="task.accuse"
+                                                       (click)="boolenAccuse(task)">
                                                 <span class="slider round"></span>
                                             </label>
                                         </div>
@@ -311,23 +345,26 @@
                                             <label for="reponse">{{"TASK.RESPONSE" | translate}}</label>
                                             <br>
                                             <label class="switch">
-                                                <input id="accuse" [disabled]="onDetail" type="checkbox"   [checked]="task.reponse"
+                                                <input id="accuse" [disabled]="onDetail" type="checkbox"
+                                                       [checked]="task.reponse"
                                                        (click)="boolenReponse(task)">
                                                 <span class="slider round"></span>
                                             </label>
 
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <div class="p-grid ui-fluid">
+                                            <div *ngIf="task.accuse==true" class="p-grid ui-fluid">
                                                 <label>dateAccuse</label>
-                                                <p-calendar  class="p-col-12" dateFormat="yy-mm-dd" [(ngModel)]="task.dateAccuse" *ngIf="task.accuse==true">
+                                                <p-calendar class="p-col-12" dateFormat="yy-mm-dd"
+                                                            [(ngModel)]="task.dateAccuse" >
                                                 </p-calendar>
                                             </div>
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <div class="p-grid ui-fluid">
+                                            <div *ngIf="task.reponse==true" class="p-grid ui-fluid">
                                                 <label>dateReponse</label>
-                                                <p-calendar class="p-col-12" dateFormat="yy-mm-dd" [(ngModel)]="task.dateReponse" *ngIf="task.reponse==true">
+                                                <p-calendar class="p-col-12" dateFormat="yy-mm-dd"
+                                                            [(ngModel)]="task.dateReponse" >
                                                 </p-calendar>
                                             </div>
                                         </div>
@@ -335,18 +372,18 @@
                                         <div class="form-group col-md-6">
                                             <label for="task-description">{{"TASK.DESCRIPTION" | translate}}</label>
                                             <textarea type="text" id="task-description" class="form-control"
-                                                [(ngModel)]="task.description" rows="3"></textarea>
+                                                      [(ngModel)]="task.description" rows="3"></textarea>
                                         </div>
 
                                         <div class="form-group col-md-6">
                                             <label for="task-observation">{{"TASK.OBSERVATION" | translate}}</label>
                                             <textarea type="text" id="task-observation" class="form-control"
-                                                [(ngModel)]="task.observation" rows="3"></textarea>
+                                                      [(ngModel)]="task.observation" rows="3"></textarea>
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <button class="btn btn-outline-success btn-block"
-                                            (click)="addTask()">{{"COMMONS.ADD" | translate}}</button>
+                                                (click)="addTask()">{{"COMMONS.ADD" | translate}}</button>
                                     </div>
 
                                     <!--
@@ -384,25 +421,27 @@
                         </div>
 
                         <div class="col-md-6">
-                            <div class="card rds" >
+                            <div class="card rds">
                                 <div class="card-body">
                                     <h5 class="card-title" style="text-align: center;">{{"TASK.TASKS" | translate}}</h5>
                                     <div class="list-group">
-                                        <div *ngFor="let p of courrier.tasksVo" 
-                                            class="list-group-item  d-flex justify-content-between">
+                                        <div *ngFor="let p of courrier.tasksVo"
+                                             class="list-group-item  d-flex justify-content-between">
                                             <span>{{p.title}}</span>
                                             <span class="cntrl-task">
                                                 <span class="badge clickable hover-effect" (click)="selectTask(p)">
                                                 <i class="pi pi-eye"></i>
                                             </span>
 
-                                                <span class="badge clickable hover-effect" *ngIf="!onDetail" (click)="editTask(p)">
+                                                <span class="badge clickable hover-effect" *ngIf="!onDetail"
+                                                      (click)="editTask(p)">
                                                     <i class="pi pi-pencil"></i>
                                                   </span>
-                                                  <span class="badge clickable hover-effect " *ngIf="!onDetail" (click)="deleteTaskDirct(p)">
+                                                  <span class="badge clickable hover-effect " *ngIf="!onDetail"
+                                                        (click)="deleteTaskDirct(p)">
                                                       <i
-                                                    class="pi pi-times"></i></span>
-                                            </span>       
+                                                              class="pi pi-times"></i></span>
+                                            </span>
                                         </div>
 
                                     </div>
@@ -416,45 +455,49 @@
                     <div class="form-row mb-8">
                         <div class="form-group col-md-6">
                             <label for="coordinator">{{"MAILING.COORDINATOR" | translate}}</label>
-                            <p-dropdown [disabled]="onDetail"  styleClass="form-control" selectId="coordinator" [options]="leServices"
-                                [(ngModel)]="courrier.coordinatorVo" [filter]="true" dataKey="id">
+                            <p-dropdown [disabled]="onDetail" styleClass="form-control" selectId="coordinator"
+                                        [options]="leServices"
+                                        [(ngModel)]="courrier.coordinatorVo" [filter]="true" dataKey="id">
                             </p-dropdown>
 
                         </div>
                         <div class="form-group col-md-6">
                             <label for="emetteur">{{"MAILING.SENDER" | translate}}</label>
-                            <p-dropdown [disabled]="onDetail"  styleClass="form-control" selectId="emetteur" [options]="leServices"
-                                [(ngModel)]="courrier.emetteurVo" dataKey="id" [filter]="true">
+                            <p-dropdown [disabled]="onDetail" styleClass="form-control" selectId="emetteur"
+                                        [options]="leServices"
+                                        [(ngModel)]="courrier.emetteurVo" dataKey="id" [filter]="true">
                             </p-dropdown>
                         </div>
                     </div>
                     <div class="form-row" *ngIf="!onDetail">
 
-                        <div class="form-group col-md-8" >
-                            <p-dropdown  [options]="changedServices" [(ngModel)]="courrierServiceItem.serviceVo"
-                                styleClass="form-control" autoDisplayFirst="true" optionLabel="title" [filter]="true">
+                        <div class="form-group col-md-8">
+                            <p-dropdown [options]="changedServices" [(ngModel)]="courrierServiceItem.serviceVo"
+                                        styleClass="form-control" autoDisplayFirst="true" optionLabel="title"
+                                        [filter]="true">
                             </p-dropdown>
                         </div>
                         <div class="form-group col-md-4">
-                            <button class="btn btn-outline-success btn-block" (click)="addCourrierServiceItem()">{{"MAILING.ADD_SERVICE" | translate}}</button>
+                            <button class="btn btn-outline-success btn-block"
+                                    (click)="addCourrierServiceItem()">{{"MAILING.ADD_SERVICE" | translate}}</button>
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="services-ctn" *ngIf="!onDetail" >
+                        <div class="services-ctn" *ngIf="!onDetail">
                             <label>{{"MAILING.SERVICES" | translate}}</label> <br>
-                            <span  class="badge badge-primary clickable mr-2"  (click)="removeCourrierServiceItem(i)"
-                                *ngFor="let item of courrier.courrierServiceItemsVo;let i = index">
+                            <span class="badge badge-primary clickable mr-2" (click)="removeCourrierServiceItem(i)"
+                                  *ngFor="let item of courrier.courrierServiceItemsVo;let i = index">
                                 <span *ngIf="item.serviceVo">{{item.serviceVo.title}}</span> 
                             </span>
-                            
+
                         </div>
-                        <div class="services-ctn" *ngIf="onDetail" >
+                        <div class="services-ctn" *ngIf="onDetail">
                             <label>{{"MAILING.SERVICES" | translate}}</label> <br>
-                            <span  class="badge badge-primary clickable mr-2" 
-                                *ngFor="let item of courrier.courrierServiceItemsVo;let i = index">
+                            <span class="badge badge-primary clickable mr-2"
+                                  *ngFor="let item of courrier.courrierServiceItemsVo;let i = index">
                                 <span *ngIf="item.serviceVo">{{item.serviceVo.title}}</span> 
                             </span>
-                            
+
                         </div>
                     </div>
                 </div>
@@ -462,54 +505,60 @@
                     <div class="form-row">
                         <div class="form-group col-md-3">
                             <label for="voie-courrier">{{"MAILING.TRACK" | translate}}</label>
-                            <p-dropdown [disabled]="onDetail" styleClass="form-control" selectId="voie-courrier" [options]="voies"
-                                [(ngModel)]="courrier.voieVo" optionLabel="libelle" dataKey="id"></p-dropdown>
+                            <p-dropdown [disabled]="onDetail" styleClass="form-control" selectId="voie-courrier"
+                                        [options]="voies"
+                                        [(ngModel)]="courrier.voieVo" optionLabel="libelle" dataKey="id"></p-dropdown>
                         </div>
                         <div class="form-group col-md-2">
-                            <label for="delai" >{{"TASK.TIME_LIMIT" | translate}}</label>
-                            <input type="text" [disabled]="onDetail" id="delai" class="form-control" [(ngModel)]="courrier.delai">
+                            <label for="delai">{{"TASK.TIME_LIMIT" | translate}}</label>
+                            <input type="text" [disabled]="onDetail" id="delai" class="form-control"
+                                   [(ngModel)]="courrier.delai">
                         </div>
                         <div class="form-group col-md-3">
                             <label for="relance">{{"TASK.BOOST" | translate}}</label>
-                            <input type="text" [disabled]="onDetail" id="relance" class="form-control" [(ngModel)]="courrier.relance" >
+                            <input type="text" [disabled]="onDetail" id="relance" class="form-control"
+                                   [(ngModel)]="courrier.relance">
                         </div>
-                        
+
                         <div class="form-group col-md-4">
                             <label for="daterelance">{{"MAILING.BOOST_DATE" | translate}}</label><br>
-                            <p-calendar [disabled]="onDetail" appendTo="body" [showTime]="true" [(ngModel)]="courrier.dateRelance">
+                            <p-calendar [disabled]="onDetail" appendTo="body" [showTime]="true"
+                                        [(ngModel)]="courrier.dateRelance">
                             </p-calendar>
                         </div>
                     </div>
                     <div class="form-row">
-                       
+
                         <div class="form-group col-md-2">
                             <label for="accuse">{{"TASK.ACCUSED" | translate}}</label>
-                             <br>
+                            <br>
                             <label class="switch">
-                                <input id="accuse" [disabled]="onDetail" type="checkbox"   [checked]="courrier.accuse"
-                                (change)="courrier.accuse= !courrier.accuse">
+                                <input id="accuse" [disabled]="onDetail" type="checkbox" [checked]="courrier.accuse"
+                                       (change)="courrier.accuse= !courrier.accuse">
                                 <span class="slider round"></span>
-                              </label>
+                            </label>
 
                         </div>
                         <div class="form-group col-md-4">
                             <label>{{"TASK.ACCUSED_DATE" | translate}}</label><br>
-                            <p-calendar [disabled]="onDetail" appendTo="body" [showTime]="true" [(ngModel)]="courrier.dateAccuse">
+                            <p-calendar [disabled]="onDetail" appendTo="body" [showTime]="true"
+                                        [(ngModel)]="courrier.dateAccuse">
                             </p-calendar>
                         </div>
                         <div class="form-group col-md-2">
                             <label for="reponse">{{"TASK.RESPONSE" | translate}}</label>
                             <br>
                             <label class="switch">
-                                <input id="accuse" [disabled]="onDetail" type="checkbox"   [checked]="courrier.reponse"
-                                (change)="courrier.reponse= !courrier.reponse">
+                                <input id="accuse" [disabled]="onDetail" type="checkbox" [checked]="courrier.reponse"
+                                       (change)="courrier.reponse= !courrier.reponse">
                                 <span class="slider round"></span>
-                              </label>
+                            </label>
 
                         </div>
                         <div class="form-group  col-md-4">
                             <label>{{"TASK.RESPONSE_DATE" | translate}}</label><br>
-                            <p-calendar id="teesst" [disabled]="onDetail" appendTo="body" [showTime]="true" [(ngModel)]="courrier.dateReponse">
+                            <p-calendar id="teesst" [disabled]="onDetail" appendTo="body" [showTime]="true"
+                                        [(ngModel)]="courrier.dateReponse">
                             </p-calendar>
                         </div>
 
@@ -517,32 +566,35 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="evaluation">{{"MAILING.EVALUATION" | translate}}</label>
-                            <p-dropdown [disabled]="onDetail" styleClass="form-control" selectId="evaluation" [options]="evaluations"
-                                [(ngModel)]="courrier.evaluationVo" [filter]="true" dataKey="id">
+                            <p-dropdown [disabled]="onDetail" styleClass="form-control" selectId="evaluation"
+                                        [options]="evaluations"
+                                        [(ngModel)]="courrier.evaluationVo" [filter]="true" dataKey="id">
                             </p-dropdown>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="subdivision">{{"MAILING.SUBDIVISION" | translate}}</label>
-                            <p-dropdown [disabled]="onDetail" styleClass="form-control" selectId="subdivision" [options]="subdivisions"
-                                [(ngModel)]="courrier.subdivisionVo" [filter]="true" dataKey="id">
+                            <p-dropdown [disabled]="onDetail" styleClass="form-control" selectId="subdivision"
+                                        [options]="subdivisions"
+                                        [(ngModel)]="courrier.subdivisionVo" [filter]="true" dataKey="id">
                             </p-dropdown>
                         </div>
                     </div>
                 </div>
-                <div *ngIf="onDetail" class="tab-pane fade pb-0" id="pills-history" role="tabpanel" aria-labelledby="pills-contact-tab">
+                <div *ngIf="onDetail" class="tab-pane fade pb-0" id="pills-history" role="tabpanel"
+                     aria-labelledby="pills-contact-tab">
                     <div class="form-row">
 
                         <div class="col-6">
                             <label>{{"COMMONS.CREATED_BY" | translate}}</label> <br>
-                             <label class="mb-4">{{courrier.createdByVo?.username}}</label> <br>
-                             <label>{{"COMMONS.CREATED_AT" | translate}}</label> <br>
-                            <label >{{courrier.createdAt}}</label> <br>
+                            <label class="mb-4">{{courrier.createdByVo?.username}}</label> <br>
+                            <label>{{"COMMONS.CREATED_AT" | translate}}</label> <br>
+                            <label>{{courrier.createdAt}}</label> <br>
                         </div>
                         <div class="col-6">
                             <label>{{"COMMONS.UPDATED_BY" | translate}}</label> <br>
-                             <label class="mb-4">{{courrier.createdByVo?.username}}</label> <br>
-                             <label>{{"COMMONS.UPDATED_AT" | translate}}</label> <br>
-                             <label >{{courrier.updatedAt}}</label> <br>
+                            <label class="mb-4">{{courrier.createdByVo?.username}}</label> <br>
+                            <label>{{"COMMONS.UPDATED_AT" | translate}}</label> <br>
+                            <label>{{courrier.updatedAt}}</label> <br>
                         </div>
                         <!-- <div class="form-group col-md-5">
                             <label for="daterelance">date reponse</label><br>
@@ -562,7 +614,8 @@
             <div class="d-flex flex-row-reverse ">
 
                 <div class="col-md-4 mr-2" *ngIf="!onDetail">
-                    <button class="btn btn-success btn-block" (click)="saveCourrier()">{{"COMMONS.CREATED_BY" | translate}}</button>
+                    <button class="btn btn-success btn-block"
+                            (click)="saveCourrier()">{{"COMMONS.CREATED_BY" | translate}}</button>
                 </div>
             </div>
         </div>

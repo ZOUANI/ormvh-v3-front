@@ -30,9 +30,8 @@ export class CourrierlistComponent implements OnInit {
     voies: VoieVo[];
     statuss: StatusVo[];
 
-   
 
-    constructor(private _courrierService: CourrierService,private statusService: StatusService,
+    constructor(private _courrierService: CourrierService, private statusService: StatusService,
                 private typeCourrierService: TypeCourrierService, private voieService: VoieService
     ) {
     }
@@ -177,7 +176,7 @@ export class CourrierlistComponent implements OnInit {
     public courriersSelected = Array<CourrierVo>();
 
     exist(p: CourrierVo): boolean {
-        for (let item of  this.courriersSelected) {
+        for (let item of this.courriersSelected) {
             if (item.idCourrier == p.idCourrier) {
                 return true;
             }
@@ -186,14 +185,14 @@ export class CourrierlistComponent implements OnInit {
     }
 
     deleteSelected(p) {
-        for (let item of  this.courriersSelected) {
+        for (let item of this.courriersSelected) {
             if (item.idCourrier == p.idCourrier) {
                 this.courriersSelected.splice(this.courriersSelected.indexOf(item), 1);
             }
         }
     }
 
-    print(){
+    print() {
         this._courrierService.print(this.courriersSelected);
     }
 
@@ -210,16 +209,15 @@ export class CourrierlistComponent implements OnInit {
     }
 
 
-
-findAllvoies() {
-    this.voieService.findAllvoies().subscribe(data => {
-        if (data != null) {
-            this.voies = data;
-        }
-    }, error => {
-        console.log(error);
-    });
-}
+    findAllvoies() {
+        this.voieService.findAllvoies().subscribe(data => {
+            if (data != null) {
+                this.voies = data;
+            }
+        }, error => {
+            console.log(error);
+        });
+    }
 
     findAllstatuss() {
         this.statusService.findAllstatuss().subscribe(data => {
@@ -232,16 +230,16 @@ findAllvoies() {
     }
 
 
-   get showEmailDialog():boolean{
-       return this.courrierService.showEmailDialog;
-   }
+    get showEmailDialog(): boolean {
+        return this.courrierService.showEmailDialog;
+    }
 
-   set showEmailDialog(value:boolean){
-     this.courrierService.showEmailDialog = value;
-}
+    set showEmailDialog(value: boolean) {
+        this.courrierService.showEmailDialog = value;
+    }
 
 
-    email(courrier:CourrierVo){
+    email(courrier: CourrierVo) {
         this.courrierService.selectedCourrier = courrier;
         this.showEmailDialog = true;
     }
