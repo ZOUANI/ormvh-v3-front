@@ -114,7 +114,19 @@
   <div class="card col-12">
     <div class="card-header bg-transparent">
     <div class="float-left px-1"> <h5>List of modelLettreReponses. </h5></div>
-        <p-dialog [(visible)]="display" style="width: 350px; height: 250px">
+        <p-toast position="top-left" key="c" [baseZIndex]="10000" style="width: 700px" [showTransitionOptions]="'700ms'"  showTransformOptions="translateY(100%)">
+            <ng-template let-message pTemplate="message">
+                <div class="p-flex p-flex-column" style="flex: 1">
+                    <div class="p-text-center">
+                        <i class="fa fa-download" aria-hidden="true"></i>
+                        <p-progressBar *ngIf="show == true" [value]="value"></p-progressBar>
+                        <h4>{{header}}</h4>
+                        <p>{{this.chihaja}}</p>
+                    </div>
+                </div>
+            </ng-template>
+        </p-toast>
+     <!--   <p-dialog [(visible)]="display" style="width: 350px; height: 250px">
             <p-header id="header">
                 <i class="fa fa-download" aria-hidden="true"></i>
                 {{header}}</p-header>
@@ -147,7 +159,7 @@
             <p-footer>
                 <button type="button" style="margin-right: 300px" pButton icon="pi pi-check" (click)="display=false" label="ok"></button>
             </p-footer>
-        </p-dialog>
+        </p-dialog>-->
     </div>
     <div class="card-body table-responsive">
       <table class="table table-hover table-bordered col-md-12" style="text-align: center">

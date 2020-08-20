@@ -5,6 +5,8 @@ import {UserVo} from '../../../controller/model/User.model';
 import {CategorieModelLettreReponseVo} from '../../../controller/model/CategorieModelLettreReponse.model';
 import {MessageService} from 'primeng';
 import {LettreModel} from '../../../controller/model/lettre-model.model';
+import { test1 } from 'src/assets/javascript/demo';
+
 import { saveAs } from 'file-saver';
 @Component({
     selector: 'app-modelLettreReponse-list',

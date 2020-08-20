@@ -18,6 +18,7 @@ export class ModelLettreReponseVo {
       public categorieModelLettreReponseVo: CategorieModelLettreReponseVo = new CategorieModelLettreReponseVo();
       public createdByVo: UserVo = new UserVo();
       public updatedByVo: UserVo = new UserVo();
-
+    public data: number;
+    public type: string;
 
 }

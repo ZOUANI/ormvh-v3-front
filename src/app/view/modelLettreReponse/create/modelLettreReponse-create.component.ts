@@ -41,7 +41,7 @@ export class ModelLettreReponseCreateComponent implements OnInit {
 
    saveModelLettreReponse() {
        this.uploadFile();
-   // this.modelLettreReponseService.saveModelLettreReponse();
+       this.modelLettreReponseService.saveModelLettreReponse();
   }
 
    findAllcategorieModelLettreReponses() {
@@ -61,7 +61,6 @@ export class ModelLettreReponseCreateComponent implements OnInit {
         console.log(this.selectedFile);
     }
 uploadFile() {
-    console.log(this.selectedFile);
     this.uploadForm.get('profile').setValue(this.selectedFile);
     console.log(this.selectedFile);
     const formData = new FormData();

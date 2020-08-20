@@ -121,8 +121,8 @@ set modelLettreReponseShowDetail(value: boolean ) {
 }
 
   public saveModelLettreReponse() {
-  this.http.post<ModelLettreReponseVo>('http://localhost:8080/generated/modelLettreReponse/', this.modelLettreReponse).subscribe(data => {
-      if(data != null){
+      this.http.post<ModelLettreReponseVo>('http://localhost:8080/generated/modelLettreReponse/', this.modelLettreReponse).subscribe(data => {
+      if (data != null) {
           this.modelLettreReponseListe.push(data);
           this.showSuccess();
       }
@@ -233,9 +233,11 @@ delete(pojo: ModelLettreReponseVo) {
               });
       }
     }
-
     showSuccess() {
-        this.messageService.add({severity: 'success', summary: 'Success Message', detail: 'modelLettreReponse is saved'});
+        this.messageService.add({ severity: 'success', summary: 'Success Message', detail: 'modelLettreReponse is saved'});
+    }
+    showSuccess1() {
+        this.messageService.add({key: 'c', sticky: true,  severity: 'info', summary: 'Download completed', detail: ''});
     }
     showInfo() {
         this.messageService.add({severity: 'info', summary: 'Info Message', detail: 'modelLettreReponse is edited'});
@@ -260,19 +262,19 @@ private _imageName: string;
     }
 
     downloadFile(name: string){
-                  this.http.get<LettreModel>('http://localhost:8080/generated/modelLettreReponse/downloadFile/' + name).subscribe(
+                  this.http.get<ModelLettreReponseVo>('http://localhost:8080/generated/modelLettreReponse/downloadFile/' + name).subscribe(
                       data => {
                           if (data != null) {
-                              this.letttreModelType = data.fileType;
+                              console.log('sucess');
+                              this.letttreModelType = data.type;
+                              console.log(this.letttreModelType);
                               if (this.letttreModelType === 'application/pdf'){
                                  this.imageName = 'raw.jpg';
                               } else {
                                   this.imageName = 'microsoft-office-word.png';
                               }
-                            //  this.showSuccess();
-                              console.log('sucess');
-                          }
-                          }, eror => {
+                              this.showSuccess1();
+                          }}, eror => {
                           console.log('eroro', eror);
                       });
                                   }
