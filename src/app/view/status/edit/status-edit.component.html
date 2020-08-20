@@ -12,17 +12,18 @@
 
                     <div class="card-body">
                         <div class="row">
-<!--                            <div class="col-md-6 py-2">-->
-<!--                                <label>createdAt</label>-->
-<!--                                <input [(ngModel)]="status.createdAt" class="col-md-12" type="date">-->
-<!--                            </div>-->
-<!--                            <div class="col-md-6 py-2">-->
-<!--                                <label>updatedAt</label>-->
-<!--                                <input [(ngModel)]="status.updatedAt" class="col-md-12" type="date">-->
-<!--                            </div>-->
+                            <!--                            <div class="col-md-6 py-2">-->
+                            <!--                                <label>createdAt</label>-->
+                            <!--                                <input [(ngModel)]="status.createdAt" class="col-md-12" type="date">-->
+                            <!--                            </div>-->
+                            <!--                            <div class="col-md-6 py-2">-->
+                            <!--                                <label>updatedAt</label>-->
+                            <!--                                <input [(ngModel)]="status.updatedAt" class="col-md-12" type="date">-->
+                            <!--                            </div>-->
                             <div class="col-md-6 py-2">
                                 <label>libelleArab</label>
-                                <input [(ngModel)]="status.libelleArab" [placeholder]="status.libelleArab" class="form-control"
+                                <input [(ngModel)]="status.libelleArab" [placeholder]="status.libelleArab"
+                                       class="form-control"
                                        type="text">
                             </div>
                             <div class="col-md-6 py-2">
@@ -40,20 +41,20 @@
                                 <input [(ngModel)]="status.color" class="form-control" type="color">
                             </div>
                         </div>
-<!--                        <div class="row m-md-2 p-md-1">-->
-<!--                            <label>createdBy</label>-->
-<!--                            <select [(ngModel)]="status.createdByVo.username" class="form-control">-->
-<!--                                <option *ngFor="let p of createdBys" [ngValue]="p.username"-->
-<!--                                        value="{{p.username}}">{{p.username}}</option>-->
-<!--                            </select>-->
-<!--                        </div>-->
-<!--                        <div class="row m-md-2 p-md-1">-->
-<!--                            <label>updatedBy</label>-->
-<!--                            <select [(ngModel)]="status.updatedByVo.username" class="form-control">-->
-<!--                                <option *ngFor="let p of updatedBys" [ngValue]="p.username"-->
-<!--                                        value="{{p.username}}">{{p.username}}</option>-->
-<!--                            </select>-->
-<!--                        </div>-->
+                        <!--                        <div class="row m-md-2 p-md-1">-->
+                        <!--                            <label>createdBy</label>-->
+                        <!--                            <select [(ngModel)]="status.createdByVo.username" class="form-control">-->
+                        <!--                                <option *ngFor="let p of createdBys" [ngValue]="p.username"-->
+                        <!--                                        value="{{p.username}}">{{p.username}}</option>-->
+                        <!--                            </select>-->
+                        <!--                        </div>-->
+                        <!--                        <div class="row m-md-2 p-md-1">-->
+                        <!--                            <label>updatedBy</label>-->
+                        <!--                            <select [(ngModel)]="status.updatedByVo.username" class="form-control">-->
+                        <!--                                <option *ngFor="let p of updatedBys" [ngValue]="p.username"-->
+                        <!--                                        value="{{p.username}}">{{p.username}}</option>-->
+                        <!--                            </select>-->
+                        <!--                        </div>-->
                         <div class="card-footer">
                             <button (click)="editStatus()" class="form-control">Edit</button>
                         </div>

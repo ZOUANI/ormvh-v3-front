@@ -7,18 +7,18 @@
             <label>adress</label>
             <input [(ngModel)]="expeditor.adress" class="form-control" type="text">
         </div>
-<!--        <div class="row py-2">-->
-<!--            <div class="p-grid ui-fluid">-->
-<!--                <label>createdAt</label>-->
-<!--                <p-calendar [(ngModel)]="expeditor.createdAt" class="p-col-12" dateFormat="yy-mm-dd"></p-calendar>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        <div class="row py-2">-->
-<!--            <div class="p-grid ui-fluid">-->
-<!--                <label>updatedAt</label>-->
-<!--                <p-calendar [(ngModel)]="expeditor.updatedAt" class="p-col-12" dateFormat="yy-mm-dd"></p-calendar>-->
-<!--            </div>-->
-<!--        </div>-->
+        <!--        <div class="row py-2">-->
+        <!--            <div class="p-grid ui-fluid">-->
+        <!--                <label>createdAt</label>-->
+        <!--                <p-calendar [(ngModel)]="expeditor.createdAt" class="p-col-12" dateFormat="yy-mm-dd"></p-calendar>-->
+        <!--            </div>-->
+        <!--        </div>-->
+        <!--        <div class="row py-2">-->
+        <!--            <div class="p-grid ui-fluid">-->
+        <!--                <label>updatedAt</label>-->
+        <!--                <p-calendar [(ngModel)]="expeditor.updatedAt" class="p-col-12" dateFormat="yy-mm-dd"></p-calendar>-->
+        <!--            </div>-->
+        <!--        </div>-->
         <div class="row py-2">
             <label>code</label>
             <input [(ngModel)]="expeditor.code" class="form-control" type="text">
@@ -57,20 +57,20 @@
                         value="{{p.libelle}}">{{p.libelle}}</option>
             </select>
         </div>
-<!--        <div class="row">-->
-<!--            <label>createdBy</label>-->
-<!--            <select [(ngModel)]="expeditor.createdByVo.username" class="form-control">-->
-<!--                <option *ngFor="let p of createdBys" [ngValue]="p.username"-->
-<!--                        value="{{p.username}}">{{p.username}}</option>-->
-<!--            </select>-->
-<!--        </div>-->
-<!--        <div class="row">-->
-<!--            <label>updatedBy</label>-->
-<!--            <select [(ngModel)]="expeditor.updatedByVo.username" class="form-control">-->
-<!--                <option *ngFor="let p of updatedBys" [ngValue]="p.username"-->
-<!--                        value="{{p.username}}">{{p.username}}</option>-->
-<!--            </select>-->
-<!--        </div>-->
+        <!--        <div class="row">-->
+        <!--            <label>createdBy</label>-->
+        <!--            <select [(ngModel)]="expeditor.createdByVo.username" class="form-control">-->
+        <!--                <option *ngFor="let p of createdBys" [ngValue]="p.username"-->
+        <!--                        value="{{p.username}}">{{p.username}}</option>-->
+        <!--            </select>-->
+        <!--        </div>-->
+        <!--        <div class="row">-->
+        <!--            <label>updatedBy</label>-->
+        <!--            <select [(ngModel)]="expeditor.updatedByVo.username" class="form-control">-->
+        <!--                <option *ngFor="let p of updatedBys" [ngValue]="p.username"-->
+        <!--                        value="{{p.username}}">{{p.username}}</option>-->
+        <!--            </select>-->
+        <!--        </div>-->
         <div class="modal-footer">
             <button (click)="saveExpeditor()" class="form-control">Save</button>
         </div>

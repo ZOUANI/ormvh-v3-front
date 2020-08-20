@@ -125,24 +125,25 @@ export class ExpeditorService {
     }
 
 
-    findAllexpeditors(){
-        this.http.get<Array<ExpeditorVo>>('http://localhost:8080/generated/expeditor/').subscribe(data=>{
-            this.expeditors=[{label:'Select expeditor', value:null}];
-            if(data!=null){
+    findAllexpeditors() {
+        this.http.get<Array<ExpeditorVo>>('http://localhost:8080/generated/expeditor/').subscribe(data => {
+            this.expeditors = [{label: 'Select expeditor', value: null}];
+            if (data != null) {
                 for (const item of data) {
-                    this.expeditors.push({label:item.title, value:item});
+                    this.expeditors.push({label: item.title, value: item});
                 }
             }
-        },error=>{
-            this.expeditors=[{label:'select expeditor', value:null}];
-        });;
+        }, error => {
+            this.expeditors = [{label: 'select expeditor', value: null}];
+        });
+        ;
     }
 
 
     public saveExpeditor() {
         this.http.post<ExpeditorVo>('http://localhost:8080/generated/expeditor/', this.expeditor).subscribe(data => {
             this.expeditorListe.push(data)
-            this.expeditors.push({label:data.title, value:data});
+            this.expeditors.push({label: data.title, value: data});
             this.expeditorListe.push(data);
 
         });

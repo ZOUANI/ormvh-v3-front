@@ -37,7 +37,7 @@ export class AuthenticationService {
                 this.loadInfos();
                 if (this.authenticatedUser.passwordChanged) {
                     this.router.navigate(['courrier/list']);
-                }else {
+                } else {
                     this.router.navigate(['resetPassword']);
                 }
             }, error1 => {
@@ -70,9 +70,6 @@ export class AuthenticationService {
         this.authenticatedUser = new UserVo();
         this.router.navigate(['login']);
     }
-
-
-
 
 
     // public hasRole(role): boolean {

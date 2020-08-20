@@ -14,20 +14,22 @@
                         <div class="row">
                             <div class="col-md-6 py-2">
                                 <label>description</label>
-                                <input [(ngModel)]="leService.description" [placeholder]="leService.description" class="form-control"
+                                <input [(ngModel)]="leService.description" [placeholder]="leService.description"
+                                       class="form-control"
                                        type="text">
                             </div>
                             <div class="col-md-6 py-2">
                                 <label>createdAt</label>
                                 <input [(ngModel)]="leService.createdAt" class="col-md-12" type="date">
                             </div>
-<!--                            <div class="col-md-6 py-2">-->
-<!--                                <label>updatedAt</label>-->
-<!--                                <input [(ngModel)]="leService.updatedAt" class="col-md-12" type="date">-->
-<!--                            </div>-->
+                            <!--                            <div class="col-md-6 py-2">-->
+                            <!--                                <label>updatedAt</label>-->
+                            <!--                                <input [(ngModel)]="leService.updatedAt" class="col-md-12" type="date">-->
+                            <!--                            </div>-->
                             <div class="col-md-6 py-2">
                                 <label>libelleArab</label>
-                                <input [(ngModel)]="leService.libelleArab" [placeholder]="leService.libelleArab" class="form-control"
+                                <input [(ngModel)]="leService.libelleArab" [placeholder]="leService.libelleArab"
+                                       class="form-control"
                                        type="text">
                             </div>
                             <div class="col-md-6 py-2">
@@ -37,24 +39,25 @@
                             </div>
                             <div class="col-md-6 py-2">
                                 <label>title</label>
-                                <input [(ngModel)]="leService.title" [placeholder]="leService.title" class="form-control"
+                                <input [(ngModel)]="leService.title" [placeholder]="leService.title"
+                                       class="form-control"
                                        type="text">
                             </div>
                         </div>
-<!--                        <div class="row m-md-2 p-md-1">-->
-<!--                            <label>createdBy</label>-->
-<!--                            <select [(ngModel)]="leService.createdByVo.username" class="form-control">-->
-<!--                                <option *ngFor="let p of createdBys" [ngValue]="p.username"-->
-<!--                                        value="{{p.username}}">{{p.username}}</option>-->
-<!--                            </select>-->
-<!--                        </div>-->
-<!--                        <div class="row m-md-2 p-md-1">-->
-<!--                            <label>updatedBy</label>-->
-<!--                            <select [(ngModel)]="leService.updatedByVo.username" class="form-control">-->
-<!--                                <option *ngFor="let p of updatedBys" [ngValue]="p.username"-->
-<!--                                        value="{{p.username}}">{{p.username}}</option>-->
-<!--                            </select>-->
-<!--                        </div>-->
+                        <!--                        <div class="row m-md-2 p-md-1">-->
+                        <!--                            <label>createdBy</label>-->
+                        <!--                            <select [(ngModel)]="leService.createdByVo.username" class="form-control">-->
+                        <!--                                <option *ngFor="let p of createdBys" [ngValue]="p.username"-->
+                        <!--                                        value="{{p.username}}">{{p.username}}</option>-->
+                        <!--                            </select>-->
+                        <!--                        </div>-->
+                        <!--                        <div class="row m-md-2 p-md-1">-->
+                        <!--                            <label>updatedBy</label>-->
+                        <!--                            <select [(ngModel)]="leService.updatedByVo.username" class="form-control">-->
+                        <!--                                <option *ngFor="let p of updatedBys" [ngValue]="p.username"-->
+                        <!--                                        value="{{p.username}}">{{p.username}}</option>-->
+                        <!--                            </select>-->
+                        <!--                        </div>-->
                         <div class="card-footer">
                             <button (click)="editLeService()" class="form-control">Edit</button>
                         </div>

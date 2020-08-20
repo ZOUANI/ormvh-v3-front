@@ -9,7 +9,7 @@ import {MessageService} from 'primeng';
 import {Observable} from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class ModelLettreReponseService {
 
@@ -19,34 +19,28 @@ export class ModelLettreReponseService {
     return this._categorieModelLettreReponses;
    }
 
-   set categorieModelLettreReponses(value: Array<CategorieModelLettreReponseVo>) {
-    this._categorieModelLettreReponses = value;
-   }
-   get createdBys(): Array<UserVo> {
-    return this._createdBys;
-   }
+    private _modelLettreReponseDetail: ModelLettreReponseVo = new ModelLettreReponseVo();
+    private _modelLettreReponseListe: Array<ModelLettreReponseVo> = new Array<ModelLettreReponseVo>();
 
-   set createdBys(value: Array<UserVo>) {
-    this._createdBys = value;
-   }
-   get updatedBys(): Array<UserVo> {
-    return this._updatedBys;
-   }
+    private _modelLettreReponseSearch: ModelLettreReponseVo = new ModelLettreReponseVo();
+    private _modelLettreReponse: ModelLettreReponseVo = new ModelLettreReponseVo();
+    private _searchedModelLettreReponses: Array<ModelLettreReponseVo> = new Array<ModelLettreReponseVo>();
+    private _editableModelLettreReponses: Array<ModelLettreReponseVo> = new Array<ModelLettreReponseVo>();
+    private _categorieModelLettreReponses: Array<CategorieModelLettreReponseVo> = new Array<CategorieModelLettreReponseVo>();
+    private _createdBys: Array<UserVo> = new Array<UserVo>();
+    private _updatedBys: Array<UserVo> = new Array<UserVo>();
 
-   set updatedBys(value: Array<UserVo>) {
-    this._updatedBys = value;
-   }
-
-  get modelLettreReponse(): ModelLettreReponseVo {
-    if (this._modelLettreReponse == null) {
-      this._modelLettreReponse = new ModelLettreReponseVo();
+    get categorieModelLettreReponses(): Array<CategorieModelLettreReponseVo> {
+        return this._categorieModelLettreReponses;
     }
-    return this._modelLettreReponse;
-  }
 
-  set modelLettreReponse(value: ModelLettreReponseVo) {
-    this._modelLettreReponse = value;
-  }
+    set categorieModelLettreReponses(value: Array<CategorieModelLettreReponseVo>) {
+        this._categorieModelLettreReponses = value;
+    }
+
+    get createdBys(): Array<UserVo> {
+        return this._createdBys;
+    }
 
   get modelLettreReponseListe(): Array<ModelLettreReponseVo> {
        /*if (this._modelLettreReponseListe === null) {
@@ -127,8 +121,9 @@ set modelLettreReponseShowDetail(value: boolean ) {
           this.showSuccess();
       }
 
-  });
-  }
+    set modelLettreReponseShowDetail(value: boolean) {
+        this._modelLettreReponseShowDetail = value;
+    }
 
   public editModelLettreReponse() {
   this.http.post<ModelLettreReponseVo>('http://localhost:8080/generated/modelLettreReponse/edit', this.modelLettreReponse).subscribe(data => {
@@ -151,7 +146,14 @@ public detailShow( pojo: ModelLettreReponseVo ) {
 
 }
 
+                }
+            }
+        );
+    }
 
+    public saveModelLettreReponse() {
+        this.http.post<ModelLettreReponseVo>('http://localhost:8080/generated/modelLettreReponse/', this.modelLettreReponse).subscribe(data => {
+            this.modelLettreReponseListe.push(data);
 
 delete(pojo: ModelLettreReponseVo) {
    this.http.delete<ModelLettreReponseVo>('http://localhost:8080/generated/modelLettreReponse/id/' + pojo.id).subscribe(
@@ -164,19 +166,21 @@ delete(pojo: ModelLettreReponseVo) {
         );
 
 
-}
+    }
 
 
-       public findBylibelle(ref: string) {
-      this.http.get<ModelLettreReponseVo>('http://localhost:8080/generated/modelLettreReponse/libelle/' + ref).subscribe(
-        value => {
-        if (value != null) { this.modelLettreReponse = value; }
-        }
+    public findBylibelle(ref: string) {
+        this.http.get<ModelLettreReponseVo>('http://localhost:8080/generated/modelLettreReponse/libelle/' + ref).subscribe(
+            value => {
+                if (value != null) {
+                    this.modelLettreReponse = value;
+                }
+            }
         );
-        }
+    }
 
-            public findAllcategorieModelLettreReponses() {
-             this.http.get<Array<CategorieModelLettreReponseVo>>('http://localhost:8080/generated/categorieModelLettreReponse/').subscribe(
+    public findAllcategorieModelLettreReponses() {
+        this.http.get<Array<CategorieModelLettreReponseVo>>('http://localhost:8080/generated/categorieModelLettreReponse/').subscribe(
             value => {
             if (value != null) { this.categorieModelLettreReponses = value; }
             });
@@ -184,14 +188,19 @@ delete(pojo: ModelLettreReponseVo) {
             public findAllcreatedBys() {
              this.http.get<Array<UserVo>>('http://localhost:8080/generated/user/').subscribe(
             value => {
-            if (value != null) { this.createdBys = value; }
+                if (value != null) {
+                    this.createdBys = value;
+                }
             }
-            );
-            }
-            public findAllupdatedBys() {
-             this.http.get<Array<UserVo>>('http://localhost:8080/generated/user/').subscribe(
+        );
+    }
+
+    public findAllupdatedBys() {
+        this.http.get<Array<UserVo>>('http://localhost:8080/generated/user/').subscribe(
             value => {
-            if (value != null) { this.updatedBys = value; }
+                if (value != null) {
+                    this.updatedBys = value;
+                }
             }
             );
             }

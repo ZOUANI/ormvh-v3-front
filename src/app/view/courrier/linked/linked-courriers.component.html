@@ -1,4 +1,4 @@
-<p-dialog styleClass="linkedCourrierDialog"  position="center" [(visible)]="showLinkedCourrier">
+<p-dialog styleClass="linkedCourrierDialog" position="center" [(visible)]="showLinkedCourrier">
     <!-- <div class="row justify-content-center">
         <div class="col-12">
             <h1 class="big-title">Courriers liées</h1>
@@ -26,36 +26,36 @@
     </div> -->
 
     <div class="card-body table-responsive">
-      <h1 class="big-title">{{"MAILING.ATTACHED_MAILING" | translate}}</h1>
+        <h1 class="big-title">{{"MAILING.ATTACHED_MAILING" | translate}}</h1>
 
-      <table class="table table-hover col-md-12">
-        <thead class="thead-dark">
+        <table class="table table-hover col-md-12">
+            <thead class="thead-dark">
 
-          <th>{{"MAILING.ID" | translate}}</th>
-          <th>{{"MAILING.SUBJECT" | translate}}</th>
-          <th>{{"MAILING.CREATED_AT" | translate}}</th>
-          <th>{{"MAILING.STATUS" | translate}}</th>
-          <th>{{"MAILING.TYPE" | translate}}</th>
-          <th>{{"MAILING.TRACK" | translate}}</th>
-          <th>{{"MAILING.LINKED_TO" | translate}}</th>
-          <th>{{"MAILING.ACTIONS" | translate}}</th>
-        </thead>
-        <tbody>
-          <tr *ngFor="let p of courriers">
+            <th>{{"MAILING.ID" | translate}}</th>
+            <th>{{"MAILING.SUBJECT" | translate}}</th>
+            <th>{{"MAILING.CREATED_AT" | translate}}</th>
+            <th>{{"MAILING.STATUS" | translate}}</th>
+            <th>{{"MAILING.TYPE" | translate}}</th>
+            <th>{{"MAILING.TRACK" | translate}}</th>
+            <th>{{"MAILING.LINKED_TO" | translate}}</th>
+            <th>{{"MAILING.ACTIONS" | translate}}</th>
+            </thead>
+            <tbody>
+            <tr *ngFor="let p of courriers">
 
-            <td>{{p.idCourrier}}</td>
-            <td>{{p.subject}}</td>
-            <td>{{p.createdAt}}</td>
-            <td>{{p.statusVo?.libelle}}</td>
-            <td><span class="badge badge-pill badge-warning">{{p.typeCourrierVo?.libelle}}</span></td>
-            <td>{{p.voieVo?.libelle}}</td>
-            <td>{{p.linkedToVo?.idCourrier}}</td>
-            <td>
-              <button class="btn btn-warning btn-sm fa fa-external-link mx-md-1" (click)="detail(p)"></button>
-            </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
- <p-dialog>
+                <td>{{p.idCourrier}}</td>
+                <td>{{p.subject}}</td>
+                <td>{{p.createdAt}}</td>
+                <td>{{p.statusVo?.libelle}}</td>
+                <td><span class="badge badge-pill badge-warning">{{p.typeCourrierVo?.libelle}}</span></td>
+                <td>{{p.voieVo?.libelle}}</td>
+                <td>{{p.linkedToVo?.idCourrier}}</td>
+                <td>
+                    <button class="btn btn-warning btn-sm fa fa-external-link mx-md-1" (click)="detail(p)"></button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <p-dialog>
 

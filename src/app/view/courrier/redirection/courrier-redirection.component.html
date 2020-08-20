@@ -1,45 +1,48 @@
 <div class="container">
-   <div class="row mt-5 ">
-          
+    <div class="row mt-5 ">
+
 
         <div class="card col-12 mt-5">
             <div class="d-flex justify-content-between" style="padding: 20px 20px 0 20px;">
                 <div class="filter-ctn">
-                    <p-dropdown	  styleClass="type-courrier" selectId="type-courrier" [options]="typeCourrierOption"
-                    [(ngModel)]="courrierCriteria.typeCourrierVo" optionLabel="libelle" dataKey="id"></p-dropdown>
-                    <p-calendar  [defaultDate]="currentDate"  [showIcon]="true"  styleClass="dateRelance" [(ngModel)]="date">
+                    <p-dropdown styleClass="type-courrier" selectId="type-courrier" [options]="typeCourrierOption"
+                                [(ngModel)]="courrierCriteria.typeCourrierVo" optionLabel="libelle"
+                                dataKey="id"></p-dropdown>
+                    <p-calendar [defaultDate]="currentDate" [showIcon]="true" styleClass="dateRelance"
+                                [(ngModel)]="date">
                     </p-calendar>
                     <button class="btn btn-search" (click)="findCourriers()"><i class="pi pi-search"></i></button>
 
                 </div>
-               <div class="cntrl-ctn">
-                   <div class="selectAll">
-                    <input type="checkbox"  [checked]="allSelected()"
-                    (change)="selectOrDeselectAll()" id="checkboxOne" ><label for="checkboxOne">Select All</label>
-                   </div>
-                   <!-- <span>Select All</span>
-                <label class="switch">
-                    <input type="checkbox"
-                    [checked]="allSelected()"
-                      (change)="selectOrDeselectAll()">
-                    <span class="slider round"></span>
-                  </label> -->
-               
-                <button class="btn btn-send" (click)="sendEmail()"> <i class="pi pi-envelope"></i></button>
-               </div>
-              
+                <div class="cntrl-ctn">
+                    <div class="selectAll">
+                        <input type="checkbox" [checked]="allSelected()"
+                               (change)="selectOrDeselectAll()" id="checkboxOne"><label for="checkboxOne">Select
+                        All</label>
+                    </div>
+                    <!-- <span>Select All</span>
+                 <label class="switch">
+                     <input type="checkbox"
+                     [checked]="allSelected()"
+                       (change)="selectOrDeselectAll()">
+                     <span class="slider round"></span>
+                   </label> -->
+
+                    <button class="btn btn-send" (click)="sendEmail()"><i class="pi pi-envelope"></i></button>
+                </div>
+
             </div>
-<!--                 
-                <label class="switch">
-                    <input type="checkbox"
-                    [checked]="allSelected()"
-                      (change)="selectOrDeselectAll()">
-                    <span class="slider round"></span>
-                  </label> -->
+            <!--
+                            <label class="switch">
+                                <input type="checkbox"
+                                [checked]="allSelected()"
+                                  (change)="selectOrDeselectAll()">
+                                <span class="slider round"></span>
+                              </label> -->
             <div class="card-body">
                 <!-- <h5 class="card-title" style="text-align: center;">Courriers</h5> -->
                 <p-accordion styleClass="services" [multiple]="true">
-                    <p-accordionTab  *ngFor="let item of courriersService | keyvalue" header="{{item.key}}">
+                    <p-accordionTab *ngFor="let item of courriersService | keyvalue" header="{{item.key}}">
                         <!-- <p-table  [value]="item.value" dataKey="id" styleClass="ui-table-customers" [rowHover]="true"
                         >
                            <ng-template pTemplate="header">
@@ -87,66 +90,69 @@
                            </ng-template>
                        </p-table>
                         -->
-                       <div class="table-ctn">
-                        <div class="table-responsive">
-                          <table class="table">
-                              <thead class="thead-light">
-                                  <tr>
-                                     <th style="width: 3em">  
-                                      <input type="checkbox" id="{{item.key}}"  *ngIf="!isAllServiceSelected(item.key)" [checked]="isAllServiceSelected(item.key)" (click)="selectAllService(item.key)">
-                                      <input type="checkbox" id="{{item.key}}"  *ngIf="isAllServiceSelected(item.key)" checked  (click)="deselectAllService(item.key)">
-                                      <label for="{{item.key}}"></label>
-                                     </th> 
-                                     
-                                      <th scope="col" style="width: 8em;text-align: center;">Id</th>
-                                      <th scope="col">Subject</th>
-                                      <th scope="col">Status</th>
-                                      <th scope="col">Voie</th>
-                                      <th scope="col">Date</th>
-                                      
-                                  </tr>
-                              </thead>
-                              <tbody class="customtable" >
-                                  <tr *ngFor="let courrier of item.value">
-                                      
-                                      <td [ngClass]="{'slected': exist(courrier)}" style="width: 3em"> 
-                                          <input type="checkbox" id="{{courrier.idCourrier}}" [checked]="exist(courrier)" (click)="selectOrDeslect(courrier)">
-                                           <label for="{{courrier.idCourrier}}"></label>
-                                      </td> 
-                                        
-                                     <td>
-                                         {{courrier.idCourrier}}
-                                     </td>
-                                     <td>
-                                      {{courrier.subject}}
-                                     </td>
-                                     
-                                     <td>
-                                      <span class="badge">{{courrier.statusVo?.libelle}}</span>
-                                     </td>
-                                     <td>
-                                      Email
-                                    </td>
-                                     <td>
-                                         <span >{{courrier.dateRelance}}</span>
-                                     </td>
-                                  </tr>
-                                
-                              </tbody>
-                          </table>
-                      </div>
-                       </div>
-                   
+                        <div class="table-ctn">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead class="thead-light">
+                                    <tr>
+                                        <th style="width: 3em">
+                                            <input type="checkbox" id="{{item.key}}"
+                                                   *ngIf="!isAllServiceSelected(item.key)"
+                                                   [checked]="isAllServiceSelected(item.key)"
+                                                   (click)="selectAllService(item.key)">
+                                            <input type="checkbox" id="{{item.key}}"
+                                                   *ngIf="isAllServiceSelected(item.key)" checked
+                                                   (click)="deselectAllService(item.key)">
+                                            <label for="{{item.key}}"></label>
+                                        </th>
 
+                                        <th scope="col" style="width: 8em;text-align: center;">Id</th>
+                                        <th scope="col">Subject</th>
+                                        <th scope="col">Status</th>
+                                        <th scope="col">Voie</th>
+                                        <th scope="col">Date</th>
 
+                                    </tr>
+                                    </thead>
+                                    <tbody class="customtable">
+                                    <tr *ngFor="let courrier of item.value">
+
+                                        <td [ngClass]="{'slected': exist(courrier)}" style="width: 3em">
+                                            <input type="checkbox" id="{{courrier.idCourrier}}"
+                                                   [checked]="exist(courrier)" (click)="selectOrDeslect(courrier)">
+                                            <label for="{{courrier.idCourrier}}"></label>
+                                        </td>
+
+                                        <td>
+                                            {{courrier.idCourrier}}
+                                        </td>
+                                        <td>
+                                            {{courrier.subject}}
+                                        </td>
+
+                                        <td>
+                                            <span class="badge">{{courrier.statusVo?.libelle}}</span>
+                                        </td>
+                                        <td>
+                                            Email
+                                        </td>
+                                        <td>
+                                            <span>{{courrier.dateRelance}}</span>
+                                        </td>
+                                    </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
 
 
                     </p-accordionTab>
                 </p-accordion>
-                
+
             </div>
         </div>
-   </div>    
+    </div>
 </div>
 <!-- <p-dialog styleClass="sendEmail" header="Send Email" position="center" [(visible)]="showEmailDialog">
      <div class="container">

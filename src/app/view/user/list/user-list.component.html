@@ -15,18 +15,21 @@
 
                     <div class="form-group col">
                         <!--<label for="Reference">Username</label>-->
-                        <input type="text" [(ngModel)]="userSearch.username" placeholder='{{"USER.USERNAME" | translate}}' class="form-control" id="Reference">
+                        <input type="text" [(ngModel)]="userSearch.username"
+                               placeholder='{{"USER.USERNAME" | translate}}' class="form-control" id="Reference">
                     </div>
 
 
                     <div class="form-group col">
                         <!--<label for="Email">Email</label>-->
-                        <input type="text" [(ngModel)]="userSearch.email" placeholder='{{"USER.EMAIL" | translate}}' class="form-control" id="Email">
+                        <input type="text" [(ngModel)]="userSearch.email" placeholder='{{"USER.EMAIL" | translate}}'
+                               class="form-control" id="Email">
                     </div>
 
                     <div class="col text-center">
                         <label class="form-check-label">
-                            <input type="checkbox" [checked]="userSearch.credentialsNonExpired" (click)="switchCredentialsNonExpired()">
+                            <input type="checkbox" [checked]="userSearch.credentialsNonExpired"
+                                   (click)="switchCredentialsNonExpired()">
                             {{"USER.CREDENTIALS_NON_EXPIRED" | translate}}
                         </label>
                     </div>
@@ -40,14 +43,16 @@
 
                     <div class="col text-center">
                         <label class="form-check-label">
-                            <input type="checkbox" [checked]="userSearch.accountNonExpired" (click)="switchAccountNonExpired()">
+                            <input type="checkbox" [checked]="userSearch.accountNonExpired"
+                                   (click)="switchAccountNonExpired()">
                             {{"USER.ACCOUNT_NON_EXPIRED" | translate}}
                         </label>
                     </div>
 
                     <div class="col text-center">
                         <label class="form-check-label">
-                            <input type="checkbox" [checked]="userSearch.accountNonLocked" (click)="switchAccountNonLocked()">
+                            <input type="checkbox" [checked]="userSearch.accountNonLocked"
+                                   (click)="switchAccountNonLocked()">
                             {{"USER.ACCOUNT_NON_LOCKED" | translate}}
                         </label>
                     </div>
@@ -85,21 +90,27 @@
                         <td>{{p.username}}</td>
                         <td>{{p.email}}</td>
                         <td>
-                            <span class="badge badge-pill" [ngClass]="p.accountNonExpired? 'badge-success':'badge-danger'"  >{{p.accountNonExpired?'Yes':'No'}}</span>
+                            <span class="badge badge-pill"
+                                  [ngClass]="p.accountNonExpired? 'badge-success':'badge-danger'">{{p.accountNonExpired ? 'Yes' : 'No'}}</span>
                         </td>
                         <td>
-                            <span class="badge badge-pill" [ngClass]="p.accountNonLocked? 'badge-success':'badge-danger'"  >{{p.accountNonLocked?'Yes':'No'}}</span>
+                            <span class="badge badge-pill"
+                                  [ngClass]="p.accountNonLocked? 'badge-success':'badge-danger'">{{p.accountNonLocked ? 'Yes' : 'No'}}</span>
                         </td>
                         <td>
-                            <span class="badge badge-pill" [ngClass]="p.credentialsNonExpired? 'badge-success':'badge-danger'"  >{{p.credentialsNonExpired?'Yes':'No'}}</span>
+                            <span class="badge badge-pill"
+                                  [ngClass]="p.credentialsNonExpired? 'badge-success':'badge-danger'">{{p.credentialsNonExpired ? 'Yes' : 'No'}}</span>
                         </td>
                         <td>
-                            <span class="badge badge-pill" [ngClass]="p.enabled? 'badge-success':'badge-danger'"  >{{p.enabled?'Yes':'No'}}</span>
+                            <span class="badge badge-pill"
+                                  [ngClass]="p.enabled? 'badge-success':'badge-danger'">{{p.enabled ? 'Yes' : 'No'}}</span>
                         </td>
 
                         <td>
-                            <button (click)="detailShow(p)" class="btn btn-warning btn-sm fa fa-external-link mx-md-1"></button>
-                            <button (click)="setUserToUpdate(p)" class="btn btn-primary btn-sm fa fa-edit mx-md-1"></button>
+                            <button (click)="detailShow(p)"
+                                    class="btn btn-warning btn-sm fa fa-external-link mx-md-1"></button>
+                            <button (click)="setUserToUpdate(p)"
+                                    class="btn btn-primary btn-sm fa fa-edit mx-md-1"></button>
                             <button (click)="delete(p)" class="btn btn-danger btn-sm fa fa-trash mx-md-1"></button>
                         </td>
 

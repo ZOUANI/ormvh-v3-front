@@ -17,14 +17,14 @@ export class PasswordResetComponent implements OnInit {
     }
 
     resetPassword() {
-        if (this.userPasswordReset.newPassword != this.userPasswordReset.confirmPassword){
+        if (this.userPasswordReset.newPassword != this.userPasswordReset.confirmPassword) {
             Swal.fire({
                 position: 'top',
                 icon: 'error',
                 title: "passwords don't match",
                 showConfirmButton: true
             });
-        }else {
+        } else {
             return this.userService.resetPassword();
         }
     }
