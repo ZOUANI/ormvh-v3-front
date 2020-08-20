@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MenuItem } from "primeng/api";
+import { MenuItem } from 'primeng/api';
 import { AuthenticationService } from './controller/service/auth/authentication.service';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -10,31 +10,11 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class AppComponent {
 
-  ngOnInit() {
-    this.authService.loadInfos();
-  }
-
-  title = 'frontend';
-  sidebarItems: MenuItem[];
-  openBar: Boolean;
-
-
-  notifications: string[];  //contain the notifications to show
-  badgeNumber: number;      //contain the number of notifications , if =0 the badge won't show
-  languageItems: MenuItem[];  //contain items for the language menu on nav bar
-  settingItems: MenuItem[];  //contain items for the setting menu on nav bar
-
-  languages: { abbrv: string, label: string }[] = [
-    { abbrv: 'en', label: 'English' },
-    { abbrv: 'fr', label: 'French' },
-    { abbrv: 'ar', label: 'Arabic' }
-  ];
-
   constructor(private authService: AuthenticationService, public translateService: TranslateService) {
-    translateService.addLangs(this.languages.map(lg => lg.abbrv).concat());
-    translateService.setDefaultLang('fr');
-    const browserLang = translateService.getBrowserLang();
-    translateService.use(browserLang.match(/en|fr|ar/) ? browserLang : 'en');
+   // translateService.addLangs(this.languages.map(lg => lg.abbrv).concat());
+    // translateService.setDefaultLang('fr');
+    // const browserLang = translateService.getBrowserLang();
+    // translateService.use(browserLang.match(/en|fr|ar/) ? browserLang : 'en');
     this.openBar = false;
 
     // to change icons , change the icon value on the array below to one of the font awesome classes
@@ -104,23 +84,47 @@ export class AppComponent {
       }
     ];
 
-    this.notifications = ["Test 1", "Use equal casing. Compare these module identifiers:", "There are multiple modules with names that only differ in casing.\n" +
-      "This can lead to unexpected behavior when compiling on a filesystem with other case-semantic."];
+    this.notifications = ['Test 1', 'Use equal casing. Compare these module identifiers:', 'There are multiple modules with names that only differ in casing.\n' +
+      'This can lead to unexpected behavior when compiling on a filesystem with other case-semantic.'];
 
     this.badgeNumber = this.notifications.length;
 
 
   }
 
+  get authenticated() {
+    return this.authService.authenticated;
+  }
+
+  title = 'frontend';
+  sidebarItems: MenuItem[];
+  openBar: Boolean;
+
+
+  notifications: string[];  // contain the notifications to show
+  badgeNumber: number;      // contain the number of notifications , if =0 the badge won't show
+  languageItems: MenuItem[];  // contain items for the language menu on nav bar
+  settingItems: MenuItem[];  // contain items for the setting menu on nav bar
+
+  languages: { abbrv: string, label: string }[] = [
+    { abbrv: 'en', label: 'English' },
+    { abbrv: 'fr', label: 'French' },
+    { abbrv: 'ar', label: 'Arabic' }
+  ];
+
+  ngOnInit() {
+    this.authService.loadInfos();
+  }
+
   buttonClick() {
-    if (this.openBar == true) {
+    if (this.openBar === true) {
       this.openBar = false;
-      console.log("if " + this.openBar);
+      console.log('if ' + this.openBar);
     } else {
       this.openBar = true;
-      console.log("else " + this.openBar);
+      console.log('else ' + this.openBar);
     }
-    console.log("none " + this.openBar);
+    console.log('none ' + this.openBar);
   }
 
   markRead() {
@@ -131,10 +135,6 @@ export class AppComponent {
   deleteNot() {
     this.notifications = [];
     this.badgeNumber = 0;
-  }
-
-  get authenticated() {
-    return this.authService.authenticated;
   }
 
   logout() {
