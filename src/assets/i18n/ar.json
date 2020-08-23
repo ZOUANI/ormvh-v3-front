@@ -70,7 +70,9 @@
     "SUBJECT": "المادة",
     "TITLE": "العنوان",
     "TRACK": "الوسيلة",
-    "TYPE": "النوع"
+    "TYPE": "النوع",
+    "CREATED_AT": "أنشئ في",
+    "ACTIONS": "الإجراءات"
   },
   "MAILING_OBJECT": {
     "ARAB_TITLE": "العنوان بالعربية",

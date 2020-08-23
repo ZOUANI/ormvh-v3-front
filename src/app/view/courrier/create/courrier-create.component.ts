@@ -86,9 +86,10 @@ export class CourrierCreateComponent implements OnInit {
     DetailInterfacedefaulteValue(naturcorier: NatureCourrierVo) {
         this.courrier.delai = naturcorier.delai;
         this.courrier.relance = naturcorier.relance;
-        this.courrier.dateRelance=new Date();
+        //this.courrier.dateRelance=new Date();
+        let today=new Date();
         let addingDays=parseInt(this.courrier.relance);
-        this.courrier.dateRelance = new Date(this.courrier.dateRelance.getTime() + (1000 * 60 * 60 * 24*addingDays));
+        this.courrier.dateRelance = new Date(today.getTime() + (1000 * 60 * 60 * 24*addingDays)).toISOString().substring(0,10);
 
 
     }

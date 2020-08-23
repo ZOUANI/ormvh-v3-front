@@ -176,33 +176,110 @@
                             <div class="panel" *ngIf="!onSelectTask && onDetail">
                                 <h3 style="text-align: center;margin-top: 150px;">select task</h3>
                             </div>
-                            <div class="panel" *ngIf="onSelectTask">
+                            <!--display task-->
+                            <div class="card rds" *ngIf="onSelectTask">
                                 <span class="deselect clickable" (click)="onSelectTask=false">
                                     <i class="pi pi-times"></i></span>
-                                <h1 class="panel-title">{{editableTask.title}}</h1>
-                                <hr>
-                                <p>{{editableTask.description}}</p>
-                                <hr>
-                                <p>{{editableTask.observation}}</p>
-                                <hr>
-                                <p>{{editableTask.dateAccuse}}</p>
-                                <hr>
-                                <p>{{editableTask.dateReponse}}</p>
-                                <hr>
-                                <p>accuse:{{editableTask.accuse}}</p>
-                                <hr>
-                                <p>reponse:{{editableTask.reponse}}</p>
-                                <hr>
+                                <div class="card-body">
+                                    <div class="form-row">
+                                        <div class="form-group col-12">
+                                            <label for="task-title">{{"MAILING.TITLE" | translate}}</label>
+                                            <input type="text" id="task-title" class="form-control"
+                                                   [(ngModel)]="editableTask.title" [disabled]="true">
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-7">
+                                            <label for="task-assigne">{{"MAILING.ASSIGNED_TO" | translate}}</label>
+                                            <p-dropdown styleClass="form-control" selectId="task-assigne"
+                                                        [options]="users"
+                                                        [(ngModel)]="editableTask.assigneVo" [showClear]="true"
+                                                        optionLabel="username"
+                                                        [filter]="true" dataKey="id" [disabled]="true"></p-dropdown>
+                                        </div>
+                                        <div class="form-group col-md-5">
+                                            <label for="task-status">{{"MAILING.STATUS" | translate}}</label>
+                                            <p-dropdown styleClass="form-control" selectId="task-status"
+                                                        [options]="statuss"
+                                                        [(ngModel)]="editableTask.statusVo" optionLabel="libelle"
+                                                        dataKey="id" [disabled]="true"></p-dropdown>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="accuse">{{"TASK.ACCUSED" | translate}}</label>
+                                            <br>
+                                            <label class="switch">
+                                                <input id="accuse" [disabled]="onDetail" type="checkbox"
+                                                       [checked]="task.accuse" [(ngModel)]="editableTask.accuse"
+                                                       (click)="boolenAccuse(editableTask)" [disabled]="true">
+                                                <span class="slider round"></span>
+                                            </label>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="accuse">{{"TASK.RESPONSE" | translate}}</label>
+                                            <br>
+                                            <label class="switch">
+                                                <input id="accuse" [disabled]="onDetail" type="checkbox"
+                                                       [checked]="task.reponse" [(ngModel)]="editableTask.reponse"
+                                                       (click)="boolenReponse(editableTask)" [disabled]="true">
+                                                <span class="slider round"></span>
+                                            </label>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <div *ngIf="editableTask.accuse==true" class="p-grid ui-fluid">
+                                                <label>dateAccuse</label>
+                                                <p-calendar class="p-col-12" dateFormat="yy-mm-dd"
+                                                            [(ngModel)]="editableTask.dateAccuse"
+                                                            [disabled]="true"
+                                                >
+                                                </p-calendar>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <div *ngIf="editableTask.reponse==true" class="p-grid ui-fluid">
+                                                <label>dateReponse</label>
+                                                <p-calendar class="p-col-12" dateFormat="yy-mm-dd"
+                                                            [(ngModel)]="editableTask.dateReponse"
+                                                            [disabled]="true"
+                                                >
+                                                </p-calendar>
+                                            </div>
+                                        </div>
+                                    </div>
 
-                                <div class="d-flex justify-content-between">
-                                    <span *ngIf="editableTask.assigneVo"><i
-                                            class="pi pi-user"></i> {{editableTask.assigneVo.username}}</span>
-                                    <span class="badge badge-success"
-                                          *ngIf="editableTask">{{editableTask.statusVo.libelle}}</span>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for="task-description">{{"MAILING.DESCRIPTION" | translate}}</label>
+                                            <textarea type="text" id="task-description" class="form-control"
+                                                      [(ngModel)]="editableTask.description" rows="3"
+                                                      [disabled]="true"
+                                            ></textarea>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="task-observation">{{"MAILING.OBSERVATION" | translate}}</label>
+                                            <textarea type="text" id="task-observation" class="form-control"
+                                                      [(ngModel)]="editableTask.observation" rows="3"
+                                                      [disabled]="true"
+                                            ></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex flex-row-reverse">
+                                        <button class="btn btn-primary ml-4 mr-2" (click)="deleteTask()">
+                                            delete
+                                        </button>
+                                        <button type="button" class="btn btn-secondary"
+                                                (click)="onSelectTask= false;onEditTask =false;">
+                                            {{"MAILING.CLOSE" | translate}}
+                                        </button>
+
+
+                                    </div>
+
                                 </div>
 
                             </div>
+                            <!-- end display task-->
 
+                            <!-- update task-->
                             <div class="card rds" *ngIf="onEditTask && !onDetail">
                                 <div class="card-body">
                                     <div class="form-row">
@@ -296,6 +373,7 @@
 
                                 </div>
                             </div>
+                            <!-- end update task-->
 
 
                             <div class="card rds" *ngIf="!onSelectTask && !onEditTask && !onDetail">
@@ -522,9 +600,9 @@
 
                         <div class="form-group col-md-4">
                             <label for="daterelance">{{"MAILING.BOOST_DATE" | translate}}</label><br>
-                            <p-calendar [disabled]="onDetail" appendTo="body" [showTime]="true"
+                            <input type="text" class="form-control" [disabled]="true" appendTo="body"
                                         [(ngModel)]="courrier.dateRelance">
-                            </p-calendar>
+
                         </div>
                     </div>
                     <div class="form-row">
@@ -539,10 +617,10 @@
                             </label>
 
                         </div>
-                        <div class="form-group col-md-4">
+                        <div  class="form-group col-md-4">
                             <label>{{"TASK.ACCUSED_DATE" | translate}}</label><br>
                             <p-calendar [disabled]="onDetail" appendTo="body" [showTime]="true"
-                                        [(ngModel)]="courrier.dateAccuse">
+                                        [(ngModel)]="courrier.dateAccuse" [disabled]="!courrier.accuse">
                             </p-calendar>
                         </div>
                         <div class="form-group col-md-2">
@@ -558,7 +636,7 @@
                         <div class="form-group  col-md-4">
                             <label>{{"TASK.RESPONSE_DATE" | translate}}</label><br>
                             <p-calendar id="teesst" [disabled]="onDetail" appendTo="body" [showTime]="true"
-                                        [(ngModel)]="courrier.dateReponse">
+                                        [(ngModel)]="courrier.dateReponse" [disabled]="!courrier.reponse">
                             </p-calendar>
                         </div>
 

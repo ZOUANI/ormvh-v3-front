@@ -19,7 +19,7 @@ export class CourrierVo {
     public destinataireDesc: string;
     public destinataireVille: string;
     public relance: string;
-    public dateRelance: Date;
+    public dateRelance: string;
     public accuse: boolean;
     public reponse: boolean;
     public dateAccuse: string;
