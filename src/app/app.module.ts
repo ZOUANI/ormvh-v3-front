@@ -4,7 +4,7 @@ import {CalendarModule} from 'primeng/calendar';
 import {NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HTTP_INTERCEPTORS, HttpClientModule, HttpClient} from '@angular/common/http';
 import {AppRoutingModule} from './app-routing.module';
 import {StatusCreateComponent} from './view/status/create/status-create.component';
@@ -140,6 +140,7 @@ import {TableModule} from 'primeng/table';
 import {DatePipe} from '@angular/common';
 import {PasswordResetComponent} from './view/password-reset/password-reset.component';
 import {CourrierEmailComponent} from './view/courrier/email/courrier-email.component';
+import {MessageService, ProgressBarModule, ToastModule} from 'primeng';
 
 export function httpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http);
@@ -265,6 +266,8 @@ export function httpLoaderFactory(http: HttpClient) {
         PasswordResetComponent
     ],
     imports: [
+        FormsModule,
+        ReactiveFormsModule,
         BrowserModule,
         FormsModule,
         HttpClientModule,
@@ -284,7 +287,9 @@ export function httpLoaderFactory(http: HttpClient) {
         ChartModule,
         DialogModule,
         AccordionModule,
-        TableModule
+        TableModule,
+        ProgressBarModule,
+        ToastModule
     ],
     providers: [
         {
@@ -297,6 +302,7 @@ export function httpLoaderFactory(http: HttpClient) {
             useClass: ErrorInterceptorService,
             multi: true
         },
+        MessageService,
         AuthGuard,
         DatePipe
     ],

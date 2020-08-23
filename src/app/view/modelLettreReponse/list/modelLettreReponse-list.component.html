@@ -1,5 +1,4 @@
-<app-modelLettreReponse></app-modelLettreReponse>
-
+     <app-modelLettreReponse></app-modelLettreReponse>
 <div class="container">
     <div class="row">
         <div class="col-12 my-3" id="accordion">
@@ -115,16 +114,61 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="card col-12">
-            <div class="card-header bg-transparent">
-                <div class="float-left px-1"><h5>List of modelLettreReponses. </h5></div>
-
+  </div>
+<div class="row">
+  <div class="card col-12">
+    <div class="card-header bg-transparent">
+    <div class="float-left px-1"> <h5>List of modelLettreReponses. </h5></div>
+        <p-toast position="top-left" key="c" [baseZIndex]="10000" style="width: 700px" [showTransitionOptions]="'700ms'"  showTransformOptions="translateY(100%)">
+            <ng-template let-message pTemplate="message">
+                <div class="p-flex p-flex-column" style="flex: 1">
+                    <div class="p-text-center">
+                        <i class="fa fa-download" aria-hidden="true"></i>
+                        <p-progressBar *ngIf="show == true" [value]="value"></p-progressBar>
+                        <h4>{{header}}</h4>
+                        <p>{{this.chihaja}}</p>
+                    </div>
+                </div>
+            </ng-template>
+        </p-toast>
+     <!--   <p-dialog [(visible)]="display" style="width: 350px; height: 250px">
+            <p-header id="header">
+                <i class="fa fa-download" aria-hidden="true"></i>
+                {{header}}</p-header>
+            <p-progressBar *ngIf="show == true" [value]="value"></p-progressBar>
+            <div class="row">
+            <div class="col-md-2">
+                <img src="../assets/images/{{imageName}}" style="width: 140px;height: 100px"/>
+                <br>
+                <label>{{this.lettreModel}}</label>
             </div>
-            <div class="card-body table-responsive">
-
-                <table class="table table-hover table-bordered col-md-12" style="text-align: center">
-                    <thead class="thead-dark">
+                <div class="col-md-10">
+                    <div class="row">
+                    <div class="col-md-2">
+                        <label>URL :</label>
+                    </div>
+                    <div class="col-md-10">
+                        <div>{{this.url + (this.chihaja)}}</div>
+                    </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label>TYPE :</label>
+                        </div>
+                        <div class="col-md-10">
+                            <div >{{letttreModelType}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p-footer>
+                <button type="button" style="margin-right: 300px" pButton icon="pi pi-check" (click)="display=false" label="ok"></button>
+            </p-footer>
+        </p-dialog>-->
+    </div>
+    <div class="card-body table-responsive">
+      <table class="table table-hover table-bordered col-md-12" style="text-align: center">
+        <thead class="thead-dark">
 
                     <!--          <th>id</th>-->
                     <th>libelle</th>
@@ -152,23 +196,12 @@
                         <!--            <td>{{p.createdByVo?.username}}</td>-->
                         <!--            <td>{{p.updatedByVo?.username}}</td>-->
 
-
-                        <td>
-                            <button (click)="delete(p)" class="btn btn-danger btn-sm fa fa-trash mx-md-1"
-                                    style="margin-right: 5px"></button>
-                            <button (click)="detailShow(p)" class="btn btn-warning btn-sm fa fa-external-link mx-md-1"
-                                    style="margin-right: 5px"></button>
-                            <button class="btn btn-success btn-sm fa fa-download mx-md-1"></button>
-
-
-                        </td>
-
-                    </tr>
-                    <app-modelLettreReponse-details
-                            *ngIf="modelLettreReponseShowDetail"></app-modelLettreReponse-details>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
+<td><button class="btn btn-danger btn-sm fa fa-trash mx-md-1" style="margin-right: 5px" (click)="delete(p)"></button>
+  <button class="btn btn-warning btn-sm fa fa-external-link mx-md-1" style="margin-right: 5px" (click)="detailShow(p)"></button>
+    <button class="btn btn-success btn-sm fa fa-download mx-md-1" (click)="download(p)"></button>
+</td>
+</tr>
+  <app-modelLettreReponse-details *ngIf="modelLettreReponseShowDetail"></app-modelLettreReponse-details>
+</tbody>
+</table>
 </div>

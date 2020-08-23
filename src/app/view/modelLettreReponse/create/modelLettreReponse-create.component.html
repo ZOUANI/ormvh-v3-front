@@ -1,25 +1,12 @@
 <app-modelLettreReponse></app-modelLettreReponse>
 <div class="card col-md-10 mx-auto  p-md-2">
-    <div class="card-header text-center font-weight-bold">Create ModelLettreReponses</div>
+     <div class="card-header text-center font-weight-bold">Create ModelLettreReponses</div>
+    <p-toast></p-toast>
     <div class="card-body">
-        <!--        <div class="row">-->
-        <!--            <div class="col-md-6 p-grid ui-fluid">-->
-        <!--                <label>createdAt</label> <br>-->
-        <!--                <p-calendar [(ngModel)]="modelLettreReponse.createdAt" class="p-col-12"-->
-        <!--                            dateFormat="yy-mm-dd"></p-calendar>-->
-        <!--            </div>-->
-        <!--            <div class="col-md-6 p-grid ui-fluid">-->
-        <!--                <label>updatedAt</label><br>-->
-        <!--                <p-calendar [(ngModel)]="modelLettreReponse.updatedAt" class="p-col-12"-->
-        <!--                            dateFormat="yy-mm-dd"></p-calendar>-->
-        <!--            </div>-->
-        <!--        </div>-->
-        <!--        <br>-->
-        <div class="row">
-            <div class="col-md-6">
-                <label>libelleArab</label>
-                <input [(ngModel)]="modelLettreReponse.libelleArab" class="form-control" type="text">
-
+<!--        <div class="row" >
+            <div class="col-md-6 p-grid ui-fluid">
+                <label>createdAt</label> <br>
+                <p-calendar class="p-col-12"  dateFormat="yy-mm-dd" [(ngModel)] = "modelLettreReponse.createdAt"></p-calendar>
             </div>
             <div class="col-md-6">
                 <label>code</label>
@@ -27,18 +14,44 @@
 
             </div>
         </div>
+        <br>-->
+<div class="row">
+    <div class="col-md-6">
+        <label>libelleArab</label>
+        <input type="text" class="form-control" [(ngModel)] = "modelLettreReponse.libelleArab">
+    </div>
+    <div class="col-md-6">
+        <label>code</label>
+        <input type="text" class="form-control" [(ngModel)] = "modelLettreReponse.code">
+    </div>
+</div>
         <br>
-        <div class="row py-2">
-            <label>chemin : </label>
-            <br>
-            <input type="file">
-        </div>
+        <label>chemin : </label>
+        <div class="col-md-12">
+            <div class="row">
+            <div class="col-md-4">
+                <button class="ui-fileupload" style=" width: 290px;border: none; background-color: #0062cc; color: white; ">
+                    <i class="fa fa-upload" aria-hidden="true"></i>
+                    <label for="file" class="label-file" id="titreFile" style="color: white;margin-bottom: 0px">Choisir</label>
+                    <input id="file" class="input-file" type="file" (change)="onFileChanged($event)">
+                </button>
+            </div>
+            <div class="col-md-4">
+                <label id="lebel1">
+                    pas de fichier selectionné!
+                </label>
+            </div>
+            <div class="col-md-4">
+                <i class="fa fa-check" aria-hidden="true" id="fa"></i>
+                <label id="label2"> </label>
+            </div>
+            </div>
+            </div>
         <br>
         <div class="row">
             <div class="col-md-6">
                 <label>libelle</label>
-                <input [(ngModel)]="modelLettreReponse.libelle" class="form-control" type="text">
-
+                <input type="text" class="form-control" [(ngModel)] = "modelLettreReponse.libelle">
             </div>
             <div class="col-md-6">
                 <label>categorieModelLettreReponse</label>
@@ -49,22 +62,20 @@
             </div>
         </div>
         <br>
-        <!--        <div class="row">-->
-        <!--            <div class="col-md-6">-->
-        <!--                <label>createdBy</label>-->
-        <!--                <select [(ngModel)]="modelLettreReponse.createdByVo.username" class="form-control">-->
-        <!--                    <option *ngFor="let p of createdBys" [ngValue]="p.username"-->
-        <!--                            value="{{p.username}}">{{p.username}}</option>-->
-        <!--                </select>-->
-        <!--            </div>-->
-        <!--            <div class="col-md-6">-->
-        <!--                <label>updatedBy</label>-->
-        <!--                <select [(ngModel)]="modelLettreReponse.updatedByVo.username" class="form-control">-->
-        <!--                    <option *ngFor="let p of updatedBys" [ngValue]="p.username"-->
-        <!--                            value="{{p.username}}">{{p.username}}</option>-->
-        <!--                </select>-->
-        <!--            </div>-->
-        <!--        </div>-->
+<!--               <div class="row">
+                   <div class="col-md-6">
+                       <label>createdBy</label>
+                       <select class="form-control" [(ngModel)]="modelLettreReponse.createdByVo.username" >
+                           <option *ngFor="let p of createdBys" [ngValue]="p.username" value="{{p.username}}">{{p.username}}</option>
+                       </select>
+                   </div>
+                   <div class="col-md-6">
+                       <label>updatedBy</label>
+                       <select class="form-control" [(ngModel)]="modelLettreReponse.updatedByVo.username" >
+                           <option *ngFor="let p of updatedBys" [ngValue]="p.username" value="{{p.username}}">{{p.username}}</option>
+                       </select>
+                   </div>
+               </div>-->
         <br>
         <div style="text-align: center">
             <button (click)="saveModelLettreReponse()" class="btn btn-outline-info" style="width: 60%">Save</button>

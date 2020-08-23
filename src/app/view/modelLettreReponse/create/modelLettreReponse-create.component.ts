@@ -3,6 +3,7 @@ import {ModelLettreReponseService} from '../../../controller/service/ModelLettre
 import {ModelLettreReponseVo} from '../../../controller/model/modelLettreReponse.model';
 import {UserVo} from '../../../controller/model/User.model';
 import {CategorieModelLettreReponseVo} from '../../../controller/model/CategorieModelLettreReponse.model';
+import {FormBuilder, FormGroup} from '@angular/forms';
 
 @Component({
     selector: 'app-modelLettreReponse-create',
@@ -10,45 +11,60 @@ import {CategorieModelLettreReponseVo} from '../../../controller/model/Categorie
     styleUrls: ['./modelLettreReponse-create.component.css']
 })
 export class ModelLettreReponseCreateComponent implements OnInit {
-    constructor(private modelLettreReponseService: ModelLettreReponseService) {
+  constructor(private modelLettreReponseService: ModelLettreReponseService,
+              private formBuilder: FormBuilder) { }
+
+   get modelLettreReponse(): ModelLettreReponseVo {
+    return this.modelLettreReponseService.modelLettreReponse;
+  }
+
+  get categorieModelLettreReponses(): Array<CategorieModelLettreReponseVo> {
+   return this.modelLettreReponseService.categorieModelLettreReponses;
+  }
+  get createdBys(): Array<UserVo> {
+   return this.modelLettreReponseService.createdBys;
+  }
+  get updatedBys(): Array<UserVo> {
+   return this.modelLettreReponseService.updatedBys;
+  }
+    selectedFile: File;
+    uploadForm: FormGroup;
+
+   ngOnInit(): void {
+      this.findAllcategorieModelLettreReponses();
+      this.findAllcreatedBys();
+      this.findAllupdatedBys();
+      this.uploadForm = this.formBuilder.group({
+           profile: ['']
+       });
     }
 
-    get modelLettreReponse(): ModelLettreReponseVo {
-        return this.modelLettreReponseService.modelLettreReponse;
-    }
+   saveModelLettreReponse() {
+       this.uploadFile();
+       this.modelLettreReponseService.saveModelLettreReponse();
+  }
 
-    get categorieModelLettreReponses(): Array<CategorieModelLettreReponseVo> {
-        return this.modelLettreReponseService.categorieModelLettreReponses;
+   findAllcategorieModelLettreReponses() {
+     this.modelLettreReponseService.findAllcategorieModelLettreReponses();
+   }
+   findAllcreatedBys() {
+     this.modelLettreReponseService.findAllcreatedBys();
+   }
+   findAllupdatedBys() {
+     this.modelLettreReponseService.findAllupdatedBys();
+   }
+    public onFileChanged(event) {
+        this.selectedFile = event.target.files[0];
+        document.getElementById('lebel1').innerText = this.selectedFile.name;
+        this.modelLettreReponse.chemin =  this.selectedFile.name;
+        this.uploadForm.get('profile').setValue(this.selectedFile);
+        console.log(this.selectedFile);
     }
-
-    get createdBys(): Array<UserVo> {
-        return this.modelLettreReponseService.createdBys;
-    }
-
-    get updatedBys(): Array<UserVo> {
-        return this.modelLettreReponseService.updatedBys;
-    }
-
-    ngOnInit(): void {
-        this.findAllcategorieModelLettreReponses();
-        this.findAllcreatedBys();
-        this.findAllupdatedBys();
-    }
-
-    saveModelLettreReponse() {
-        this.modelLettreReponseService.saveModelLettreReponse();
-    }
-
-    findAllcategorieModelLettreReponses() {
-        this.modelLettreReponseService.findAllcategorieModelLettreReponses();
-    }
-
-    findAllcreatedBys() {
-        this.modelLettreReponseService.findAllcreatedBys();
-    }
-
-    findAllupdatedBys() {
-        this.modelLettreReponseService.findAllupdatedBys();
-    }
-
+uploadFile() {
+    this.uploadForm.get('profile').setValue(this.selectedFile);
+    console.log(this.selectedFile);
+    const formData = new FormData();
+    formData.append('file', this.uploadForm.get('profile').value);
+    this.modelLettreReponseService.uploadFile(formData);
+}
 }
