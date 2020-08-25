@@ -979,8 +979,8 @@ export class CourrierService {
     }
 
 
-    public reserve(idCourier: string, nbrCourier: number) {
-        this.http.post<CourrierVo>('http://localhost:8080/generated/courrier/courriers/reservation/idCourier/' + idCourier + '/nbr/' + nbrCourier, this.reserveCourier).subscribe(
+    public reserve(idCourier: string, nbrCourier: number,description:string) {
+        this.http.post<CourrierVo>('http://localhost:8080/generated/courrier/courriers/reservation/idCourier/' + idCourier + '/nbr/' + nbrCourier+'/description/'+description, this.reserveCourier).subscribe(
             value => {
                 console.log(value);
                 this.findAll();

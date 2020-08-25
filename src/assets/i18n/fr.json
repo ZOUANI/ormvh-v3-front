@@ -62,8 +62,8 @@
     "SAVE_MAILING": "Sauvegarder courrier",
     "SENDER": "Émetteur",
     "SENT_AT": "Envoyé à",
-    "arrival_date": "date d'arrivée",
-    "release_date": "date de sortie",
+    "arrival_date": "Date d'Arrivée",
+    "release_date": "Date de Sortie",
     "SERVICE": "Service",
     "SERVICES": "Services",
     "SUBJECT": "Sujet",
@@ -72,8 +72,9 @@
     "TITLE": "Titre",
     "TRACK": "Voie",
     "TYPE": "Type",
-    "CREATED_AT": "Créé à",
-    "ACTIONS": "Actions"
+    "CREATED_AT": "Date Courrier",
+    "ACTIONS": "Actions",
+    "RESERVE": "RESERVE"
   },
   "MAILING_OBJECT": {
     "ARAB_TITLE": "Titre arabe",
