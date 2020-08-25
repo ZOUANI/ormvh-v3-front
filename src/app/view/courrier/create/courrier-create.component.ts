@@ -23,6 +23,8 @@ import {UserService} from 'src/app/controller/service/User.service';
 import {LeServiceVo} from 'src/app/controller/model/LeService.model';
 import * as $ from 'jquery';
 import {moment} from "ngx-bootstrap/chronos/test/chain";
+import {FormBuilder, FormGroup} from '@angular/forms';
+import {CourrierPieceJoint} from '../../../controller/model/courrier-piece-joint.model';
 
 @Component({
     selector: 'app-courrier-create',
@@ -32,26 +34,10 @@ import {moment} from "ngx-bootstrap/chronos/test/chain";
 })
 export class CourrierCreateComponent implements OnInit {
 
-
-    courrierObjects: SelectItem[];
-    voies: VoieVo[];
-    natureCourriers: NatureCourrierVo[];
-    evaluations: SelectItem[];
-    expeditorTypes: SelectItem[];
-    subdivisions: SelectItem[];
-    leServices: SelectItem[];
-    statuss: StatusVo[];
-    users: UserVo[];
-    changedServices: LeServiceVo[];
-    typeCourriers: TypeCourrierVo[];
-    showEditTask: boolean = false;
-    editableTask: TaskVo;
-    onEditTask: boolean = false;
-    onSelectTask: boolean = false;
-
-
+    uploadForm: FormGroup;
     constructor(private courrierService: CourrierService,
                 private voieService: VoieService,
+                private formBuilder: FormBuilder,
                 private courrierObjectService: CourrierObjectService,
                 private expeditorService: ExpeditorService,
                 private expidtorTypeSerice: ExpeditorTypeService,
@@ -62,35 +48,6 @@ export class CourrierCreateComponent implements OnInit {
                 private natureCourrierService: NatureCourrierService,
                 private subdivisionService: SubdivisionService,
                 private userService: UserService) {
-
-    }
-
-    boolenAccuse(task: TaskVo) {
-        if (task.accuse == false) {
-            task.accuse = true;
-        } else {
-            task.accuse = false
-        }
-        console.log(task.accuse + "hhh");
-    }
-
-    boolenReponse(task: TaskVo) {
-        if (task.reponse == false) {
-            task.reponse = true;
-        } else {
-            task.reponse = false
-        }
-        console.log(task.accuse + "hhh");
-    }
-
-    DetailInterfacedefaulteValue(naturcorier: NatureCourrierVo) {
-        this.courrier.delai = naturcorier.delai;
-        this.courrier.relance = naturcorier.relance;
-        this.courrier.dateRelance=new Date();
-        let addingDays=parseInt(this.courrier.relance);
-        this.courrier.dateRelance = new Date(this.courrier.dateRelance.getTime() + (1000 * 60 * 60 * 24*addingDays));
-
-
     }
 
     get onEdit(): boolean {
@@ -121,32 +78,9 @@ export class CourrierCreateComponent implements OnInit {
         this.courrierService.addNewCourrier = value;
     }
 
-    ngOnInit(): void {
-        this.findAllcourrierObjects();
-        this.findAllvoies();
-        this.findAllnatureCourriers();
-        this.findAllexpeditors();
-        this.findAllServices();
-        this.findAllChangedServices();
-        this.findAllevaluations();
-        this.findAllexpeditorTypes();
-        this.findAllsubdivisions();
-        this.findAllstatuss();
-        this.findAlltypeCourriers();
-        this.findAllUSer();
-        this.courrier;
-
-
-    }
-
 
     get courrier(): CourrierVo {
         return this.courrierService.courrier;
-    }
-
-    generateId() {
-        this.courrierService.generateId()
-        this.courrierService.verifyIdCourier = ''
     }
 
     get generatedId(): string {
@@ -161,6 +95,121 @@ export class CourrierCreateComponent implements OnInit {
 
     get task(): TaskVo {
         return this.courrierService.task;
+    }
+
+    get courrierServiceItem(): CourrierServiceItemVo {
+        return this.courrierService.courrierServiceItem;
+    }
+
+    set courrierServiceItem(value: CourrierServiceItemVo) {
+        this.courrierService.courrierServiceItem = value;
+    }
+
+    get linkedTos(): CourrierVo[] {
+        return this.courrierService.courrierListe;
+    }
+
+    get message(): string {
+        if (this.onDetail)
+            return "Detail";
+        else if (this.onEdit)
+            return "Edit Courrier";
+        else
+            return "Add new Courrier";
+    }
+
+    get createExpeditorShow(): boolean {
+        return this.courrierService.createExpeditorShow;
+    }
+
+    set createExpeditorShow(value: boolean) {
+        this.courrierService.createExpeditorShow = value;
+    }
+
+    get expeditors(): SelectItem[] {
+        return this.expeditorService.expeditors;
+    }
+
+    set expeditors(value: SelectItem[]) {
+        this.expeditorService.expeditors = value;
+    }
+
+    get verifyIdCourier(): string {
+        return this.courrierService.verifyIdCourier;
+    }
+
+    set verifyIdCourier(value: string) {
+        this.courrierService.verifyIdCourier = value;
+    }
+
+
+    courrierObjects: SelectItem[];
+    voies: VoieVo[];
+    natureCourriers: NatureCourrierVo[];
+    evaluations: SelectItem[];
+    expeditorTypes: SelectItem[];
+    subdivisions: SelectItem[];
+    leServices: SelectItem[];
+    statuss: StatusVo[];
+    users: UserVo[];
+    changedServices: LeServiceVo[];
+    typeCourriers: TypeCourrierVo[];
+    showEditTask: boolean = false;
+    editableTask: TaskVo;
+    onEditTask: boolean = false;
+    onSelectTask: boolean = false;
+    uploadedFiles: any[] = [];
+    courrierPiece: CourrierPieceJoint;
+
+    boolenAccuse(task: TaskVo) {
+        if (task.accuse == false) {
+            task.accuse = true;
+        } else {
+            task.accuse = false
+        }
+        console.log(task.accuse + "hhh");
+    }
+
+    boolenReponse(task: TaskVo) {
+        if (task.reponse == false) {
+            task.reponse = true;
+        } else {
+            task.reponse = false
+        }
+        console.log(task.accuse + "hhh");
+    }
+
+    DetailInterfacedefaulteValue(naturcorier: NatureCourrierVo) {
+        this.courrier.delai = naturcorier.delai;
+        this.courrier.relance = naturcorier.relance;
+        this.courrier.dateRelance=new Date();
+        let addingDays=parseInt(this.courrier.relance);
+        this.courrier.dateRelance = new Date(this.courrier.dateRelance.getTime() + (1000 * 60 * 60 * 24*addingDays));
+
+
+    }
+
+    ngOnInit(): void {
+        this.findAllcourrierObjects();
+        this.findAllvoies();
+        this.findAllnatureCourriers();
+        this.findAllexpeditors();
+        this.findAllServices();
+        this.findAllChangedServices();
+        this.findAllevaluations();
+        this.findAllexpeditorTypes();
+        this.findAllsubdivisions();
+        this.findAllstatuss();
+        this.findAlltypeCourriers();
+        this.findAllUSer();
+        this.uploadForm = this.formBuilder.group({
+            profile: ['']
+        });
+    }
+
+    generateId() {
+        this.courrierService.generateId()
+        this.courrierService.verifyIdCourier = ''
     }
 
     addTask() {
@@ -206,14 +255,6 @@ export class CourrierCreateComponent implements OnInit {
         }
     }
 
-    get courrierServiceItem(): CourrierServiceItemVo {
-        return this.courrierService.courrierServiceItem;
-    }
-
-    set courrierServiceItem(value: CourrierServiceItemVo) {
-        this.courrierService.courrierServiceItem = value;
-    }
-
     addCourrierServiceItem() {
         let index = this.courrier.courrierServiceItemsVo.findIndex(item => item.serviceVo.id == this.courrierServiceItem.serviceVo.id);
         if (index == -1 && this.courrierServiceItem.serviceVo)
@@ -229,9 +270,10 @@ export class CourrierCreateComponent implements OnInit {
             this.courrier.idCourrier = this.generatedId
             this.courrierService.saveCourrier();
             this.generatedId = ''
-            this.courrierService.verifyIdCourier = ''
-        } else
+            this.courrierService.verifyIdCourier = '';
+        } else {
             this.courrierService.editCourrier();
+        }
     }
 
     findAllcourrierObjects() {
@@ -291,10 +333,6 @@ export class CourrierCreateComponent implements OnInit {
         }, error => {
             console.log(error);
         });
-    }
-
-    get linkedTos(): CourrierVo[] {
-        return this.courrierService.courrierListe;
     }
 
     findAllexpeditors() {
@@ -375,45 +413,12 @@ export class CourrierCreateComponent implements OnInit {
     }
 
     showCreateExpeditor() {
-        this.courrierService.showCreateExpeditor()
-    }
-
-    get message(): string {
-        if (this.onDetail)
-            return "Detail";
-        else if (this.onEdit)
-            return "Edit Courrier";
-        else
-            return "Add new Courrier";
-    }
-
-    get createExpeditorShow(): boolean {
-        return this.courrierService.createExpeditorShow;
-    }
-
-    set createExpeditorShow(value: boolean) {
-        this.courrierService.createExpeditorShow = value;
-    }
-
-    get expeditors(): SelectItem[] {
-        return this.expeditorService.expeditors;
-    }
-
-    set expeditors(value: SelectItem[]) {
-        this.expeditorService.expeditors = value;
-    }
-
-    get verifyIdCourier(): string {
-        return this.courrierService.verifyIdCourier;
-    }
-
-    set verifyIdCourier(value: string) {
-        this.courrierService.verifyIdCourier = value;
+        this.courrierService.showCreateExpeditor();
     }
 
     verifyId() {
         this.courrierService.verifyId(this.generatedId)
-        console.log(this.generatedId)
+        console.log(this.generatedId);
     }
 
     showDialog() {
@@ -424,7 +429,6 @@ export class CourrierCreateComponent implements OnInit {
         let element: HTMLElement = document.getElementById('courrier-tab') as HTMLElement;
         element.click();
         if (!this.onEdit && !this.onDetail) {
-            console.log("new courrier hadi alm3alm");
             this.findAllcourrierObjects();
             this.findAllvoies();
             this.findAllnatureCourriers();
@@ -437,10 +441,28 @@ export class CourrierCreateComponent implements OnInit {
             this.findAllstatuss();
             this.findAlltypeCourriers();
             this.findAllUSer();
-
-
         }
     }
+    onUpload(event) {
 
-
+        for(const file of event.files) {
+            let formData = new FormData();
+            this.uploadForm.get('profile').setValue(file);
+            formData.append('file', this.uploadForm.get('profile').value);
+            this.courrierService.saveCourrierPieceJoint(formData);
+            formData = null;
+           // this.courrierPiece = new CourrierPieceJoint();
+            //console.log(file);
+            //this.uploadedFiles.push(file);
+            //this.courrierPiece.chemin = file.name;
+            //this.courrierPiece.contenu = file.size;
+            //console.log(file.size);
+            //this.courrier.courrierPieceJoint.push(this.courrierPiece);
+            //this.courrierPiece = null;
+        }
+        for (const file of this.courrier.courrierPieceJoint) {
+                    console.log(file.contenu);
+                    console.log(file.chemin);
+                }
+}
 }

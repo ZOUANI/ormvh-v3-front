@@ -8,97 +8,15 @@ import {CourrierServiceItemVo} from '../model/CourrierServiceItem.model';
 import {LeServiceVo} from '../model/LeService.model';
 import {ExpeditorService} from './Expeditor.service';
 import {ExpeditorVo} from '../model/Expeditor.model';
+import {CourrierPieceJoint} from '../model/courrier-piece-joint.model';
 
 @Injectable({
     providedIn: 'root'
 })
 export class CourrierService {
-    onEdit: boolean = false;
-    onDetail: boolean = false;
-    onCreate: boolean = false;
-
-    edit(courrier: CourrierVo) {
-        this.courrier = courrier;
-        if (this.courrier.courrierServiceItemsVo == null)
-            this.courrier.courrierServiceItemsVo = new Array<CourrierServiceItemVo>();
-        if (this.courrier.tasksVo == null)
-            this.courrier.tasksVo = new Array<TaskVo>();
-
-        this.onEdit = true;
-        this.onDetail = false;
-
-        this.addNewCourrier = true;
-    }
-
-    detail(courrier: CourrierVo) {
-        this.courrier = courrier;
-        this.onDetail = true;
-        this.onEdit = false;
-        this.addNewCourrier = true;
-    }
-
-    courriersService: Map<string, Array<CourrierVo>>;
-    showEmailDialog: boolean = false;
-    selectedCourrier: CourrierVo;
-
-    findCourrierByRelance(courrier: CourrierVo) {
-        this.http.post('http://localhost:8080/generated/courrier/couriersusceptiblerelance', courrier).subscribe(data => {
-            let entries = Object.entries(data);
-            console.log(data);
-            this.courriersService = new Map<string, Array<CourrierVo>>(entries);
-
-            console.log(this.courriersService);
-
-        });
-    }
-
-    sendListCourriers(courriers: CourrierVo[]) {
-        this.http.post<number>('http://localhost:8080/generated/courrier/sendcourierrelance/', courriers);
-
-    }
-
-    sendEmail(email: string, subject: string, body: string) {
-        this.http.post<number>('http://localhost:8080/generated/courrier/sendcourierredirection/to/' + email + '/subject/' + subject + "/content/" + body, null);
-    }
 
     constructor(private http: HttpClient, private expeditorService: ExpeditorService) {
     }
-
-
-    addNewCourrier: boolean = false;
-    showLinkedCourrier: boolean = false;
-    linkedToThisCourrier: CourrierVo;
-    linkedCourrier: Array<CourrierVo> = new Array<CourrierVo>();
-
-    private _courrierDetail: CourrierVo = new CourrierVo();
-    private _courrierListe: Array<CourrierVo> = new Array<CourrierVo>();
-
-    private _courrierSearch: CourrierVo = new CourrierVo();
-    private _courrier: CourrierVo = new CourrierVo();
-    private _searchedCourriers: Array<CourrierVo> = new Array<CourrierVo>();
-    private _editableCourriers: Array<CourrierVo> = new Array<CourrierVo>();
-    private _departCourriers: Array<CourrierVo> = new Array<CourrierVo>();
-    private _arrivedCourriers: Array<CourrierVo> = new Array<CourrierVo>();
-    private _ouvertCourriers: Array<CourrierVo> = new Array<CourrierVo>();
-    private _enCoursCourriers: Array<CourrierVo> = new Array<CourrierVo>();
-    private _traitedCourriers: Array<CourrierVo> = new Array<CourrierVo>();
-    private _accusedCourriers: Array<CourrierVo> = new Array<CourrierVo>();
-    private _responseCourriers: Array<CourrierVo> = new Array<CourrierVo>();
-
-
-    private _task: TaskVo;
-    private _generatedId: string = '';
-    private _generatedId2: string = '';
-    private _reservationCourrier: CourrierVo = new CourrierVo();
-    private _reserveCourier: CourrierVo = new CourrierVo();
-    private _nbrOfAccused = 0;
-    private _nbrOfResponed = 0;
-    private _nbrOfAll = 0;
-    private _nbrOfDeparted = 0;
-    private _nbrOfArived = 0;
-    private _nbrOfOpen = 0;
-    private _nbrOfEnCours = 0;
-    private _nbrOfTraited = 0;
 
 
     get nbrOfAll(): number {
@@ -165,8 +83,6 @@ export class CourrierService {
         this._nbrOfResponed = value;
     }
 
-    private _verifyIdCourier: string = '';
-
     get task(): TaskVo {
         if (this._task == null) {
             this._task = new TaskVo();
@@ -186,8 +102,6 @@ export class CourrierService {
         this._verifyIdCourier = value;
     }
 
-    private _courrierServiceItem: CourrierServiceItemVo;
-
     get courrierServiceItem(): CourrierServiceItemVo {
         if (this._courrierServiceItem == null) {
             this._courrierServiceItem = new CourrierServiceItemVo();
@@ -202,6 +116,10 @@ export class CourrierService {
     get courrier(): CourrierVo {
         if (this._courrier == null) {
             this._courrier = new CourrierVo();
+            this._courrier.courrierPieceJoint = new Array<CourrierPieceJoint>();
+            this._courrier.courrierPieceJoint.forEach(courr => {
+                courr = new CourrierPieceJoint();
+            });
         }
         return this._courrier;
     }
@@ -306,6 +224,157 @@ export class CourrierService {
 
     set responseCourriers(value: Array<CourrierVo>) {
         this._responseCourriers = value;
+    }
+
+
+    get reservationShow(): boolean {
+        return this._reservationShow;
+    }
+
+    set reservationShow(value: boolean) {
+        this._reservationShow = value;
+    }
+
+
+    get searchedCourriers(): Array<CourrierVo> {
+        return this._searchedCourriers;
+    }
+
+    set searchedCourriers(value: Array<CourrierVo>) {
+        this._searchedCourriers = value;
+    }
+
+    get generatedId(): string {
+        return this._generatedId;
+    }
+
+    set generatedId(value: string) {
+        this._generatedId = value;
+    }
+
+    get generatedId2(): string {
+        return this._generatedId2;
+    }
+
+    set generatedId2(value: string) {
+        this._generatedId2 = value;
+    }
+
+    get reservationCourrier(): CourrierVo {
+        return this._reservationCourrier;
+    }
+
+    set reservationCourrier(value: CourrierVo) {
+        this._reservationCourrier = value;
+    }
+
+    get reserveCourier(): CourrierVo {
+        return this._reserveCourier;
+    }
+
+    set reserveCourier(value: CourrierVo) {
+        this._reserveCourier = value;
+    }
+
+    get createExpeditorShow(): boolean {
+        return this._createExpeditorShow;
+    }
+
+    set createExpeditorShow(value: boolean) {
+        this._createExpeditorShow = value;
+    }
+    onEdit: boolean = false;
+    onDetail: boolean = false;
+    onCreate: boolean = false;
+
+    courriersService: Map<string, Array<CourrierVo>>;
+    showEmailDialog: boolean = false;
+    selectedCourrier: CourrierVo;
+
+
+    addNewCourrier: boolean = false;
+    showLinkedCourrier: boolean = false;
+    linkedToThisCourrier: CourrierVo;
+    linkedCourrier: Array<CourrierVo> = new Array<CourrierVo>();
+
+    private _courrierDetail: CourrierVo = new CourrierVo();
+    private _courrierListe: Array<CourrierVo> = new Array<CourrierVo>();
+
+    private _courrierSearch: CourrierVo = new CourrierVo();
+    private _courrier: CourrierVo = new CourrierVo();
+    private _searchedCourriers: Array<CourrierVo> = new Array<CourrierVo>();
+    private _editableCourriers: Array<CourrierVo> = new Array<CourrierVo>();
+    private _departCourriers: Array<CourrierVo> = new Array<CourrierVo>();
+    private _arrivedCourriers: Array<CourrierVo> = new Array<CourrierVo>();
+    private _ouvertCourriers: Array<CourrierVo> = new Array<CourrierVo>();
+    private _enCoursCourriers: Array<CourrierVo> = new Array<CourrierVo>();
+    private _traitedCourriers: Array<CourrierVo> = new Array<CourrierVo>();
+    private _accusedCourriers: Array<CourrierVo> = new Array<CourrierVo>();
+    private _responseCourriers: Array<CourrierVo> = new Array<CourrierVo>();
+
+
+    private _task: TaskVo;
+    private _generatedId: string = '';
+    private _generatedId2: string = '';
+    private _reservationCourrier: CourrierVo = new CourrierVo();
+    private _reserveCourier: CourrierVo = new CourrierVo();
+    private _nbrOfAccused = 0;
+    private _nbrOfResponed = 0;
+    private _nbrOfAll = 0;
+    private _nbrOfDeparted = 0;
+    private _nbrOfArived = 0;
+    private _nbrOfOpen = 0;
+    private _nbrOfEnCours = 0;
+    private _nbrOfTraited = 0;
+
+    private _verifyIdCourier: string = '';
+
+    private _courrierServiceItem: CourrierServiceItemVo;
+
+    private _reservationShow: boolean;
+    private _createExpeditorShow: boolean;
+
+    private _courrierShowDetail: boolean;
+    courrierPiece: any
+
+    edit(courrier: CourrierVo) {
+        this.courrier = courrier;
+        if (this.courrier.courrierServiceItemsVo == null)
+            this.courrier.courrierServiceItemsVo = new Array<CourrierServiceItemVo>();
+        if (this.courrier.tasksVo == null)
+            this.courrier.tasksVo = new Array<TaskVo>();
+
+        this.onEdit = true;
+        this.onDetail = false;
+
+        this.addNewCourrier = true;
+    }
+
+    detail(courrier: CourrierVo) {
+        this.courrier = courrier;
+        this.onDetail = true;
+        this.onEdit = false;
+        this.addNewCourrier = true;
+    }
+
+    findCourrierByRelance(courrier: CourrierVo) {
+        this.http.post('http://localhost:8080/generated/courrier/couriersusceptiblerelance', courrier).subscribe(data => {
+            let entries = Object.entries(data);
+            console.log(data);
+            this.courriersService = new Map<string, Array<CourrierVo>>(entries);
+
+            console.log(this.courriersService);
+
+        });
+    }
+
+    sendListCourriers(courriers: CourrierVo[]) {
+        this.http.post<number>('http://localhost:8080/generated/courrier/sendcourierrelance/', courriers);
+
+    }
+
+    sendEmail(email: string, subject: string, body: string) {
+        this.http.post<number>('http://localhost:8080/generated/courrier/sendcourierredirection/to/' + email + '/subject/' + subject + "/content/" + body, null);
     }
 
     public findAll() {
@@ -764,14 +833,25 @@ export class CourrierService {
     }
 
     public saveCourrier() {
-        this.http.post <CourrierVo>('http://localhost:8080/generated/courrier/', this.courrier).subscribe(data => {
-            if (data != null) {
-                this.courrierListe.push(data);
+        console.log(this.courrier.courrierPieceJoint);
+        this.http.post <number>('http://localhost:8080/generated/courrier/', this.courrier).subscribe(data => {
+            if (data == 1) {
+                 this.findAll();
+//                this.courrierListe.push(data);
                 this.addNewCourrier = false;
                 this.courrier = null;
             }
+        }, eror => {
+            console.log('eroro');
+        }
+    );
+    }
+    public saveCourrierPieceJoint(form: FormData) {
+        this.http.post <number>('http://localhost:8080/generated/courrier/create', form).subscribe(data => {
+            if (data != null) {
+                console.log('sucess');
+            }
         });
-
     }
 
     public verifyId(IdCourier: string) {
@@ -926,9 +1006,6 @@ export class CourrierService {
             });
     }
 
-    private _reservationShow: boolean;
-    private _createExpeditorShow: boolean;
-
 
     reservationHide() {
 
@@ -941,17 +1018,6 @@ export class CourrierService {
         this.reservationCourrier = new CourrierVo();
     }
 
-
-    get reservationShow(): boolean {
-        return this._reservationShow;
-    }
-
-    set reservationShow(value: boolean) {
-        this._reservationShow = value;
-    }
-
-    private _courrierShowDetail: boolean;
-
     public detailHide() {
 
         this.courrierShowDetail = false;
@@ -959,58 +1025,9 @@ export class CourrierService {
     }
 
 
-    get searchedCourriers(): Array<CourrierVo> {
-        return this._searchedCourriers;
-    }
-
-    set searchedCourriers(value: Array<CourrierVo>) {
-        this._searchedCourriers = value;
-    }
-
-    get generatedId(): string {
-        return this._generatedId;
-    }
-
-    set generatedId(value: string) {
-        this._generatedId = value;
-    }
-
-    get generatedId2(): string {
-        return this._generatedId2;
-    }
-
-    set generatedId2(value: string) {
-        this._generatedId2 = value;
-    }
-
-    get reservationCourrier(): CourrierVo {
-        return this._reservationCourrier;
-    }
-
-    set reservationCourrier(value: CourrierVo) {
-        this._reservationCourrier = value;
-    }
-
-    get reserveCourier(): CourrierVo {
-        return this._reserveCourier;
-    }
-
-    set reserveCourier(value: CourrierVo) {
-        this._reserveCourier = value;
-    }
-
-
     showCreateExpeditor() {
         this.createExpeditorShow = true;
         this.expeditorService.expeditor = new ExpeditorVo();
-    }
-
-    get createExpeditorShow(): boolean {
-        return this._createExpeditorShow;
-    }
-
-    set createExpeditorShow(value: boolean) {
-        this._createExpeditorShow = value;
     }
 
     public print(courriers: Array<CourrierVo>) {
