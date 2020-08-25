@@ -56,6 +56,7 @@
             <div class="col-md-6">
                 <label>categorieModelLettreReponse</label>
                 <select [(ngModel)]="modelLettreReponse.categorieModelLettreReponseVo.libelle" class="form-control">
+                    <option value="null"> selectionner le categorie </option>
                     <option *ngFor="let p of categorieModelLettreReponses" [ngValue]="p.libelle"
                             value="{{p.libelle}}">{{p.libelle}}</option>
                 </select>

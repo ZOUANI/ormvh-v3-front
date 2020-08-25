@@ -11,6 +11,7 @@ import {ExpeditorVo} from './Expeditor.model';
 import {TypeCourrierVo} from './TypeCourrier.model';
 import {VoieVo} from './Voie.model';
 import {LeServiceVo} from './LeService.model';
+import {CourrierPieceJoint} from './courrier-piece-joint.model';
 
 export class CourrierVo {
     public instruction: string;
@@ -67,6 +68,7 @@ export class CourrierVo {
     public updatedByVo: UserVo;
     public tasksVo: Array<TaskVo> = new Array<TaskVo>();
     public courrierServiceItemsVo: Array<CourrierServiceItemVo> = new Array<CourrierServiceItemVo>();
+    public courrierPieceJoint: Array<CourrierPieceJoint> = new Array<CourrierPieceJoint>();
 
 
 }

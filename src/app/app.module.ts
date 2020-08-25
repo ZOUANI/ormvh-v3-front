@@ -140,7 +140,7 @@ import {TableModule} from 'primeng/table';
 import {DatePipe} from '@angular/common';
 import {PasswordResetComponent} from './view/password-reset/password-reset.component';
 import {CourrierEmailComponent} from './view/courrier/email/courrier-email.component';
-import {MessageService, ProgressBarModule, ToastModule} from 'primeng';
+import {FileUploadModule, MessageService, ProgressBarModule, ToastModule} from 'primeng';
 
 export function httpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http);
@@ -289,7 +289,8 @@ export function httpLoaderFactory(http: HttpClient) {
         AccordionModule,
         TableModule,
         ProgressBarModule,
-        ToastModule
+        ToastModule,
+        FileUploadModule
     ],
     providers: [
         {
