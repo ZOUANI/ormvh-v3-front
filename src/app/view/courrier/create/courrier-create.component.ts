@@ -86,7 +86,6 @@ export class CourrierCreateComponent implements OnInit {
     DetailInterfacedefaulteValue(naturcorier: NatureCourrierVo) {
         this.courrier.delai = naturcorier.delai;
         this.courrier.relance = naturcorier.relance;
-        //this.courrier.dateRelance=new Date();
         let today=new Date();
         let addingDays=parseInt(this.courrier.relance);
         this.courrier.dateRelance = new Date(today.getTime() + (1000 * 60 * 60 * 24*addingDays)).toISOString().substring(0,10);
@@ -384,8 +383,10 @@ export class CourrierCreateComponent implements OnInit {
             return "Detail";
         else if (this.onEdit)
             return "Edit Courrier";
-        else
-            return "Add new Courrier";
+        else if(this.courrier.typeCourrierVo.libelle=="Sortie")
+            return "nouveau courrier de sortie ";
+        else if(this.courrier.typeCourrierVo.libelle=="Arrivee")
+            return "nouveau courrier d'Arrivee"
     }
 
     get createExpeditorShow(): boolean {

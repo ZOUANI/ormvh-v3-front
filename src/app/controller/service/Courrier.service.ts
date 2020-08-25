@@ -321,6 +321,8 @@ export class CourrierService {
         );
     }
 
+
+
     public getStatsByDate(date1: string, date2: string, titleCoordinator: string) {
         this.http.get <Array<number>>('http://localhost:8080/generated/courrier/stats/dateMin/' + date1 + '/dateMax/' + date2 + '/titleCoordinator/' + titleCoordinator).subscribe(
             value => {
@@ -852,6 +854,7 @@ export class CourrierService {
                 this.courrierListe = value;
             });
     }
+
 
     public detailShow(pojo: CourrierVo) {
         this.courrierDetail = pojo;
