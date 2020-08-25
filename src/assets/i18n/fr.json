@@ -69,7 +69,9 @@
     "STATUS": "Status",
     "TITLE": "Titre",
     "TRACK": "Voie",
-    "TYPE": "Type"
+    "TYPE": "Type",
+    "CREATED_AT": "Créé à",
+    "ACTIONS": "Actions"
   },
   "MAILING_OBJECT": {
     "ARAB_TITLE": "Titre arabe",
