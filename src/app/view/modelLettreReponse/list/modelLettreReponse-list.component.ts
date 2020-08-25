@@ -2,12 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {ModelLettreReponseVo} from '../../../controller/model/modelLettreReponse.model';
 import {ModelLettreReponseService} from '../../../controller/service/ModelLettreReponse.service';
 import {UserVo} from '../../../controller/model/User.model';
-import {CategorieModelLettreReponseVo} from '../../../controller/model/CategorieModelLettreReponse.model';
 import {MessageService} from 'primeng';
 import {LettreModel} from '../../../controller/model/lettre-model.model';
-import { test1 } from 'src/assets/javascript/demo';
 
-import { saveAs } from 'file-saver';
 @Component({
     selector: 'app-modelLettreReponse-list',
     templateUrl: './modelLettreReponse-list.component.html',
