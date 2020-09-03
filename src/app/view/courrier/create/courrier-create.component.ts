@@ -114,8 +114,10 @@ export class CourrierCreateComponent implements OnInit {
             return "Detail";
         else if (this.onEdit)
             return "Edit Courrier";
-        else
-            return "Add new Courrier";
+        else if(this.courrier.typeCourrierVo.libelle=="Sortie")
+            return "nouveau courrier de sortie ";
+        else if(this.courrier.typeCourrierVo.libelle=="Arrivee")
+            return "nouveau courrier d'Arrivee"
     }
 
     get createExpeditorShow(): boolean {
@@ -423,7 +425,7 @@ export class CourrierCreateComponent implements OnInit {
     }
 
     showDialog() {
-        // Always hide edit-task card 
+        // Always hide edit-task card
         this.onEditTask = false;
         this.onSelectTask = false;
         // TODO  always open the first tab
@@ -452,7 +454,7 @@ export class CourrierCreateComponent implements OnInit {
             formData.append('file', this.uploadForm.get('profile').value);
             this.courrierService.saveCourrierPieceJoint(formData);
             formData = null;
-           // this.courrierPiece = new CourrierPieceJoint();
+            // this.courrierPiece = new CourrierPieceJoint();
             //console.log(file);
             //this.uploadedFiles.push(file);
             //this.courrierPiece.chemin = file.name;
@@ -462,8 +464,8 @@ export class CourrierCreateComponent implements OnInit {
             //this.courrierPiece = null;
         }
         for (const file of this.courrier.courrierPieceJoint) {
-                    console.log(file.contenu);
-                    console.log(file.chemin);
-                }
-}
+            console.log(file.contenu);
+            console.log(file.chemin);
+        }
+    }
 }

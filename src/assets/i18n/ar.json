@@ -63,6 +63,8 @@
     "SAVE_MAILING": "آحفظ البريد",
     "SENDER": "المرسل",
     "SENT_AT": "أُرسل في",
+    "arrival_date": "تاريخ الوصول",
+    "release_date": "تاريخ الخروج",
     "SERVICE": "الخدمة",
     "SERVICES": "الخدمات",
     "STATUS": "الحالة",

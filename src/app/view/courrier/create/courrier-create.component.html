@@ -9,10 +9,12 @@
                     <a class="nav-link active" id="courrier-tab" data-toggle="tab" href="#pills-courrier" role="tab"
                        aria-controls="pills-home" aria-selected="true">{{"MODELS.MAILING" | translate}}</a>
                 </li>
+                <!--
                 <li class="nav-item">
                     <a class="nav-link" id="expeditor-tab" data-toggle="tab" href="#pills-expeditor" role="tab"
                        aria-controls="pills-profile" aria-selected="false">{{"MODELS.EXPEDITOR" | translate}}</a>
                 </li>
+                -->
                 <li class="nav-item">
                     <a class="nav-link" id="pills-contact-tab" data-toggle="tab" href="#pills-tasks" role="tab"
                        aria-controls="pills-contact" aria-selected="false">{{"MODELS.TASK" | translate}}</a>
@@ -48,7 +50,8 @@
                             <label>{{"MAILING.TYPE" | translate}}</label>
                         </div>
                         <div class="col-md-2">
-                            <label>{{"MAILING.SENT_AT" | translate}}</label>
+                            <label *ngIf="courrier.typeCourrierVo.libelle=='Arrivee'">{{"MAILING.arrival_date" | translate}}</label>
+                            <label *ngIf="courrier.typeCourrierVo.libelle=='Sortie'">{{"MAILING.release_date" | translate}}</label>
                         </div>
 
                     </div>
@@ -118,27 +121,57 @@
                                         [(ngModel)]="courrier.statusVo" optionLabel="libelle" dataKey="id"></p-dropdown>
                         </div>
                     </div>
-                    <div class="form-row">
+                    <!--controler les champs de courrieer selon courrier de sortier ou bien d'entre-->
+                    <!-- courrier de sortie-->
+                    <div *ngIf="courrier.typeCourrierVo.libelle=='Sortie'" class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="subject-courrier">{{"MAILING.SUBJECT" | translate}}</label>
+                            <input [disabled]="onDetail" type="text" id="subject-courrier" class="form-control"
+                                   [(ngModel)]="courrier.subject">
+                        </div>
+                        <div class="form-group col-md-6">
+                                <label for="destinator">{{"MAILING.DESTINATOR" | translate}}</label>
+                                <p-dropdown [disabled]="onDetail" styleClass="form-control" selectId="destinator"
+                                            [options]="expeditors"
+                                            [(ngModel)]="courrier.destinatorVo" [filter]="true" dataKey="id"></p-dropdown>
+                        </div>
+
+                    </div>
+                    <!-- courrier d'entrer-->
+                    <div *ngIf="courrier.typeCourrierVo.libelle=='Arrivee'" class="form-row">
+                        <div class="form-group col-md-6 ">
+                            <p-dropdown [disabled]="onDetail" styleClass="form-control" selectId="expeditor"
+                                        [options]="expeditors"
+                                        [(ngModel)]="courrier.expeditorVo" [filter]="true" dataKey="id"></p-dropdown>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <p-dropdown [disabled]="onDetail" selectId="expeditorType" styleClass="form-control"
+                                        [options]="expeditorTypes"
+                                        [(ngModel)]="courrier.expeditorTypeVo" [filter]="true"
+                                        dataKey="id"></p-dropdown>
+                        </div>
                         <div class="form-group col-md-12">
                             <label for="subject-courrier">{{"MAILING.SUBJECT" | translate}}</label>
                             <input [disabled]="onDetail" type="text" id="subject-courrier" class="form-control"
                                    [(ngModel)]="courrier.subject">
                         </div>
                     </div>
+                    <!--fin de controle-->
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="description-courrier">{{"MAILING.DESCRIPTION" | translate}}</label>
                             <textarea [disabled]="onDetail" type="text" id="description-courrier" class="form-control"
-                                      [(ngModel)]="courrier.description" rows="4"></textarea>
+                                      [(ngModel)]="courrier.description" rows="2"></textarea>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="instruction-courrier">{{"MAILING.INSTRUCTION" | translate}}</label>
                             <textarea [disabled]="onDetail" type="text" id="instruction-courrier" class="form-control"
-                                      [(ngModel)]="courrier.instruction" rows="4"></textarea>
+                                      [(ngModel)]="courrier.instruction" rows="2"></textarea>
                         </div>
                     </div>
 
                 </div>
+                <!--
                 <div class="tab-pane fade pb-0" id="pills-expeditor" role="tabpanel"
                      aria-labelledby="pills-profile-tab">
                     <div class="form-row mb-7">
@@ -173,6 +206,7 @@
                         </div>
                     </div>
                 </div>
+                -->
                 <div class="tab-pane fade pb-0" id="pills-tasks" role="tabpanel" aria-labelledby="pills-contact-tab">
                     <div class="row">
 

@@ -51,7 +51,7 @@
     "LIST": "Liste",
     "MAILING": "Courrier",
     "MAILING_DETAILS": "Détails courrier",
-    "MAILING_ID": "Id courrier",
+    "MAILING_ID": "N° Courrier",
     "MAILING_LIST": "Liste de courrier",
     "NATURE": "Nature",
     "OBJECT": "Objet",
@@ -62,6 +62,8 @@
     "SAVE_MAILING": "Sauvegarder courrier",
     "SENDER": "Émetteur",
     "SENT_AT": "Envoyé à",
+    "arrival_date": "Date d'Arrivée",
+    "release_date": "Date de Sortie",
     "SERVICE": "Service",
     "SERVICES": "Services",
     "SUBJECT": "Sujet",
@@ -70,8 +72,9 @@
     "TITLE": "Titre",
     "TRACK": "Voie",
     "TYPE": "Type",
-    "CREATED_AT": "Créé à",
-    "ACTIONS": "Actions"
+    "CREATED_AT": "Date Courrier",
+    "ACTIONS": "Actions",
+    "RESERVE": "RESERVE"
   },
   "MAILING_OBJECT": {
     "ARAB_TITLE": "Titre arabe",

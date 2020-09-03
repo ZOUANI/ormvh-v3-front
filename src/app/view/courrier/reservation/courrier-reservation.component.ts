@@ -1,5 +1,9 @@
 import {Component} from '@angular/core';
 import {CourrierService} from "../../../controller/service/Courrier.service";
+import {CourrierVo} from "../../../controller/model/Courrier.model";
+import {StatusVo} from "../../../controller/model/Status.model";
+import {StatusService} from "../../../controller/service/Status.service";
+import {TaskVo} from "../../../controller/model/Task.model";
 
 @Component({
     templateUrl: './courrier-reservation.component.html',
@@ -8,10 +12,16 @@ import {CourrierService} from "../../../controller/service/Courrier.service";
 export class CourrierReservationComponent {
 
     nbr: number
+    descriptionCourrier:string;
+    statuss: StatusVo[];
 
-    constructor(protected courrierService: CourrierService) {
+
+    constructor(protected courrierService: CourrierService,private statusService: StatusService) {
     }
 
+    get courrier(): CourrierVo {
+        return this.courrierService.courrier;
+    }
     get generatedId() {
         return this.courrierService.generatedId2;
     }
@@ -42,11 +52,31 @@ export class CourrierReservationComponent {
     }
 
     reserve(): void {
-        this.reserveCourier.idCourrier = this.generatedId
-        this.courrierService.reserve(this.reserveCourier.idCourrier, this.nbr)
+        this.reserveCourier.idCourrier = this.generatedId;
+        this.reserveCourier.description=this.descriptionCourrier;
+        this.reserveCourier.statusVo=this.courrier.statusVo;
+        this.courrierService.reserve(this.reserveCourier.idCourrier, this.nbr,this.reserveCourier.description);
         this.courrierService.reservationShow = false
         this.generatedId = ''
 
 
+    }
+    get task(): TaskVo {
+        return this.courrierService.task;
+    }
+    findAllstatuss() {
+        this.statusService.findAllstatuss().subscribe(data => {
+            if (data != null) {
+                this.statuss = data;
+                this.courrier.statusVo = this.statuss[3];
+                this.task.statusVo = this.statuss[0];
+            }
+        }, error => {
+            console.log(error);
+        });
+    }
+
+    ngOnInit(): void {
+        this.findAllstatuss();
     }
 }

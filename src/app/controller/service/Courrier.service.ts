@@ -437,6 +437,8 @@ private _courrierPieceJoint: Array<CourrierPieceJoint>;
         );
     }
 
+
+
     public getStatsByDate(date1: string, date2: string, titleCoordinator: string) {
         this.http.get <Array<number>>('http://localhost:8080/generated/courrier/stats/dateMin/' + date1 + '/dateMax/' + date2 + '/titleCoordinator/' + titleCoordinator).subscribe(
             value => {
@@ -980,6 +982,7 @@ private _courrierPieceJoint: Array<CourrierPieceJoint>;
             });
     }
 
+
     public detailShow(pojo: CourrierVo) {
         this.courrierDetail = pojo;
         this.courrierShowDetail = true;
@@ -1023,8 +1026,8 @@ private _courrierPieceJoint: Array<CourrierPieceJoint>;
     }
 
 
-    public reserve(idCourier: string, nbrCourier: number) {
-        this.http.post<CourrierVo>('http://localhost:8080/generated/courrier/courriers/reservation/idCourier/' + idCourier + '/nbr/' + nbrCourier, this.reserveCourier).subscribe(
+    public reserve(idCourier: string, nbrCourier: number,description:string) {
+        this.http.post<CourrierVo>('http://localhost:8080/generated/courrier/courriers/reservation/idCourier/' + idCourier + '/nbr/' + nbrCourier+'/description/'+description, this.reserveCourier).subscribe(
             value => {
                 console.log(value);
                 this.findAll();
