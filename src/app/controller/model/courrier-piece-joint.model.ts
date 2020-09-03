@@ -5,4 +5,5 @@ export class CourrierPieceJoint {
     chemin: string;
     contenu: number;
     courier: CourrierVo;
+    type: string;
 }

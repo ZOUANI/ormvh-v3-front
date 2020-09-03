@@ -56,9 +56,8 @@ export class ModelLettreReponseCreateComponent implements OnInit {
     public onFileChanged(event) {
         this.selectedFile = event.target.files[0];
         document.getElementById('lebel1').innerText = this.selectedFile.name;
-        this.modelLettreReponse.chemin =  this.selectedFile.name;
+        this.modelLettreReponse.chemin =  this.selectedFile.name.split('.').shift();
         this.uploadForm.get('profile').setValue(this.selectedFile);
-        console.log(this.selectedFile);
     }
 uploadFile() {
     this.uploadForm.get('profile').setValue(this.selectedFile);

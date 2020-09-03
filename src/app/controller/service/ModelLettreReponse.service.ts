@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpResponse} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
 import {ModelLettreReponseVo} from '../model/modelLettreReponse.model';
 import {UserVo} from '../model/User.model';
 import {CategorieModelLettreReponseVo} from '../model/CategorieModelLettreReponse.model';
@@ -7,14 +7,22 @@ import {LettreModel} from '../model/lettre-model.model';
 import {ToastModule} from 'primeng/toast';
 import {MessageService} from 'primeng';
 import {Observable} from 'rxjs';
+import {error} from '@angular/compiler/src/util';
 
 @Injectable({
     providedIn: 'root'
 })
 export class ModelLettreReponseService {
+    private authKey: string;
+    private blob: Blob;
+    private requestHeaders: HttpHeaders;
 
     constructor(private http: HttpClient,
-                private messageService: MessageService) { }
+                private messageService: MessageService) {
+        this.requestHeaders = new HttpHeaders();
+        this.requestHeaders.append('Content-Type', 'application/json');
+        this.requestHeaders.append('Accept', 'application/json');
+    }
     get categorieModelLettreReponses(): Array<CategorieModelLettreReponseVo> {
         return this._categorieModelLettreReponses;
     }
@@ -115,8 +123,21 @@ export class ModelLettreReponseService {
             value => {
                 if (value != null) {
                     this.modelLettreReponseListe = value;
+                    this.modelLettreReponseListe.forEach(val =>{
+                        console.log(val.type);
+                    });
                     this.editableModelLettreReponses = value;
                 }
+            });
+    }
+    public findType(type: string) {
+        this.http.get<ModelLettreReponseVo>('http://localhost:8080/generated/modelLettreReponse/getType/' + type).subscribe(
+            value => {
+                if (value != null) {
+                   console.log(value);
+                }
+            }, eror => {
+                console.log('eroro', eror);
             });
     }
 
@@ -261,23 +282,46 @@ export class ModelLettreReponseService {
         this._imageName = value;
     }
 
-    downloadFile(name: string){
-        this.http.get<ModelLettreReponseVo>('http://localhost:8080/generated/modelLettreReponse/downloadFile/' + name).subscribe(
+    downloadFile(name: string, type: string) {
+      /*  this.http.get<ModelLettreReponseVo>('http://localhost:8080/generated/modelLettreReponse/downloadFile/' + name).subscribe(
             data => {
                 if (data != null) {
                     console.log('sucess');
                     this.letttreModelType = data.type;
-                    console.log(this.letttreModelType);
-                    if (this.letttreModelType === 'application/pdf'){
-                        this.imageName = 'raw.jpg';
-                    } else {
-                        this.imageName = 'microsoft-office-word.png';
-                    }
                     this.showSuccess1();
                 }}, eror => {
                 console.log('eroro', eror);
-            });
+            });*/
+     // if(type === 'application/pdf'){
+          this.http.get('http://localhost:8080/generated/modelLettreReponse/downloadFile/' + name, {
+              responseType : 'arraybuffer'}).subscribe(response => this.downLoad(response, type));
+    //  } else if(type === 'application/msword'){
+         // this.http.get('http://localhost:8080/generated/modelLettreReponse/downloadFile/' + name, {
+         //     responseType : 'arraybuffer'}).subscribe(response => this.downLoad(response, 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'));
+    //  }
+
     }
+    getPdf(name: string): any{
+
+        this.authKey = localStorage.getItem('jwt_token');
+
+        const httpOptions = {
+            responseType: 'blob' as 'json',
+            headers: new HttpHeaders({
+                Authorization: this.authKey,
+            })
+        };
+
+        return this.http.get('http://localhost:8080/generated/modelLettreReponse/downloadFile/' + name, httpOptions);
+    }
+downLoad(data: any, type: string) {
+    let blob = new Blob([data], { type});
+    let url = window.URL.createObjectURL(blob);
+    let pwa = window.open(url);
+    if (!pwa || pwa.closed || typeof pwa.closed === 'undefined') {
+        alert( 'Please disable your Pop-up blocker and try again.');
+    }
+}
     /*    ShowFile(): void {
             this.http.get('http://localhost:8080/generated/modelLettreReponse/show').subscribe(
                 data => {

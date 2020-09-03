@@ -8,12 +8,14 @@ import {LettreModel} from '../../../controller/model/lettre-model.model';
 import { test1 } from 'src/assets/javascript/demo';
 
 import { saveAs } from 'file-saver';
+import {error} from '@angular/compiler/src/util';
 @Component({
     selector: 'app-modelLettreReponse-list',
     templateUrl: './modelLettreReponse-list.component.html',
     styleUrls: ['./modelLettreReponse-list.component.css']
 })
 export class ModelLettreReponselistComponent implements OnInit {
+    private blob: Blob;
 
   constructor(private _modelLettreReponseService: ModelLettreReponseService,
               private messageService: MessageService) {}
@@ -190,7 +192,21 @@ header: string;
         this.chihaja = modelList.chemin;
         this.show = true;
         this.display = true;
-       this.modelLettreReponseService.downloadFile(modelList.chemin);
+       // this.modelLettreReponseService.findType(modelList.chemin);
+       /* this.modelLettreReponseService.getPdf(modelList.chemin).subscribe(
+            data => {
+                console.log(data);
+                this.blob = new Blob([data], {type: 'application/pdf'});
+                let downloadURL = window.URL.createObjectURL(data);
+                let link = document.createElement('a');
+                link.href = downloadURL;
+                link.download = 'help.pdf';
+                link.click();
+
+            }, eror => {
+                console.log('eroro', eror);
+            });*/
+       this.modelLettreReponseService.downloadFile(modelList.chemin, modelList.type);
        // this.modelLettreReponseService.ShowFile();
        // this.modelLettreReponseService.downloadFile(modelList.chemin).subscribe(response => {
             //let blob:any = new Blob([response.blob()], { type: 'text/json; charset=utf-8' });

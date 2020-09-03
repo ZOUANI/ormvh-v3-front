@@ -9,6 +9,7 @@ import {LeServiceVo} from '../model/LeService.model';
 import {ExpeditorService} from './Expeditor.service';
 import {ExpeditorVo} from '../model/Expeditor.model';
 import {CourrierPieceJoint} from '../model/courrier-piece-joint.model';
+import {Observable} from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
@@ -17,8 +18,51 @@ export class CourrierService {
 
     constructor(private http: HttpClient, private expeditorService: ExpeditorService) {
     }
+private _courrierPieceJoint: Array<CourrierPieceJoint>;
 
+    get courrierPieceJoint(): Array<CourrierPieceJoint> {
+        if(this._courrierPieceJoint == null){
+            this._courrierPieceJoint = new Array<CourrierPieceJoint>();
+            this._courrierPieceJoint.forEach(cour=>{
+                cour = new CourrierPieceJoint();
+            });
+        }
+        return this._courrierPieceJoint;
+    }
 
+    set courrierPieceJoint(value: Array<CourrierPieceJoint>) {
+        this._courrierPieceJoint = value;
+    }
+
+    public downloadFile(courrier: CourrierVo){
+    //     this.findAllCourrierJoint(courrier.id);
+         //console.log(this.courrierPieceJoint);
+        // this.courrierPieceJoint.forEach(cour => {
+        this.http.get('http://localhost:8080/generated/courrier/downloadFile/' + courrier.id, {
+            responseType : 'arraybuffer'}).subscribe(response => this.downLoad(response, courrier.type));
+    //});
+    }
+    public findAllCourrierJoint(id: number){
+        console.log(id);
+        this.http.get<CourrierPieceJoint>('http://localhost:8080/generated/courrier/findAllcourrierPieceJoint/' + id).subscribe(
+              data =>{
+                  if(data != null){
+                      console.log(data)
+                    //  this.courrierPieceJoint = data.courrierPieceJoint;
+                  }
+              }, error => {
+                  console.log(error);
+                }
+          );
+    }
+    downLoad(data: any, type: string) {
+        let blob = new Blob([data], { type});
+        let url = window.URL.createObjectURL(blob);
+        let pwa = window.open(url);
+        if (!pwa || pwa.closed || typeof pwa.closed === 'undefined') {
+            alert( 'Please disable your Pop-up blocker and try again.');
+        }
+    }
     get nbrOfAll(): number {
         return this._nbrOfAll;
     }
@@ -382,6 +426,9 @@ export class CourrierService {
             value => {
                 if (value != null) {
                     this.courrierListe = value;
+                    this.courrierListe.forEach(cor => {
+                        console.log(cor.type);
+                    });
                 } else {
                     console.log('madkheltch oops');
                     this.courrierListe = [];

@@ -26,7 +26,7 @@ export class CourrierVo {
     public dateAccuse: string;
     public dateReponse: string;
     public receivedAt: string;
-    public id: string;
+    public id: number;
     public idCourrier: string;
     public subject: string;
     public description: string;
@@ -69,6 +69,6 @@ export class CourrierVo {
     public tasksVo: Array<TaskVo> = new Array<TaskVo>();
     public courrierServiceItemsVo: Array<CourrierServiceItemVo> = new Array<CourrierServiceItemVo>();
     public courrierPieceJoint: Array<CourrierPieceJoint> = new Array<CourrierPieceJoint>();
-
+    public type: string;
 
 }

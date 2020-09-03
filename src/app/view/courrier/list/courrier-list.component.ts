@@ -59,7 +59,10 @@ export class CourrierlistComponent implements OnInit {
         this.courrierService.courrier.typeCourrierVo.libelle = 'Arrivee';
 
     }
-
+public download(courrier: CourrierVo){
+           this.courrierService.downloadFile(courrier);
+      //  this.courrierService.
+}
     showNewCorrierDialogSortie() {
         this.courrierService.courrier = null;
         this.courrierService.addNewCourrier = true;
