@@ -305,7 +305,7 @@
                                         <div class="form-group col-md-7">
                                             <label for="task-assigne">{{"MAILING.ASSIGNED_TO" | translate}}</label>
                                             <p-dropdown styleClass="form-control" selectId="task-assigne"
-                                                        [options]="users"
+                                                        [options]="users" [disabled]="roleChargerDeTraitementCourier()||roleChargeDeRequete()"
                                                         [(ngModel)]="editableTask.assigneVo" [showClear]="true"
                                                         optionLabel="username"
                                                         [filter]="true" dataKey="id"></p-dropdown>
@@ -519,7 +519,7 @@
                                              class="list-group-item  d-flex justify-content-between">
                                             <span>{{p.title}}</span>
                                             <span class="cntrl-task">
-                                                <span class="badge clickable hover-effect" (click)="selectTask(p)">
+                                                <span class="badge clickable hover-effect" (click)="selectTask(p)" *ngIf="isHeConnected(p.assigneVo.email)">
                                                 <i class="pi pi-eye"></i>
                                             </span>
 
