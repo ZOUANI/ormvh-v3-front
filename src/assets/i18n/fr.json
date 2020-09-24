@@ -1,6 +1,6 @@
 {
   "MODELS": {
-    "MAILING": "Courrier",
+    "MAILING": "Info",
     "OBJECT": "Objet",
     "STATEMENT": "Borderau",
     "EXPEDITOR": "Expéditeur",
@@ -25,7 +25,8 @@
     "TASK": "Tâche",
     "DETAILS": "Détails",
     "HISTORY": "Historique",
-    "RELANCE": "Relance"
+    "RELANCE": "Relance",
+    "INSTRUCTION" : "Instruction"
   },
   "MAILING": {
     "ACCUSED": "Accusé",

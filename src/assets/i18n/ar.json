@@ -25,7 +25,8 @@
     "TASK": "المهمة",
     "DETAILS": "التفاصيل",
     "HISTORY": "التاريخ",
-    "RELANCE": "التذكير"
+    "RELANCE": "التذكير",
+    "INSTRUCTION" : "تعليمات"
   },
   "MAILING": {
     "ADD_MAILING": "أَضف بريد",

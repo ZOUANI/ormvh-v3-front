@@ -1,6 +1,6 @@
 {
     "MODELS":{
-        "MAILING":"Mailing",
+        "MAILING":"info",
         "OBJECT":"Object",
         "STATEMENT":"Statement",
         "EXPEDITOR":"Expeditor",
@@ -22,7 +22,8 @@
         "NATIONALITY":"Nationality",
         "GENDER":"Gender",
         "DASHBOARD":"Statistic",
-        "RELANCE":"Relance"
+        "RELANCE":"Relance",
+        "INSTRUCTION" : "Instruction"
     },
     "MAILING": {
         "MAILING": "Mailing",

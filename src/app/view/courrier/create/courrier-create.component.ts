@@ -208,6 +208,7 @@ export class CourrierCreateComponent implements OnInit {
         this.uploadForm = this.formBuilder.group({
             profile: ['']
         });
+        this.courrierService.loadRoles();
     }
 
     generateId() {
@@ -467,5 +468,30 @@ export class CourrierCreateComponent implements OnInit {
             console.log(file.contenu);
             console.log(file.chemin);
         }
+
+    }
+    roleAdmin(){
+        return this.courrierService.isADMIN;
+    }
+    roleChargerDeTraitementCourier(){
+        return this.courrierService.isCHARGE_DE_TRAITEMENT_COURRIER;
+    }
+    roleChefService(){
+        return this.courrierService.isCHEF_DE_SERVICE;
+    }
+    roleAgentBo(){
+        return this.courrierService.isAGENT_BO;
+    }
+    roleChargeDeRequete(){
+        return this.courrierService.isCHARGE_DE_REQUETE;
+    }
+    roleAgentCai(){
+        return this.courrierService.isAGENT_CAI;
+    }
+    roleDirecteur(){
+        return this.courrierService.isDIRECTEUR;
+    }
+    isCourrierSortieOrArriver(){
+        return this.courrierService.isCourieSorieOrArrivee;
     }
 }

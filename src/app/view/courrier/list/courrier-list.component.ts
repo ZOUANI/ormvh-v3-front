@@ -57,6 +57,8 @@ export class CourrierlistComponent implements OnInit {
         this.courrierService.onEdit = false;
         this.courrierService.onDetail = false;
         this.courrierService.courrier.typeCourrierVo.libelle = 'Arrivee';
+        this.courrierService.isCourieSorieOrArrivee=true;
+        console.log(">>>>>"+this.courrierService.isCourieSorieOrArrivee);
 
     }
 
@@ -66,7 +68,8 @@ export class CourrierlistComponent implements OnInit {
         this.courrierService.onEdit = false;
         this.courrierService.onDetail = false;
         this.courrierService.courrier.typeCourrierVo.libelle = 'Sortie';
-
+        this.courrierService.isCourieSorieOrArrivee=false;
+        console.log(">>>>>"+this.courrierService.isCourieSorieOrArrivee);
 
     }
 

@@ -9,15 +9,39 @@ import {LeServiceVo} from '../model/LeService.model';
 import {ExpeditorService} from './Expeditor.service';
 import {ExpeditorVo} from '../model/Expeditor.model';
 import {CourrierPieceJoint} from '../model/courrier-piece-joint.model';
+import {AuthenticationService} from "./auth/authentication.service";
 
 @Injectable({
     providedIn: 'root'
 })
 export class CourrierService {
 
-    constructor(private http: HttpClient, private expeditorService: ExpeditorService) {
+
+     isADMIN:boolean;
+     isCHARGE_DE_TRAITEMENT_COURRIER:boolean;
+     isCHEF_DE_SERVICE:boolean;
+     isAGENT_BO:boolean;
+     isCHARGE_DE_REQUETE:boolean;
+     isAGENT_CAI:boolean;
+     isDIRECTEUR:boolean;
+     isCourieSorieOrArrivee:boolean;
+    constructor(private http: HttpClient, private expeditorService: ExpeditorService , private authService : AuthenticationService) {
     }
 
+
+    loadRoles(){
+        this.isADMIN = this.authService.hasRole("ADMIN");
+        this.isCHARGE_DE_TRAITEMENT_COURRIER = this.authService.hasRole("CHARGE_DE_TRAITEMENT_COURRIER");
+        this.isCHEF_DE_SERVICE = this.authService.hasRole("CHEF_DE_SERVICE");
+        this.isAGENT_BO = this.authService.hasRole("AGENT_BO");
+        this.isCHARGE_DE_REQUETE=this.authService.hasRole("CHARGE_DE_REQUETE");
+        this.isAGENT_CAI=this.authService.hasRole("AGENT_CAI");
+        this.isDIRECTEUR=this.authService.hasRole("DIRECTEUR");
+        console.log(":::::::::::admin:::::::::::::"+this.isADMIN);
+        console.log(":::::::::::::charge de traitement:::::::::::"+this.isCHARGE_DE_TRAITEMENT_COURRIER);
+        console.log(":::::::::::::chef service:::::::::::"+this.isCHEF_DE_SERVICE);
+        console.log("::::::::::::agent bo::::::::::::"+this.isAGENT_BO);
+    }
 
     get nbrOfAll(): number {
         return this._nbrOfAll;

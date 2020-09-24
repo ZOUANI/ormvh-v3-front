@@ -72,12 +72,12 @@ export class AuthenticationService {
     }
 
 
-    // public hasRole(role): boolean {
-    //   for (let r of this.authenticatedUser.roles) {
-    //     if (r == role) {
-    //       return true;
-    //     }
-    //   }
-    //   return false;
-    // }
+    public hasRole(role): boolean {
+      for (let r of this.authenticatedUser.rolesVo) {
+        if (r == role) {
+          return true;
+        }
+      }
+      return false;
+    }
 }
