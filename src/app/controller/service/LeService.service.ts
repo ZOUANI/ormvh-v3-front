@@ -19,8 +19,18 @@ export class LeServiceService {
     private _leService: LeServiceVo = new LeServiceVo();
     private _searchedLeServices: Array<LeServiceVo> = new Array<LeServiceVo>();
     private _editableLeServices: Array<LeServiceVo> = new Array<LeServiceVo>();
+    private _chefs: Array<UserVo> = new Array<UserVo>();
     private _createdBys: Array<UserVo> = new Array<UserVo>();
     private _updatedBys: Array<UserVo> = new Array<UserVo>();
+
+
+    get chefs(): Array<UserVo> {
+        return this._chefs;
+    }
+
+    set chefs(value: Array<UserVo>) {
+        this._chefs = value;
+    }
 
     get createdBys(): Array<UserVo> {
         return this._createdBys;
@@ -173,6 +183,15 @@ export class LeServiceService {
             value => {
                 if (value != null) {
                     this.updatedBys = value;
+                }
+            }
+        );
+    }
+    public findAllChefs() {
+        this.http.get<Array<UserVo>>('http://localhost:8080/generated/user/').subscribe(
+            value => {
+                if (value != null) {
+                    this.chefs = value;
                 }
             }
         );

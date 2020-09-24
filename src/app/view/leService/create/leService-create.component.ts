@@ -19,6 +19,9 @@ export class LeServiceCreateComponent implements OnInit {
     get createdBys(): Array<UserVo> {
         return this.leServiceService.createdBys;
     }
+    get chefs(): Array<UserVo> {
+        return this.leServiceService.chefs;
+    }
 
     get updatedBys(): Array<UserVo> {
         return this.leServiceService.updatedBys;
@@ -35,6 +38,7 @@ export class LeServiceCreateComponent implements OnInit {
     ngOnInit(): void {
         this.findAllcreatedBys();
         this.findAllupdatedBys();
+        this.findAllChefs();
     }
 
     saveLeService() {
@@ -47,6 +51,9 @@ export class LeServiceCreateComponent implements OnInit {
 
     findAllupdatedBys() {
         this.leServiceService.findAllupdatedBys();
+    }
+    findAllChefs() {
+        this.leServiceService.findAllChefs();
     }
 
     public createHide() {

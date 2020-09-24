@@ -12,6 +12,7 @@ export class LeServiceVo {
     public createdAtMin: string;
     public updatedAtMax: string;
     public updatedAtMin: string;
+    public chef: UserVo = new UserVo();
     public createdByVo: UserVo = new UserVo();
     public updatedByVo: UserVo = new UserVo();
 

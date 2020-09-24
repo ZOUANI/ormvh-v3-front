@@ -16,13 +16,7 @@
                                 <label>description</label>
                                 <input [(ngModel)]="leService.description" class="form-control" type="text">
                             </div>
-                            <div class="col-md-6 py-2">
-                                <div class="p-grid ui-fluid">
-                                    <label>createdAt</label>
-                                    <p-calendar [(ngModel)]="leService.createdAt" class="p-col-12"
-                                                dateFormat="yy-mm-dd"></p-calendar>
-                                </div>
-                            </div>
+
                             <!--                            <div class="col-md-6 py-2">-->
                             <!--                                <div class="p-grid ui-fluid">-->
                             <!--                                    <label>updatedAt</label>-->
@@ -42,6 +36,16 @@
                                 <label>title</label>
                                 <input [(ngModel)]="leService.title" class="form-control" type="text">
                             </div>
+
+                        </div>
+                        <div class="row">
+                        <div class="col-md-6 py-2">
+                            <label>Chef</label>
+                            <p-dropdown styleClass="form-control" selectId="chef-service"
+                                        [options]="chefs"
+                                        [(ngModel)]="leService.chef" [filter]="true"
+                                        optionLabel="username" dataKey="id"></p-dropdown>
+                        </div>
                         </div>
                         <!--                        <div class="row">-->
                         <!--                            <label>createdBy</label>-->
