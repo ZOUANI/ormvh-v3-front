@@ -5,35 +5,35 @@
         <div class="card-body p-0 from-ctn">
             <!-- <h1 class="create-title">Add new Courrier</h1> -->
             <ul class="nav nav-tabs mb-6" id="my-tab" role="tablist">
-                <li *ngIf="roleAdmin() ||roleAgentBo()||roleAgentCai()||roleDirecteur()||roleChargeDeRequete()||roleChargerDeTraitementCourier()" class="nav-item">
+                <li *ngIf="roleAdmin() ||roleAgentBo()||roleAgentCai()||roleDirecteur()||roleChargeDeRequete()||roleChargerDeTraitementCourier()||roleChefService()" class="nav-item">
                     <a class="nav-link active" id="courrier-tab" data-toggle="tab" href="#pills-courrier" role="tab"
                        aria-controls="pills-home" aria-selected="true">{{"MODELS.MAILING" | translate}}</a>
                 </li>
 
-                <li *ngIf="roleAdmin() ||roleAgentBo()||roleAgentCai()||roleDirecteur()" class="nav-item">
+                <li *ngIf="roleAdmin() ||roleAgentBo()||roleAgentCai()||roleDirecteur()||roleChefService()" class="nav-item">
                     <a class="nav-link" id="instruction-tab" data-toggle="tab" href="#pills-instruction" role="tab"
                        aria-controls="pills-home" aria-selected="true">{{"MODELS.INSTRUCTION" | translate}}</a>
                 </li>
 
-                <li *ngIf="(roleAdmin() ||roleAgentBo()||roleAgentCai()||roleDirecteur()) && isCourrierSortieOrArriver()" class="nav-item">
+                <li *ngIf="(roleAdmin() ||roleAgentBo()||roleAgentCai()||roleDirecteur()||roleChefService()) && isCourrierSortieOrArriver()" class="nav-item">
                     <a class="nav-link" id="expeditor-tab" data-toggle="tab" href="#pills-expeditor" role="tab"
                        aria-controls="pills-profile" aria-selected="false">{{"MODELS.EXPEDITOR" | translate}}</a>
                 </li>
 
 
-                <li *ngIf="roleAdmin() ||roleAgentBo()||roleAgentCai()||roleDirecteur()" class="nav-item">
+                <li *ngIf="roleAdmin() ||roleAgentBo()||roleAgentCai()||roleDirecteur()||roleChefService()" class="nav-item">
                     <a class="nav-link" id="pills-contact-tab" data-toggle="tab" href="#pills-services" role="tab"
                        aria-controls="pills-services" aria-selected="false">{{"MODELS.SERVICE" | translate}}</a>
                 </li>
-                <li *ngIf="roleAdmin() ||roleAgentBo()||roleAgentCai()||roleDirecteur()||roleChargeDeRequete()||roleChargerDeTraitementCourier()" class="nav-item">
+                <li *ngIf="roleAdmin() ||roleAgentBo()||roleAgentCai()||roleDirecteur()||roleChargeDeRequete()||roleChargerDeTraitementCourier()||roleChefService()" class="nav-item">
                     <a class="nav-link" id="pills-contact-tab" data-toggle="tab" href="#pills-tasks" role="tab"
                        aria-controls="pills-contact" aria-selected="false">{{"MODELS.TASK" | translate}}</a>
                 </li>
-                <li *ngIf="roleAdmin() ||roleAgentBo()||roleAgentCai()||roleDirecteur()"  class="nav-item">
+                <li *ngIf="roleAdmin() ||roleAgentBo()||roleAgentCai()||roleDirecteur()||roleChefService()"  class="nav-item">
                     <a class="nav-link" id="pills-contact-tab" data-toggle="tab" href="#pills-details" role="tab"
                        aria-controls="pills-details" aria-selected="false">{{"MODELS.DETAILS" | translate}}</a>
                 </li>
-                <li *ngIf="roleAdmin() ||roleAgentBo()||roleAgentCai()||roleDirecteur()"  class="nav-item">
+                <li *ngIf="roleAdmin() ||roleAgentBo()||roleAgentCai()||roleDirecteur()||roleChefService()"  class="nav-item">
                     <a class="nav-link" id="pills-contact-tab" data-toggle="tab" href="#pills-pieceJoint" role="tab"
                        aria-controls="pills-services" aria-selected="false">piece joint</a>
                 </li>

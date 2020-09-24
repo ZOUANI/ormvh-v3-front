@@ -50,6 +50,18 @@ export class CourrierlistComponent implements OnInit {
     detail(courrier: CourrierVo) {
         this.courrierService.detail(courrier);
     }
+    roleAdmin(){
+        return this.courrierService.isADMIN;
+    }
+    roleChargerDeTraitementCourier(){
+        return this.courrierService.isCHARGE_DE_TRAITEMENT_COURRIER;
+    }
+    roleChefService(){
+        return this.courrierService.isCHEF_DE_SERVICE;
+    }
+    roleAgentBo(){
+        return this.courrierService.isAGENT_BO;
+    }
 
     showNewCorrierDialogArrive() {
         this.courrierService.courrier = null;
