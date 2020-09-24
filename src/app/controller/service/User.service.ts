@@ -336,7 +336,7 @@ private _currentUser: UserVo;
         this.http.get<UserVo>('http://localhost:8080/generated/user/currentUser').subscribe(
             data => {
                 this.userShowDetail = true;
-              //  this.detailShow(data);
+                this.detailShow(data);
                 this.currentUser = data;
                 }, error1 => {
                 console.log(error1);
