@@ -134,7 +134,8 @@
     "UPDATE": "Mettre à jour",
     "UPDATED_AT": "Modifié à",
     "UPDATED_BY": "Modifié par",
-    "VALUE": "Valeur"
+    "VALUE": "Valeur",
+    "ADD_SENDER": "ajouter expediteur"
   },
   "DASHBOARD": {
     "TABLEAU_DE_BOARD": "Tableau de bord",

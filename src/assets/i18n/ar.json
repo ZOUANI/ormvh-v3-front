@@ -136,7 +136,8 @@
     "UPDATE": "تحديث",
     "UPDATED_AT": "عُدل يوم",
     "UPDATED_BY": "عُدل من طرف",
-    "VALUE": "القيمة"
+    "VALUE": "القيمة",
+    "ADD_SENDER": "أضف المرسل"
   },
   "DASHBOARD": {
     "TABLEAU_DE_BOARD": "لوحة القيادة",

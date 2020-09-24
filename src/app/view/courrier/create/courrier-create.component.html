@@ -162,7 +162,7 @@
                             <p-dropdown [disabled]="onDetail||roleChefService()||roleDirecteur()" styleClass="form-control" selectId="expeditor"
                                         [options]="expeditors"
                                         [(ngModel)]="courrier.expeditorVo" [filter]="true" dataKey="id"></p-dropdown>
-                        </div>
+                            </div>
                         <div class="form-group col-md-4">
                             <label for="expeditorType">{{"MODELS.EXPEDITOR_TYPE" | translate}}</label>
                             <p-dropdown [disabled]="onDetail||roleChefService()||roleDirecteur()" selectId="expeditorType" styleClass="form-control"
@@ -170,14 +170,75 @@
                                         [(ngModel)]="courrier.expeditorTypeVo" [filter]="true"
                                         dataKey="id"></p-dropdown>
                         </div>
-                    </div>
+                        </div>
 
                     <div class="for-row">
                         <div class="form-group">
                             <label for="description-expeditor">{{"MAILING.DESCRIPTION" | translate}}</label>
                             <textarea [disabled]="onDetail||roleChefService()||roleDirecteur()" type="text" id="description-expeditor" class="form-control"
                                       [(ngModel)]="courrier.destinataireDesc" rows="3"></textarea>
+                             </div>
+                         </div>
+                         <div class="form-row">
+                            <button (click)="AddSender()" class="btn btn-outline-success btn-block">{{"COMMONS.ADD_SENDER" | translate}}</button>
+                         </div>
+                    </div>
+                    <div *ngIf="onAddSender">
+                        <div class="form-row">
+                            <div class="form-group col-md-3">
+                                <label>nationality</label>
+                                <select [(ngModel)]="expeditor.nationalityVo.libelle" class="form-control">
+                                    <option *ngFor="let p of nationalitys" [ngValue]="p.libelle"
+                                            value="{{p.libelle}}">{{p.libelle}}</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label>code</label>
+                                <input [(ngModel)]="expeditor.code" class="form-control" type="text">
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label>description</label>
+                                <input [(ngModel)]="expeditor.description" class="form-control" type="text">
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label>nature</label>
+                                <input [(ngModel)]="expeditor.nature" class="form-control" type="text">
+                            </div>
                         </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label>age</label>
+                                <input [(ngModel)]="expeditor.age" class="form-control" type="number">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>title</label>
+                                <input [(ngModel)]="expeditor.title" class="form-control" type="text">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label>titleArab</label>
+                                <input [(ngModel)]="expeditor.titleArab" class="form-control" type="text">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>sexe</label>
+                                <select [(ngModel)]="expeditor.sexeVo.libelle" class="form-control">
+                                    <option *ngFor="let p of sexes" [ngValue]="p.libelle" value="{{p.libelle}}">{{p.libelle}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label>adress</label>
+                                <input [(ngModel)]="expeditor.adress" class="form-control" type="text">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <button (click)="saveExpeditor()" class="form-control btn-outline-primary">Save</button>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
 
