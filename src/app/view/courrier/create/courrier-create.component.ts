@@ -202,6 +202,7 @@ export class CourrierCreateComponent implements OnInit {
         this.findAllnatureCourriers();
         this.findAllexpeditors();
         this.findAllServices();
+        this.userService.getCurrentUser();
         this.findAllChangedServices();
         this.findAllevaluations();
         this.findAllexpeditorTypes();
@@ -500,10 +501,10 @@ export class CourrierCreateComponent implements OnInit {
         return this.courrierService.isCourieSorieOrArrivee;
     }
     isHeConnected(email: string): boolean{
-        if(this.currentUser.email === email && (!this.onDetail)){
+        if((this.currentUser.email === email || this.roleChefService()) && (!this.onDetail)){
             return true;
         } else {
-            return false
+            return false;
         }
     }
     get currentUser(): UserVo {
