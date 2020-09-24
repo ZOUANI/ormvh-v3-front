@@ -5,6 +5,7 @@ import {LettreModel} from './lettre-model.model';
 export class ModelLettreReponseVo {
   public createdAt: string;
   public updatedAt: string;
+  public type: string;
   public libelleArab: string;
   public code: string;
   public chemin: string;
@@ -18,7 +19,5 @@ export class ModelLettreReponseVo {
       public categorieModelLettreReponseVo: CategorieModelLettreReponseVo = new CategorieModelLettreReponseVo();
       public createdByVo: UserVo = new UserVo();
       public updatedByVo: UserVo = new UserVo();
-    public data: number;
-    public type: string;
-
+    public data: any;
 }

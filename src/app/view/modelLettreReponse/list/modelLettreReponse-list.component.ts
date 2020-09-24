@@ -12,6 +12,7 @@ import {CategorieModelLettreReponseVo} from "../../../controller/model/Categorie
     styleUrls: ['./modelLettreReponse-list.component.css']
 })
 export class ModelLettreReponselistComponent implements OnInit {
+    private blob: Blob;
 
     constructor(private _modelLettreReponseService: ModelLettreReponseService,
                 private messageService: MessageService) {}
@@ -188,14 +189,28 @@ export class ModelLettreReponselistComponent implements OnInit {
         this.chihaja = modelList.chemin;
         this.show = true;
         this.display = true;
-        this.modelLettreReponseService.downloadFile(modelList.chemin);
-        // this.modelLettreReponseService.ShowFile();
-        // this.modelLettreReponseService.downloadFile(modelList.chemin).subscribe(response => {
-        //let blob:any = new Blob([response.blob()], { type: 'text/json; charset=utf-8' });
-        //const url= window.URL.createObjectURL(blob);
-        //window.open(url);
-        //  window.location.href = response.url;
-        //fileSaver.saveAs(blob, 'employees.json');
+       // this.modelLettreReponseService.findType(modelList.chemin);
+       /* this.modelLettreReponseService.getPdf(modelList.chemin).subscribe(
+            data => {
+                console.log(data);
+                this.blob = new Blob([data], {type: 'application/pdf'});
+                let downloadURL = window.URL.createObjectURL(data);
+                let link = document.createElement('a');
+                link.href = downloadURL;
+                link.download = 'help.pdf';
+                link.click();
+
+            }, eror => {
+                console.log('eroro', eror);
+            });*/
+       this.modelLettreReponseService.downloadFile(modelList.chemin, modelList.type);
+       // this.modelLettreReponseService.ShowFile();
+       // this.modelLettreReponseService.downloadFile(modelList.chemin).subscribe(response => {
+            //let blob:any = new Blob([response.blob()], { type: 'text/json; charset=utf-8' });
+            //const url= window.URL.createObjectURL(blob);
+            //window.open(url);
+          //  window.location.href = response.url;
+            //fileSaver.saveAs(blob, 'employees.json');
         //}), error => console.log('Error downloading the file'),
         //  () => console.info('File downloaded successfully');
     }

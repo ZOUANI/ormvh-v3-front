@@ -68,7 +68,7 @@ export class ModelLettreReponseEditComponent implements OnInit {
     public onFileChanged(event) {
         this.selectedFile = event.target.files[0];
         document.getElementById('lebel1').innerText = this.selectedFile.name;
-        this.modelLettreReponse.chemin =  this.selectedFile.name;
+        this.modelLettreReponse.chemin =  this.selectedFile.name.split('.').shift()
         this.uploadForm.get('profile').setValue(this.selectedFile);
         console.log(this.selectedFile);
     }
@@ -78,9 +78,7 @@ export class ModelLettreReponseEditComponent implements OnInit {
        } else {
            this.dispnible = true;
        }
-       console.log(this.selectedFile);
        this.uploadForm.get('profile').setValue(this.selectedFile);
-       console.log(this.selectedFile);
        const formData = new FormData();
        formData.append('file', this.uploadForm.get('profile').value);
        this.modelLettreReponseService.uploadFileEdit(formData, this.dispnible);

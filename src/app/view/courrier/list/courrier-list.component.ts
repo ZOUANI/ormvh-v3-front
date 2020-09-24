@@ -61,7 +61,10 @@ export class CourrierlistComponent implements OnInit {
         console.log(">>>>>"+this.courrierService.isCourieSorieOrArrivee);
 
     }
-
+public download(courrier: CourrierVo){
+           this.courrierService.downloadFile(courrier);
+      //  this.courrierService.
+}
     showNewCorrierDialogSortie() {
         this.courrierService.courrier = null;
         this.courrierService.addNewCourrier = true;
