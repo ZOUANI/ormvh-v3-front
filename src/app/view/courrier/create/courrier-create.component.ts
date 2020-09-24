@@ -25,6 +25,9 @@ import * as $ from 'jquery';
 import {moment} from "ngx-bootstrap/chronos/test/chain";
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {CourrierPieceJoint} from '../../../controller/model/courrier-piece-joint.model';
+import {ExpeditorVo} from "../../../controller/model/Expeditor.model";
+import {SexeVo} from "../../../controller/model/Sexe.model";
+import {NationalityVo} from "../../../controller/model/Nationality.model";
 
 @Component({
     selector: 'app-courrier-create',
@@ -162,6 +165,7 @@ export class CourrierCreateComponent implements OnInit {
     onSelectTask: boolean = false;
     uploadedFiles: any[] = [];
     courrierPiece: CourrierPieceJoint;
+    onAddSender:boolean=false;
 
     boolenAccuse(task: TaskVo) {
         if (task.accuse == false) {
@@ -209,6 +213,7 @@ export class CourrierCreateComponent implements OnInit {
             profile: ['']
         });
         this.courrierService.loadRoles();
+
     }
 
     generateId() {
@@ -493,5 +498,30 @@ export class CourrierCreateComponent implements OnInit {
     }
     isCourrierSortieOrArriver(){
         return this.courrierService.isCourieSorieOrArrivee;
+    }
+    AddSender(){
+        this.findAllsexes();
+        this.findAllnationalitys();
+        return this.onAddSender= !this.onAddSender;
+    }
+    get expeditor(): ExpeditorVo {
+        return this.expeditorService.expeditor;
+    }
+    get sexes(): Array<SexeVo> {
+        return this.expeditorService.sexes;
+    }
+    get nationalitys(): Array<NationalityVo> {
+        return this.expeditorService.nationalitys;
+    }
+    saveExpeditor() {
+        this.expeditorService.saveExpeditor();
+        this.onAddSender= !this.onAddSender;
+    }
+    findAllsexes() {
+        this.expeditorService.findAllsexes();
+    }
+
+    findAllnationalitys() {
+        this.expeditorService.findAllnationalitys();
     }
 }
