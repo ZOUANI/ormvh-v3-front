@@ -712,7 +712,7 @@
                      aria-labelledby="pills-profile-tab">
                     <div class="form-group col-md-12">
                         <label for="instruction-courrier">{{"MAILING.INSTRUCTION" | translate}}</label>
-                        <textarea [disabled]="onDetail" type="text" id="instruction-courrier" class="form-control"
+                        <textarea [disabled]="onDetail||roleChefService()" type="text" id="instruction-courrier" class="form-control"
                                   [(ngModel)]="courrier.instruction" rows="8"></textarea>
                     </div>
                 </div>
