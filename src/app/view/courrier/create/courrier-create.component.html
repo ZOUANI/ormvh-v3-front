@@ -372,7 +372,7 @@
                                         </div>
                                     </div>
                                     <div class="d-flex flex-row-reverse">
-                                        <button class="btn btn-primary ml-4 mr-2" (click)="deleteTask()" [disabled]="roleChargeDeRequete()||roleChargerDeTraitementCourier()">
+                                        <button class="btn btn-primary ml-4 mr-2" (click)="deleteTask()" *ngIf="roleChefService()||roleAgentBo()||roleAdmin()">
                                             delete
                                         </button>
                                         <button type="button" class="btn btn-secondary"
