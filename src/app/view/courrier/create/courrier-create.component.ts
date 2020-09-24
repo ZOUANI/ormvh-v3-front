@@ -507,6 +507,13 @@ export class CourrierCreateComponent implements OnInit {
             return false;
         }
     }
+    isHeConnected1(email: string): boolean{
+        if((this.roleChefService()) && (!this.onDetail)){
+            return true;
+        } else {
+            return false;
+        }
+    }
     get currentUser(): UserVo {
         return this.userService.currentUser;
     }

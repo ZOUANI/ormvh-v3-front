@@ -372,7 +372,7 @@
                                         </div>
                                     </div>
                                     <div class="d-flex flex-row-reverse">
-                                        <button class="btn btn-primary ml-4 mr-2" (click)="deleteTask()">
+                                        <button class="btn btn-primary ml-4 mr-2" (click)="deleteTask()" [disabled]="roleChargeDeRequete()||roleChargerDeTraitementCourier()">
                                             delete
                                         </button>
                                         <button type="button" class="btn btn-secondary"
@@ -472,7 +472,7 @@
                                         </div>
                                     </div>
                                     <div class="form-row">
-                                        <button class="btn btn-outline-success btn-block" [disabled]="roleDirecteur()"
+                                        <button class="btn btn-outline-success btn-block" [disabled]="roleDirecteur()||roleChargerDeTraitementCourier()||roleChargeDeRequete()"
                                                 (click)="addTask()">{{"COMMONS.ADD" | translate}}</button>
                                     </div>
 
@@ -527,7 +527,7 @@
                                                       (click)="editTask(p)">
                                                     <i class="pi pi-pencil"></i>
                                                   </span>
-                                                  <span class="badge clickable hover-effect " *ngIf="isHeConnected(p.assigneVo.email)"
+                                                  <span class="badge clickable hover-effect " *ngIf="isHeConnected1(p.assigneVo.email)"
                                                         (click)="deleteTaskDirct(p)">
                                                       <i
                                                               class="pi pi-times"></i></span>
