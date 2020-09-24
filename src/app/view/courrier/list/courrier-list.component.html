@@ -2,13 +2,13 @@
 
     <div class="card col-12">
         <div class="card-header bg-transparent">
-            <button id="buttonRES" class="btn  btn-sm fa fa-plus float-left" (click)="showReservation()">
+            <button id="buttonRES" class="btn  btn-sm fa fa-plus float-left" (click)="showReservation()" *ngIf="roleAdmin()||roleAgentBo()">
                 {{"MAILING.RESERVE_MAILING" | translate}}
             </button>
-            <button id="buttonArrive" class="btn  btn-sm fa fa-plus float-right"
+            <button id="buttonArrive" class="btn  btn-sm fa fa-plus float-right" *ngIf="roleAdmin()||roleAgentBo()"
                     (click)="showNewCorrierDialogArrive()">Ajouter courier d'arriver
             </button>
-            <button id="buttonDepart" class="btn  btn-sm fa fa-plus float-right"
+            <button id="buttonDepart" class="btn  btn-sm fa fa-plus float-right"*ngIf="roleAdmin()||roleAgentBo()"
                     (click)="showNewCorrierDialogSortie()">Ajouter courier de sortie
             </button>
 
