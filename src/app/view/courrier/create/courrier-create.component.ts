@@ -494,4 +494,14 @@ export class CourrierCreateComponent implements OnInit {
     isCourrierSortieOrArriver(){
         return this.courrierService.isCourieSorieOrArrivee;
     }
+    isHeConnected(email: string): boolean{
+        if(this.currentUser.email === email && (!this.onDetail)){
+            return true;
+        } else {
+            return false
+        }
+    }
+    get currentUser(): UserVo {
+        return this.userService.currentUser;
+    }
 }

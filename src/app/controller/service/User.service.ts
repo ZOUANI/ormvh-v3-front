@@ -322,13 +322,23 @@ export class UserService {
             }
         );
     }
+private _currentUser: UserVo;
+
+    get currentUser(): UserVo {
+        return this._currentUser;
+    }
+
+    set currentUser(value: UserVo) {
+        this._currentUser = value;
+    }
 
     getCurrentUser() {
         this.http.get<UserVo>('http://localhost:8080/generated/user/currentUser').subscribe(
             data => {
                 this.userShowDetail = true;
                 this.detailShow(data);
-            }, error1 => {
+                this.currentUser = data;
+                }, error1 => {
                 console.log(error1);
             }
         );
