@@ -28,6 +28,8 @@ import {CourrierPieceJoint} from '../../../controller/model/courrier-piece-joint
 import {ExpeditorVo} from "../../../controller/model/Expeditor.model";
 import {SexeVo} from "../../../controller/model/Sexe.model";
 import {NationalityVo} from "../../../controller/model/Nationality.model";
+import {EtatCourrierVo} from "../../../controller/model/EtatCourrier.model";
+import {EtatCourrierService} from "../../../controller/service/EtatCourrier.service";
 
 @Component({
     selector: 'app-courrier-create',
@@ -47,6 +49,7 @@ export class CourrierCreateComponent implements OnInit {
                 private evaluationService: EvaluationService,
                 private statusService: StatusService,
                 private typeCourrierService: TypeCourrierService,
+                private etatCourrierService: EtatCourrierService,
                 private leServiceService: LeServiceService,
                 private natureCourrierService: NatureCourrierService,
                 private subdivisionService: SubdivisionService,
@@ -159,6 +162,7 @@ export class CourrierCreateComponent implements OnInit {
     users: UserVo[];
     changedServices: LeServiceVo[];
     typeCourriers: TypeCourrierVo[];
+    etatCourriers: EtatCourrierVo[];
     showEditTask: boolean = false;
     editableTask: TaskVo;
     onEditTask: boolean = false;
@@ -209,6 +213,7 @@ export class CourrierCreateComponent implements OnInit {
         this.findAllsubdivisions();
         this.findAllstatuss();
         this.findAlltypeCourriers();
+        this.findAllEtatCourriers();
         this.findAllUSer();
         this.uploadForm = this.formBuilder.group({
             profile: ['']
@@ -276,6 +281,7 @@ export class CourrierCreateComponent implements OnInit {
     }
 
     saveCourrier() {
+        console.log(this.courrier);
         if (!this.courrier.idCourrier) {
             this.courrier.idCourrier = this.generatedId
             this.courrierService.saveCourrier();
@@ -411,6 +417,19 @@ export class CourrierCreateComponent implements OnInit {
             console.log(error);
         });
     }
+
+    findAllEtatCourriers() {
+        this.etatCourrierService.findAlletatCourriers().subscribe(data => {
+
+            if (data != null) {
+                this.etatCourriers = data;
+                console.log(data);
+            }
+        }, error => {
+            console.log(error);
+        });
+    }
+
 
     findAllUSer() {
         this.userService.findAllUsers().subscribe(data => {

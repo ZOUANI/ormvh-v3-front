@@ -78,7 +78,7 @@
                             <p-dropdown [disabled]="onDetail||roleChargeDeRequete()||roleChargerDeTraitementCourier()||roleDirecteur()||roleChefService()" [options]="natureCourriers" styleClass="form-control"
                                         selectId="nature-courrier"
                                         [(ngModel)]="courrier.natureCourrierVo"
-                                        (onClick)="DetailInterfacedefaulteValue(courrier.natureCourrierVo)"
+
                                         optionLabel="libelle" dataKey="id"></p-dropdown>
                         </div>
                         <!--<div class="form-group col-md-2" style="margin-bottom:0;">-->
@@ -106,14 +106,7 @@
 
 
                     <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="object-courrier">{{"MAILING.OBJECT" | translate}}</label>
-                            <p-dropdown [disabled]="onDetail" styleClass="form-control" selectId="object-courrier"
-                                        [options]="courrierObjects"
-                                        [(ngModel)]="courrier.courrierObjectVo" [filter]="true"
-                                        [disabled]="roleChargeDeRequete()||roleChargerDeTraitementCourier()||roleDirecteur()||roleChefService()"
-                                        dataKey="id"></p-dropdown>
-                        </div>
+
                         <div class="form-group col-md-3">
                             <label for="linked-courrier">{{"MAILING.LINKED_TO" | translate}}</label>
                             <p-dropdown [disabled]="onDetail||roleChargeDeRequete()||roleChargerDeTraitementCourier()||roleDirecteur()||roleChefService()" styleClass="form-control" [showClear]="true"
@@ -715,6 +708,14 @@
                         <textarea [disabled]="onDetail||roleChefService()" type="text" id="instruction-courrier" class="form-control"
                                   [(ngModel)]="courrier.instruction" rows="8"></textarea>
                     </div>
+                    <div class="form-group col-md-6">
+                        <label for="object-courrier">{{"MAILING.OBJECT" | translate}}</label>
+                        <p-dropdown [disabled]="onDetail" styleClass="form-control" selectId="object-courrier"
+                                    [options]="courrierObjects"
+                                    [(ngModel)]="courrier.courrierObjectVo" [filter]="true"
+                                    [disabled]="roleChargeDeRequete()||roleChargerDeTraitementCourier()||roleDirecteur()||roleChefService()"
+                                    dataKey="id"></p-dropdown>
+                    </div>
                 </div>
             </div>
 
@@ -723,6 +724,14 @@
                 <div class="col-md-4 mr-2" *ngIf="!onDetail">
                     <button class="btn btn-success btn-block"
                             (click)="saveCourrier()">{{"COMMONS.CREATED_BY" | translate}}</button>
+                </div>
+                <div class="col-md-2 mr-1">
+
+                        <p-dropdown [disabled]="onDetail||roleChargeDeRequete()||roleChargerDeTraitementCourier()" [options]="etatCourriers" styleClass="form-control"
+                                    selectId="etat-courrier"
+                                    [(ngModel)]="courrier.etatCourrierVo"
+                                    optionLabel="libelle" dataKey="id"></p-dropdown>
+
                 </div>
             </div>
         </div>

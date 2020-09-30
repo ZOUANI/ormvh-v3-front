@@ -12,6 +12,7 @@ import {TypeCourrierVo} from './TypeCourrier.model';
 import {VoieVo} from './Voie.model';
 import {LeServiceVo} from './LeService.model';
 import {CourrierPieceJoint} from './courrier-piece-joint.model';
+import {EtatCourrierVo} from "./EtatCourrier.model";
 
 export class CourrierVo {
     public instruction: string;
@@ -52,6 +53,7 @@ export class CourrierVo {
     public delaiMax: string;
     public delaiMin: string;
     public courrierObjectVo: CourrierObjectVo;
+    public etatCourrierVo: EtatCourrierVo;
     public voieVo: VoieVo;
     public natureCourrierVo: NatureCourrierVo;
     public linkedToVo: CourrierVo;

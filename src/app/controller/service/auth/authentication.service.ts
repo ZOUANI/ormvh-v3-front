@@ -72,10 +72,10 @@ export class AuthenticationService {
         this.router.navigate(['login']);
     }
 
-
-    public hasRole(role: RoleVo): boolean {
+c
+    public hasRole(role): boolean {
       for (let r of this.authenticatedUser.rolesVo) {
-        if (r.authority === role.authority) {
+        if (r == role) {
           return true;
         }
       }

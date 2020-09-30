@@ -116,6 +116,7 @@ export class LeServiceService {
     }
 
     public saveLeService() {
+        console.log(this.leService);
         this.http.post<LeServiceVo>('http://localhost:8080/generated/leService/', this.leService).subscribe(data => {
             this.createHide();
             this.leServiceListe.push(data);

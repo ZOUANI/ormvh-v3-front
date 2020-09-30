@@ -322,7 +322,7 @@ export class UserService {
             }
         );
     }
-private _currentUser: UserVo;
+    private _currentUser: UserVo;
 
     get currentUser(): UserVo {
         return this._currentUser;
@@ -338,7 +338,7 @@ private _currentUser: UserVo;
                 this.userShowDetail = true;
                 this.detailShow(data);
                 this.currentUser = data;
-                }, error1 => {
+            }, error1 => {
                 console.log(error1);
             }
         );
