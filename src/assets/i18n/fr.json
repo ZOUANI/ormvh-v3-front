@@ -1,6 +1,6 @@
 {
   "MODELS": {
-    "MAILING": "Infos",
+    "MAILING": "Infos Courrier",
     "OBJECT": "Objet",
     "STATEMENT": "Borderau",
     "EXPEDITOR": "Expéditeur",
@@ -133,7 +133,7 @@
     "CREATED_AT": "Créée à",
     "CREATED_AT_MAX": "Créée max à",
     "CREATED_AT_MIN": "Créée min à ",
-    "CREATED_BY": "Créé par",
+    "CREATED_BY": "OK",
     "DETAILS": "Détails",
     "FIELD": "Champ",
     "SAVE": "Sauvegarder",

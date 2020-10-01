@@ -11,6 +11,8 @@ import {ExpeditorVo} from '../model/Expeditor.model';
 import {CourrierPieceJoint} from '../model/courrier-piece-joint.model';
 import {AuthenticationService} from "./auth/authentication.service";
 import {Observable} from 'rxjs';
+import {NatureCourrierVo} from "../model/NatureCourrier.model";
+import {StatusVo} from "../model/Status.model";
 
 @Injectable({
     providedIn: 'root'
@@ -184,6 +186,8 @@ private _courrierPieceJoint: Array<CourrierPieceJoint>;
     get courrier(): CourrierVo {
         if (this._courrier == null) {
             this._courrier = new CourrierVo();
+            this._courrier.natureCourrierVo=new NatureCourrierVo();
+            this._courrier.statusVo=new StatusVo();
             this._courrier.courrierPieceJoint = new Array<CourrierPieceJoint>();
             this._courrier.courrierPieceJoint.forEach(courr => {
                 courr = new CourrierPieceJoint();

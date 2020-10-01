@@ -30,6 +30,7 @@ import {SexeVo} from "../../../controller/model/Sexe.model";
 import {NationalityVo} from "../../../controller/model/Nationality.model";
 import {EtatCourrierVo} from "../../../controller/model/EtatCourrier.model";
 import {EtatCourrierService} from "../../../controller/service/EtatCourrier.service";
+import {NatureExpiditeurVo} from "../../../controller/model/NatureExpiditeur.model";
 
 @Component({
     selector: 'app-courrier-create',
@@ -171,6 +172,9 @@ export class CourrierCreateComponent implements OnInit {
     courrierPiece: CourrierPieceJoint;
     onAddSender:boolean=false;
     displayBasic2: boolean;
+    natureExpediteurs:SelectItem[];
+
+
 
     showBasicDialog2() {
         this.displayBasic2 = true;
@@ -222,10 +226,12 @@ export class CourrierCreateComponent implements OnInit {
         this.findAlltypeCourriers();
         this.findAllEtatCourriers();
         this.findAllUSer();
+       // this.findAllNatureExpiditors();
         this.uploadForm = this.formBuilder.group({
             profile: ['']
         });
         this.courrierService.loadRoles();
+
 
     }
 
@@ -568,5 +574,14 @@ export class CourrierCreateComponent implements OnInit {
 
     findAllnationalitys() {
         this.expeditorService.findAllnationalitys();
+    }
+
+    private findAllNatureExpiditors() {
+        let natureExpiditor1=new NatureExpiditeurVo('1','Personne Physique');
+        let natureExpiditor2=new NatureExpiditeurVo('2','Personne Morale');
+
+        this.natureExpediteurs.push({label:natureExpiditor1.libelle,value:natureExpiditor1});
+        this.natureExpediteurs.push({label:natureExpiditor2.libelle,value:natureExpiditor2});
+
     }
 }

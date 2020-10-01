@@ -29,7 +29,7 @@
                     <a class="nav-link" id="pills-contact-tab" data-toggle="tab" href="#pills-tasks" role="tab"
                        aria-controls="pills-contact" aria-selected="false">{{"MODELS.TASK" | translate}}</a>
                 </li>
-                <li *ngIf="roleAdmin() "  class="nav-item">
+                <li *ngIf="roleAdmin()&&courrier.natureCourrierVo.code=='requete' "  class="nav-item">
                     <a class="nav-link" id="pills-contact-tab" data-toggle="tab" href="#pills-follow-requests" role="tab"
                        aria-controls="pills-details" aria-selected="false">{{"MODELS.FOLLOW_REQUESTES" | translate}}</a>
                 </li>
@@ -109,6 +109,24 @@
                         </div>
 
                     </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-5 ">
+                            <label for="expeditor">{{"MODELS.EXPEDITOR" | translate}}</label>
+                            <p-dropdown [disabled]="onDetail||roleChefService()||roleDirecteur()" styleClass="form-control" selectId="expeditor"
+                                        [options]="expeditors"
+                                        [(ngModel)]="courrier.expeditorVo" [filter]="true" dataKey="id"></p-dropdown>
+                        </div>
+                        <div style="margin-top: 31px " class="form-group col-md-2 ">
+                            <button [disabled]="onDetail" class="btn btn-outline-info btn-lg fa fa-plus" (click)="showBasicDialog2()" ></button>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="expeditorType">{{"MODELS.EXPEDITOR_TYPE" | translate}}</label>
+                            <p-dropdown [disabled]="onDetail||roleChefService()||roleDirecteur()" selectId="expeditorType" styleClass="form-control"
+                                        [options]="expeditorTypes"
+                                        [(ngModel)]="courrier.expeditorTypeVo" [filter]="true"
+                                        dataKey="id"></p-dropdown>
+                        </div>
+                    </div>
 
 
                     <div class="form-row">
@@ -116,7 +134,7 @@
                         <div class="form-group col-md-6">
                             <label for="linked-courrier">{{"MAILING.LINKED_TO" | translate}}</label>
                             <p-dropdown [disabled]="onDetail||roleChargeDeRequete()||roleChargerDeTraitementCourier()||roleDirecteur()||roleChefService()" styleClass="form-control" [showClear]="true"
-                                        placeholder="not linked" selectId="linked-courrier" [options]="linkedTos"
+                                        placeholder="-----------" selectId="linked-courrier" [options]="linkedTos"
                                         [(ngModel)]="courrier.linkedToVo" optionLabel="idCourrier" [filter]="true"
                                         dataKey="id"></p-dropdown>
                         </div>
@@ -141,6 +159,7 @@
                                       [(ngModel)]="courrier.description" rows="2"></textarea>
                         </div>
                     </div>
+                    <br>
                     <div class="form-row">
                         <div class="form-group col-md-3">
                             <label for="voie-courrier">{{"MAILING.TRACK" | translate}}</label>
@@ -184,7 +203,7 @@
                             </p-calendar>
                         </div>
                         <div class="col-md-6">
-                            <label>Pièce joint  : </label>
+                            <label>Pièce joint Reponse  : </label>
                             <p-fileUpload name="myfile[]" customUpload="true" [disabled]="onDetail||roleDirecteur()||roleChefService()" (uploadHandler)="onUpload($event)" multiple="multiple">
                                 <ng-template pTemplate="content">
                                     <ul *ngIf="uploadedFiles.length">
@@ -195,24 +214,7 @@
                         </div>
                     </div>
                     <br>
-                    <div class="form-row">
-                        <div class="form-group col-md-5 ">
-                            <label for="expeditor">{{"MODELS.EXPEDITOR" | translate}}</label>
-                            <p-dropdown [disabled]="onDetail||roleChefService()||roleDirecteur()" styleClass="form-control" selectId="expeditor"
-                                        [options]="expeditors"
-                                        [(ngModel)]="courrier.expeditorVo" [filter]="true" dataKey="id"></p-dropdown>
-                        </div>
-                        <div style="margin-top: 31px " class="form-group col-md-2 ">
-                                <button [disabled]="onDetail" class="btn btn-outline-info btn-lg fa fa-plus" (click)="showBasicDialog2()" ></button>
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label for="expeditorType">{{"MODELS.EXPEDITOR_TYPE" | translate}}</label>
-                            <p-dropdown [disabled]="onDetail||roleChefService()||roleDirecteur()" selectId="expeditorType" styleClass="form-control"
-                                        [options]="expeditorTypes"
-                                        [(ngModel)]="courrier.expeditorTypeVo" [filter]="true"
-                                        dataKey="id"></p-dropdown>
-                        </div>
-                    </div>
+
 
                 </div>
                 <!--
@@ -826,14 +828,12 @@
                         <div class="form-group col-md-3">
                             <label > {{"MODELS.QUERY_TYPE" | translate}}</label>
                             <p-dropdown [disabled]="onDetail||roleChargeDeRequete()||roleChargerDeTraitementCourier()"  styleClass="form-control"
-
-                                        optionLabel="libelle" dataKey="id"></p-dropdown>
+                                        [(ngModel)]="courrier.natureCourrierVo" [options]="natureCourriers" placeholder="----------------" optionLabel="libelle" dataKey="id"></p-dropdown>
                         </div>
                         <div class="form-group col-md-3">
                             <label > {{"MODELS.QUERY_OBJECT" | translate}}</label>
                             <p-dropdown [disabled]="onDetail||roleChargeDeRequete()||roleChargerDeTraitementCourier()"  styleClass="form-control"
-
-                                        optionLabel="libelle" dataKey="id"></p-dropdown>
+                                        [(ngModel)]="courrier.courrierObjectVo" [options]="courrierObjects" placeholder="----------------" optionLabel="label" dataKey="id"></p-dropdown>
                         </div>
                         <div class="form-group col-md-3">
                             <label for="evaluation">{{"MAILING.EVALUATION" | translate}}</label>
@@ -852,28 +852,27 @@
                         <div class="form-group col-md-3">
                             <label > {{"MODELS.CASTUMER_NATURE" | translate}}</label>
                             <p-dropdown [disabled]="onDetail||roleChargeDeRequete()||roleChargerDeTraitementCourier()"  styleClass="form-control"
-
-                                        optionLabel="libelle" dataKey="id"></p-dropdown>
+                                        [(ngModel)]="expeditor.nature" [options]="natureExpediteurs" placeholder="----------------" optionLabel="label" dataKey="id"></p-dropdown>
                         </div>
                         <div class="form-group col-md-3">
                             <label > {{"MODELS.PROCESSING_STATUS" | translate}}</label>
-                            <p-dropdown [disabled]="onDetail||roleChargeDeRequete()||roleChargerDeTraitementCourier()"  styleClass="form-control"
-
-                                        optionLabel="libelle" dataKey="id"></p-dropdown>
+                            <p-dropdown [disabled]="onDetail||roleChargeDeRequete()||roleChargerDeTraitementCourier()||roleDirecteur()||roleChefService()" styleClass="form-control" selectId="status-courrier"
+                                        [options]="statuss"
+                                        [(ngModel)]="courrier.statusVo" optionLabel="libelle" dataKey="id"></p-dropdown>
                         </div>
-                        <div class="form-group  col-md-3">
+                        <div *ngIf="courrier.statusVo.code=='traite'" class="form-group  col-md-3">
                             <label>{{"MODELS.PROCESSING_DATE" | translate}}</label><br>
                             <p-calendar id="teesst" [disabled]="onDetail||roleDirecteur()||roleChefService()" appendTo="body" [showTime]="true"
                                         >
                             </p-calendar>
                         </div>
+
                         <div class="form-group col-md-3">
                             <label > {{"MODELS.ADMINISTRATIV_PHASE" | translate}}</label>
                             <p-dropdown [disabled]="onDetail||roleChargeDeRequete()||roleChargerDeTraitementCourier()"  styleClass="form-control"
-
-                                        optionLabel="libelle" dataKey="id"></p-dropdown>
+                                        placeholder="----------------" optionLabel="libelle" dataKey="id"></p-dropdown>
                         </div>
-                        <div class="col-md-12">
+                        <div *ngIf="courrier.statusVo.code=='traite'" class="col-md-12">
                             <label>Pièce joint  : </label>
                             <p-fileUpload name="myfile[]" customUpload="true" [disabled]="onDetail||roleDirecteur()||roleChefService()" (uploadHandler)="onUpload($event)" multiple="multiple">
                                 <ng-template pTemplate="content">
@@ -894,18 +893,25 @@
 
     <p-footer >
         <div class="form-row">
-            <div class="form-group col-md-4 " style="float: left" *ngIf="!onDetail">
-                <button class="btn btn-success btn-block"
-                        (click)="saveCourrier()">{{"COMMONS.CREATED_BY" | translate}}</button>
+            <div class="form-group col-md-3">
+                <label style="margin-top: 5px">Niveau de Traitement</label>
             </div>
-            <div class="form-group col-md-4 " >
-
+            <div class="form-group col-md-4" >
                 <p-dropdown [disabled]="onDetail||roleChargeDeRequete()||roleChargerDeTraitementCourier()" [options]="etatCourriers" styleClass="form-control"
                             selectId="etat-courrier"
                             [(ngModel)]="courrier.etatCourrierVo"
                             optionLabel="libelle" dataKey="id"></p-dropdown>
 
             </div>
+            <div class="form-group col-md-4">
+                <button class="btn btn-outline-success btn-block" [disabled]="onDetail||roleChefService()"
+                        (click)="saveCourrier()" style="float: right">{{"COMMONS.CREATED_BY" | translate}}</button>
+            </div>
+            <!--
+            <div class="form-group col-md-6 " *ngIf="!onDetail">
+                <button class="btn-success form-control"
+                        (click)="saveCourrier()">{{"COMMONS.CREATED_BY" | translate}}</button>
+            </div>-->
         </div>
     </p-footer>
 </p-dialog>
@@ -942,7 +948,7 @@
     <div class="card-body">
 
         <div class="row py-2">
-            <label>adress</label>
+            <label>adresse</label>
             <input [(ngModel)]="expeditor.adress" class="form-control" type="text">
         </div>
 
@@ -963,13 +969,14 @@
             <input [(ngModel)]="expeditor.age" class="form-control" type="text">
         </div>
         <div class="row py-2">
-            <label>title</label>
+            <label>titre</label>
             <input [(ngModel)]="expeditor.title" class="form-control" type="text">
         </div>
+        <!--
         <div class="row py-2">
             <label>titleArab</label>
             <input [(ngModel)]="expeditor.titleArab" class="form-control" type="text">
-        </div>
+        </div>-->
 
         <div class="row">
             <label>sexe</label>
