@@ -1,5 +1,6 @@
 import {Component, Input, OnInit, Renderer2} from '@angular/core';
 import {MenuItem} from "primeng/api";
+import {CourrierService} from "../controller/service/Courrier.service";
 
 @Component({
     selector: 'app-navbar',
@@ -12,7 +13,7 @@ export class NavbarComponent implements OnInit {
 
     private open: boolean;
 
-    constructor(private renderer: Renderer2) {
+    constructor(private renderer: Renderer2,private courrierService:CourrierService ) {
     }
 
     @Input()
@@ -46,5 +47,8 @@ export class NavbarComponent implements OnInit {
             document.getElementById(id + "d").className = "collapse list-unstyled"
         }
 
+    }
+    roleDirecteur(){
+        return this.courrierService.isDIRECTEUR;
     }
 }

@@ -170,6 +170,13 @@ export class CourrierCreateComponent implements OnInit {
     uploadedFiles: any[] = [];
     courrierPiece: CourrierPieceJoint;
     onAddSender:boolean=false;
+    displayBasic2: boolean;
+
+    showBasicDialog2() {
+        this.displayBasic2 = true;
+        this.findAllsexes();
+        this.findAllnationalitys()
+    }
 
     boolenAccuse(task: TaskVo) {
         if (task.accuse == false) {
@@ -553,6 +560,7 @@ export class CourrierCreateComponent implements OnInit {
     saveExpeditor() {
         this.expeditorService.saveExpeditor();
         this.onAddSender= !this.onAddSender;
+        this.displayBasic2=false
     }
     findAllsexes() {
         this.expeditorService.findAllsexes();

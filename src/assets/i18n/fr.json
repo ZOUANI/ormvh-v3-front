@@ -1,6 +1,6 @@
 {
   "MODELS": {
-    "MAILING": "Info",
+    "MAILING": "Infos",
     "OBJECT": "Objet",
     "STATEMENT": "Borderau",
     "EXPEDITOR": "Expéditeur",
@@ -26,7 +26,14 @@
     "DETAILS": "Détails",
     "HISTORY": "Historique",
     "RELANCE": "Relance",
-    "INSTRUCTION" : "Instruction"
+    "INSTRUCTION" : "Instruction",
+    "QUERY_TYPE" : "Type De Requête",
+    "QUERY_OBJECT": "Sujet De Requête",
+    "FOLLOW_REQUESTES": "Suivi Des Requêtes",
+    "CASTUMER_NATURE" : "Nature Client",
+    "PROCESSING_STATUS" : "Etat De Traitement",
+    "PROCESSING_DATE" : "Date De Traitement",
+    "ADMINISTRATIV_PHASE" : "Phase Administratif"
   },
   "MAILING": {
     "ACCUSED": "Accusé",
@@ -48,7 +55,7 @@
     "GENERATE": "Générer",
     "ID": "Id",
     "INSTRUCTION": "Instruction",
-    "LINKED_TO": "Attaché à",
+    "LINKED_TO": "Courrier liée à",
     "LIST": "Liste",
     "MAILING": "Courrier",
     "MAILING_DETAILS": "Détails courrier",
@@ -69,9 +76,9 @@
     "SERVICES": "Services",
     "SUBJECT": "Sujet",
     "SUBDIVISION": "Subdivision",
-    "STATUS": "Status",
+    "STATUS": "État courrier",
     "TITLE": "Titre",
-    "TRACK": "Voie",
+    "TRACK": "Voie de provenance",
     "TYPE": "Type",
     "CREATED_AT": "Date Courrier",
     "ACTIONS": "Actions",
@@ -113,8 +120,8 @@
     "PROCESSED_AT": "Traité à",
     "RESPONSE": "Réponse",
     "RESPONSE_DATE": "Date de réponse",
-    "TASKS": "Tâches",
-    "TIME_LIMIT": "Délai",
+    "TASKS": "Liste des Tâches",
+    "TIME_LIMIT": "Délai de traitement ",
     "TITLE": "Titre"
   },
   "EXPEDITOR": {
