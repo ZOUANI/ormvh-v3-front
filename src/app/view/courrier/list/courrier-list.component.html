@@ -79,7 +79,7 @@
                 </th>
                 <th>{{"MAILING.MAILING_ID" | translate}}</th>
                 <th>{{"MAILING.SUBJECT" | translate}}</th>
-                <th>{{"MAILING.CREATED_AT" | translate}}</th>
+                <th>{{"MAILING.SENT_AT" | translate}}</th>
                 <th>{{"MAILING.STATUS" | translate}}</th>
                 <th>{{"MAILING.TYPE" | translate}}</th>
                 <th>{{"MAILING.TRACK" | translate}}</th>
@@ -93,7 +93,7 @@
                     </label></td>
                     <td>{{p.idCourrier}}</td>
                     <td>{{p.subject}}</td>
-                    <td>{{p.createdAt}}</td>
+                    <td>{{p.sentAt}}</td>
                     <td> <span
                             [ngStyle]="{'background-color':p.statusVo?.color}"
                             class="badge badge-pill">{{p.statusVo?.libelle}}</span>
@@ -109,7 +109,7 @@
                         <button class="btn btn-success btn-sm fa fa-pencil-square-o mx-md-1" (click)="edit(p)"></button>
                         <button class="btn btn-warning btn-sm fa fa-code-fork mx-md-1" (click)="showLinked(p)"></button>
                         <!--<button class="btn btn-primary btn-sm fa fa-envelope mx-md-1" (click)="email(p)"></button>-->
-                        <button class="btn btn-danger btn-sm fa fa-trash mx-md-1" (click)="delete(p)"></button>
+                        <button class="btn btn-danger btn-sm fa fa-trash mx-md-1" (click)="delete(p)" *ngIf="roleAdmin() || (roleAgentBo() && isCourrierSucceptibleInitialisation(p) )"></button>
                         <button class="btn btn-success btn-sm fa fa-download mx-md-1" (click)="download(p)"></button>
 
                     </td>

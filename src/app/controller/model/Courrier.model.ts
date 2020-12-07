@@ -13,8 +13,12 @@ import {VoieVo} from './Voie.model';
 import {LeServiceVo} from './LeService.model';
 import {CourrierPieceJoint} from './courrier-piece-joint.model';
 import {EtatCourrierVo} from "./EtatCourrier.model";
+import {NatureClientVo} from "./NatureClient.model";
+import {PhaseAdminVo} from "./PhaseAdmin.model";
+import {TypeRequetteVo} from "./TypeRequette.model";
 
 export class CourrierVo {
+    public sujet: string;
     public instruction: string;
     public expediteurDesc: string;
     public sentAt: string;
@@ -62,7 +66,6 @@ export class CourrierVo {
     public coordinatorVo: LeServiceVo;
     public emetteurVo: LeServiceVo;
     public evaluationVo: EvaluationVo;
-    public expeditorTypeVo: ExpeditorTypeVo;
     public subdivisionVo: SubdivisionVo;
     public statusVo: StatusVo;
     public typeCourrierVo: TypeCourrierVo = new TypeCourrierVo();
@@ -72,5 +75,9 @@ export class CourrierVo {
     public courrierServiceItemsVo: Array<CourrierServiceItemVo> = new Array<CourrierServiceItemVo>();
     public courrierPieceJoint: Array<CourrierPieceJoint> = new Array<CourrierPieceJoint>();
     public type: string;
+
+    public natureClientVo: NatureClientVo;
+    public phaseAdminVo: PhaseAdminVo;
+    public typeRequetteVo: TypeRequetteVo;
 
 }

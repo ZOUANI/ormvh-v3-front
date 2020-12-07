@@ -1,7 +1,7 @@
-export class EtatCourrierVo {
+export class NatureClientVo {
     public libelle: string;
     public libelleArab: string;
     public id: string;
-    public code: string;
+
 
 }

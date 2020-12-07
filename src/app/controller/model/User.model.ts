@@ -1,10 +1,12 @@
 import {RoleVo} from './Role.model';
+import {LeServiceVo} from './LeService.model';
 
 export class UserVo {
     public credentialsNonExpired: boolean;
     public enabled: boolean;
     public createdAt: string;
     public updatedAt: string;
+    public leServiceVo: LeServiceVo;
     public email: string;
     public accountNonExpired: boolean;
     public accountNonLocked: boolean;

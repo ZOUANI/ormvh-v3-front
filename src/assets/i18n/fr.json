@@ -81,8 +81,10 @@
     "TRACK": "Voie de provenance",
     "TYPE": "Type",
     "CREATED_AT": "Date Courrier",
+    "SENT_AT": "Date Courrier",
     "ACTIONS": "Actions",
-    "RESERVE": "RESERVE"
+    "RESERVE": "RESERVE",
+    "MAILING.ASSIGNED_TO": "Assigné à"
   },
   "MAILING_OBJECT": {
     "ARAB_TITLE": "Titre arabe",
@@ -113,7 +115,7 @@
     "ACCUSED_DATE": "Date accusé",
     "ASSIGNED_AT": "Assigné à",
     "ASSIGN_TO": "Assigné à",
-    "BOOST": "Relance",
+    "BOOST": "Délai de Relance",
     "DESCRIPTION": "Description",
     "ID": "Id",
     "OBSERVATION": "Observation",
@@ -133,7 +135,8 @@
     "CREATED_AT": "Créée à",
     "CREATED_AT_MAX": "Créée max à",
     "CREATED_AT_MIN": "Créée min à ",
-    "CREATED_BY": "OK",
+    "CREATED_BY": "Crée Par",
+    "OK" : "OK",
     "DETAILS": "Détails",
     "FIELD": "Champ",
     "SAVE": "Sauvegarder",
@@ -168,6 +171,7 @@
     "ACCOUNT_NON_LOCKED": "Compte non verrouillé",
     "CREDENTIALS_NON_EXPIRED": "Identifiants non expirés",
     "ENABLED": "Activée",
-    "ACTIONS" : "Options"
+    "ACTIONS" : "Options",
+    "SERVICE" : "Service"
   }
 }

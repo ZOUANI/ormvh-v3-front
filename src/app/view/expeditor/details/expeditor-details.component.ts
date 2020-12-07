@@ -1,6 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {ExpeditorVo} from '../../../controller/model/expeditor.model';
 import {ExpeditorService} from '../../../controller/service/Expeditor.service';
+import {CourrierService} from "../../../controller/service/Courrier.service";
+import {ExpeditorTypeVo} from "../../../controller/model/ExpeditorType.model";
+import {ExpeditorTypeService} from "../../../controller/service/ExpeditorType.service";
 
 @Component({
     selector: 'app-expeditor-details',
@@ -10,8 +13,10 @@ import {ExpeditorService} from '../../../controller/service/Expeditor.service';
 
 export class ExpeditorDetailsComponent implements OnInit {
 
-    constructor(private _expeditorService: ExpeditorService) {
+    constructor(private _expeditorService: ExpeditorService, private expidtorTypeSerice: ExpeditorTypeService) {
     }
+
+
 
 
     get expeditorService(): ExpeditorService {
@@ -46,5 +51,4 @@ export class ExpeditorDetailsComponent implements OnInit {
     public detailHide() {
         this.expeditorService.detailHide();
     }
-
 }

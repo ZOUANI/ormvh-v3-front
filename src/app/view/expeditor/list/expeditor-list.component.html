@@ -50,9 +50,9 @@
                                                type="text">
                                     </div>
                                     <div class="input-group  col-3  my-2">
-                                        <small class="text-muted col-12">nature</small>
-                                        <input [(ngModel)]="expeditorSearch.nature" class="form-control col-12"
-                                               placeholder="nature"
+                                        <small class="text-muted col-12">Type</small>
+                                        <input [(ngModel)]="expeditorSearch.expeditorTypeVo.title" class="form-control col-12"
+                                               placeholder="Type"
                                                type="text">
                                     </div>
                                     <div class="input-group  col-4  my-2">
@@ -159,7 +159,7 @@
                     <th>titleArab</th>
                     <th>code</th>
                     <th>description</th>
-                    <th>nature</th>
+                    <th>Type</th>
                     <th>age</th>
                     <th>sexe reference</th>
                     <th>nationality reference</th>
@@ -178,7 +178,7 @@
                         <td>{{p.titleArab}}</td>
                         <td>{{p.code}}</td>
                         <td>{{p.description}}</td>
-                        <td>{{p.nature}}</td>
+                        <td>{{p.expeditorTypeVo?.title}}</td>
                         <td>{{p.age}}</td>
                         <td>{{p.sexeVo?.libelle}}</td>
                         <td>{{p.nationalityVo?.libelle}}</td>

@@ -125,6 +125,10 @@ export class UserService {
         return this.http.get<Array<UserVo>>('http://localhost:8080/generated/user/');
     }
 
+    public findAllUsersInService(): Observable<Array<UserVo>> {
+        return this.http.get<Array<UserVo>>('http://localhost:8080/generated/user/in-service');
+    }
+
     public saveUser() {
         this.http.post<UserVo>('http://localhost:8080/generated/user/', this.user).subscribe(data => {
             if (data == null) {

@@ -6,6 +6,9 @@ import {SexeVo} from '../model/Sexe.model';
 import {NationalityVo} from '../model/Nationality.model';
 import {Observable} from 'rxjs';
 import {SelectItem} from "primeng";
+import {NatureCourrierEditComponent} from "../../view/natureCourrier/edit/natureCourrier-edit.component";
+import {NatureClientVo} from "../model/NatureClient.model";
+import {PhaseAdminVo} from "../model/PhaseAdmin.model";
 
 @Injectable({
     providedIn: 'root'
@@ -26,7 +29,11 @@ export class ExpeditorService {
     private _sexes: Array<SexeVo> = new Array<SexeVo>();
     private _nationalitys: Array<NationalityVo> = new Array<NationalityVo>();
     private _createdBys: Array<UserVo> = new Array<UserVo>();
-    private _updatedBys: Array<UserVo> = new Array<UserVo>()
+    private _updatedBys: Array<UserVo> = new Array<UserVo>();
+
+   // private _natureClients: Array<NatureClientVo> = new Array<NatureClientVo>();
+
+    private _natureClients: SelectItem[];
     private _expeditors: SelectItem[];
 
     get sexes(): Array<SexeVo> {
@@ -35,6 +42,15 @@ export class ExpeditorService {
 
     set sexes(value: Array<SexeVo>) {
         this._sexes = value;
+    }
+
+
+    get natureClients(): SelectItem[] {
+        return this._natureClients;
+    }
+
+    set natureClients(value: SelectItem[]) {
+        this._natureClients = value;
     }
 
     get nationalitys(): Array<NationalityVo> {
@@ -139,10 +155,23 @@ export class ExpeditorService {
         ;
     }
 
+    findAllNatureClient() {
+        this.http.get<Array<NatureClientVo>>('http://localhost:8080/generated/natureClient/').subscribe(data => {
+            if (data != null) {
+                for (const item of data) {
+                    this.natureClients.push({label: item.libelle, value: item});
+                }
+            }
+        }, error => {
+            this.expeditors = [{label: 'select expeditor', value: null}];
+        });
+        ;
+    }
+
 
     public saveExpeditor() {
         this.http.post<ExpeditorVo>('http://localhost:8080/generated/expeditor/', this.expeditor).subscribe(data => {
-            this.expeditorListe.push(data)
+            this.expeditorListe.push(data);
             this.expeditors.push({label: data.title, value: data});
             this.expeditorListe.push(data);
 
@@ -172,7 +201,7 @@ export class ExpeditorService {
     delete(pojo: ExpeditorVo) {
         this.http.delete<ExpeditorVo>('http://localhost:8080/generated/expeditor/id/' + pojo.id).subscribe(
             value => {
-                var index = this.expeditorListe.indexOf(pojo);
+                let index = this.expeditorListe.indexOf(pojo);
                 if (index > -1) {
                     this.expeditorListe.splice(index, 1);
                 }
@@ -233,7 +262,6 @@ export class ExpeditorService {
         );
     }
 
-
     /***********************************************************************************************/
     private _expeditorShowDetail: boolean;
 
@@ -251,4 +279,6 @@ export class ExpeditorService {
     set expeditors(value: SelectItem[]) {
         this._expeditors = value;
     }
+
+
 }

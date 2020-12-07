@@ -22,15 +22,22 @@ import {SelectItem} from 'primeng/api';
 import {UserService} from 'src/app/controller/service/User.service';
 import {LeServiceVo} from 'src/app/controller/model/LeService.model';
 import * as $ from 'jquery';
-import {moment} from "ngx-bootstrap/chronos/test/chain";
+import {moment} from 'ngx-bootstrap/chronos/test/chain';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {CourrierPieceJoint} from '../../../controller/model/courrier-piece-joint.model';
-import {ExpeditorVo} from "../../../controller/model/Expeditor.model";
-import {SexeVo} from "../../../controller/model/Sexe.model";
-import {NationalityVo} from "../../../controller/model/Nationality.model";
-import {EtatCourrierVo} from "../../../controller/model/EtatCourrier.model";
-import {EtatCourrierService} from "../../../controller/service/EtatCourrier.service";
-import {NatureExpiditeurVo} from "../../../controller/model/NatureExpiditeur.model";
+import {ExpeditorVo} from '../../../controller/model/Expeditor.model';
+import {SexeVo} from '../../../controller/model/Sexe.model';
+import {NationalityVo} from '../../../controller/model/Nationality.model';
+import {EtatCourrierVo} from '../../../controller/model/EtatCourrier.model';
+import {EtatCourrierService} from '../../../controller/service/EtatCourrier.service';
+import {PhaseAdminVo} from '../../../controller/model/PhaseAdmin.model';
+import {NatureClientVo} from '../../../controller/model/NatureClient.model';
+import {PhaseAdminService} from '../../../controller/service/PhaseAdmin.service';
+import {NatureClientService} from '../../../controller/service/NatureClient.service';
+import {CourrierObjectVo} from '../../../controller/model/CourrierObject.model';
+import {TypeRequetteService} from '../../../controller/service/TypeRequette.service';
+import {TypeRequetteVo} from '../../../controller/model/TypeRequette.model';
+import {AuthenticationService} from '../../../controller/service/auth/authentication.service';
 
 @Component({
     selector: 'app-courrier-create',
@@ -41,6 +48,36 @@ import {NatureExpiditeurVo} from "../../../controller/model/NatureExpiditeur.mod
 export class CourrierCreateComponent implements OnInit {
 
     uploadForm: FormGroup;
+
+
+    voies: VoieVo[];
+    natureCourriers: NatureCourrierVo[];
+    evaluations: SelectItem[];
+    expeditorTypes: SelectItem[];
+    subdivisions: SelectItem[];
+    leServices: SelectItem[];
+    courrierObjects: CourrierObjectVo[];
+
+    typeRequettes: TypeRequetteVo[];
+    phaseAdmins: PhaseAdminVo[];
+    natureClients: NatureClientVo[];
+
+    statuss: StatusVo[];
+    users: UserVo[];
+    usersInService: UserVo[];
+    changedServices: LeServiceVo[];
+    typeCourriers: TypeCourrierVo[];
+    etatCourriers: EtatCourrierVo[];
+    showEditTask = false;
+    editableTask: TaskVo;
+    onEditTask = false;
+    onSelectTask = false;
+    uploadedFiles: any[] = [];
+    courrierPiece: CourrierPieceJoint;
+    onAddSender = false;
+    displayBasic2: boolean;
+    natureExpediteurs: SelectItem[];
+
     constructor(private courrierService: CourrierService,
                 private voieService: VoieService,
                 private formBuilder: FormBuilder,
@@ -54,7 +91,15 @@ export class CourrierCreateComponent implements OnInit {
                 private leServiceService: LeServiceService,
                 private natureCourrierService: NatureCourrierService,
                 private subdivisionService: SubdivisionService,
-                private userService: UserService) {
+                private userService: UserService,
+                private phaseAdminService: PhaseAdminService,
+                private natureClientService: NatureClientService,
+                private typeRequetteService: TypeRequetteService
+                ) {
+    }
+
+    get coordinateur(): boolean {
+        return this.courrierService.coordinateur;
     }
 
     get onEdit(): boolean {
@@ -117,14 +162,15 @@ export class CourrierCreateComponent implements OnInit {
     }
 
     get message(): string {
-        if (this.onDetail)
-            return "Detail";
-        else if (this.onEdit)
-            return "Edit Courrier";
-        else if(this.courrier.typeCourrierVo.libelle=="Sortie")
-            return "nouveau courrier de sortie ";
-        else if(this.courrier.typeCourrierVo.libelle=="Arrivee")
-            return "nouveau courrier d'Arrivee"
+        if (this.onDetail) {
+            return 'Detail';
+        } else if (this.onEdit) {
+            return 'Edit Courrier';
+        } else if (this.courrier.typeCourrierVo.libelle === 'Sortie') {
+                    return 'nouveau courrier de sortie ';
+        } else if (this.courrier.typeCourrierVo.libelle === 'Arrivee') {
+                    return 'nouveau courrier d\'Arrivee';
+        }
     }
 
     get createExpeditorShow(): boolean {
@@ -152,61 +198,39 @@ export class CourrierCreateComponent implements OnInit {
     }
 
 
-    courrierObjects: SelectItem[];
-    voies: VoieVo[];
-    natureCourriers: NatureCourrierVo[];
-    evaluations: SelectItem[];
-    expeditorTypes: SelectItem[];
-    subdivisions: SelectItem[];
-    leServices: SelectItem[];
-    statuss: StatusVo[];
-    users: UserVo[];
-    changedServices: LeServiceVo[];
-    typeCourriers: TypeCourrierVo[];
-    etatCourriers: EtatCourrierVo[];
-    showEditTask: boolean = false;
-    editableTask: TaskVo;
-    onEditTask: boolean = false;
-    onSelectTask: boolean = false;
-    uploadedFiles: any[] = [];
-    courrierPiece: CourrierPieceJoint;
-    onAddSender:boolean=false;
-    displayBasic2: boolean;
-    natureExpediteurs:SelectItem[];
-
 
 
     showBasicDialog2() {
         this.displayBasic2 = true;
         this.findAllsexes();
-        this.findAllnationalitys()
+        this.findAllnationalitys();
     }
 
     boolenAccuse(task: TaskVo) {
         if (task.accuse == false) {
             task.accuse = true;
         } else {
-            task.accuse = false
+            task.accuse = false;
         }
-        console.log(task.accuse + "hhh");
+        console.log(task.accuse + 'hhh');
     }
 
     boolenReponse(task: TaskVo) {
         if (task.reponse == false) {
             task.reponse = true;
         } else {
-            task.reponse = false
+            task.reponse = false;
         }
-        console.log(task.accuse + "hhh");
+        console.log(task.accuse + 'hhh');
     }
 
     DetailInterfacedefaulteValue(naturcorier: NatureCourrierVo) {
         this.courrier.delai = naturcorier.delai;
         this.courrier.relance = naturcorier.relance;
-        //this.courrier.dateRelance=new Date();
-        let today=new Date();
-        let addingDays=parseInt(this.courrier.relance);
-        this.courrier.dateRelance = new Date(today.getTime() + (1000 * 60 * 60 * 24*addingDays)).toISOString().substring(0,10);
+        // this.courrier.dateRelance=new Date();
+        const today = new Date();
+        const addingDays = parseInt(this.courrier.relance);
+        this.courrier.dateRelance = new Date(today.getTime() + (1000 * 60 * 60 * 24 * addingDays)).toISOString().substring(0, 10);
 
 
     }
@@ -226,7 +250,11 @@ export class CourrierCreateComponent implements OnInit {
         this.findAlltypeCourriers();
         this.findAllEtatCourriers();
         this.findAllUSer();
-       // this.findAllNatureExpiditors();
+        this.findAllNatureClients();
+        this.findAllPhaseAdmins();
+        this.findAllTypeRequettes();
+        this.findAllUSerInService();
+
         this.uploadForm = this.formBuilder.group({
             profile: ['']
         });
@@ -236,8 +264,8 @@ export class CourrierCreateComponent implements OnInit {
     }
 
     generateId() {
-        this.courrierService.generateId()
-        this.courrierService.verifyIdCourier = ''
+        this.courrierService.generateId();
+        this.courrierService.verifyIdCourier = '';
     }
 
     addTask() {
@@ -274,7 +302,7 @@ export class CourrierCreateComponent implements OnInit {
     }
 
     deleteTask() {
-        let index = this.courrier.tasksVo.indexOf(this.editableTask);
+        const index = this.courrier.tasksVo.indexOf(this.editableTask);
         if (index != -1) {
             this.onSelectTask = false;
             this.onEditTask = false;
@@ -284,21 +312,54 @@ export class CourrierCreateComponent implements OnInit {
     }
 
     addCourrierServiceItem() {
-        let index = this.courrier.courrierServiceItemsVo.findIndex(item => item.serviceVo.id == this.courrierServiceItem.serviceVo.id);
-        if (index == -1 && this.courrierServiceItem.serviceVo)
+        const index = this.courrier.courrierServiceItemsVo.findIndex(item => item.serviceVo.id == this.courrierServiceItem.serviceVo.id);
+        if (index == -1 && this.courrierServiceItem.serviceVo) {
             this.courrierService.addCourrierServiceItem();
+        }
     }
 
     removeCourrierServiceItem(i: number) {
         this.courrierService.removeCourrierServiceItem(i);
     }
+     findEtatCourrierByCode(codeEtatCourrier: string): EtatCourrierVo {
+         for (let i = 0; i < this.etatCourriers.length; i++) {
+             const myEtatCourrier = this.etatCourriers[i];
+             if (myEtatCourrier.code === codeEtatCourrier) {
+                 return myEtatCourrier;
+             }
+         }
+         return null;
+    }
+
+    isCourrierSucceptibleInitialisation() {
+        return this.courrier.etatCourrierVo == null || this.courrier.etatCourrierVo.code === 'init';
+    }
+
+    isCourrierSucceptibleDirecteur() {
+        return this.courrier.etatCourrierVo != null && this.courrier.etatCourrierVo.code === 'directeur';
+    }
+
+    isCourrierSucceptibleChef() {
+        return this.courrier.etatCourrierVo != null && (this.courrier.etatCourrierVo.code === 'chef' || this.courrier.etatCourrierVo.code === 'bureau');
+    }
+
+    isCourrierSucceptibleBureau() {
+        return this.courrier.etatCourrierVo != null && this.courrier.etatCourrierVo.code === 'bureau';
+    }
+
+
+    saveCourrierUsingEtat( codeEtatCourrier: string) {
+        this.courrier.etatCourrierVo = this.findEtatCourrierByCode(codeEtatCourrier);
+        console.log(this.courrier.etatCourrierVo);
+        this.saveCourrier();
+    }
 
     saveCourrier() {
         console.log(this.courrier);
         if (!this.courrier.idCourrier) {
-            this.courrier.idCourrier = this.generatedId
+            this.courrier.idCourrier = this.generatedId;
             this.courrierService.saveCourrier();
-            this.generatedId = ''
+            this.generatedId = '';
             this.courrierService.verifyIdCourier = '';
         } else {
             this.courrierService.editCourrier();
@@ -307,14 +368,9 @@ export class CourrierCreateComponent implements OnInit {
 
     findAllcourrierObjects() {
         this.courrierObjectService.findAllcourrierObjects().subscribe(data => {
-            this.courrierObjects = [{label: 'none', value: null}];
-            if (data != null) {
-                for (const item of data) {
-                    this.courrierObjects.push({label: item.title, value: item});
-                }
-            }
+            this.courrierObjects = data;
         }, error => {
-            this.courrierObjects = [{label: 'none', value: null}];
+            console.log(error);
         });
     }
 
@@ -357,7 +413,6 @@ export class CourrierCreateComponent implements OnInit {
         this.natureCourrierService.findAllnatureCourriers().subscribe(data => {
             if (data != null) {
                 this.natureCourriers = data;
-                this.courrier.natureCourrierVo = this.natureCourriers[0];
             }
         }, error => {
             console.log(error);
@@ -371,7 +426,7 @@ export class CourrierCreateComponent implements OnInit {
 
     findAllevaluations() {
         this.evaluationService.findAllevaluations().subscribe(data => {
-            this.evaluations = [{label: 'Select evaluation', value: null}];
+            this.evaluations = [{label: '--------------------', value: null}];
             if (data != null) {
                 for (const item of data) {
                     this.evaluations.push({label: item.title, value: item});
@@ -397,7 +452,7 @@ export class CourrierCreateComponent implements OnInit {
 
     findAllsubdivisions() {
         this.subdivisionService.findAllsubdivisions().subscribe(data => {
-            this.subdivisions = [{label: 'select subdivision', value: null}];
+            this.subdivisions = [{label: '--------------------', value: null}];
             if (data != null) {
                 for (const item of data) {
                     this.subdivisions.push({label: item.title, value: item});
@@ -413,7 +468,7 @@ export class CourrierCreateComponent implements OnInit {
             if (data != null) {
                 this.statuss = data;
                 this.courrier.statusVo = this.statuss[0];
-                this.task.statusVo = this.statuss[0];
+                /*this.task.statusVo = this.statuss[0];*/
             }
         }, error => {
             console.log(error);
@@ -454,12 +509,22 @@ export class CourrierCreateComponent implements OnInit {
         });
     }
 
+    findAllUSerInService() {
+        this.userService.findAllUsersInService().subscribe(data => {
+            if (data != null) {
+                this.usersInService = data;
+            }
+        }, error => {
+            console.log(error);
+        });
+    }
+
     showCreateExpeditor() {
         this.courrierService.showCreateExpeditor();
     }
 
     verifyId() {
-        this.courrierService.verifyId(this.generatedId)
+        this.courrierService.verifyId(this.generatedId);
         console.log(this.generatedId);
     }
 
@@ -468,8 +533,10 @@ export class CourrierCreateComponent implements OnInit {
         this.onEditTask = false;
         this.onSelectTask = false;
         // TODO  always open the first tab
-        let element: HTMLElement = document.getElementById('courrier-tab') as HTMLElement;
+        const element: HTMLElement = document.getElementById('courrier-tab') as HTMLElement;
+        if ( element != null ) {
         element.click();
+       }
         if (!this.onEdit && !this.onDetail) {
             this.findAllcourrierObjects();
             this.findAllvoies();
@@ -483,24 +550,35 @@ export class CourrierCreateComponent implements OnInit {
             this.findAllstatuss();
             this.findAlltypeCourriers();
             this.findAllUSer();
+            this.findAllPhaseAdmins();
+            this.findAllNatureClients();
+
         }
+    }
+
+    changeDelaiEtAvance() {
+        if ( this.courrier != null && this.courrier.natureCourrierVo != null ) {
+        this.courrier.delai = this.courrier.natureCourrierVo.delai;
+        this.courrier.relance = this.courrier.natureCourrierVo.relance;
+        }
+
     }
     onUpload(event) {
 
-        for(const file of event.files) {
+        for (const file of event.files) {
             let formData = new FormData();
             this.uploadForm.get('profile').setValue(file);
             formData.append('file', this.uploadForm.get('profile').value);
             this.courrierService.saveCourrierPieceJoint(formData);
             formData = null;
             // this.courrierPiece = new CourrierPieceJoint();
-            //console.log(file);
-            //this.uploadedFiles.push(file);
-            //this.courrierPiece.chemin = file.name;
-            //this.courrierPiece.contenu = file.size;
-            //console.log(file.size);
-            //this.courrier.courrierPieceJoint.push(this.courrierPiece);
-            //this.courrierPiece = null;
+            // console.log(file);
+            // this.uploadedFiles.push(file);
+            // this.courrierPiece.chemin = file.name;
+            // this.courrierPiece.contenu = file.size;
+            // console.log(file.size);
+            // this.courrier.courrierPieceJoint.push(this.courrierPiece);
+            // this.courrierPiece = null;
         }
         for (const file of this.courrier.courrierPieceJoint) {
             console.log(file.contenu);
@@ -508,39 +586,48 @@ export class CourrierCreateComponent implements OnInit {
         }
 
     }
-    roleAdmin(){
+    isCourrierRequette() {
+       return this.courrier != null && this.courrier.natureCourrierVo != null && (this.courrier.natureCourrierVo.code === 'requete' || this.courrier.natureCourrierVo.code === 'reclamation' );
+    }
+
+
+    roleAdmin() {
         return this.courrierService.isADMIN;
     }
-    roleChargerDeTraitementCourier(){
+
+    chekIfCoordinateur() {
+        return this.courrierService.chekIfCoordinateur();
+    }
+    roleChargerDeTraitementCourier() {
         return this.courrierService.isCHARGE_DE_TRAITEMENT_COURRIER;
     }
-    roleChefService(){
+    roleChefService() {
         return this.courrierService.isCHEF_DE_SERVICE;
     }
-    roleAgentBo(){
+    roleAgentBo() {
         return this.courrierService.isAGENT_BO;
     }
-    roleChargeDeRequete(){
+    roleChargeDeRequete() {
         return this.courrierService.isCHARGE_DE_REQUETE;
     }
-    roleAgentCai(){
+    roleAgentCai() {
         return this.courrierService.isAGENT_CAI;
     }
-    roleDirecteur(){
+    roleDirecteur() {
         return this.courrierService.isDIRECTEUR;
     }
-    isCourrierSortieOrArriver(){
+    isCourrierSortieOrArriver() {
         return this.courrierService.isCourieSorieOrArrivee;
     }
-    isHeConnected(email: string): boolean{
-        if((this.currentUser.email === email || this.roleChefService()) && (!this.onDetail)){
+    isHeConnected(email: string): boolean {
+        if ((this.currentUser.email === email || this.roleChefService()) && (!this.onDetail)) {
             return true;
         } else {
             return false;
         }
     }
-    isHeConnected1(email: string): boolean{
-        if((this.roleChefService()) && (!this.onDetail)){
+    isHeConnected1(email: string): boolean {
+        if ((this.roleChefService()) && (!this.onDetail)) {
             return true;
         } else {
             return false;
@@ -549,10 +636,10 @@ export class CourrierCreateComponent implements OnInit {
     get currentUser(): UserVo {
         return this.userService.currentUser;
     }
-    AddSender(){
+    AddSender() {
         this.findAllsexes();
         this.findAllnationalitys();
-        return this.onAddSender= !this.onAddSender;
+        return this.onAddSender = !this.onAddSender;
     }
     get expeditor(): ExpeditorVo {
         return this.expeditorService.expeditor;
@@ -565,8 +652,8 @@ export class CourrierCreateComponent implements OnInit {
     }
     saveExpeditor() {
         this.expeditorService.saveExpeditor();
-        this.onAddSender= !this.onAddSender;
-        this.displayBasic2=false
+        this.onAddSender = !this.onAddSender;
+        this.displayBasic2 = false ;
     }
     findAllsexes() {
         this.expeditorService.findAllsexes();
@@ -575,13 +662,38 @@ export class CourrierCreateComponent implements OnInit {
     findAllnationalitys() {
         this.expeditorService.findAllnationalitys();
     }
+    private findAllTypeRequettes() {
+        this.typeRequetteService.findAll().subscribe(data => {
 
-    private findAllNatureExpiditors() {
-        let natureExpiditor1=new NatureExpiditeurVo('1','Personne Physique');
-        let natureExpiditor2=new NatureExpiditeurVo('2','Personne Morale');
+            if (data != null) {
+                this.typeRequettes = data;
+                console.log(data);
+            }
+        }, error => {
+            console.log(error);
+        });
+    }
 
-        this.natureExpediteurs.push({label:natureExpiditor1.libelle,value:natureExpiditor1});
-        this.natureExpediteurs.push({label:natureExpiditor2.libelle,value:natureExpiditor2});
+    private findAllPhaseAdmins() {
+        this.phaseAdminService.findAll().subscribe(data => {
 
+            if (data != null) {
+                this.phaseAdmins = data;
+                console.log(data);
+            }
+        }, error => {
+            console.log(error);
+        });
+    }
+
+    private findAllNatureClients() {
+        this.natureClientService.findAll().subscribe(data => {
+            if (data != null) {
+                this.natureClients = data;
+                console.log(data);
+            }
+        }, error => {
+            console.log(error);
+        });
     }
 }

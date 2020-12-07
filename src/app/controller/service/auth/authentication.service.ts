@@ -23,7 +23,7 @@ export class AuthenticationService {
 
     public userCandidat = new UserAuth();
 
-    public authenticatedUser = new UserVo();
+    private _authenticatedUser = new UserVo();
 
 
     public authenticated: boolean = null;
@@ -36,13 +36,13 @@ export class AuthenticationService {
                 let jwt = resp.headers.get('Authorization');
                 this.saveToken(jwt);
                 this.loadInfos();
-                if (this.authenticatedUser.passwordChanged) {
+                if (this._authenticatedUser.passwordChanged) {
                     this.router.navigate(['courrier/list']);
                 } else {
                     this.router.navigate(['resetPassword']);
                 }
             }, error1 => {
-                console.log(error1)
+                console.log(error1);
             }
         );
     }
@@ -58,9 +58,9 @@ export class AuthenticationService {
         let roles = helper.decodeToken(localStorage.getItem('token')).roles;
         let passwordChanged = helper.decodeToken(localStorage.getItem('token')).passwordChanged;
 
-        this.authenticatedUser.passwordChanged = passwordChanged;
-        this.authenticatedUser.username = username;
-        this.authenticatedUser.rolesVo = roles;
+        this._authenticatedUser.passwordChanged = passwordChanged;
+        this._authenticatedUser.username = username;
+        this._authenticatedUser.rolesVo = roles;
         this.authenticated = true;
 
     }
@@ -68,17 +68,26 @@ export class AuthenticationService {
     public logout() {
         localStorage.removeItem('token');
         this.authenticated = false;
-        this.authenticatedUser = new UserVo();
+        this._authenticatedUser = new UserVo();
         this.router.navigate(['login']);
     }
 
-c
+
     public hasRole(role): boolean {
-      for (let r of this.authenticatedUser.rolesVo) {
+      for (let r of this._authenticatedUser.rolesVo) {
         if (r == role) {
           return true;
         }
       }
       return false;
+    }
+
+
+    get authenticatedUser(): UserVo {
+        return this._authenticatedUser;
+    }
+
+    set authenticatedUser(value: UserVo) {
+        this._authenticatedUser = value;
     }
 }

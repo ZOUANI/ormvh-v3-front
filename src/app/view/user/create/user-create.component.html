@@ -17,11 +17,16 @@
                 <input type="text" class="form-control" [(ngModel)]="user.username">
             </div>
 
-            <span *ngFor="let r of user.rolesVo" class="badge badge-pill badge-info m-1">{{r.authority}}
-                <span class="badge badge-pill badge-danger m-2">
-                    <i class="fa fa-times" style="cursor: pointer" (click)="removeRole(r)"></i>
-                </span>
-            </span>
+
+
+            <div class="m-1">
+                <label>{{"USER.SERVICE" | translate}}</label>
+                <p-dropdown styleClass="form-control" [showClear]="true"
+                            placeholder="--------------------" selectId="leService" [options]="leServices"
+                            [(ngModel)]="user.leServiceVo" optionLabel="title" [filter]="true"
+                            dataKey="id"></p-dropdown>
+            </div>
+            <br>
 
         </div>
         <div class="col-md-7">

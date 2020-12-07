@@ -51,7 +51,7 @@ export class CreateExpeditorComponent implements OnInit {
 
     saveExpeditor() {
         this.expeditorService.saveExpeditor();
-        this.courrierService.createExpeditorShow = false
+        this.courrierService.createExpeditorShow = false;
 
     }
 
@@ -72,6 +72,6 @@ export class CreateExpeditorComponent implements OnInit {
     }
 
     createExpeditorHide() {
-        this.courrierService.createExpeditorShow = false
+        this.courrierService.createExpeditorShow = false;
     }
 }

@@ -9,71 +9,180 @@ import {LeServiceVo} from '../model/LeService.model';
 import {ExpeditorService} from './Expeditor.service';
 import {ExpeditorVo} from '../model/Expeditor.model';
 import {CourrierPieceJoint} from '../model/courrier-piece-joint.model';
-import {AuthenticationService} from "./auth/authentication.service";
+import {AuthenticationService} from './auth/authentication.service';
 import {Observable} from 'rxjs';
-import {NatureCourrierVo} from "../model/NatureCourrier.model";
-import {StatusVo} from "../model/Status.model";
+import {NatureCourrierVo} from '../model/NatureCourrier.model';
+import {StatusVo} from '../model/Status.model';
+import {PhaseAdminVo} from '../model/PhaseAdmin.model';
+import {NatureClientVo} from '../model/NatureClient.model';
+import {TypeRequetteVo} from '../model/TypeRequette.model';
 
 @Injectable({
     providedIn: 'root'
 })
 export class CourrierService {
 
+    onEdit = false;
+    onDetail = false;
+    onCreate = false;
 
-     isADMIN:boolean;
-     isCHARGE_DE_TRAITEMENT_COURRIER:boolean;
-     isCHEF_DE_SERVICE:boolean;
-     isAGENT_BO:boolean;
-     isCHARGE_DE_REQUETE:boolean;
-     isAGENT_CAI:boolean;
-     isDIRECTEUR:boolean;
-     isCourieSorieOrArrivee:boolean;
-    constructor(private http: HttpClient, private expeditorService: ExpeditorService , private authService : AuthenticationService) {
+    courriersService: Map<string, Array<CourrierVo>>;
+    showEmailDialog = false;
+    selectedCourrier: CourrierVo;
+
+
+    addNewCourrier = false;
+    showLinkedCourrier = false;
+    linkedToThisCourrier: CourrierVo;
+    linkedCourrier: Array<CourrierVo> = new Array<CourrierVo>();
+
+    private _courrierDetail: CourrierVo = new CourrierVo();
+    private _courrierListe: Array<CourrierVo> = new Array<CourrierVo>();
+
+    private _courrierSearch: CourrierVo = new CourrierVo();
+    private _courrier: CourrierVo = new CourrierVo();
+    private _searchedCourriers: Array<CourrierVo> = new Array<CourrierVo>();
+    private _editableCourriers: Array<CourrierVo> = new Array<CourrierVo>();
+    private _departCourriers: Array<CourrierVo> = new Array<CourrierVo>();
+    private _arrivedCourriers: Array<CourrierVo> = new Array<CourrierVo>();
+    private _ouvertCourriers: Array<CourrierVo> = new Array<CourrierVo>();
+    private _enCoursCourriers: Array<CourrierVo> = new Array<CourrierVo>();
+    private _traitedCourriers: Array<CourrierVo> = new Array<CourrierVo>();
+    private _accusedCourriers: Array<CourrierVo> = new Array<CourrierVo>();
+    private _responseCourriers: Array<CourrierVo> = new Array<CourrierVo>();
+
+    private _phaseAdmins: Array<PhaseAdminVo> = new Array<PhaseAdminVo>();
+    private _natureClients: Array<NatureClientVo> = new Array<NatureClientVo>();
+    private _typeRequettes: Array<TypeRequetteVo> = new Array<TypeRequetteVo>();
+
+
+    private _task: TaskVo;
+    private _generatedId = '';
+    private _generatedId2 = '';
+    private _reservationCourrier: CourrierVo = new CourrierVo();
+    private _reserveCourier: CourrierVo = new CourrierVo();
+    private _nbrOfAccused = 0;
+    private _nbrOfResponed = 0;
+    private _nbrOfAll = 0;
+    private _nbrOfDeparted = 0;
+    private _nbrOfArived = 0;
+    private _nbrOfOpen = 0;
+    private _nbrOfEnCours = 0;
+    private _nbrOfTraited = 0;
+
+    private _verifyIdCourier = '';
+
+    private _courrierServiceItem: CourrierServiceItemVo;
+
+    private _reservationShow: boolean;
+    private _createExpeditorShow: boolean;
+
+    private _courrierShowDetail: boolean;
+    courrierPiece: any;
+
+     isADMIN: boolean;
+     isCHARGE_DE_TRAITEMENT_COURRIER: boolean;
+     isCHEF_DE_SERVICE: boolean;
+     isAGENT_BO: boolean;
+     isCHARGE_DE_REQUETE: boolean;
+     isAGENT_CAI: boolean;
+     isDIRECTEUR: boolean;
+     isCourieSorieOrArrivee: boolean;
+    private _courrierPieceJoint: Array<CourrierPieceJoint>;
+
+    private _coordinateur: boolean;
+
+
+    constructor(private http: HttpClient, private expeditorService: ExpeditorService ,
+                private authService: AuthenticationService) {
     }
-private _courrierPieceJoint: Array<CourrierPieceJoint>;
 
+
+    chekIfCoordinateur() {
+        if (this.courrier == null || this.courrier.courrierServiceItemsVo == null
+            || this.authService.authenticatedUser == null || this.authService.authenticatedUser.username == null) {
+            this._coordinateur = false;
+            return this._coordinateur;
+        }
+
+        const authenticatedUserUsername = this.authService.authenticatedUser.username;
+        for ( let item of this.courrier.courrierServiceItemsVo) {
+            if( item.coordinateur != null && item.coordinateur && item.serviceVo != null
+                && item.serviceVo.chefVo != null && item.serviceVo.chefVo.username == authenticatedUserUsername) {
+                this._coordinateur = true;
+                return this._coordinateur;
+            }
+        }
+        this._coordinateur = false;
+        return this._coordinateur;
+    }
     get courrierPieceJoint(): Array<CourrierPieceJoint> {
-        if(this._courrierPieceJoint == null){
+        if (this._courrierPieceJoint == null) {
             this._courrierPieceJoint = new Array<CourrierPieceJoint>();
-            this._courrierPieceJoint.forEach(cour=>{
+            this._courrierPieceJoint.forEach(cour => {
                 cour = new CourrierPieceJoint();
             });
         }
         return this._courrierPieceJoint;
     }
 
-    loadRoles(){
-        this.isADMIN = this.authService.hasRole("ADMIN");
-        this.isCHARGE_DE_TRAITEMENT_COURRIER = this.authService.hasRole("CHARGE_DE_TRAITEMENT_COURRIER");
-        this.isCHEF_DE_SERVICE = this.authService.hasRole("CHEF_DE_SERVICE");
-        this.isAGENT_BO = this.authService.hasRole("AGENT_BO");
-        this.isCHARGE_DE_REQUETE=this.authService.hasRole("CHARGE_DE_REQUETE");
-        this.isAGENT_CAI=this.authService.hasRole("AGENT_CAI");
-        this.isDIRECTEUR=this.authService.hasRole("DIRECTEUR");
-        console.log(":::::::::::admin:::::::::::::"+this.isADMIN);
-        console.log(":::::::::::::charge de traitement:::::::::::"+this.isCHARGE_DE_TRAITEMENT_COURRIER);
-        console.log(":::::::::::::chef service:::::::::::"+this.isCHEF_DE_SERVICE);
-        console.log("::::::::::::agent bo::::::::::::"+this.isAGENT_BO);
+    public findAllTypeRequettes() {
+        this.http.get<Array<TypeRequetteVo>>('http://localhost:8080/generated/typeRequette/').subscribe(
+            value => {
+                if (value != null) {
+                    this._typeRequettes = value;
+                }
+            }
+        );
+    }
+    public findAllPhaseAdmins() {
+        this.http.get<Array<PhaseAdminVo>>('http://localhost:8080/generated/phaseAdmin/').subscribe(
+            value => {
+                if (value != null) {
+                    this.phaseAdmins = value;
+                }
+            }
+        );
+    }
+
+    public findAllNatureClients() {
+        this.http.get<Array<NatureClientVo>>('http://localhost:8080/generated/natureClient/').subscribe(
+            value => {
+                if (value != null) {
+                    this.natureClients = value;
+                }
+            }
+        );
+    }
+    loadRoles() {
+        this.isADMIN = this.authService.hasRole('ADMIN');
+        this.isCHARGE_DE_TRAITEMENT_COURRIER = this.authService.hasRole('CHARGE_DE_TRAITEMENT_COURRIER');
+        this.isCHEF_DE_SERVICE = this.authService.hasRole('CHEF_DE_SERVICE');
+        this.isAGENT_BO = this.authService.hasRole('AGENT_BO');
+        this.isCHARGE_DE_REQUETE = this.authService.hasRole('CHARGE_DE_REQUETE');
+        this.isAGENT_CAI = this.authService.hasRole('AGENT_CAI');
+        this.isDIRECTEUR = this.authService.hasRole('DIRECTEUR');
+
     }
 
     set courrierPieceJoint(value: Array<CourrierPieceJoint>) {
         this._courrierPieceJoint = value;
     }
 
-    public downloadFile(courrier: CourrierVo){
+    public downloadFile(courrier: CourrierVo) {
     //     this.findAllCourrierJoint(courrier.id);
-         //console.log(this.courrierPieceJoint);
+         // console.log(this.courrierPieceJoint);
         // this.courrierPieceJoint.forEach(cour => {
         this.http.get('http://localhost:8080/generated/courrier/downloadFile/' + courrier.id, {
             responseType : 'arraybuffer'}).subscribe(response => this.downLoad(response, courrier.type));
-    //});
+    // });
     }
-    public findAllCourrierJoint(id: number){
+    public findAllCourrierJoint(id: number) {
         console.log(id);
         this.http.get<CourrierPieceJoint>('http://localhost:8080/generated/courrier/findAllcourrierPieceJoint/' + id).subscribe(
-              data =>{
-                  if(data != null){
-                      console.log(data)
+              data => {
+                  if (data != null) {
+                      console.log(data);
                     //  this.courrierPieceJoint = data.courrierPieceJoint;
                   }
               }, error => {
@@ -82,9 +191,9 @@ private _courrierPieceJoint: Array<CourrierPieceJoint>;
           );
     }
     downLoad(data: any, type: string) {
-        let blob = new Blob([data], { type});
-        let url = window.URL.createObjectURL(blob);
-        let pwa = window.open(url);
+        const blob = new Blob([data], { type});
+        const url = window.URL.createObjectURL(blob);
+        const pwa = window.open(url);
         if (!pwa || pwa.closed || typeof pwa.closed === 'undefined') {
             alert( 'Please disable your Pop-up blocker and try again.');
         }
@@ -186,8 +295,10 @@ private _courrierPieceJoint: Array<CourrierPieceJoint>;
     get courrier(): CourrierVo {
         if (this._courrier == null) {
             this._courrier = new CourrierVo();
-            this._courrier.natureCourrierVo=new NatureCourrierVo();
-            this._courrier.statusVo=new StatusVo();
+            this._courrier.natureCourrierVo = new NatureCourrierVo();
+            this._courrier.statusVo = new StatusVo();
+         //   this._courrier.phaseAdminVo = new PhaseAdminVo();
+
             this._courrier.courrierPieceJoint = new Array<CourrierPieceJoint>();
             this._courrier.courrierPieceJoint.forEach(courr => {
                 courr = new CourrierPieceJoint();
@@ -299,6 +410,24 @@ private _courrierPieceJoint: Array<CourrierPieceJoint>;
     }
 
 
+    get natureClients(): Array<NatureClientVo> {
+        return this._natureClients;
+    }
+
+    set natureClients(value: Array<NatureClientVo>) {
+        this._natureClients = value;
+    }
+
+    get phaseAdmins(): Array<PhaseAdminVo> {
+        return this._phaseAdmins;
+    }
+
+    set phaseAdmins(value: Array<PhaseAdminVo>) {
+        this._phaseAdmins = value;
+    }
+
+
+
     get reservationShow(): boolean {
         return this._reservationShow;
     }
@@ -355,70 +484,19 @@ private _courrierPieceJoint: Array<CourrierPieceJoint>;
     set createExpeditorShow(value: boolean) {
         this._createExpeditorShow = value;
     }
-    onEdit: boolean = false;
-    onDetail: boolean = false;
-    onCreate: boolean = false;
-
-    courriersService: Map<string, Array<CourrierVo>>;
-    showEmailDialog: boolean = false;
-    selectedCourrier: CourrierVo;
-
-
-    addNewCourrier: boolean = false;
-    showLinkedCourrier: boolean = false;
-    linkedToThisCourrier: CourrierVo;
-    linkedCourrier: Array<CourrierVo> = new Array<CourrierVo>();
-
-    private _courrierDetail: CourrierVo = new CourrierVo();
-    private _courrierListe: Array<CourrierVo> = new Array<CourrierVo>();
-
-    private _courrierSearch: CourrierVo = new CourrierVo();
-    private _courrier: CourrierVo = new CourrierVo();
-    private _searchedCourriers: Array<CourrierVo> = new Array<CourrierVo>();
-    private _editableCourriers: Array<CourrierVo> = new Array<CourrierVo>();
-    private _departCourriers: Array<CourrierVo> = new Array<CourrierVo>();
-    private _arrivedCourriers: Array<CourrierVo> = new Array<CourrierVo>();
-    private _ouvertCourriers: Array<CourrierVo> = new Array<CourrierVo>();
-    private _enCoursCourriers: Array<CourrierVo> = new Array<CourrierVo>();
-    private _traitedCourriers: Array<CourrierVo> = new Array<CourrierVo>();
-    private _accusedCourriers: Array<CourrierVo> = new Array<CourrierVo>();
-    private _responseCourriers: Array<CourrierVo> = new Array<CourrierVo>();
-
-
-    private _task: TaskVo;
-    private _generatedId: string = '';
-    private _generatedId2: string = '';
-    private _reservationCourrier: CourrierVo = new CourrierVo();
-    private _reserveCourier: CourrierVo = new CourrierVo();
-    private _nbrOfAccused = 0;
-    private _nbrOfResponed = 0;
-    private _nbrOfAll = 0;
-    private _nbrOfDeparted = 0;
-    private _nbrOfArived = 0;
-    private _nbrOfOpen = 0;
-    private _nbrOfEnCours = 0;
-    private _nbrOfTraited = 0;
-
-    private _verifyIdCourier: string = '';
-
-    private _courrierServiceItem: CourrierServiceItemVo;
-
-    private _reservationShow: boolean;
-    private _createExpeditorShow: boolean;
-
-    private _courrierShowDetail: boolean;
-    courrierPiece: any
 
     edit(courrier: CourrierVo) {
         this.courrier = courrier;
-        if (this.courrier.courrierServiceItemsVo == null)
+        if (this.courrier.courrierServiceItemsVo == null) {
             this.courrier.courrierServiceItemsVo = new Array<CourrierServiceItemVo>();
-        if (this.courrier.tasksVo == null)
+        }
+        if (this.courrier.tasksVo == null) {
             this.courrier.tasksVo = new Array<TaskVo>();
+        }
 
+      //  this.findServiceCourrier(this.courrier);
         this.onEdit = true;
         this.onDetail = false;
-
         this.addNewCourrier = true;
     }
 
@@ -427,11 +505,26 @@ private _courrierPieceJoint: Array<CourrierPieceJoint>;
         this.onDetail = true;
         this.onEdit = false;
         this.addNewCourrier = true;
+     //   this.findServiceCourrier(this.courrier);
+    }
+
+    public findServiceCourrier(courrier: CourrierVo) {
+        const link = 'http://localhost:8080/generated/courrierServiceItem/courrier/id/' + courrier.id;
+        console.log('haaa le liennn ' + link);
+
+        this.http.get <Array<CourrierServiceItemVo>>(link).subscribe(
+            value => {
+                console.log('haaaa courrierServiceItemsVo !!! ' + value);
+                if (value != null) {
+                    courrier.courrierServiceItemsVo = value;
+                }
+            }
+        );
     }
 
     findCourrierByRelance(courrier: CourrierVo) {
         this.http.post('http://localhost:8080/generated/courrier/couriersusceptiblerelance', courrier).subscribe(data => {
-            let entries = Object.entries(data);
+            const entries = Object.entries(data);
             console.log(data);
             this.courriersService = new Map<string, Array<CourrierVo>>(entries);
 
@@ -446,7 +539,7 @@ private _courrierPieceJoint: Array<CourrierPieceJoint>;
     }
 
     sendEmail(email: string, subject: string, body: string) {
-        this.http.post<number>('http://localhost:8080/generated/courrier/sendcourierredirection/to/' + email + '/subject/' + subject + "/content/" + body, null);
+        this.http.post<number>('http://localhost:8080/generated/courrier/sendcourierredirection/to/' + email + '/subject/' + subject + '/content/' + body, null);
     }
 
     public findAll() {
@@ -915,8 +1008,8 @@ private _courrierPieceJoint: Array<CourrierPieceJoint>;
             if (data == 1) {
                  this.findAll();
 //                this.courrierListe.push(data);
-                this.addNewCourrier = false;
-                this.courrier = null;
+                 this.addNewCourrier = false;
+                 this.courrier = null;
             }
         }, eror => {
             console.log('eroro');
@@ -956,7 +1049,7 @@ private _courrierPieceJoint: Array<CourrierPieceJoint>;
 
 
     public addTask() {
-        let clone = this.cloneTask(this.task);
+        const clone = this.cloneTask(this.task);
         this.courrier.tasksVo.push(clone);
         this.task = null;
         this.task.assigneVo = clone.assigneVo;
@@ -1021,7 +1114,7 @@ private _courrierPieceJoint: Array<CourrierPieceJoint>;
     delete(pojo: CourrierVo) {
         this.http.delete <CourrierVo>('http://localhost:8080/generated/courrier/id/' + pojo.id).subscribe(
             value => {
-                var index = this.courrierListe.indexOf(pojo);
+                const index = this.courrierListe.indexOf(pojo);
                 if (index > -1) {
                     this.courrierListe.splice(index, 1);
                 }
@@ -1054,8 +1147,8 @@ private _courrierPieceJoint: Array<CourrierPieceJoint>;
     }
 
 
-    public reserve(idCourier: string, nbrCourier: number,description:string) {
-        this.http.post<CourrierVo>('http://localhost:8080/generated/courrier/courriers/reservation/idCourier/' + idCourier + '/nbr/' + nbrCourier+'/description/'+description, this.reserveCourier).subscribe(
+    public reserve(idCourier: string, nbrCourier: number, description: string) {
+        this.http.post<CourrierVo>('http://localhost:8080/generated/courrier/courriers/reservation/idCourier/' + idCourier + '/nbr/' + nbrCourier + '/description/' + description, this.reserveCourier).subscribe(
             value => {
                 console.log(value);
                 this.findAll();
@@ -1112,10 +1205,14 @@ private _courrierPieceJoint: Array<CourrierPieceJoint>;
         const httpOptions = {
             responseType: 'blob' as 'json'
         };
-        return this.http.post("http://localhost:8080/generated/courrier/pdf", courriers, httpOptions).subscribe((resultBlob: Blob) => {
-            var downloadURL = URL.createObjectURL(resultBlob);
+        return this.http.post('http://localhost:8080/generated/courrier/pdf', courriers, httpOptions).subscribe((resultBlob: Blob) => {
+            const downloadURL = URL.createObjectURL(resultBlob);
             window.open(downloadURL);
         });
     }
 
+
+    get coordinateur(): boolean {
+        return this._coordinateur;
+    }
 }

@@ -38,11 +38,14 @@ export class CourrierlistComponent implements OnInit {
 
 
     ngOnInit(): void {
-        this.findAlltypeCourriers()
-        this.findAllvoies()
-        this.findAllstatuss()
+        this.findAlltypeCourriers();
+        this.findAllvoies();
+        this.findAllstatuss();
     }
 
+    isCourrierSucceptibleInitialisation(courrier: CourrierVo) {
+        return courrier.etatCourrierVo == null || courrier.etatCourrierVo.code === 'init';
+    }
     edit(courrier: CourrierVo) {
         this.courrierService.edit(courrier);
     }
@@ -70,8 +73,6 @@ export class CourrierlistComponent implements OnInit {
         this.courrierService.onDetail = false;
         this.courrierService.courrier.typeCourrierVo.libelle = 'Arrivee';
         this.courrierService.isCourieSorieOrArrivee=true;
-        console.log(">>>>>"+this.courrierService.isCourieSorieOrArrivee);
-
     }
 public download(courrier: CourrierVo){
            this.courrierService.downloadFile(courrier);

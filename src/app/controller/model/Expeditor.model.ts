@@ -1,6 +1,7 @@
 import {UserVo} from './User.model';
 import {SexeVo} from './Sexe.model';
 import {NationalityVo} from './Nationality.model';
+import {ExpeditorTypeVo} from './ExpeditorType.model';
 
 export class ExpeditorVo {
     public adress: string;
@@ -8,7 +9,7 @@ export class ExpeditorVo {
     public updatedAt: string;
     public code: string;
     public description: string;
-    public nature: string;
+    public expeditorTypeVo: ExpeditorTypeVo = new ExpeditorTypeVo();
     public age: string;
     public id: string;
     public title: string;

@@ -3,6 +3,8 @@ import {UserService} from '../../../controller/service/User.service';
 import {UserVo} from '../../../controller/model/user.model';
 import {RoleVo} from '../../../controller/model/Role.model';
 import {RoleService} from '../../../controller/service/Role.service';
+import {LeServiceVo} from '../../../controller/model/LeService.model';
+import {LeServiceService} from '../../../controller/service/LeService.service';
 
 @Component({
     selector: 'app-user-create',
@@ -10,14 +12,30 @@ import {RoleService} from '../../../controller/service/Role.service';
     styleUrls: ['./user-create.component.css']
 })
 export class UserCreateComponent implements OnInit {
+
+    // tslint:disable-next-line:variable-name
+    private _leServices: LeServiceVo[] ;
     constructor(
         private userService: UserService,
         private roleService: RoleService,
+        private leServiceService: LeServiceService,
     ) {
     }
 
+    private findAllServices() {
+        this.leServiceService.findAllServices().subscribe(data => {
+            console.log('haaaa services :::: ' + data);
+            if (data != null) {
+                this._leServices = data;
+            }
+        }, error => {
+            console.log(error);
+        });
+    }
     ngOnInit(): void {
         this.roleService.findAll();
+        this.findAllServices();
+
     }
 
     get user(): UserVo {
@@ -30,7 +48,7 @@ export class UserCreateComponent implements OnInit {
     }
 
     addRole(item: RoleVo) {
-        let cloned = new RoleVo();
+        const cloned = new RoleVo();
         cloned.authority = item.authority;
         this.user.rolesVo.push(cloned);
         this.roles.splice(this.roles.indexOf(item), 1);
@@ -50,4 +68,8 @@ export class UserCreateComponent implements OnInit {
         return this.roleService.roleListe;
     }
 
+
+    get leServices(): LeServiceVo[] {
+        return this._leServices;
+    }
 }
