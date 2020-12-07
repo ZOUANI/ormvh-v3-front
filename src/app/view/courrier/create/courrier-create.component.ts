@@ -173,6 +173,12 @@ export class CourrierCreateComponent implements OnInit {
         }
     }
 
+    isSortie() {
+        return (this.courrier.typeCourrierVo != null && this.courrier.typeCourrierVo.libelle === 'Sortie') ;
+    }
+    isArrive() {
+        return (this.courrier.typeCourrierVo != null && this.courrier.typeCourrierVo.libelle === 'Arrivee') ;
+    }
     get createExpeditorShow(): boolean {
         return this.courrierService.createExpeditorShow;
     }
