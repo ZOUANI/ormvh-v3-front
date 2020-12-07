@@ -51,6 +51,8 @@ export class CourrierCreateComponent implements OnInit {
 
 
     voies: VoieVo[];
+    natureCourriersSortie: NatureCourrierVo[];
+    natureCourriersArrivee: NatureCourrierVo[];
     natureCourriers: NatureCourrierVo[];
     evaluations: SelectItem[];
     expeditorTypes: SelectItem[];
@@ -173,6 +175,9 @@ export class CourrierCreateComponent implements OnInit {
         }
     }
 
+    isDemande() {
+        return (this.courrier.natureCourrierVo != null && this.courrier.natureCourrierVo.code === 'demande') ;
+    }
     isSortie() {
         return (this.courrier.typeCourrierVo != null && this.courrier.typeCourrierVo.libelle === 'Sortie') ;
     }
@@ -417,13 +422,10 @@ export class CourrierCreateComponent implements OnInit {
 
     findAllnatureCourriers() {
         this.natureCourrierService.findAllnatureCourriers().subscribe(data => {
+            this.natureCourriers = data ;
             if (data != null) {
-                let categorie = 2;
-                this.isSortie(); {
-                    categorie = 1;
-                }
-                this.natureCourriers = data;
-                this.natureClients.slice(1,2);// lolo
+                this.natureCourriersSortie = data.filter(e => e.categorie === '2');
+                this.natureCourriersArrivee = data.filter(e => e.categorie === '1');
             }
         }, error => {
             console.log(error);
@@ -513,7 +515,7 @@ export class CourrierCreateComponent implements OnInit {
     findAllUSer() {
         this.userService.findAllUsers().subscribe(data => {
             if (data != null) {
-                this.users = data;
+                    this.users = data;
             }
         }, error => {
             console.log(error);

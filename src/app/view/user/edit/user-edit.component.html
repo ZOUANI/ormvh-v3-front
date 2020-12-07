@@ -18,6 +18,13 @@
             <input [(ngModel)]="user.email" [placeholder]="user.email" class="form-control" type="text">
         </div>
 
+        <div class="">
+            <label>{{"USER.SERVICE" | translate}}</label>
+            <p-dropdown styleClass="form-control" [showClear]="true"
+                        placeholder="--------------------" selectId="leService" [options]="leServices"
+                        [(ngModel)]="user.leServiceVo" optionLabel="title" [filter]="true"
+                        dataKey="id"></p-dropdown>
+        </div>
 
     </div>
 
