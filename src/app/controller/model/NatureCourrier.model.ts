@@ -17,6 +17,7 @@ export class NatureCourrierVo {
     public delaiMin: string;
     public relanceMax: string;
     public relanceMin: string;
+    public categorie: string;
     public createdByVo: UserVo = new UserVo();
     public updatedByVo: UserVo = new UserVo();
 

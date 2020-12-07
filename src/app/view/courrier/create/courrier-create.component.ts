@@ -418,7 +418,12 @@ export class CourrierCreateComponent implements OnInit {
     findAllnatureCourriers() {
         this.natureCourrierService.findAllnatureCourriers().subscribe(data => {
             if (data != null) {
+                let categorie = 2;
+                this.isSortie(); {
+                    categorie = 1;
+                }
                 this.natureCourriers = data;
+                this.natureClients.slice(1,2);// lolo
             }
         }, error => {
             console.log(error);
