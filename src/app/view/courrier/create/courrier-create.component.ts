@@ -173,6 +173,12 @@ export class CourrierCreateComponent implements OnInit {
         }
     }
 
+    isSortie() {
+        return (this.courrier.typeCourrierVo != null && this.courrier.typeCourrierVo.libelle === 'Sortie') ;
+    }
+    isArrive() {
+        return (this.courrier.typeCourrierVo != null && this.courrier.typeCourrierVo.libelle === 'Arrivee') ;
+    }
     get createExpeditorShow(): boolean {
         return this.courrierService.createExpeditorShow;
     }
@@ -412,7 +418,12 @@ export class CourrierCreateComponent implements OnInit {
     findAllnatureCourriers() {
         this.natureCourrierService.findAllnatureCourriers().subscribe(data => {
             if (data != null) {
+                let categorie = 2;
+                this.isSortie(); {
+                    categorie = 1;
+                }
                 this.natureCourriers = data;
+                this.natureClients.slice(1,2);// lolo
             }
         }, error => {
             console.log(error);
