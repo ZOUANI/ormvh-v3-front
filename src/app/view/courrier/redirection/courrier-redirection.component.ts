@@ -205,7 +205,7 @@ export class CourrierRedirectionComponent implements OnInit {
             this.typeCourrierOption = data;
             this.courrierCriteria.typeCourrierVo = this.typeCourrierOption[0];
         //    this.courrierCriteria.dateRelance = this.datepipe.transform(this.date, 'yyyy-MM-dd');
-            this.courrierService.findCourrierByRelance(this.courrierCriteria)
+            this.courrierService.findCourrierByRelance(this.courrierCriteria);
         });
     }
 

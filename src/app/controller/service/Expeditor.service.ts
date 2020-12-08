@@ -9,6 +9,7 @@ import {SelectItem} from "primeng";
 import {NatureCourrierEditComponent} from "../../view/natureCourrier/edit/natureCourrier-edit.component";
 import {NatureClientVo} from "../model/NatureClient.model";
 import {PhaseAdminVo} from "../model/PhaseAdmin.model";
+import {ExpeditorTypeVo} from "../model/ExpeditorType.model";
 
 @Injectable({
     providedIn: 'root'
@@ -27,6 +28,8 @@ export class ExpeditorService {
     private _searchedExpeditors: Array<ExpeditorVo> = new Array<ExpeditorVo>();
     private _editableExpeditors: Array<ExpeditorVo> = new Array<ExpeditorVo>();
     private _sexes: Array<SexeVo> = new Array<SexeVo>();
+    private _expeditorTypeVos: Array<ExpeditorTypeVo> = new Array<ExpeditorTypeVo>();
+
     private _nationalitys: Array<NationalityVo> = new Array<NationalityVo>();
     private _createdBys: Array<UserVo> = new Array<UserVo>();
     private _updatedBys: Array<UserVo> = new Array<UserVo>();
@@ -44,6 +47,14 @@ export class ExpeditorService {
         this._sexes = value;
     }
 
+
+    get expeditorTypeVos(): Array<ExpeditorTypeVo> {
+        return this._expeditorTypeVos;
+    }
+
+    set expeditorTypeVos(value: Array<ExpeditorTypeVo>) {
+        this._expeditorTypeVos = value;
+    }
 
     get natureClients(): SelectItem[] {
         return this._natureClients;
@@ -143,7 +154,7 @@ export class ExpeditorService {
 
     findAllexpeditors() {
         this.http.get<Array<ExpeditorVo>>('http://localhost:8080/generated/expeditor/').subscribe(data => {
-            this.expeditors = [{label: 'Select expeditor', value: null}];
+            this.expeditors = [{label: '----------', value: null}];
             if (data != null) {
                 for (const item of data) {
                     this.expeditors.push({label: item.title, value: item});
@@ -154,6 +165,7 @@ export class ExpeditorService {
         });
         ;
     }
+
 
     findAllNatureClient() {
         this.http.get<Array<NatureClientVo>>('http://localhost:8080/generated/natureClient/').subscribe(data => {
@@ -241,6 +253,18 @@ export class ExpeditorService {
             }
         );
     }
+
+    public findAllExpeditorType() {
+        this.http.get<Array<ExpeditorTypeVo>>('http://localhost:8080/generated/expeditorType/').subscribe(
+            value => {
+                if (value != null) {
+                    this.expeditorTypeVos = value;
+                }
+            }
+        );
+    }
+
+
 
     public findAllcreatedBys() {
         this.http.get<Array<UserVo>>('http://localhost:8080/generated/user/').subscribe(

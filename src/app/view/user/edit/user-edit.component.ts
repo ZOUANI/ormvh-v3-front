@@ -3,6 +3,8 @@ import {UserService} from '../../../controller/service/User.service';
 import {UserVo} from '../../../controller/model/user.model';
 import {RoleVo} from '../../../controller/model/Role.model';
 import {RoleService} from '../../../controller/service/Role.service';
+import {LeServiceVo} from "../../../controller/model/LeService.model";
+import {LeServiceService} from "../../../controller/service/LeService.service";
 
 @Component({
     selector: 'app-user-edit',
@@ -10,15 +12,28 @@ import {RoleService} from '../../../controller/service/Role.service';
     styleUrls: ['./user-edit.component.css']
 })
 export class UserEditComponent implements OnInit {
-    constructor(private userService: UserService, private roleService: RoleService) {
+    private _leServices: LeServiceVo[] ;
+
+    constructor(private userService: UserService, private roleService: RoleService, private leServiceService: LeServiceService) {
     }
 
     ngOnInit(): void {
         // this.findAllcreatedBys();
         // this.findAllupdatedBys();
         this.roleService.findAll();
+        this.findAllServices();
     }
 
+    private findAllServices() {
+        this.leServiceService.findAllServices().subscribe(data => {
+            console.log('haaaa services :::: ' + data);
+            if (data != null) {
+                this._leServices = data;
+            }
+        }, error => {
+            console.log(error);
+        });
+    }
     get roles() {
         return this.roleService.roleListe;
     }
@@ -26,6 +41,12 @@ export class UserEditComponent implements OnInit {
     get user(): UserVo {
         return this.userService.userToUpdate;
     }
+
+    get leServices(): LeServiceVo[] {
+        return this._leServices;
+    }
+
+
 
     // get editableUsers(): Array<UserVo> {
     //     return this.userService.editableUsers;

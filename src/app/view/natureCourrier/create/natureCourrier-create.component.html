@@ -35,6 +35,13 @@
             <label>libelle</label>
             <input [(ngModel)]="natureCourrier.libelle" class="form-control" type="text">
         </div>
+        <div class="row py-2">
+            <label>Categorie</label>
+            <p-dropdown styleClass="form-control" [showClear]="true"
+                        placeholder="--------------------" selectId="categorie" [options]="categories"
+                        [(ngModel)]="natureCourrier.categorie" optionLabel="text" [filter]="true"
+                        dataKey="id"></p-dropdown>
+        </div>
 
         <!--        <div class="row">-->
         <!--            <label>createdBy</label>-->

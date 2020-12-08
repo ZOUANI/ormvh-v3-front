@@ -5,17 +5,22 @@ import {UserVo} from '../../../controller/model/User.model';
 import {SexeVo} from '../../../controller/model/Sexe.model';
 import {NationalityVo} from '../../../controller/model/Nationality.model';
 import {CourrierService} from '../../../controller/service/Courrier.service';
+import {ExpeditorTypeService} from "../../../controller/service/ExpeditorType.service";
+import {ExpeditorTypeVo} from "../../../controller/model/ExpeditorType.model";
 
 @Component({
     selector: 'app-createExpeditor',
     templateUrl: './createExpeditor.component.html',
 })
 export class CreateExpeditorComponent implements OnInit {
-    constructor(private expeditorService: ExpeditorService, private courrierService: CourrierService) {
+    constructor(private expeditorService: ExpeditorService, private courrierService: CourrierService, private expeditorTypeService: ExpeditorTypeService) {
     }
 
     get expeditor(): ExpeditorVo {
         return this.expeditorService.expeditor;
+    }
+    get expeditorTypeVos(): Array<ExpeditorTypeVo> {
+        return this.expeditorService.expeditorTypeVos;
     }
 
     get sexes(): Array<SexeVo> {
@@ -44,6 +49,7 @@ export class CreateExpeditorComponent implements OnInit {
 
     ngOnInit(): void {
         this.findAllsexes();
+        this.findAllExpeditorTypes();
         this.findAllnationalitys();
         this.findAllcreatedBys();
         this.findAllupdatedBys();
@@ -57,6 +63,10 @@ export class CreateExpeditorComponent implements OnInit {
 
     findAllsexes() {
         this.expeditorService.findAllsexes();
+    }
+
+    findAllExpeditorTypes() {
+        this.expeditorService.findAllExpeditorType();
     }
 
     findAllnationalitys() {

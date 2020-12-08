@@ -9,7 +9,16 @@ import {UserVo} from '../../../controller/model/User.model';
     styleUrls: ['./natureCourrier-create.component.css']
 })
 export class NatureCourrierCreateComponent implements OnInit {
+
+    categories: string[] ;
     constructor(private natureCourrierService: NatureCourrierService) {
+        this.categories  = ['1', '2'];
+        // this.categories.push('1');
+        // this.categories.push('2');
+        /*this.categories = [
+            { label: 'Arrivée', value: 1 },
+            { label: 'Sortie', value: 2 }
+        ];*/
     }
 
     get natureCourrier(): NatureCourrierVo {

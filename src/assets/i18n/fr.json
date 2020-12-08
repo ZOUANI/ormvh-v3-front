@@ -33,6 +33,7 @@
     "CASTUMER_NATURE" : "Nature Client",
     "PROCESSING_STATUS" : "Etat De Traitement",
     "PROCESSING_DATE" : "Date De Traitement",
+    "DESTINATOR": "Destinateur",
     "ADMINISTRATIV_PHASE" : "Phase Administratif"
   },
   "MAILING": {
@@ -84,6 +85,9 @@
     "SENT_AT": "Date Courrier",
     "ACTIONS": "Actions",
     "RESERVE": "RESERVE",
+    "MODE_ENVOIE": "Mode Envoie",
+    "OBJET_SORTIE": "Objet",
+
     "MAILING.ASSIGNED_TO": "Assigné à"
   },
   "MAILING_OBJECT": {
