@@ -35,7 +35,7 @@ export class CourrierService {
     showLinkedCourrier = false;
     linkedToThisCourrier: CourrierVo;
     linkedCourrier: Array<CourrierVo> = new Array<CourrierVo>();
-
+    private const formData: FormData = new FormData();
     private _courrierDetail: CourrierVo = new CourrierVo();
     private _courrierListe: Array<CourrierVo> = new Array<CourrierVo>();
 
@@ -88,6 +88,8 @@ export class CourrierService {
      isAGENT_CAI: boolean;
      isDIRECTEUR: boolean;
      isCourieSorieOrArrivee: boolean;
+
+
     private _courrierPieceJoint: Array<CourrierPieceJoint>;
 
     private _coordinateur: boolean;
@@ -98,6 +100,17 @@ export class CourrierService {
     }
 
 
+    upload(files: Array<File>) {
+
+        for (const file of files) {
+            this.formData.append('files', file);
+
+            this.http.post('http://localhost:8080/generated/courrier/upload/' + this._courrier.id, this.formData).subscribe(
+                data => {
+                    console.log('Success');
+                });
+    }
+    }
     chekIfCoordinateur() {
         if (this.courrier == null || this.courrier.courrierServiceItemsVo == null
             || this.authService.authenticatedUser == null || this.authService.authenticatedUser.username == null) {
@@ -119,9 +132,6 @@ export class CourrierService {
     get courrierPieceJoint(): Array<CourrierPieceJoint> {
         if (this._courrierPieceJoint == null) {
             this._courrierPieceJoint = new Array<CourrierPieceJoint>();
-            this._courrierPieceJoint.forEach(cour => {
-                cour = new CourrierPieceJoint();
-            });
         }
         return this._courrierPieceJoint;
     }
@@ -1004,6 +1014,7 @@ export class CourrierService {
 
     public saveCourrier() {
         console.log(this.courrier.courrierPieceJoint);
+        this.courrier.formData = this.formData;
         this.http.post <number>('http://localhost:8080/generated/courrier/', this.courrier).subscribe(data => {
             if (data == 1) {
                  this.findAll();
@@ -1215,4 +1226,5 @@ export class CourrierService {
     get coordinateur(): boolean {
         return this._coordinateur;
     }
+
 }
