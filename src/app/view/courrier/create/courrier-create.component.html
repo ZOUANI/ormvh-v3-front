@@ -42,7 +42,7 @@
                     <a class="nav-link" id="pills-contact-tab" data-toggle="tab" href="#pills-pieceJoint" role="tab"
                        aria-controls="pills-services" aria-selected="false">Piece joint</a>
                 </li>
-                <li *ngIf="roleAdmin() || chekIfCoordinateur() || isDemande()"  class="nav-item">
+                <li *ngIf="roleAdmin() || chekIfCoordinateur()"  class="nav-item">
                     <a class="nav-link" id="pills-contact-tab" data-toggle="tab" href="#pills-reponse-courrier" role="tab"
                        aria-controls="pills-services" aria-selected="false">Réponse</a>
                 </li>
@@ -763,7 +763,7 @@
                             <label for="reponse">{{"TASK.RESPONSE" | translate}}</label>
                             <br>
                             <label class="switch">
-                                <input id="reponse" [disabled]="onDetail" type="checkbox" [checked]="courrier.reponse"
+                                <input id="reponse" [disabled]="( !roleAdmin() && !chekIfCoordinateur() )" type="checkbox" [checked]="courrier.reponse"
                                        (change)="courrier.reponse= !courrier.reponse">
                                 <span class="slider round"></span>
                             </label>
@@ -771,7 +771,7 @@
                         </div>
                         <div class="form-group  col-md-5" *ngIf="courrier.reponse">
                             <label>{{"TASK.RESPONSE_DATE" | translate}}</label><br>
-                            <p-calendar id="dateReponse" [disabled]="onDetail" appendTo="body" [showTime]="true"
+                            <p-calendar id="dateReponse" [disabled]="( !roleAdmin() && !chekIfCoordinateur() )" appendTo="body" [showTime]="true"
                                         [(ngModel)]="courrier.dateReponse">
                             </p-calendar>
                         </div>
@@ -779,7 +779,7 @@
                     <div class="form-row">
                         <div class="col-md-8"  *ngIf="courrier.reponse">
                             <label>Pièce joint Reponse  : </label>
-                            <p-fileUpload name="myfile[]" customUpload="true" [disabled]="onDetail" (uploadHandler)="onUpload($event)" multiple="multiple">
+                            <p-fileUpload name="myfile[]" customUpload="true" [disabled]="( !roleAdmin() && !chekIfCoordinateur() )" (uploadHandler)="onUpload($event)" multiple="multiple">
                                 <ng-template pTemplate="content">
                                     <ul *ngIf="uploadedFiles.length">
                                         <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
@@ -788,13 +788,14 @@
                             </p-fileUpload>
                         </div>
                     </div>
+
                     <br><br>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <button (click)="saveCourrier()" *ngIf="!roleAdmin()" class="form-control btn btn-outline-info">Sauvgarder</button>
                         </div>
                         <div class="form-group col-md-6">
-                            <button (click)="saveCourrierUsingEtat('cloture')" *ngIf="!roleAdmin()" class="form-control btn btn-outline-danger">Cloturer</button>
+                            <button (click)="saveCourrierUsingEtat('cloture')" *ngIf="!roleAdmin()" class="form-control btn btn-outline-success">Cloturer</button>
                         </div>
                     </div>
                 </div>

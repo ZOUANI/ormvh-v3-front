@@ -609,6 +609,14 @@ export class CourrierCreateComponent implements OnInit {
     }
 
     chekIfCoordinateur() {
+        /*let coord = this.courrierService.chekIfCoordinateur();
+        console.log('is cordd ?? ' + coord);
+        let admin = this.roleAdmin() ;
+        console.log('is admin ?? ' + admin);
+        let detail = this.onDetail ;
+        console.log('is detail ?? ' + detail);
+        console.log('onDetail && ( !roleAdmin() || !chekIfCoordinateur() ) ??? ' + (detail && ( !admin || !coord )));
+    */
         return this.courrierService.chekIfCoordinateur();
     }
     roleChargerDeTraitementCourier() {

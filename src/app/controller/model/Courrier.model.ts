@@ -12,10 +12,10 @@ import {TypeCourrierVo} from './TypeCourrier.model';
 import {VoieVo} from './Voie.model';
 import {LeServiceVo} from './LeService.model';
 import {CourrierPieceJoint} from './courrier-piece-joint.model';
-import {EtatCourrierVo} from "./EtatCourrier.model";
-import {NatureClientVo} from "./NatureClient.model";
-import {PhaseAdminVo} from "./PhaseAdmin.model";
-import {TypeRequetteVo} from "./TypeRequette.model";
+import {EtatCourrierVo} from './EtatCourrier.model';
+import {NatureClientVo} from './NatureClient.model';
+import {PhaseAdminVo} from './PhaseAdmin.model';
+import {TypeRequetteVo} from './TypeRequette.model';
 
 export class CourrierVo {
     public sujet: string;

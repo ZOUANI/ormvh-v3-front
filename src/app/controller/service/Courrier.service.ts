@@ -108,7 +108,7 @@ export class CourrierService {
         const authenticatedUserUsername = this.authService.authenticatedUser.username;
         for ( let item of this.courrier.courrierServiceItemsVo) {
             if( item.coordinateur != null && item.coordinateur && item.serviceVo != null
-                && item.serviceVo.chefVo != null && item.serviceVo.chefVo.username == authenticatedUserUsername) {
+                && item.serviceVo.chefVo != null && item.serviceVo.chefVo.username === authenticatedUserUsername) {
                 this._coordinateur = true;
                 return this._coordinateur;
             }
@@ -551,7 +551,7 @@ export class CourrierService {
                         console.log(cor.type);
                     });
                 } else {
-                    console.log('madkheltch oops');
+                    console.log('madkheltch oops !!! ');
                     this.courrierListe = [];
                 }
             }
