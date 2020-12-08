@@ -423,7 +423,7 @@ export class CourrierCreateComponent implements OnInit {
                     categorie = 1;
                 }
                 this.natureCourriers = data;
-                this.natureClients.slice(1,2);// lolo
+               // this.natureClients.slice(1,2);// lolo
             }
         }, error => {
             console.log(error);
