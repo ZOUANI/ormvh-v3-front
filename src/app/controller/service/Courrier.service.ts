@@ -16,8 +16,6 @@ import {StatusVo} from '../model/Status.model';
 import {PhaseAdminVo} from '../model/PhaseAdmin.model';
 import {NatureClientVo} from '../model/NatureClient.model';
 import {TypeRequetteVo} from '../model/TypeRequette.model';
-import {SelectItem} from 'primeng/api';
-import {EvaluationVo} from '../model/Evaluation.model';
 
 @Injectable({
     providedIn: 'root'
@@ -82,27 +80,17 @@ export class CourrierService {
     private _courrierShowDetail: boolean;
     courrierPiece: any;
 
-    isADMIN: boolean;
-    isCHARGE_DE_TRAITEMENT_COURRIER: boolean;
-    isCHEF_DE_SERVICE: boolean;
-    isAGENT_BO: boolean;
-    isCHARGE_DE_REQUETE: boolean;
-    isAGENT_CAI: boolean;
-    isDIRECTEUR: boolean;
-    isCourieSorieOrArrivee: boolean;
+     isADMIN: boolean;
+     isCHARGE_DE_TRAITEMENT_COURRIER: boolean;
+     isCHEF_DE_SERVICE: boolean;
+     isAGENT_BO: boolean;
+     isCHARGE_DE_REQUETE: boolean;
+     isAGENT_CAI: boolean;
+     isDIRECTEUR: boolean;
+     isCourieSorieOrArrivee: boolean;
     private _courrierPieceJoint: Array<CourrierPieceJoint>;
 
     private _coordinateur: boolean;
-    private _linkedTos: SelectItem[];
-
-
-    get linkedTos(): SelectItem[] {
-        return this._linkedTos;
-    }
-
-    set linkedTos(value: SelectItem[]) {
-        this._linkedTos = value;
-    }
 
 
     constructor(private http: HttpClient, private expeditorService: ExpeditorService ,
@@ -110,10 +98,6 @@ export class CourrierService {
     }
 
 
-    findAllLinkedTo(): Observable<Array<CourrierVo>>{
-
-            return this.http.get<Array<CourrierVo>>('http://localhost:8080/generated/courrier/');
-    }
     chekIfCoordinateur() {
         if (this.courrier == null || this.courrier.courrierServiceItemsVo == null
             || this.authService.authenticatedUser == null || this.authService.authenticatedUser.username == null) {
@@ -186,25 +170,25 @@ export class CourrierService {
     }
 
     public downloadFile(courrier: CourrierVo) {
-        //     this.findAllCourrierJoint(courrier.id);
-        // console.log(this.courrierPieceJoint);
+    //     this.findAllCourrierJoint(courrier.id);
+         // console.log(this.courrierPieceJoint);
         // this.courrierPieceJoint.forEach(cour => {
         this.http.get('http://localhost:8080/generated/courrier/downloadFile/' + courrier.id, {
             responseType : 'arraybuffer'}).subscribe(response => this.downLoad(response, courrier.type));
-        // });
+    // });
     }
     public findAllCourrierJoint(id: number) {
         console.log(id);
         this.http.get<CourrierPieceJoint>('http://localhost:8080/generated/courrier/findAllcourrierPieceJoint/' + id).subscribe(
-            data => {
-                if (data != null) {
-                    console.log(data);
+              data => {
+                  if (data != null) {
+                      console.log(data);
                     //  this.courrierPieceJoint = data.courrierPieceJoint;
+                  }
+              }, error => {
+                  console.log(error);
                 }
-            }, error => {
-                console.log(error);
-            }
-        );
+          );
     }
     downLoad(data: any, type: string) {
         const blob = new Blob([data], { type});
@@ -313,7 +297,7 @@ export class CourrierService {
             this._courrier = new CourrierVo();
             this._courrier.natureCourrierVo = new NatureCourrierVo();
             this._courrier.statusVo = new StatusVo();
-            //   this._courrier.phaseAdminVo = new PhaseAdminVo();
+         //   this._courrier.phaseAdminVo = new PhaseAdminVo();
 
             this._courrier.courrierPieceJoint = new Array<CourrierPieceJoint>();
             this._courrier.courrierPieceJoint.forEach(courr => {
@@ -510,7 +494,7 @@ export class CourrierService {
             this.courrier.tasksVo = new Array<TaskVo>();
         }
 
-        //  this.findServiceCourrier(this.courrier);
+      //  this.findServiceCourrier(this.courrier);
         this.onEdit = true;
         this.onDetail = false;
         this.addNewCourrier = true;
@@ -521,7 +505,7 @@ export class CourrierService {
         this.onDetail = true;
         this.onEdit = false;
         this.addNewCourrier = true;
-        //   this.findServiceCourrier(this.courrier);
+     //   this.findServiceCourrier(this.courrier);
     }
 
     public findServiceCourrier(courrier: CourrierVo) {
@@ -1021,16 +1005,16 @@ export class CourrierService {
     public saveCourrier() {
         console.log(this.courrier.courrierPieceJoint);
         this.http.post <number>('http://localhost:8080/generated/courrier/', this.courrier).subscribe(data => {
-                if (data == 1) {
-                    this.findAll();
+            if (data == 1) {
+                 this.findAll();
 //                this.courrierListe.push(data);
-                    this.addNewCourrier = false;
-                    this.courrier = null;
-                }
-            }, eror => {
-                console.log('eroro');
+                 this.addNewCourrier = false;
+                 this.courrier = null;
             }
-        );
+        }, eror => {
+            console.log('eroro');
+        }
+    );
     }
     public saveCourrierPieceJoint(form: FormData) {
         this.http.post <number>('http://localhost:8080/generated/courrier/create', form).subscribe(data => {

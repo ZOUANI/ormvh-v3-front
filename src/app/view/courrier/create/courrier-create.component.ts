@@ -49,7 +49,7 @@ export class CourrierCreateComponent implements OnInit {
 
     uploadForm: FormGroup;
 
-
+    private uploadedFiles: any[] = [];
     voies: VoieVo[];
     natureCourriers: NatureCourrierVo[];
     evaluations: SelectItem[];
@@ -61,6 +61,7 @@ export class CourrierCreateComponent implements OnInit {
     typeRequettes: TypeRequetteVo[];
     phaseAdmins: PhaseAdminVo[];
     natureClients: NatureClientVo[];
+    
 
     statuss: StatusVo[];
     users: UserVo[];
@@ -72,7 +73,7 @@ export class CourrierCreateComponent implements OnInit {
     editableTask: TaskVo;
     onEditTask = false;
     onSelectTask = false;
-    uploadedFiles: any[] = [];
+
     courrierPiece: CourrierPieceJoint;
     onAddSender = false;
     displayBasic2: boolean;
@@ -97,6 +98,14 @@ export class CourrierCreateComponent implements OnInit {
                 private typeRequetteService: TypeRequetteService
                 ) {
     }
+
+    onUpload(event) {
+        for (const file of event.files) {
+            this.uploadedFiles.push(file);
+        }
+        this.courrierService.upload(uploadedFiles);
+    }
+
 
     get coordinateur(): boolean {
         return this.courrierService.coordinateur;
@@ -574,29 +583,7 @@ export class CourrierCreateComponent implements OnInit {
         }
 
     }
-    onUpload(event) {
-
-        for (const file of event.files) {
-            let formData = new FormData();
-            this.uploadForm.get('profile').setValue(file);
-            formData.append('file', this.uploadForm.get('profile').value);
-            this.courrierService.saveCourrierPieceJoint(formData);
-            formData = null;
-            // this.courrierPiece = new CourrierPieceJoint();
-            // console.log(file);
-            // this.uploadedFiles.push(file);
-            // this.courrierPiece.chemin = file.name;
-            // this.courrierPiece.contenu = file.size;
-            // console.log(file.size);
-            // this.courrier.courrierPieceJoint.push(this.courrierPiece);
-            // this.courrierPiece = null;
-        }
-        for (const file of this.courrier.courrierPieceJoint) {
-            console.log(file.contenu);
-            console.log(file.chemin);
-        }
-
-    }
+    
     isCourrierRequette() {
        return this.courrier != null && this.courrier.natureCourrierVo != null && (this.courrier.natureCourrierVo.code === 'requete' || this.courrier.natureCourrierVo.code === 'reclamation' );
     }

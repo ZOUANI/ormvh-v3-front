@@ -80,4 +80,5 @@ export class CourrierVo {
     public phaseAdminVo: PhaseAdminVo;
     public typeRequetteVo: TypeRequetteVo;
 
+
 }
