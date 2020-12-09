@@ -35,7 +35,7 @@ export class CourrierService {
     showLinkedCourrier = false;
     linkedToThisCourrier: CourrierVo;
     linkedCourrier: Array<CourrierVo> = new Array<CourrierVo>();
-    private const formData: FormData = new FormData();
+    private  formData: FormData = new FormData();
     private _courrierDetail: CourrierVo = new CourrierVo();
     private _courrierListe: Array<CourrierVo> = new Array<CourrierVo>();
 
@@ -95,6 +95,7 @@ export class CourrierService {
     private _coordinateur: boolean;
 
 
+
     constructor(private http: HttpClient, private expeditorService: ExpeditorService ,
                 private authService: AuthenticationService) {
     }
@@ -104,12 +105,7 @@ export class CourrierService {
 
         for (const file of files) {
             this.formData.append('files', file);
-
-            this.http.post('http://localhost:8080/generated/courrier/upload/' + this._courrier.id, this.formData).subscribe(
-                data => {
-                    console.log('Success');
-                });
-    }
+        }
     }
     chekIfCoordinateur() {
         if (this.courrier == null || this.courrier.courrierServiceItemsVo == null
@@ -170,7 +166,7 @@ export class CourrierService {
         this.isCHEF_DE_SERVICE = this.authService.hasRole('CHEF_DE_SERVICE');
         this.isAGENT_BO = this.authService.hasRole('AGENT_BO');
         this.isCHARGE_DE_REQUETE = this.authService.hasRole('CHARGE_DE_REQUETE');
-        this.isAGENT_CAI = this.authService.hasRole('AGENT_CAI');
+        this.isAGENT_CAI = this.authService.hasRole('AGENT_CAI') || (this.authService.authenticatedUser.leServiceVo != null && this.authService.authenticatedUser.leServiceVo.code === 'cai');
         this.isDIRECTEUR = this.authService.hasRole('DIRECTEUR');
 
     }
@@ -1014,7 +1010,6 @@ export class CourrierService {
 
     public saveCourrier() {
         console.log(this.courrier.courrierPieceJoint);
-        this.courrier.formData = this.formData;
         this.http.post <number>('http://localhost:8080/generated/courrier/', this.courrier).subscribe(data => {
             if (data == 1) {
                  this.findAll();

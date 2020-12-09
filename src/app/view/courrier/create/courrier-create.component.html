@@ -25,11 +25,11 @@
                     <a class="nav-link" id="pills-contact-tab" data-toggle="tab" href="#pills-services" role="tab"
                        aria-controls="pills-services" aria-selected="false">{{"MODELS.SERVICE" | translate}}</a>
                 </li>--->
-                <li *ngIf="roleAdmin() ||roleChefService() || roleChargerDeTraitementCourier()" class="nav-item">
+                <li *ngIf="roleAdmin() ||roleChefService() ||  roleChargeDeRequete()" class="nav-item">
                     <a class="nav-link" id="pills-contact-tab" data-toggle="tab" href="#pills-tasks" role="tab"
                        aria-controls="pills-contact" aria-selected="false">{{"MODELS.TASK" | translate}}</a>
                 </li>
-                <li *ngIf="(roleAdmin()  || roleChargeDeRequete()) && isCourrierRequette() "  class="nav-item">
+                <li *ngIf="(roleAdmin()  || roleChargeDeRequete() || roleChefService() || roleAgentCai()) && isCourrierRequette() "  class="nav-item">
                     <a class="nav-link" id="pills-contact-tab" data-toggle="tab" href="#pills-follow-requests" role="tab"
                        aria-controls="pills-details" aria-selected="false">{{"MODELS.FOLLOW_REQUESTES" | translate}}</a>
                 </li>
@@ -939,8 +939,8 @@
                         <div class="form-group col-md-4">
                             <label > {{"MODELS.ADMINISTRATIV_PHASE" | translate}}</label>
 
-                            <p-dropdown *ngIf="onDetail||roleAdmin()" styleClass="form-control" selectId="phase-admin"
-                                        [options]="phaseAdmins"  placeholder="----------------"
+                            <p-dropdown  styleClass="form-control" selectId="phase-admin"
+                                        [options]="phaseAdmins"  placeholder="----------------" [disabled]="onDetail||roleDirecteur()||roleChefService()"
                                         [(ngModel)]="courrier.phaseAdminVo" optionLabel="libelle" dataKey="id"></p-dropdown>
                         </div>
                         <div *ngIf="courrier.statusVo!=null && courrier.statusVo.code=='traite'" class="col-md-12">
@@ -953,6 +953,14 @@
                                 </ng-template>
                             </p-fileUpload>
                         </div>
+
+
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <button (click)="saveCourrier()" *ngIf="roleChargeDeRequete() ||roleAdmin()" class="form-control btn btn-outline-info">Sauvgarder</button>
+                        </div>
+
                     </div>
                 </div>
             </div>

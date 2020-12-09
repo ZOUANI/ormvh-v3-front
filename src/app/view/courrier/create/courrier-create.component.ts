@@ -49,7 +49,7 @@ export class CourrierCreateComponent implements OnInit {
 
     uploadForm: FormGroup;
 
-    private uploadedFiles: any[] = [];
+
     voies: VoieVo[];
     natureCourriersSortie: NatureCourrierVo[];
     natureCourriersArrivee: NatureCourrierVo[];
@@ -63,7 +63,6 @@ export class CourrierCreateComponent implements OnInit {
     typeRequettes: TypeRequetteVo[];
     phaseAdmins: PhaseAdminVo[];
     natureClients: NatureClientVo[];
-    
 
     statuss: StatusVo[];
     users: UserVo[];
@@ -75,7 +74,7 @@ export class CourrierCreateComponent implements OnInit {
     editableTask: TaskVo;
     onEditTask = false;
     onSelectTask = false;
-
+    uploadedFiles: any[] = [];
     courrierPiece: CourrierPieceJoint;
     onAddSender = false;
     displayBasic2: boolean;
@@ -102,12 +101,12 @@ export class CourrierCreateComponent implements OnInit {
     }
 
     onUpload(event) {
-        for (const file of event.files) {
+        for(const file of event.files) {
             this.uploadedFiles.push(file);
         }
-        this.courrierService.upload(uploadedFiles);
+        console.log(this.uploadedFiles);
+        this.courrierService.upload(this.uploadedFiles);
     }
-
 
     get coordinateur(): boolean {
         return this.courrierService.coordinateur;
