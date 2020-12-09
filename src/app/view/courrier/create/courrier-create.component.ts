@@ -58,6 +58,7 @@ export class CourrierCreateComponent implements OnInit {
     expeditorTypes: SelectItem[];
     subdivisions: SelectItem[];
     leServices: SelectItem[];
+    linkedTos: SelectItem[];
     courrierObjects: CourrierObjectVo[];
 
     typeRequettes: TypeRequetteVo[];
@@ -101,7 +102,7 @@ export class CourrierCreateComponent implements OnInit {
     }
 
     onUpload(event) {
-        for(const file of event.files) {
+        for (const file of event.files) {
             this.uploadedFiles.push(file);
         }
         console.log(this.uploadedFiles);
@@ -165,10 +166,6 @@ export class CourrierCreateComponent implements OnInit {
 
     set courrierServiceItem(value: CourrierServiceItemVo) {
         this.courrierService.courrierServiceItem = value;
-    }
-
-    get linkedTos(): CourrierVo[] {
-        return this.courrierService.courrierListe;
     }
 
     get message(): string {
@@ -273,6 +270,7 @@ export class CourrierCreateComponent implements OnInit {
         this.findAllPhaseAdmins();
         this.findAllTypeRequettes();
         this.findAllUSerInService();
+        this.findAllLinkedTos();
 
         this.uploadForm = this.formBuilder.group({
             profile: ['']
@@ -403,6 +401,23 @@ export class CourrierCreateComponent implements OnInit {
             }
         }, error => {
             this.leServices = [{label: 'none', value: null}];
+        });
+    }
+
+    findAllLinkedTos() {
+        this.courrierService.findAllLinkedTo().subscribe(data => {
+            this.linkedTos = [{label: '--------------------', value: null}];
+            if (data != null) {
+                for (const item of data) {
+                    if (item.typeCourrierVo != null && item.typeCourrierVo.code === 'sortie') {
+                        this.linkedTos.push({label: item.idCourrier  + ' : S', value: item});
+                    } else {
+                        this.linkedTos.push({label: item.idCourrier  + ' : A', value: item});
+                    }
+                }
+            }
+        }, error => {
+            this.linkedTos = [{label: 'none', value: null}];
         });
     }
 
@@ -584,7 +599,7 @@ export class CourrierCreateComponent implements OnInit {
         }
 
     }
-    
+
     isCourrierRequette() {
        return this.courrier != null && this.courrier.natureCourrierVo != null && (this.courrier.natureCourrierVo.code === 'requete' || this.courrier.natureCourrierVo.code === 'reclamation' );
     }

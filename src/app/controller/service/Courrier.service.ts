@@ -99,7 +99,9 @@ export class CourrierService {
     constructor(private http: HttpClient, private expeditorService: ExpeditorService ,
                 private authService: AuthenticationService) {
     }
-
+    findAllLinkedTo(): Observable<Array<CourrierVo>>{
+        return this.http.get<Array<CourrierVo>>('http://localhost:8080/generated/courrier/');
+    }
 
     upload(files: Array<File>) {
 
