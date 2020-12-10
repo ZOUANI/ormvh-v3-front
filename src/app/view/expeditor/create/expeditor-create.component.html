@@ -36,11 +36,11 @@
             <input [(ngModel)]="expeditor.age" class="form-control" type="text">
         </div>
         <div class="row py-2">
-            <label>title</label>
+            <label>nom</label>
             <input [(ngModel)]="expeditor.title" class="form-control" type="text">
         </div>
         <div class="row py-2">
-            <label>titleArab</label>
+            <label>nom Arabe</label>
             <input [(ngModel)]="expeditor.titleArab" class="form-control" type="text">
         </div>
 
@@ -51,7 +51,7 @@
             </select>
         </div>
         <div class="row">
-            <label>nationality</label>
+            <label>nationalité</label>
             <select [(ngModel)]="expeditor.nationalityVo.libelle" class="form-control">
                 <option *ngFor="let p of nationalitys" [ngValue]="p.libelle"
                         value="{{p.libelle}}">{{p.libelle}}</option>

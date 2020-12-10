@@ -51,19 +51,24 @@ export class CourrierCreateComponent implements OnInit {
 
     private uploadedFiles: any[] = [];
     voies: VoieVo[];
+    natureCourriersSortie: NatureCourrierVo[];
+    natureCourriersArrivee: NatureCourrierVo[];
     natureCourriers: NatureCourrierVo[];
     evaluations: SelectItem[];
     expeditorTypes: SelectItem[];
     subdivisions: SelectItem[];
     leServices: SelectItem[];
+
+    linkedTos: SelectItem[];
     courrierObjects: CourrierObjectVo[];
 
     typeRequettes: TypeRequetteVo[];
     phaseAdmins: PhaseAdminVo[];
     natureClients: NatureClientVo[];
-    
+
 
     statuss: StatusVo[];
+    statusse: StatusVo[];
     users: UserVo[];
     usersInService: UserVo[];
     changedServices: LeServiceVo[];
@@ -96,7 +101,7 @@ export class CourrierCreateComponent implements OnInit {
                 private phaseAdminService: PhaseAdminService,
                 private natureClientService: NatureClientService,
                 private typeRequetteService: TypeRequetteService
-                ) {
+    ) {
     }
 
     onUpload(event) {
@@ -166,9 +171,6 @@ export class CourrierCreateComponent implements OnInit {
         this.courrierService.courrierServiceItem = value;
     }
 
-    get linkedTos(): CourrierVo[] {
-        return this.courrierService.courrierListe;
-    }
 
     get message(): string {
         if (this.onDetail) {
@@ -176,12 +178,15 @@ export class CourrierCreateComponent implements OnInit {
         } else if (this.onEdit) {
             return 'Edit Courrier';
         } else if (this.courrier.typeCourrierVo.libelle === 'Sortie') {
-                    return 'nouveau courrier de sortie ';
+            return 'nouveau courrier de sortie ';
         } else if (this.courrier.typeCourrierVo.libelle === 'Arrivee') {
-                    return 'nouveau courrier d\'Arrivee';
+            return 'nouveau courrier d\'Arrivee';
         }
     }
 
+    isDemande() {
+        return (this.courrier.natureCourrierVo != null && this.courrier.natureCourrierVo.code === 'demande') ;
+    }
     isSortie() {
         return (this.courrier.typeCourrierVo != null && this.courrier.typeCourrierVo.libelle === 'Sortie') ;
     }
@@ -262,6 +267,7 @@ export class CourrierCreateComponent implements OnInit {
         this.findAllexpeditorTypes();
         this.findAllsubdivisions();
         this.findAllstatuss();
+        this.findAllStatussByCode();
         this.findAlltypeCourriers();
         this.findAllEtatCourriers();
         this.findAllUSer();
@@ -269,6 +275,7 @@ export class CourrierCreateComponent implements OnInit {
         this.findAllPhaseAdmins();
         this.findAllTypeRequettes();
         this.findAllUSerInService();
+        this.findAllLinkedTos();
 
         this.uploadForm = this.formBuilder.group({
             profile: ['']
@@ -336,14 +343,14 @@ export class CourrierCreateComponent implements OnInit {
     removeCourrierServiceItem(i: number) {
         this.courrierService.removeCourrierServiceItem(i);
     }
-     findEtatCourrierByCode(codeEtatCourrier: string): EtatCourrierVo {
-         for (let i = 0; i < this.etatCourriers.length; i++) {
-             const myEtatCourrier = this.etatCourriers[i];
-             if (myEtatCourrier.code === codeEtatCourrier) {
-                 return myEtatCourrier;
-             }
-         }
-         return null;
+    findEtatCourrierByCode(codeEtatCourrier: string): EtatCourrierVo {
+        for (let i = 0; i < this.etatCourriers.length; i++) {
+            const myEtatCourrier = this.etatCourriers[i];
+            if (myEtatCourrier.code === codeEtatCourrier) {
+                return myEtatCourrier;
+            }
+        }
+        return null;
     }
 
     isCourrierSucceptibleInitialisation() {
@@ -401,7 +408,22 @@ export class CourrierCreateComponent implements OnInit {
             this.leServices = [{label: 'none', value: null}];
         });
     }
-
+    findAllLinkedTos() {
+        this.courrierService.findAllLinkedTo().subscribe(data => {
+            this.linkedTos = [{label: '--------------------', value: null}];
+            if (data != null) {
+                for (const item of data) {
+                    if(item.typeCourrierVo != null && item.typeCourrierVo.code === 'sortie'){
+                        this.linkedTos.push({label: item.idCourrier  + ' : Sortie', value: item});
+                    }else{
+                        this.linkedTos.push({label: item.idCourrier  + ' : Arivee', value: item});
+                    }
+                }
+            }
+        }, error => {
+            this.linkedTos = [{label: 'none', value: null}];
+        });
+    }
     findAllChangedServices() {
         this.leServiceService.findAllServices().subscribe(data => {
             if (data != null) {
@@ -426,13 +448,10 @@ export class CourrierCreateComponent implements OnInit {
 
     findAllnatureCourriers() {
         this.natureCourrierService.findAllnatureCourriers().subscribe(data => {
+            this.natureCourriers = data ;
             if (data != null) {
-                let categorie = 2;
-                this.isSortie(); {
-                    categorie = 1;
-                }
-                this.natureCourriers = data;
-               // this.natureClients.slice(1,2);// lolo
+                this.natureCourriersSortie = data.filter(e => e.categorie === '2');
+                this.natureCourriersArrivee = data.filter(e => e.categorie === '1');
             }
         }, error => {
             console.log(error);
@@ -494,7 +513,17 @@ export class CourrierCreateComponent implements OnInit {
             console.log(error);
         });
     }
-
+    findAllStatussByCode() {
+        this.statusService.findByCode().subscribe(data => {
+            if (data != null) {
+                this.statusse = data;
+                this.courrier.statusVo = this.statusse[0];
+                /*this.task.statusVo = this.statuss[0];*/
+            }
+        }, error => {
+            console.log(error);
+        });
+    }
     findAlltypeCourriers() {
         this.typeCourrierService.findAlltypeCourriers().subscribe(data => {
 
@@ -555,8 +584,8 @@ export class CourrierCreateComponent implements OnInit {
         // TODO  always open the first tab
         const element: HTMLElement = document.getElementById('courrier-tab') as HTMLElement;
         if ( element != null ) {
-        element.click();
-       }
+            element.click();
+        }
         if (!this.onEdit && !this.onDetail) {
             this.findAllcourrierObjects();
             this.findAllvoies();
@@ -578,14 +607,14 @@ export class CourrierCreateComponent implements OnInit {
 
     changeDelaiEtAvance() {
         if ( this.courrier != null && this.courrier.natureCourrierVo != null ) {
-        this.courrier.delai = this.courrier.natureCourrierVo.delai;
-        this.courrier.relance = this.courrier.natureCourrierVo.relance;
+            this.courrier.delai = this.courrier.natureCourrierVo.delai;
+            this.courrier.relance = this.courrier.natureCourrierVo.relance;
         }
 
     }
-    
+
     isCourrierRequette() {
-       return this.courrier != null && this.courrier.natureCourrierVo != null && (this.courrier.natureCourrierVo.code === 'requete' || this.courrier.natureCourrierVo.code === 'reclamation' );
+        return this.courrier != null && this.courrier.natureCourrierVo != null && (this.courrier.natureCourrierVo.code === 'requete' || this.courrier.natureCourrierVo.code === 'reclamation' );
     }
 
 
@@ -594,6 +623,14 @@ export class CourrierCreateComponent implements OnInit {
     }
 
     chekIfCoordinateur() {
+        /*let coord = this.courrierService.chekIfCoordinateur();
+        console.log('is cordd ?? ' + coord);
+        let admin = this.roleAdmin() ;
+        console.log('is admin ?? ' + admin);
+        let detail = this.onDetail ;
+        console.log('is detail ?? ' + detail);
+        console.log('onDetail && ( !roleAdmin() || !chekIfCoordinateur() ) ??? ' + (detail && ( !admin || !coord )));
+    */
         return this.courrierService.chekIfCoordinateur();
     }
     roleChargerDeTraitementCourier() {

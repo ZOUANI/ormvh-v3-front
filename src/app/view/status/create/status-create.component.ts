@@ -35,6 +35,7 @@ export class StatusCreateComponent implements OnInit {
     ngOnInit(): void {
         this.findAllcreatedBys();
         this.findAllupdatedBys();
+
     }
 
     saveStatus() {

@@ -34,7 +34,7 @@
     "PROCESSING_STATUS" : "Etat De Traitement",
     "PROCESSING_DATE" : "Date De Traitement",
     "DESTINATOR": "Destinateur",
-    "ADMINISTRATIV_PHASE" : "Phase Administratif"
+    "ADMINISTRATIV_PHASE" : "Phase Administrative"
   },
   "MAILING": {
     "ACCUSED": "Accusé",

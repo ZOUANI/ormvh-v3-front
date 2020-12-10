@@ -10,7 +10,7 @@
                        aria-controls="pills-home" aria-selected="true">{{"MODELS.MAILING" | translate}}</a>
                 </li>
 
-                <li *ngIf="roleAdmin()||roleDirecteur()||roleChefService() " class="nav-item">
+                <li *ngIf="roleAdmin()||roleDirecteur()||roleChefService()||roleAgentBo() " class="nav-item">
                     <a class="nav-link" id="instruction-tab" data-toggle="tab" href="#pills-instruction" role="tab"
                        aria-controls="pills-home" aria-selected="true">{{"MODELS.INSTRUCTION" | translate}}</a>
                 </li>
@@ -25,7 +25,7 @@
                     <a class="nav-link" id="pills-contact-tab" data-toggle="tab" href="#pills-services" role="tab"
                        aria-controls="pills-services" aria-selected="false">{{"MODELS.SERVICE" | translate}}</a>
                 </li>--->
-                <li *ngIf="roleAdmin() ||roleChefService() || roleChargerDeTraitementCourier()" class="nav-item">
+                <li *ngIf="roleAdmin() ||roleChefService() || roleChargerDeTraitementCourier() ||roleAgentBo()" class="nav-item">
                     <a class="nav-link" id="pills-contact-tab" data-toggle="tab" href="#pills-tasks" role="tab"
                        aria-controls="pills-contact" aria-selected="false">{{"MODELS.TASK" | translate}}</a>
                 </li>
@@ -42,11 +42,11 @@
                     <a class="nav-link" id="pills-contact-tab" data-toggle="tab" href="#pills-pieceJoint" role="tab"
                        aria-controls="pills-services" aria-selected="false">Piece joint</a>
                 </li>
-                <li *ngIf="roleAdmin() || chekIfCoordinateur()"  class="nav-item">
+                <li *ngIf="(roleAdmin() || chekIfCoordinateur())  && isDemande()"  class="nav-item">
                     <a class="nav-link" id="pills-contact-tab" data-toggle="tab" href="#pills-reponse-courrier" role="tab"
                        aria-controls="pills-services" aria-selected="false">Réponse</a>
                 </li>
-                <li class="nav-item" *ngIf="onDetail">
+                <li class="nav-item" *ngIf="onDetail ">
                     <a class="nav-link" id="pills-contact-tab" data-toggle="tab" href="#pills-history" role="tab"
                        aria-controls="pills-reponse" aria-selected="false">{{"MODELS.HISTORY" | translate}}</a>
                 </li>
@@ -204,7 +204,7 @@
                             <button (click)="saveCourrier()" *ngIf="(roleAgentBo() && isCourrierSucceptibleInitialisation() )||roleAdmin()" class="form-control btn btn-outline-info">Sauvgarder</button>
                         </div>
                         <div class="form-group col-md-6">
-                            <button (click)="saveCourrierUsingEtat('directeur')" *ngIf="(roleAgentBo() && isCourrierSucceptibleInitialisation() )||roleAdmin()" class="form-control btn btn-outline-dark">Sauvgarder et Envoyer</button>
+                            <button (click)="saveCourrierUsingEtat('directeur')" *ngIf="(roleAgentBo() && isCourrierSucceptibleInitialisation() )||roleAdmin() " class="form-control btn btn-outline-dark">Sauvgarder et Envoyer</button>
                         </div>
                     </div>
 
@@ -604,17 +604,18 @@
                     <br>
                     <div class="form-row">
                         <div class="form-group col-md-4">
-                            <button (click)="saveCourrier()" *ngIf="(roleChefService() && isCourrierSucceptibleChef()) ||roleAdmin()" class="form-control btn btn-outline-info">Sauvgarder</button>
+                            <button (click)="saveCourrier()" *ngIf="(roleChefService() && isCourrierSucceptibleChef()) ||roleAdmin() ||roleAgentBo()" class="form-control btn btn-outline-info">Sauvgarder</button>
                         </div>
                         <div class="form-group col-md-4">
-                            <button (click)="saveCourrierUsingEtat('bureau')" *ngIf="(roleChefService() && isCourrierSucceptibleChef()) ||roleAdmin()" class="form-control btn btn-outline-dark">Sauvgarder et Envoyer </button>
+                            <button (click)="saveCourrierUsingEtat('bureau')" *ngIf="(roleChefService() && isCourrierSucceptibleChef()) ||roleAdmin() ||roleAgentBo()" class="form-control btn btn-outline-dark">Sauvgarder et Envoyer </button>
                         </div>
                         <div class="form-group col-md-4">
-                            <button (click)="saveCourrierUsingEtat('directeur')" *ngIf="(roleChefService() && isCourrierSucceptibleChef()) ||roleAdmin()" class="form-control btn btn-outline-danger">Retourner </button>
+                            <button (click)="saveCourrierUsingEtat('directeur')" *ngIf="(roleChefService() && isCourrierSucceptibleChef()) ||roleAdmin() ||roleAgentBo()" class="form-control btn btn-outline-danger">Retourner </button>
                         </div>
                     </div>
 
                 </div>
+
                 <!--
                 <div class="tab-pane fade pb-0" id="pills-services" role="tabpanel" aria-labelledby="pills-contact-tab">
                     <div class="form-row mb-8">
@@ -879,13 +880,13 @@
                     <br>
                     <div class="form-row">
                         <div class="form-group col-md-4">
-                            <button (click)="saveCourrier()" *ngIf="(roleDirecteur() && isCourrierSucceptibleDirecteur()) ||roleAdmin()" class="form-control btn btn-outline-info">Sauvgarder</button>
+                            <button (click)="saveCourrier()" *ngIf="(roleDirecteur() && isCourrierSucceptibleDirecteur()) ||roleAdmin() ||roleAgentBo()" class="form-control btn btn-outline-info">Sauvgarder</button>
                         </div>
                         <div class="form-group col-md-4">
-                            <button (click)="saveCourrierUsingEtat('chef')" *ngIf="(roleDirecteur() && isCourrierSucceptibleDirecteur()) ||roleAdmin()" class="form-control btn btn-outline-dark">Sauvgarder et Envoyer</button>
+                            <button (click)="saveCourrierUsingEtat('chef')" *ngIf="(roleDirecteur() && isCourrierSucceptibleDirecteur()) ||roleAdmin() ||roleAgentBo()" class="form-control btn btn-outline-dark">Sauvgarder et Envoyer</button>
                         </div>
                         <div class="form-group col-md-4">
-                            <button (click)="saveCourrierUsingEtat('init')" *ngIf="(roleDirecteur() && isCourrierSucceptibleDirecteur()) ||roleAdmin()" class="form-control btn btn-outline-danger">Retourner</button>
+                            <button (click)="saveCourrierUsingEtat('init')" *ngIf="(roleDirecteur() && isCourrierSucceptibleDirecteur()) ||roleAdmin() ||roleAgentBo()" class="form-control btn btn-outline-danger">Retourner</button>
                         </div>
                     </div>
 
@@ -926,7 +927,7 @@
                         <div class="form-group col-md-4">
                             <label > {{"MODELS.PROCESSING_STATUS" | translate}}</label>
                             <p-dropdown [disabled]="onDetail||roleDirecteur()||roleChefService()" styleClass="form-control" selectId="status-courrier"
-                                        [options]="statuss" placeholder="--------------------"
+                                        [options]="statusse" placeholder="--------------------"
                                         [(ngModel)]="courrier.statusVo" optionLabel="libelle" dataKey="id"></p-dropdown>
                         </div>
                         <div *ngIf="courrier.statusVo!=null && courrier.statusVo.code=='traite'" class="form-group  col-md-4">

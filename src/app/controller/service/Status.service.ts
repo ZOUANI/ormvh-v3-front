@@ -105,6 +105,9 @@ export class StatusService {
     findAllstatuss(): Observable<Array<StatusVo>> {
         return this.http.get<Array<StatusVo>>('http://localhost:8080/generated/status/');
     }
+    public findByCode(): Observable<Array<StatusVo>>  {
+       return this.http.get<Array<StatusVo>>('http://localhost:8080/generated/status/findByCode');
+    }
 
     public saveStatus() {
         this.http.post<StatusVo>('http://localhost:8080/generated/status/', this.status).subscribe(data => {
@@ -158,6 +161,7 @@ export class StatusService {
             }
         );
     }
+
 
     public findAllcreatedBys() {
         this.http.get<Array<UserVo>>('http://localhost:8080/generated/user/').subscribe(
