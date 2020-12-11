@@ -49,7 +49,7 @@ export class CourrierCreateComponent implements OnInit {
 
     uploadForm: FormGroup;
 
-    private uploadedFiles: any[] = [];
+    uploadedFiles: any[] = [];
     voies: VoieVo[];
     natureCourriersSortie: NatureCourrierVo[];
     natureCourriersArrivee: NatureCourrierVo[];
@@ -72,6 +72,7 @@ export class CourrierCreateComponent implements OnInit {
     users: UserVo[];
     usersInService: UserVo[];
     changedServices: LeServiceVo[];
+    changedServicess: SelectItem[];
     typeCourriers: TypeCourrierVo[];
     etatCourriers: EtatCourrierVo[];
     showEditTask = false;
@@ -108,7 +109,7 @@ export class CourrierCreateComponent implements OnInit {
         for (const file of event.files) {
             this.uploadedFiles.push(file);
         }
-        this.courrierService.upload(uploadedFiles);
+        this.courrierService.upload(this.uploadedFiles);
     }
 
 
@@ -413,9 +414,9 @@ export class CourrierCreateComponent implements OnInit {
             this.linkedTos = [{label: '--------------------', value: null}];
             if (data != null) {
                 for (const item of data) {
-                    if(item.typeCourrierVo != null && item.typeCourrierVo.code === 'sortie'){
+                    if (item.typeCourrierVo != null && item.typeCourrierVo.code === 'sortie') {
                         this.linkedTos.push({label: item.idCourrier  + ' : Sortie', value: item});
-                    }else{
+                    } else {
                         this.linkedTos.push({label: item.idCourrier  + ' : Arivee', value: item});
                     }
                 }
@@ -424,16 +425,23 @@ export class CourrierCreateComponent implements OnInit {
             this.linkedTos = [{label: 'none', value: null}];
         });
     }
+
     findAllChangedServices() {
         this.leServiceService.findAllServices().subscribe(data => {
+            this.changedServicess = [{label: '--------------------', value: null}];
             if (data != null) {
-                this.changedServices = data;
-                this.courrierServiceItem.serviceVo = this.changedServices[0];
+              //  this.changedServices = data;
+             //   this.courrierServiceItem.serviceVo = this.changedServices[0];
+                for (const item of data) {
+                    this.changedServicess.push({label: item.title, value: item});
+                }
             }
         }, error => {
+            this.changedServicess = [{label: 'none', value: null}];
             console.log(error);
         });
     }
+
 
     findAllvoies() {
         this.voieService.findAllvoies().subscribe(data => {

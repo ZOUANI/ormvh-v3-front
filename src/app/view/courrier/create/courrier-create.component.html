@@ -833,14 +833,14 @@
                      aria-labelledby="pills-profile-tab">
                     <div class="form-group col-md-12">
                         <label for="instruction-courrier">{{"MAILING.INSTRUCTION" | translate}}</label>
-                        <textarea [disabled]="onDetail||roleChefService()" type="text" id="instruction-courrier" class="form-control"
+                        <textarea [disabled]="onDetail||roleChefService()||roleAgentBo()" type="text" id="instruction-courrier" class="form-control"
                                   [(ngModel)]="courrier.instruction" rows="4"></textarea>
                     </div>
                     <div class="form-row ">
 
                         <div class="form-group col-md-4" *ngIf="courrier.courrierServiceItemsVo!=null && courrier.courrierServiceItemsVo.length>1">
                             <label for="coordinator">{{"MAILING.COORDINATOR" | translate}}</label>
-                            <p-dropdown [disabled]="onDetail||roleChefService()" styleClass="form-control" selectId="coordinator"
+                            <p-dropdown [disabled]="onDetail||roleChefService()||roleAgentBo()" styleClass="form-control" selectId="coordinator"
                                         [options]="leServices" placeholder="-----------------"
                                         [(ngModel)]="courrier.coordinatorVo" [filter]="true" dataKey="id">
                             </p-dropdown>
@@ -848,14 +848,14 @@
                         </div>
                         <div class="form-group col-md-4">
                             <label for="service">{{"MAILING.SERVICE" | translate}}</label>
-                            <p-dropdown id="service" [options]="changedServices" [(ngModel)]="courrierServiceItem.serviceVo"[disabled]="onDetail||roleChefService()"
-                                        styleClass="form-control" autoDisplayFirst="true" optionLabel="title"
-                                        [filter]="true" placeholder="-----------------">
+                            <p-dropdown id="service" [options]="changedServicess" [(ngModel)]="courrierServiceItem.serviceVo" [disabled]="onDetail||roleChefService()||roleAgentBo()"
+                                        styleClass="form-control"
+                                        [filter]="true" placeholder="-----------------"  dataKey="id">
                             </p-dropdown>
                         </div>
 
                         <div class="form-group col-md-4">
-                            <button class="btn btn-outline-success btn-block" [disabled]="onDetail||roleChefService()"
+                            <button class="btn btn-outline-success btn-block" [disabled]="onDetail||roleChefService()||roleAgentBo()"
                                     (click)="addCourrierServiceItem()" style="margin-top: 25px">{{"MAILING.ADD_SERVICE" | translate}}</button>
                         </div>
                     </div>
@@ -880,13 +880,13 @@
                     <br>
                     <div class="form-row">
                         <div class="form-group col-md-4">
-                            <button (click)="saveCourrier()" *ngIf="(roleDirecteur() && isCourrierSucceptibleDirecteur()) ||roleAdmin() ||roleAgentBo()" class="form-control btn btn-outline-info">Sauvgarder</button>
+                            <button (click)="saveCourrier()" *ngIf="(roleDirecteur() && isCourrierSucceptibleDirecteur()) ||roleAdmin() ||roleAgentBo()"  [disabled]="roleAgentBo()" class="form-control btn btn-outline-info">Sauvgarder</button>
                         </div>
                         <div class="form-group col-md-4">
-                            <button (click)="saveCourrierUsingEtat('chef')" *ngIf="(roleDirecteur() && isCourrierSucceptibleDirecteur()) ||roleAdmin() ||roleAgentBo()" class="form-control btn btn-outline-dark">Sauvgarder et Envoyer</button>
+                            <button (click)="saveCourrierUsingEtat('chef')" *ngIf="(roleDirecteur() && isCourrierSucceptibleDirecteur()) ||roleAdmin() ||roleAgentBo()" [disabled]="roleAgentBo()"  class="form-control btn btn-outline-dark">Sauvgarder et Envoyer</button>
                         </div>
                         <div class="form-group col-md-4">
-                            <button (click)="saveCourrierUsingEtat('init')" *ngIf="(roleDirecteur() && isCourrierSucceptibleDirecteur()) ||roleAdmin() ||roleAgentBo()" class="form-control btn btn-outline-danger">Retourner</button>
+                            <button (click)="saveCourrierUsingEtat('init')" *ngIf="(roleDirecteur() && isCourrierSucceptibleDirecteur()) ||roleAdmin() ||roleAgentBo()" [disabled]="roleAgentBo()"  class="form-control btn btn-outline-danger">Retourner</button>
                         </div>
                     </div>
 
@@ -1016,31 +1016,31 @@
     <div class="card-body">
 
         <div class="row py-2">
-            <label>adresse</label>
+            <label>Adresse</label>
             <input [(ngModel)]="expeditor.adress" class="form-control" type="text">
         </div>
 
         <div class="row py-2">
-            <label>code</label>
+            <label>Code</label>
             <input [(ngModel)]="expeditor.code" class="form-control" type="text">
         </div>
         <div class="row py-2">
-            <label>description</label>
+            <label>Description</label>
             <input [(ngModel)]="expeditor.description" class="form-control" type="text">
         </div>
         <div class="row py-2">
-            <label>nature</label>
+            <label>Nature</label>
             <p-dropdown id="type-expeditor" [options]="expeditorTypes" [(ngModel)]="expeditor.expeditorTypeVo"
-                        styleClass="form-control" autoDisplayFirst="true" optionLabel="title"
+                        styleClass="form-control"
                         [filter]="true" placeholder="-----------------">
             </p-dropdown>
         </div>
         <div class="row py-2">
-            <label>age</label>
+            <label>Age</label>
             <input [(ngModel)]="expeditor.age" class="form-control" type="text">
         </div>
         <div class="row py-2">
-            <label>titre</label>
+            <label>Titre</label>
             <input [(ngModel)]="expeditor.title" class="form-control" type="text">
         </div>
         <!--
@@ -1050,13 +1050,13 @@
         </div>-->
 
         <div class="row">
-            <label>sexe</label>
+            <label>Sexe</label>
             <select [(ngModel)]="expeditor.sexeVo.libelle" class="form-control">
                 <option *ngFor="let p of sexes" [ngValue]="p.libelle" value="{{p.libelle}}">{{p.libelle}}</option>
             </select>
         </div>
         <div class="row">
-            <label>nationality</label>
+            <label>Nationalité</label>
             <select [(ngModel)]="expeditor.nationalityVo.libelle" class="form-control">
                 <option *ngFor="let p of nationalitys" [ngValue]="p.libelle"
                         value="{{p.libelle}}">{{p.libelle}}</option>

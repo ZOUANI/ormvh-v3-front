@@ -37,7 +37,6 @@ export class CourrierService {
     showLinkedCourrier = false;
     linkedToThisCourrier: CourrierVo;
     linkedCourrier: Array<CourrierVo> = new Array<CourrierVo>();
-    // private const formData: FormData = new FormData();
     private _courrierDetail: CourrierVo = new CourrierVo();
     private _courrierListe: Array<CourrierVo> = new Array<CourrierVo>();
     private _linkedTos: SelectItem[];
@@ -103,11 +102,11 @@ export class CourrierService {
 
 
     upload(files: Array<File>) {
-
+    const formData: FormData = new FormData();
         for (const file of files) {
-            this.formData.append('files', file);
+           formData.append('files', file);
 
-            this.http.post('http://localhost:8080/generated/courrier/upload/' + this._courrier.id, this.formData).subscribe(
+            this.http.post('http://localhost:8080/generated/courrier/upload/' + this._courrier.id, formData).subscribe(
                 data => {
                     console.log('Success');
                 });
@@ -121,8 +120,8 @@ export class CourrierService {
         }
 
         const authenticatedUserUsername = this.authService.authenticatedUser.username;
-        for ( let item of this.courrier.courrierServiceItemsVo) {
-            if( item.coordinateur != null && item.coordinateur && item.serviceVo != null
+        for ( const item of this.courrier.courrierServiceItemsVo) {
+            if ( item.coordinateur != null && item.coordinateur && item.serviceVo != null
                 && item.serviceVo.chefVo != null && item.serviceVo.chefVo.username === authenticatedUserUsername) {
                 this._coordinateur = true;
                 return this._coordinateur;
@@ -578,7 +577,7 @@ export class CourrierService {
         );
     }
 
-    findAllLinkedTo(): Observable<Array<CourrierVo>>{
+    findAllLinkedTo(): Observable<Array<CourrierVo>> {
 
         return this.http.get<Array<CourrierVo>>('http://localhost:8080/generated/courrier/');
     }
@@ -1026,8 +1025,9 @@ export class CourrierService {
     }
 
     public saveCourrier() {
+
         console.log(this.courrier.courrierPieceJoint);
-        this.courrier.formData = this.formData;
+       // this.courrier.formData = formData;
         this.http.post <number>('http://localhost:8080/generated/courrier/', this.courrier).subscribe(data => {
                 if (data == 1) {
                     this.findAll();

@@ -37,9 +37,8 @@
         </div>
         <div class="row py-2">
             <label>Categorie</label>
-            <p-dropdown styleClass="form-control" [showClear]="true"
-                        placeholder="--------------------" selectId="categorie" [options]="categories"
-                        [(ngModel)]="natureCourrier.categorie" optionLabel="text" [filter]="true"
+            <p-dropdown styleClass="form-control" placeholder="--------------------" selectId="categorie" [options]="categories"
+                        [(ngModel)]="natureCourrier.categorie"  [filter]="true"
                         dataKey="id"></p-dropdown>
         </div>
 

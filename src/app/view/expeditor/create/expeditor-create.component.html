@@ -4,7 +4,7 @@
     <div class="card-body">
 
         <div class="row py-2">
-            <label>adress</label>
+            <label>Adress</label>
             <input [(ngModel)]="expeditor.adress" class="form-control" type="text">
         </div>
         <!--        <div class="row py-2">-->
@@ -20,11 +20,11 @@
         <!--            </div>-->
         <!--        </div>-->
         <div class="row py-2">
-            <label>code</label>
+            <label>Code</label>
             <input [(ngModel)]="expeditor.code" class="form-control" type="text">
         </div>
         <div class="row py-2">
-            <label>description</label>
+            <label>Description</label>
             <input [(ngModel)]="expeditor.description" class="form-control" type="text">
         </div>
         <div class="row py-2">
@@ -32,26 +32,26 @@
 
         </div>
         <div class="row py-2">
-            <label>age</label>
+            <label>Age</label>
             <input [(ngModel)]="expeditor.age" class="form-control" type="text">
         </div>
         <div class="row py-2">
-            <label>nom</label>
+            <label>Nom</label>
             <input [(ngModel)]="expeditor.title" class="form-control" type="text">
         </div>
         <div class="row py-2">
-            <label>nom Arabe</label>
+            <label>Nom Arabe</label>
             <input [(ngModel)]="expeditor.titleArab" class="form-control" type="text">
         </div>
 
         <div class="row">
-            <label>sexe</label>
+            <label>Sexe</label>
             <select [(ngModel)]="expeditor.sexeVo.libelle" class="form-control">
                 <option *ngFor="let p of sexes" [ngValue]="p.libelle" value="{{p.libelle}}">{{p.libelle}}</option>
             </select>
         </div>
         <div class="row">
-            <label>nationalité</label>
+            <label>Nationalité</label>
             <select [(ngModel)]="expeditor.nationalityVo.libelle" class="form-control">
                 <option *ngFor="let p of nationalitys" [ngValue]="p.libelle"
                         value="{{p.libelle}}">{{p.libelle}}</option>

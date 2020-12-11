@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {NatureCourrierService} from '../../../controller/service/NatureCourrier.service';
 import {NatureCourrierVo} from '../../../controller/model/natureCourrier.model';
 import {UserVo} from '../../../controller/model/User.model';
+import {SelectItem} from 'primeng/api';
 
 @Component({
     selector: 'app-natureCourrier-create',
@@ -10,15 +11,13 @@ import {UserVo} from '../../../controller/model/User.model';
 })
 export class NatureCourrierCreateComponent implements OnInit {
 
-    categories: string[] ;
+    categories: SelectItem[] ;
     constructor(private natureCourrierService: NatureCourrierService) {
-        this.categories  = ['1', '2'];
-        // this.categories.push('1');
-        // this.categories.push('2');
-        /*this.categories = [
+       // this.categories  = ['1', '2'];
+        this.categories = [
             { label: 'Arrivée', value: 1 },
             { label: 'Sortie', value: 2 }
-        ];*/
+        ];
     }
 
     get natureCourrier(): NatureCourrierVo {
