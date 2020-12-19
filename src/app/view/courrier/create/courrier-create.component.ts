@@ -48,7 +48,6 @@ import {AuthenticationService} from '../../../controller/service/auth/authentica
 export class CourrierCreateComponent implements OnInit {
 
     uploadForm: FormGroup;
-
     uploadedFiles: any[] = [];
     voies: VoieVo[];
     natureCourriersSortie: NatureCourrierVo[];
@@ -58,14 +57,12 @@ export class CourrierCreateComponent implements OnInit {
     expeditorTypes: SelectItem[];
     subdivisions: SelectItem[];
     leServices: SelectItem[];
-
     linkedTos: SelectItem[];
     courrierObjects: CourrierObjectVo[];
 
     typeRequettes: TypeRequetteVo[];
     phaseAdmins: PhaseAdminVo[];
     natureClients: NatureClientVo[];
-
 
     statuss: StatusVo[];
     statusse: StatusVo[];
@@ -79,7 +76,6 @@ export class CourrierCreateComponent implements OnInit {
     editableTask: TaskVo;
     onEditTask = false;
     onSelectTask = false;
-
     courrierPiece: CourrierPieceJoint;
     onAddSender = false;
     displayBasic2: boolean;
@@ -109,9 +105,9 @@ export class CourrierCreateComponent implements OnInit {
         for (const file of event.files) {
             this.uploadedFiles.push(file);
         }
+        console.log(this.uploadedFiles);
         this.courrierService.upload(this.uploadedFiles);
     }
-
 
     get coordinateur(): boolean {
         return this.courrierService.coordinateur;
@@ -171,7 +167,6 @@ export class CourrierCreateComponent implements OnInit {
     set courrierServiceItem(value: CourrierServiceItemVo) {
         this.courrierService.courrierServiceItem = value;
     }
-
 
     get message(): string {
         if (this.onDetail) {
@@ -425,6 +420,7 @@ export class CourrierCreateComponent implements OnInit {
             this.linkedTos = [{label: 'none', value: null}];
         });
     }
+
 
     findAllChangedServices() {
         this.leServiceService.findAllServices().subscribe(data => {

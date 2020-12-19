@@ -37,6 +37,8 @@ export class CourrierService {
     showLinkedCourrier = false;
     linkedToThisCourrier: CourrierVo;
     linkedCourrier: Array<CourrierVo> = new Array<CourrierVo>();
+    private  formData: FormData = new FormData();
+
     private _courrierDetail: CourrierVo = new CourrierVo();
     private _courrierListe: Array<CourrierVo> = new Array<CourrierVo>();
     private _linkedTos: SelectItem[];
@@ -96,16 +98,18 @@ export class CourrierService {
     private _coordinateur: boolean;
 
 
+
     constructor(private http: HttpClient, private expeditorService: ExpeditorService ,
                 private authService: AuthenticationService) {
     }
-
+    findAllLinkedTo(): Observable<Array<CourrierVo>>{
+        return this.http.get<Array<CourrierVo>>('http://localhost:8080/generated/courrier/');
+    }
 
     upload(files: Array<File>) {
     const formData: FormData = new FormData();
         for (const file of files) {
            formData.append('files', file);
-
             this.http.post('http://localhost:8080/generated/courrier/upload/' + this._courrier.id, formData).subscribe(
                 data => {
                     console.log('Success');
@@ -171,7 +175,7 @@ export class CourrierService {
         this.isCHEF_DE_SERVICE = this.authService.hasRole('CHEF_DE_SERVICE');
         this.isAGENT_BO = this.authService.hasRole('AGENT_BO');
         this.isCHARGE_DE_REQUETE = this.authService.hasRole('CHARGE_DE_REQUETE');
-        this.isAGENT_CAI = this.authService.hasRole('AGENT_CAI');
+        this.isAGENT_CAI = this.authService.hasRole('AGENT_CAI') || (this.authService.authenticatedUser.leServiceVo != null && this.authService.authenticatedUser.leServiceVo.code === 'cai');
         this.isDIRECTEUR = this.authService.hasRole('DIRECTEUR');
 
     }
@@ -575,11 +579,6 @@ export class CourrierService {
                 }
             }
         );
-    }
-
-    findAllLinkedTo(): Observable<Array<CourrierVo>> {
-
-        return this.http.get<Array<CourrierVo>>('http://localhost:8080/generated/courrier/');
     }
 
     public getStatsByDate(date1: string, date2: string, titleCoordinator: string) {
@@ -1027,7 +1026,6 @@ export class CourrierService {
     public saveCourrier() {
 
         console.log(this.courrier.courrierPieceJoint);
-       // this.courrier.formData = formData;
         this.http.post <number>('http://localhost:8080/generated/courrier/', this.courrier).subscribe(data => {
                 if (data == 1) {
                     this.findAll();
