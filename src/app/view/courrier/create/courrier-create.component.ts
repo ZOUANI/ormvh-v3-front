@@ -48,7 +48,6 @@ import {AuthenticationService} from '../../../controller/service/auth/authentica
 export class CourrierCreateComponent implements OnInit {
 
     uploadForm: FormGroup;
-    uploadedFiles: any[] = [];
     voies: VoieVo[];
     natureCourriersSortie: NatureCourrierVo[];
     natureCourriersArrivee: NatureCourrierVo[];
@@ -105,8 +104,12 @@ export class CourrierCreateComponent implements OnInit {
         for (const file of event.files) {
             this.uploadedFiles.push(file);
         }
-        console.log(this.uploadedFiles);
-        this.courrierService.upload(this.uploadedFiles);
+        this.courrierService.upload( this.uploadedFiles);
+    }
+
+
+    get uploadedFiles(){
+        return this.courrierService.uploadedFiles;
     }
 
     get coordinateur(): boolean {

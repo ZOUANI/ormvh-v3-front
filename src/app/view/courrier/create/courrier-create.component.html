@@ -753,7 +753,7 @@
                     <p-fileUpload name="myfile[]" customUpload="true" [disabled]="!(roleChefService() || roleAgentBo() || roleAdmin())" (uploadHandler)="onUpload($event)" multiple="multiple">
                         <ng-template pTemplate="content">
                             <ul *ngIf="uploadedFiles.length">
-                                <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+                                <li *ngFor="let file of uploadedFiles">{{file.name}}</li>
                             </ul>
                         </ng-template>
                     </p-fileUpload>

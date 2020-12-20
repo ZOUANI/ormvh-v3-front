@@ -38,7 +38,7 @@ export class CourrierService {
     linkedToThisCourrier: CourrierVo;
     linkedCourrier: Array<CourrierVo> = new Array<CourrierVo>();
     private  formData: FormData = new FormData();
-
+    private _uploadedFiles: any[] = [];
     private _courrierDetail: CourrierVo = new CourrierVo();
     private _courrierListe: Array<CourrierVo> = new Array<CourrierVo>();
     private _linkedTos: SelectItem[];
@@ -106,16 +106,42 @@ export class CourrierService {
         return this.http.get<Array<CourrierVo>>('http://localhost:8080/generated/courrier/');
     }
 
-    upload(files: Array<File>) {
-    const formData: FormData = new FormData();
-        for (const file of files) {
-           formData.append('files', file);
-            this.http.post('http://localhost:8080/generated/courrier/upload/' + this._courrier.id, formData).subscribe(
-                data => {
-                    console.log('Success');
-                });
-        }
+    get uploadedFiles(){
+        return this._uploadedFiles;
     }
+
+    set uploadedFiles(value) {
+        this._uploadedFiles = value;
+    }
+
+    upload(files: Array<File>) {
+        const formData: FormData = new FormData();
+            for (const file of files) {
+               formData.append('files', file);
+                this.http.post('http://localhost:8080/generated/courrier/upload/' + this._courrier.idCourrier, formData).subscribe(
+                    data => {
+                        if(data > 0){
+                            this.toastr.success(' Les fichiers sont bien enregistré', 'Succés!',{
+                                timeOut: 4000,
+                                closeButton: true,
+                                positionClass: 'toast-top-center'
+                            });
+                            this.addNewCourrier = false;
+                            }
+                        else{
+                            this.toastr.error('Vous devez choisir un courrier ou bien créer un nouveau', 'Courrier non valide!',{
+                                timeOut: 4000,
+                                closeButton: true,
+                                positionClass: 'toast-top-center'
+                            });
+                        }
+                        
+                    }, error => {
+                        console.log(error);
+                      }
+                      );
+            }
+        }
     chekIfCoordinateur() {
         if (this.courrier == null || this.courrier.courrierServiceItemsVo == null
             || this.authService.authenticatedUser == null || this.authService.authenticatedUser.username == null) {
