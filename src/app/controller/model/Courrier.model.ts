@@ -1,5 +1,4 @@
 import {UserVo} from './User.model';
-import {ExpeditorTypeVo} from './ExpeditorType.model';
 import {StatusVo} from './Status.model';
 import {TaskVo} from './Task.model';
 import {NatureCourrierVo} from './NatureCourrier.model';
@@ -79,6 +78,6 @@ export class CourrierVo {
     public natureClientVo: NatureClientVo;
     public phaseAdminVo: PhaseAdminVo;
     public typeRequetteVo: TypeRequetteVo;
-    public formData: FormData ;
+    public formData: FormData;
 
 }

@@ -84,7 +84,6 @@ import {VoielistComponent} from './view/voie/list/voie-list.component';
 import {VoieCreateComponent} from './view/voie/create/voie-create.component';
 import {VoieDetailsComponent} from './view/voie/details/voie-details.component';
 import {VoieEditComponent} from './view/voie/edit/voie-edit.component';
-import {LandingPageComponent} from './landing-page/landing-page.component';
 import {CourrierComponent} from './view/courrier/courrier.component';
 import {CourrierReservationComponent} from './view/courrier/reservation/courrier-reservation.component';
 import {DashboardComponent} from './view/dashboard/dashboard.component';

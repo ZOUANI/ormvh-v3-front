@@ -34,12 +34,11 @@ export class CourrierService {
     selectedCourrier: CourrierVo;
 
 
-
     addNewCourrier = false;
     showLinkedCourrier = false;
     linkedToThisCourrier: CourrierVo;
     linkedCourrier: Array<CourrierVo> = new Array<CourrierVo>();
-    private  formData: FormData = new FormData();
+    private formData: FormData = new FormData();
     private _uploadedFiles: any[] = [];
     private _courrierDetail: CourrierVo = new CourrierVo();
     private _courrierListe: Array<CourrierVo> = new Array<CourrierVo>();
@@ -100,19 +99,20 @@ export class CourrierService {
     private _coordinateur: boolean;
 
 
-
-    constructor(private http: HttpClient, private expeditorService: ExpeditorService ,
+    constructor(private http: HttpClient, private expeditorService: ExpeditorService,
                 private authService: AuthenticationService, private toastr: ToastrService) {
     }
-    findAllLinkedTo(): Observable<Array<CourrierVo>>{
+
+    findAllLinkedTo(): Observable<Array<CourrierVo>> {
         return this.http.get<Array<CourrierVo>>('http://localhost:8080/generated/courrier/');
     }
-  //---------------------------
-   courrierByNatureClient(): Observable<Map<string,Array<StatistiqueVo>>>{
-        return this.http.get<Map<string,Array<StatistiqueVo>>>('http://localhost:8080/generated/courrier/countCourrierByNatureClient/');
-   }
 
-    get uploadedFiles(){
+    //---------------------------
+    courrierByNatureClient() {
+        return this.http.get('http://localhost:8080/generated/courrier/countCourrierByNatureClient/');
+    }
+
+    get uploadedFiles() {
         return this._uploadedFiles;
     }
 
@@ -122,32 +122,32 @@ export class CourrierService {
 
     upload(files: Array<File>) {
         const formData: FormData = new FormData();
-            for (const file of files) {
-               formData.append('files', file);
-                this.http.post('http://localhost:8080/generated/courrier/upload/' + this._courrier.idCourrier, formData).subscribe(
-                    data => {
-                        if(data > 0){
-                            this.toastr.success(' Les fichiers sont bien enregistré', 'Succés!',{
-                                timeOut: 4000,
-                                closeButton: true,
-                                positionClass: 'toast-top-center'
-                            });
-                            this.addNewCourrier = false;
-                            }
-                        else{
-                            this.toastr.error('Vous devez choisir un courrier ou bien créer un nouveau', 'Courrier non valide!',{
-                                timeOut: 4000,
-                                closeButton: true,
-                                positionClass: 'toast-top-center'
-                            });
-                        }
-                        
-                    }, error => {
-                        console.log(error);
-                      }
-                      );
-            }
+        for (const file of files) {
+            formData.append('files', file);
+            this.http.post('http://localhost:8080/generated/courrier/upload/' + this._courrier.idCourrier, formData).subscribe(
+                data => {
+                    if (data > 0) {
+                        this.toastr.success(' Les fichiers sont bien enregistré', 'Succés!', {
+                            timeOut: 4000,
+                            closeButton: true,
+                            positionClass: 'toast-top-center'
+                        });
+                        this.addNewCourrier = false;
+                    } else {
+                        this.toastr.error('Vous devez choisir un courrier ou bien créer un nouveau', 'Courrier non valide!', {
+                            timeOut: 4000,
+                            closeButton: true,
+                            positionClass: 'toast-top-center'
+                        });
+                    }
+
+                }, error => {
+                    console.log(error);
+                }
+            );
         }
+    }
+
     chekIfCoordinateur() {
         if (this.courrier == null || this.courrier.courrierServiceItemsVo == null
             || this.authService.authenticatedUser == null || this.authService.authenticatedUser.username == null) {
@@ -156,8 +156,8 @@ export class CourrierService {
         }
 
         const authenticatedUserUsername = this.authService.authenticatedUser.username;
-        for ( const item of this.courrier.courrierServiceItemsVo) {
-            if ( item.coordinateur != null && item.coordinateur && item.serviceVo != null
+        for (const item of this.courrier.courrierServiceItemsVo) {
+            if (item.coordinateur != null && item.coordinateur && item.serviceVo != null
                 && item.serviceVo.chefVo != null && item.serviceVo.chefVo.username === authenticatedUserUsername) {
                 this._coordinateur = true;
                 return this._coordinateur;
@@ -166,6 +166,7 @@ export class CourrierService {
         this._coordinateur = false;
         return this._coordinateur;
     }
+
     get courrierPieceJoint(): Array<CourrierPieceJoint> {
         if (this._courrierPieceJoint == null) {
             this._courrierPieceJoint = new Array<CourrierPieceJoint>();
@@ -182,6 +183,7 @@ export class CourrierService {
             }
         );
     }
+
     public findAllPhaseAdmins() {
         this.http.get<Array<PhaseAdminVo>>('http://localhost:8080/generated/phaseAdmin/').subscribe(
             value => {
@@ -201,6 +203,7 @@ export class CourrierService {
             }
         );
     }
+
     loadRoles() {
         this.isADMIN = this.authService.hasRole('ADMIN');
         this.isCHARGE_DE_TRAITEMENT_COURRIER = this.authService.hasRole('CHARGE_DE_TRAITEMENT_COURRIER');
@@ -221,9 +224,11 @@ export class CourrierService {
         // console.log(this.courrierPieceJoint);
         // this.courrierPieceJoint.forEach(cour => {
         this.http.get('http://localhost:8080/generated/courrier/downloadFile/' + courrier.id, {
-            responseType : 'arraybuffer'}).subscribe(response => this.downLoad(response, courrier.type));
+            responseType: 'arraybuffer'
+        }).subscribe(response => this.downLoad(response, courrier.type));
         // });
     }
+
     public findAllCourrierJoint(id: number) {
         console.log(id);
         this.http.get<CourrierPieceJoint>('http://localhost:8080/generated/courrier/findAllcourrierPieceJoint/' + id).subscribe(
@@ -237,14 +242,16 @@ export class CourrierService {
             }
         );
     }
+
     downLoad(data: any, type: string) {
-        const blob = new Blob([data], { type});
+        const blob = new Blob([data], {type});
         const url = window.URL.createObjectURL(blob);
         const pwa = window.open(url);
         if (!pwa || pwa.closed || typeof pwa.closed === 'undefined') {
-            alert( 'Please disable your Pop-up blocker and try again.');
+            alert('Please disable your Pop-up blocker and try again.');
         }
     }
+
     get linkedTos(): SelectItem[] {
         return this._linkedTos;
     }
@@ -480,7 +487,6 @@ export class CourrierService {
     set phaseAdmins(value: Array<PhaseAdminVo>) {
         this._phaseAdmins = value;
     }
-
 
 
     get reservationShow(): boolean {
@@ -1070,6 +1076,7 @@ export class CourrierService {
             }
         );
     }
+
     public saveCourrierPieceJoint(form: FormData) {
         this.http.post <number>('http://localhost:8080/generated/courrier/create', form).subscribe(data => {
             if (data != null) {

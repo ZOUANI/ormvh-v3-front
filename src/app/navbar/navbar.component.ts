@@ -13,7 +13,7 @@ export class NavbarComponent implements OnInit {
 
     private open: boolean;
 
-    constructor(private renderer: Renderer2,private courrierService:CourrierService ) {
+    constructor(private renderer: Renderer2, private courrierService: CourrierService) {
     }
 
     @Input()
@@ -48,7 +48,8 @@ export class NavbarComponent implements OnInit {
         }
 
     }
-    roleDirecteur(){
+
+    roleDirecteur() {
         return this.courrierService.isDIRECTEUR;
     }
 }

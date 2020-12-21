@@ -105,8 +105,9 @@ export class StatusService {
     findAllstatuss(): Observable<Array<StatusVo>> {
         return this.http.get<Array<StatusVo>>('http://localhost:8080/generated/status/');
     }
-    public findByCode(): Observable<Array<StatusVo>>  {
-       return this.http.get<Array<StatusVo>>('http://localhost:8080/generated/status/findByCode');
+
+    public findByCode(): Observable<Array<StatusVo>> {
+        return this.http.get<Array<StatusVo>>('http://localhost:8080/generated/status/findByCode');
     }
 
     public saveStatus() {

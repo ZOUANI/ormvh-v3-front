@@ -5,7 +5,7 @@ import {NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {HTTP_INTERCEPTORS, HttpClientModule, HttpClient} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
 import {AppRoutingModule} from './app-routing.module';
 import {StatusCreateComponent} from './view/status/create/status-create.component';
 import {StatuslistComponent} from './view/status/list/status-list.component';
@@ -132,7 +132,7 @@ import {AuthGuard} from './controller/service/auth/auth.guard';
 import {DialogModule} from 'primeng/dialog';
 import {AccordionModule} from 'primeng/accordion';
 
-import {TranslateModule, TranslateLoader, TranslateFakeLoader} from '@ngx-translate/core';
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {LinkedCourriersComponent} from './view/courrier/linked/linked-courriers.component';
 import {CourrierRedirectionComponent} from './view/courrier/redirection/courrier-redirection.component';

@@ -11,12 +11,13 @@ import {SelectItem} from 'primeng/api';
 })
 export class NatureCourrierCreateComponent implements OnInit {
 
-    categories: SelectItem[] ;
+    categories: SelectItem[];
+
     constructor(private natureCourrierService: NatureCourrierService) {
-       // this.categories  = ['1', '2'];
+        // this.categories  = ['1', '2'];
         this.categories = [
-            { label: 'Arrivée', value: 1 },
-            { label: 'Sortie', value: 2 }
+            {label: 'Arrivée', value: 1},
+            {label: 'Sortie', value: 2}
         ];
     }
 

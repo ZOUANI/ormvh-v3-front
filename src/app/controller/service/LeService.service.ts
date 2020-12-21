@@ -188,6 +188,7 @@ export class LeServiceService {
             }
         );
     }
+
     public findAllChefs() {
         this.http.get<Array<UserVo>>('http://localhost:8080/generated/user/').subscribe(
             value => {

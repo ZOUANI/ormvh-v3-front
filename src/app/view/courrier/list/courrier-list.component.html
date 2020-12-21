@@ -2,13 +2,14 @@
 
     <div class="card col-12">
         <div class="card-header bg-transparent">
-            <button id="buttonRES" class="btn  btn-sm fa fa-plus float-left" (click)="showReservation()" *ngIf="roleAdmin()||roleAgentBo()">
+            <button id="buttonRES" class="btn  btn-sm fa fa-plus float-left" (click)="showReservation()"
+                    *ngIf="roleAdmin()||roleAgentBo()">
                 {{"MAILING.RESERVE_MAILING" | translate}}
             </button>
             <button id="buttonArrive" class="btn  btn-sm fa fa-plus float-right" *ngIf="roleAdmin()||roleAgentBo()"
                     (click)="showNewCorrierDialogArrive()">Ajouter courier d'arriver
             </button>
-            <button id="buttonDepart" class="btn  btn-sm fa fa-plus float-right"*ngIf="roleAdmin()||roleAgentBo()"
+            <button id="buttonDepart" class="btn  btn-sm fa fa-plus float-right" *ngIf="roleAdmin()||roleAgentBo()"
                     (click)="showNewCorrierDialogSortie()">Ajouter courier de sortie
             </button>
 
@@ -109,7 +110,8 @@
                         <button class="btn btn-success btn-sm fa fa-pencil-square-o mx-md-1" (click)="edit(p)"></button>
                         <button class="btn btn-warning btn-sm fa fa-code-fork mx-md-1" (click)="showLinked(p)"></button>
                         <!--<button class="btn btn-primary btn-sm fa fa-envelope mx-md-1" (click)="email(p)"></button>-->
-                        <button class="btn btn-danger btn-sm fa fa-trash mx-md-1" (click)="delete(p)" *ngIf="roleAdmin() || (roleAgentBo() && isCourrierSucceptibleInitialisation(p) )"></button>
+                        <button class="btn btn-danger btn-sm fa fa-trash mx-md-1" (click)="delete(p)"
+                                *ngIf="roleAdmin() || (roleAgentBo() && isCourrierSucceptibleInitialisation(p) )"></button>
                         <button class="btn btn-success btn-sm fa fa-download mx-md-1" (click)="download(p)"></button>
 
                     </td>

@@ -70,7 +70,7 @@ export class PhaseAdminService {
     }
 
     public findAll() {
-       return  this.http.get<Array<PhaseAdminVo>>('http://localhost:8080/generated/phaseAdmin/');
+        return this.http.get<Array<PhaseAdminVo>>('http://localhost:8080/generated/phaseAdmin/');
     }
 
     public savePhaseAdmin() {

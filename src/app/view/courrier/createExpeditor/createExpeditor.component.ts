@@ -19,6 +19,7 @@ export class CreateExpeditorComponent implements OnInit {
     get expeditor(): ExpeditorVo {
         return this.expeditorService.expeditor;
     }
+
     get expeditorTypeVos(): Array<ExpeditorTypeVo> {
         return this.expeditorService.expeditorTypeVos;
     }

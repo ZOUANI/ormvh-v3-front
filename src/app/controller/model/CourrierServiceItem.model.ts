@@ -5,8 +5,7 @@ export class CourrierServiceItemVo {
     public id: string;
     public courrierVo: CourrierVo;
     public serviceVo: LeServiceVo;
-    public  coordinateur: boolean;
-
+    public coordinateur: boolean;
 
 
 }

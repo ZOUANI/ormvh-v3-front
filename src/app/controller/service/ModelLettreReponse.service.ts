@@ -1,13 +1,9 @@
-import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {ModelLettreReponseVo} from '../model/modelLettreReponse.model';
 import {UserVo} from '../model/User.model';
 import {CategorieModelLettreReponseVo} from '../model/CategorieModelLettreReponse.model';
-import {LettreModel} from '../model/lettre-model.model';
-import {ToastModule} from 'primeng/toast';
 import {MessageService} from 'primeng';
-import {Observable} from 'rxjs';
-import {error} from '@angular/compiler/src/util';
 
 @Injectable({
     providedIn: 'root'
@@ -23,6 +19,7 @@ export class ModelLettreReponseService {
         this.requestHeaders.append('Content-Type', 'application/json');
         this.requestHeaders.append('Accept', 'application/json');
     }
+
     get categorieModelLettreReponses(): Array<CategorieModelLettreReponseVo> {
         return this._categorieModelLettreReponses;
     }
@@ -30,6 +27,7 @@ export class ModelLettreReponseService {
     set categorieModelLettreReponses(value: Array<CategorieModelLettreReponseVo>) {
         this._categorieModelLettreReponses = value;
     }
+
     get createdBys(): Array<UserVo> {
         return this._createdBys;
     }
@@ -37,6 +35,7 @@ export class ModelLettreReponseService {
     set createdBys(value: Array<UserVo>) {
         this._createdBys = value;
     }
+
     get updatedBys(): Array<UserVo> {
         return this._updatedBys;
     }
@@ -69,7 +68,7 @@ export class ModelLettreReponseService {
     }
 
     set modelLettreReponseListe(value: Array<ModelLettreReponseVo>) {
-        this._modelLettreReponseListe = value ;
+        this._modelLettreReponseListe = value;
     }
 
     get modelLettreReponseDetail(): ModelLettreReponseVo {
@@ -77,7 +76,7 @@ export class ModelLettreReponseService {
     }
 
     set modelLettreReponseDetail(value: ModelLettreReponseVo) {
-        this._modelLettreReponseDetail = value ;
+        this._modelLettreReponseDetail = value;
     }
 
     get modelLettreReponseSearch(): ModelLettreReponseVo {
@@ -85,15 +84,15 @@ export class ModelLettreReponseService {
     }
 
     set modelLettreReponseSearch(value: ModelLettreReponseVo) {
-        this._modelLettreReponseSearch = value ;
+        this._modelLettreReponseSearch = value;
     }
 
-    get modelLettreReponseShowDetail(): boolean  {
+    get modelLettreReponseShowDetail(): boolean {
         return this._modelLettreReponseShowDetail;
     }
 
-    set modelLettreReponseShowDetail(value: boolean ) {
-        this._modelLettreReponseShowDetail = value ;
+    set modelLettreReponseShowDetail(value: boolean) {
+        this._modelLettreReponseShowDetail = value;
     }
 
     get editableModelLettreReponses(): Array<ModelLettreReponseVo> {
@@ -103,10 +102,11 @@ export class ModelLettreReponseService {
     set editableModelLettreReponses(value: Array<ModelLettreReponseVo>) {
         this._editableModelLettreReponses = value;
     }
-    private _modelLettreReponseDetail: ModelLettreReponseVo =  new ModelLettreReponseVo() ;
+
+    private _modelLettreReponseDetail: ModelLettreReponseVo = new ModelLettreReponseVo();
     private _modelLettreReponseListe: Array<ModelLettreReponseVo> = new Array<ModelLettreReponseVo>();
     private _modelLettreReponseSearch: ModelLettreReponseVo = new ModelLettreReponseVo();
-    private _modelLettreReponse: ModelLettreReponseVo =  new ModelLettreReponseVo();
+    private _modelLettreReponse: ModelLettreReponseVo = new ModelLettreReponseVo();
     private _searchedModelLettreReponses: Array<ModelLettreReponseVo> = new Array<ModelLettreReponseVo>();
     private _editableModelLettreReponses: Array<ModelLettreReponseVo> = new Array<ModelLettreReponseVo>();
     private _categorieModelLettreReponses: Array<CategorieModelLettreReponseVo> = new Array<CategorieModelLettreReponseVo>();
@@ -123,18 +123,19 @@ export class ModelLettreReponseService {
             value => {
                 if (value != null) {
                     this.modelLettreReponseListe = value;
-                    this.modelLettreReponseListe.forEach(val =>{
+                    this.modelLettreReponseListe.forEach(val => {
                         console.log(val.type);
                     });
                     this.editableModelLettreReponses = value;
                 }
             });
     }
+
     public findType(type: string) {
         this.http.get<ModelLettreReponseVo>('http://localhost:8080/generated/modelLettreReponse/getType/' + type).subscribe(
             value => {
                 if (value != null) {
-                   console.log(value);
+                    console.log(value);
                 }
             }, eror => {
                 console.log('eroro', eror);
@@ -153,25 +154,24 @@ export class ModelLettreReponseService {
 
     public editModelLettreReponse() {
         this.http.post<ModelLettreReponseVo>('http://localhost:8080/generated/modelLettreReponse/edit', this.modelLettreReponse).subscribe(data => {
-            if(data != null){
+            if (data != null) {
                 this.showInfo();
             }
         });
     }
 
-    public findModelLettreReponse( pojo: ModelLettreReponseVo ) {
+    public findModelLettreReponse(pojo: ModelLettreReponseVo) {
         this.http.post<Array<ModelLettreReponseVo>>('http://localhost:8080/generated/modelLettreReponse/search/', pojo).subscribe(
             value => {
                 this.modelLettreReponseListe = value;
-            } );
+            });
     }
 
-    public detailShow( pojo: ModelLettreReponseVo ) {
+    public detailShow(pojo: ModelLettreReponseVo) {
         this.modelLettreReponseDetail = pojo;
         this.modelLettreReponseShowDetail = true;
 
     }
-
 
 
     delete(pojo: ModelLettreReponseVo) {
@@ -191,7 +191,9 @@ export class ModelLettreReponseService {
     public findBylibelle(ref: string) {
         this.http.get<ModelLettreReponseVo>('http://localhost:8080/generated/modelLettreReponse/libelle/' + ref).subscribe(
             value => {
-                if (value != null) { this.modelLettreReponse = value; }
+                if (value != null) {
+                    this.modelLettreReponse = value;
+                }
             }
         );
     }
@@ -199,30 +201,40 @@ export class ModelLettreReponseService {
     public findAllcategorieModelLettreReponses() {
         this.http.get<Array<CategorieModelLettreReponseVo>>('http://localhost:8080/generated/categorieModelLettreReponse/').subscribe(
             value => {
-                if (value != null) { this.categorieModelLettreReponses = value; }
+                if (value != null) {
+                    this.categorieModelLettreReponses = value;
+                }
             });
     }
+
     public findAllcreatedBys() {
         this.http.get<Array<UserVo>>('http://localhost:8080/generated/user/').subscribe(
             value => {
-                if (value != null) { this.createdBys = value; }
+                if (value != null) {
+                    this.createdBys = value;
+                }
             }
         );
     }
+
     public findAllupdatedBys() {
         this.http.get<Array<UserVo>>('http://localhost:8080/generated/user/').subscribe(
             value => {
-                if (value != null) { this.updatedBys = value; }
+                if (value != null) {
+                    this.updatedBys = value;
+                }
             }
         );
     }
+
     public detailHide() {
 
         this.modelLettreReponseShowDetail = false;
         this.modelLettreReponseDetail = null;
     }
+
     public uploadFile(file: FormData) {
-        this.http.post<number>('http://localhost:8080/generated/modelLettreReponse/uploadFile' , file).subscribe(
+        this.http.post<number>('http://localhost:8080/generated/modelLettreReponse/uploadFile', file).subscribe(
             data => {
                 if (data === 1) {
                     document.getElementById('fa').style.display = ' inline';
@@ -235,12 +247,13 @@ export class ModelLettreReponseService {
                 console.log('eroro', eror);
             });
     }
+
     public uploadFileEdit(file: FormData, disp: boolean) {
         console.log(file);
-        if(disp === false){
+        if (disp === false) {
             this.editModelLettreReponse();
-        } else{
-            this.http.post<number>('http://localhost:8080/generated/modelLettreReponse/uploadFile' , file).subscribe(
+        } else {
+            this.http.post<number>('http://localhost:8080/generated/modelLettreReponse/uploadFile', file).subscribe(
                 data => {
                     if (data === 1) {
                         this.editModelLettreReponse();
@@ -254,15 +267,23 @@ export class ModelLettreReponseService {
                 });
         }
     }
+
     showSuccess() {
-        this.messageService.add({ severity: 'success', summary: 'Success Message', detail: 'modelLettreReponse is saved'});
+        this.messageService.add({
+            severity: 'success',
+            summary: 'Success Message',
+            detail: 'modelLettreReponse is saved'
+        });
     }
+
     showSuccess1() {
-        this.messageService.add({key: 'c', sticky: true,  severity: 'info', summary: 'Download completed', detail: ''});
+        this.messageService.add({key: 'c', sticky: true, severity: 'info', summary: 'Download completed', detail: ''});
     }
+
     showInfo() {
         this.messageService.add({severity: 'info', summary: 'Info Message', detail: 'modelLettreReponse is edited'});
     }
+
     private _letttreModelType: string;
 
     get letttreModelType(): string {
@@ -272,6 +293,7 @@ export class ModelLettreReponseService {
     set letttreModelType(value: string) {
         this._letttreModelType = value;
     }
+
     private _imageName: string;
 
     get imageName(): string {
@@ -283,25 +305,27 @@ export class ModelLettreReponseService {
     }
 
     downloadFile(name: string, type: string) {
-      /*  this.http.get<ModelLettreReponseVo>('http://localhost:8080/generated/modelLettreReponse/downloadFile/' + name).subscribe(
-            data => {
-                if (data != null) {
-                    console.log('sucess');
-                    this.letttreModelType = data.type;
-                    this.showSuccess1();
-                }}, eror => {
-                console.log('eroro', eror);
-            });*/
-     // if(type === 'application/pdf'){
-          this.http.get('http://localhost:8080/generated/modelLettreReponse/downloadFile/' + name, {
-              responseType : 'arraybuffer'}).subscribe(response => this.downLoad(response, type));
-    //  } else if(type === 'application/msword'){
-         // this.http.get('http://localhost:8080/generated/modelLettreReponse/downloadFile/' + name, {
-         //     responseType : 'arraybuffer'}).subscribe(response => this.downLoad(response, 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'));
-    //  }
+        /*  this.http.get<ModelLettreReponseVo>('http://localhost:8080/generated/modelLettreReponse/downloadFile/' + name).subscribe(
+              data => {
+                  if (data != null) {
+                      console.log('sucess');
+                      this.letttreModelType = data.type;
+                      this.showSuccess1();
+                  }}, eror => {
+                  console.log('eroro', eror);
+              });*/
+        // if(type === 'application/pdf'){
+        this.http.get('http://localhost:8080/generated/modelLettreReponse/downloadFile/' + name, {
+            responseType: 'arraybuffer'
+        }).subscribe(response => this.downLoad(response, type));
+        //  } else if(type === 'application/msword'){
+        // this.http.get('http://localhost:8080/generated/modelLettreReponse/downloadFile/' + name, {
+        //     responseType : 'arraybuffer'}).subscribe(response => this.downLoad(response, 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'));
+        //  }
 
     }
-    getPdf(name: string): any{
+
+    getPdf(name: string): any {
 
         this.authKey = localStorage.getItem('jwt_token');
 
@@ -314,14 +338,16 @@ export class ModelLettreReponseService {
 
         return this.http.get('http://localhost:8080/generated/modelLettreReponse/downloadFile/' + name, httpOptions);
     }
-downLoad(data: any, type: string) {
-    let blob = new Blob([data], { type});
-    let url = window.URL.createObjectURL(blob);
-    let pwa = window.open(url);
-    if (!pwa || pwa.closed || typeof pwa.closed === 'undefined') {
-        alert( 'Please disable your Pop-up blocker and try again.');
+
+    downLoad(data: any, type: string) {
+        let blob = new Blob([data], {type});
+        let url = window.URL.createObjectURL(blob);
+        let pwa = window.open(url);
+        if (!pwa || pwa.closed || typeof pwa.closed === 'undefined') {
+            alert('Please disable your Pop-up blocker and try again.');
+        }
     }
-}
+
     /*    ShowFile(): void {
             this.http.get('http://localhost:8080/generated/modelLettreReponse/show').subscribe(
                 data => {
@@ -337,11 +363,13 @@ downLoad(data: any, type: string) {
  this.showSuccess();
  this.http.get<void>('http://localhost:8080/generated/modelLettreReponse/downloadFile/' + docFile);
          }*/
+
 // return this.http.get('http://localhost:8080/generated/modelLettreReponse/downloadFile/' + docFile);
 
     public GetFile(docFile: string): any {
         return this.http.get('http://localhost:8080/generated/modelLettreReponse/getPDF/' + docFile);
     }
+
     get createModelLettre(): boolean {
         return this._createModelLettre;
     }

@@ -19,6 +19,7 @@ export class LeServiceEditComponent implements OnInit {
     get chefs(): Array<UserVo> {
         return this.leServiceService.chefs;
     }
+
     get editableLeServices(): Array<LeServiceVo> {
         return this.leServiceService.editableLeServices;
     }

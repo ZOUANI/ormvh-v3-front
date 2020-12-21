@@ -1,41 +1,47 @@
+<div class="card col-md-12 mx-auto p-0 ">
+    <div class="card-body p-0 from-ctn">
+        <!-- <h1 class="create-title">Add new Courrier</h1> -->
+        <ul class="nav nav-tabs mb-6" id="my-tab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="courrier-tab" data-toggle="tab" href="#pills-stat1" role="tab"
+                   aria-controls="pills-home" aria-selected="true"> test</a>
+            </li>
 
-    <div class="card col-md-12 mx-auto p-0 ">
-        <div class="card-body p-0 from-ctn" >
-            <!-- <h1 class="create-title">Add new Courrier</h1> -->
-            <ul class="nav nav-tabs mb-6" id="my-tab" role="tablist">
-                <li  class="nav-item">
-                    <a class="nav-link active" id="courrier-tab" data-toggle="tab" href="#pills-stat1" role="tab"
-                       aria-controls="pills-home" aria-selected="true"> test</a>
-                </li>
-
-                <li  class="nav-item">
-                    <a class="nav-link" id="instruction-tab" data-toggle="tab" href="#pills-stat2" role="tab"
-                       aria-controls="pills-home" aria-selected="true">test 2</a>
-                </li>
-            </ul>
-            <div class="tab-content pb-0" id="pills-tabContent">
-                <div id="pills-stat1" class="tab-pane fade in active">
-                    <h3>observations no loop</h3>
-                    <p-chart type="pie" [data]="countCourrierByNatureClientData['oservations']"></p-chart>
-                    <h3>propositions no loop</h3>
-                    <p-chart type="pie" [data]="countCourrierByNatureClientData['propositions']"></p-chart>
-                    <h3>reclamations no loop</h3>
-                    <p-chart type="pie" [data]="countCourrierByNatureClientData['reclamations']"></p-chart>
-                  <div *ngFor="let r of countCourrierByNatureClientData | keyvalue">
-                      <h2>{{r.key}}</h2>
-                      <p-chart type="pie" [data]="r.value"></p-chart>
-                  </div>
-                </div>
-
-                <div id="pills-stat2" class="tab-pane fade">
-                    <h3>stat2</h3>
-                    <p>Some content.</p>
+            <li class="nav-item">
+                <a class="nav-link" id="instruction-tab" data-toggle="tab" href="#pills-stat2" role="tab"
+                   aria-controls="pills-home" aria-selected="true">test 2</a>
+            </li>
+        </ul>
+        <div class="tab-content pb-0" id="pills-tabContent">
+            <div id="pills-stat1"  *ngIf="loaded" class="tab-pane fade in active">
+                <!--                    <h3>observations no loop</h3>-->
+                <!--                    <p-chart type="pie" [data]="countCourrierByNatureClientData['oservations']"></p-chart>-->
+                <!--                    <h3>propositions no loop</h3>-->
+                <!--                    <p-chart type="pie" [data]="countCourrierByNatureClientData['propositions']"></p-chart>-->
+                <!--                    <h3>reclamations no loop</h3>-->
+                <!--                    <p-chart type="pie" [data]="countCourrierByNatureClientData['reclamations']"></p-chart>-->
+                <!--                  <div *ngFor="let r of countCourrierByNatureClientData | keyvalue">-->
+                <!--                      <h2>{{r.key}}</h2>-->
+                <!--                      <p-chart type="pie" [data]="r.value"></p-chart>-->
+                <!--                  </div>-->
+                <div id="results">
+                    <div class="row">
+                        <div class="col-4" *ngFor="let r of countCourrierByNatureClientData">
+                            <p-chart type="pie" [data]="r.data" [options]="r.options"></p-chart>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <br>
-
+            <div id="pills-stat2" *ngIf="loaded" class="tab-pane fade">
+                <h3>stat2</h3>
+                <p>Some content.</p>
+            </div>
         </div>
-    </div>
 
-   $
+        <br>
+
+    </div>
+</div>
+
+$

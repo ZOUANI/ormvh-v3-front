@@ -12,16 +12,17 @@ import {TaskVo} from "../../../controller/model/Task.model";
 export class CourrierReservationComponent {
 
     nbr: number
-    descriptionCourrier:string;
+    descriptionCourrier: string;
     statuss: StatusVo[];
 
 
-    constructor(protected courrierService: CourrierService,private statusService: StatusService) {
+    constructor(protected courrierService: CourrierService, private statusService: StatusService) {
     }
 
     get courrier(): CourrierVo {
         return this.courrierService.courrier;
     }
+
     get generatedId() {
         return this.courrierService.generatedId2;
     }
@@ -53,17 +54,19 @@ export class CourrierReservationComponent {
 
     reserve(): void {
         this.reserveCourier.idCourrier = this.generatedId;
-        this.reserveCourier.description=this.descriptionCourrier;
-        this.reserveCourier.statusVo=this.courrier.statusVo;
-        this.courrierService.reserve(this.reserveCourier.idCourrier, this.nbr,this.reserveCourier.description);
+        this.reserveCourier.description = this.descriptionCourrier;
+        this.reserveCourier.statusVo = this.courrier.statusVo;
+        this.courrierService.reserve(this.reserveCourier.idCourrier, this.nbr, this.reserveCourier.description);
         this.courrierService.reservationShow = false
         this.generatedId = ''
 
 
     }
+
     get task(): TaskVo {
         return this.courrierService.task;
     }
+
     findAllstatuss() {
         this.statusService.findAllstatuss().subscribe(data => {
             if (data != null) {

@@ -5,8 +5,6 @@ import {CourrierVo} from 'src/app/controller/model/Courrier.model';
 import {TypeCourrierService} from 'src/app/controller/service/TypeCourrier.service';
 import {CourrierService} from 'src/app/controller/service/Courrier.service';
 import {TypeCourrierVo} from 'src/app/controller/model/TypeCourrier.model';
-import {LeServiceVo} from 'src/app/controller/model/LeService.model';
-import {StatusVo} from 'src/app/controller/model/status.model';
 
 @Component({
     selector: 'app-courrier-redirection',
@@ -204,13 +202,13 @@ export class CourrierRedirectionComponent implements OnInit {
         this.typeCourrierService.findAlltypeCourriers().subscribe(data => {
             this.typeCourrierOption = data;
             this.courrierCriteria.typeCourrierVo = this.typeCourrierOption[0];
-        //    this.courrierCriteria.dateRelance = this.datepipe.transform(this.date, 'yyyy-MM-dd');
+            //    this.courrierCriteria.dateRelance = this.datepipe.transform(this.date, 'yyyy-MM-dd');
             this.courrierService.findCourrierByRelance(this.courrierCriteria);
         });
     }
 
     findCourriers() {
-       // this.courrierCriteria.dateRelance = this.datepipe.transform(this.date, 'yyyy-MM-dd');
+        // this.courrierCriteria.dateRelance = this.datepipe.transform(this.date, 'yyyy-MM-dd');
         this.courrierService.findCourrierByRelance(this.courrierCriteria)
     }
 }
