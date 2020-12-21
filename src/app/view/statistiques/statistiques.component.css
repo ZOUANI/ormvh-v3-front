@@ -1,0 +1,234 @@
+.addCourrierDialog {
+    background-color: #fff !important;
+    width: 65%;
+    height: 800px !important;
+    font-size: 16px;
+    font-family: "Source Sans Pro", sans-serif;
+    color: #4a5568;
+    line-height: 1.45;
+    box-shadow: 3px 4px 5px -1px rgba(0, 0, 0, 0.58) !important;
+}
+
+.addCourrierDialog .ui-dialog-titlebar {
+    background-color: #fff !important;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.addCourrierDialog.ui-dialog .ui-dialog-content {
+    padding: 0 !important;
+    border: 0;
+    height: 100%;
+}
+
+.create-title {
+    /* font-family: , Helvetica, sans-serif; */
+    font-family: sans-serif;
+    font-size: 22px;
+}
+
+.tab-pane {
+    height: 420px;
+}
+
+.nav-tabs {
+    border-bottom: 3px solid #DDD;
+}
+
+.ui-dropdown {
+
+    min-width: 5.5em;
+}
+
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:focus,
+.nav-tabs > li.active > a:hover {
+    border-width: 0;
+}
+
+.nav-tabs > li {
+    position: relative;
+    padding-right: 10px;
+}
+
+.nav-tabs > li > a {
+    border: none;
+    color: rgb(126, 126, 126);
+    padding: 20px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.nav-tabs > li > a.active,
+.nav-tabs > li > a:hover {
+    border: none;
+    color: #22c738 !important;
+
+    background: transparent;
+}
+
+.nav-tabs > li > a::after {
+    content: "";
+    background: #22c738;
+    height: 2px;
+    position: absolute;
+    width: 100%;
+    left: 0px;
+    bottom: -1px;
+    transition: all 250ms ease 0s;
+    transform: scale(0);
+}
+
+.nav-tabs > li > a.active::after,
+.nav-tabs > li:hover > a::after {
+    transform: scale(1);
+}
+
+.tab-nav > li > a::after {
+    background: #22c738 none repeat scroll 0% 0%;
+    color: #fff;
+}
+
+.tab-pane {
+    padding: 15px 0;
+}
+
+.tab-content {
+    padding: 20px
+}
+
+
+label {
+    font-weight: bold;
+}
+
+.services-ctn {
+    padding: 10px 20px;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 30px;
+    height: 20px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* The slider */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 12px;
+    width: 12px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: #22c738;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #22c738;
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(10px);
+    -ms-transform: translateX(10px);
+    transform: translateX(10px);
+}
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+.hover-effect:hover {
+    font-size: 11px;
+    width: bold;
+    color: #000;
+}
+
+
+.panel-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.panel p {
+    margin-bottom: 16px;
+}
+
+hr {
+    background: #edf2f7;
+    height: 1px;
+    border: 0;
+    margin: 24px 0 16px;
+}
+
+.rds {
+    border-radius: 10px;
+
+}
+
+.panel {
+    width: 400px;
+    height: 400px;
+    max-width: 90%;
+    margin: 0 auto 0;
+    box-shadow: 0 4px 6px -1px rgba(34, 18, 18, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    padding: 24px;
+    border-radius: 10px;
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, .125);
+    position: relative;
+}
+
+.deselect {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: block;
+    font-size: 11px;
+}
+.label-file {
+    cursor: pointer;
+    color: #00b1ca;
+    font-weight: bold;
+}
+.label-file:hover {
+    color: #25a5c4;
+}
+.input-file {
+    display: none;
+}
+#fa{
+    color: green;
+    display: none;
+}

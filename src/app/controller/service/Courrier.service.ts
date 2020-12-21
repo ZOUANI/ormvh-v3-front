@@ -18,6 +18,7 @@ import {NatureClientVo} from '../model/NatureClient.model';
 import {TypeRequetteVo} from '../model/TypeRequette.model';
 import {SelectItem} from 'primeng/api';
 import {ToastrService} from 'ngx-toastr';
+import {StatistiqueVo} from "../model/statistique-vo.model";
 
 @Injectable({
     providedIn: 'root'
@@ -106,6 +107,10 @@ export class CourrierService {
     findAllLinkedTo(): Observable<Array<CourrierVo>>{
         return this.http.get<Array<CourrierVo>>('http://localhost:8080/generated/courrier/');
     }
+  //---------------------------
+   courrierByNatureClient(): Observable<Map<string,Array<StatistiqueVo>>>{
+        return this.http.get<Map<string,Array<StatistiqueVo>>>('http://localhost:8080/generated/courrier/countCourrierByNatureClient/');
+   }
 
     get uploadedFiles(){
         return this._uploadedFiles;

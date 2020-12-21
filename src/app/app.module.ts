@@ -142,6 +142,7 @@ import {PasswordResetComponent} from './view/password-reset/password-reset.compo
 import {CourrierEmailComponent} from './view/courrier/email/courrier-email.component';
 import {FileUploadModule, MessageService, ProgressBarModule, ToastModule} from 'primeng';
 import { ToastrModule } from 'ngx-toastr';
+import { StatistiquesComponent } from './view/statistiques/statistiques.component';
 
 export function httpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http);
@@ -264,7 +265,8 @@ export function httpLoaderFactory(http: HttpClient) {
         LinkedCourriersComponent,
         CourrierRedirectionComponent,
         CourrierEmailComponent,
-        PasswordResetComponent
+        PasswordResetComponent,
+        StatistiquesComponent
     ],
     imports: [
         FormsModule,
