@@ -101,11 +101,11 @@ export class CourrierCreateComponent implements OnInit {
         for (const file of event.files) {
             this.uploadedFiles.push(file);
         }
-        this.courrierService.upload( this.uploadedFiles);
+        this.courrierService.upload(this.uploadedFiles);
     }
 
 
-    get uploadedFiles(){
+    get uploadedFiles() {
         return this.courrierService.uploadedFiles;
     }
 
@@ -760,7 +760,15 @@ export class CourrierCreateComponent implements OnInit {
         });
     }
 
-    test() {
-        console.log(this.courrier.typeRequetteVo);
+
+    statusChange() {
+        if (this.courrier.statusVo.code == 'traite') {
+            this.courrier.phaseAdminVo = this.phaseAdmins[1];
+        }
+    }
+
+    getExpeditorAge() {
+        const timeDiff = Math.abs(Date.now() - new Date(this.expeditor.dateNaissance).getTime());
+        this.expeditor.age = Math.floor((timeDiff / (1000 * 3600 * 24)) / 365.25).toString();
     }
 }

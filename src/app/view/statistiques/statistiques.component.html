@@ -1,47 +1,264 @@
 <div class="card col-md-12 mx-auto p-0 ">
     <div class="card-body p-0 from-ctn">
         <!-- <h1 class="create-title">Add new Courrier</h1> -->
-        <ul class="nav nav-tabs mb-6" id="my-tab" role="tablist">
-            <li class="nav-item">
-                <a class="nav-link active" id="courrier-tab" data-toggle="tab" href="#pills-stat1" role="tab"
-                   aria-controls="pills-home" aria-selected="true"> test</a>
-            </li>
+        <!--        <ul class="nav nav-tabs mb-6" id="my-tab" role="tablist">-->
+        <!--            <li class="nav-item">-->
+        <!--                <a class="nav-link active" id="courrier-tab" data-toggle="tab" href="#pills-stat1" role="tab"-->
+        <!--                   aria-controls="pills-home" aria-selected="true"> test</a>-->
+        <!--            </li>-->
 
-            <li class="nav-item">
-                <a class="nav-link" id="instruction-tab" data-toggle="tab" href="#pills-stat2" role="tab"
-                   aria-controls="pills-home" aria-selected="true">test 2</a>
-            </li>
-        </ul>
-        <div class="tab-content pb-0" id="pills-tabContent">
-            <div id="pills-stat1"  *ngIf="loaded" class="tab-pane fade in active">
-                <!--                    <h3>observations no loop</h3>-->
-                <!--                    <p-chart type="pie" [data]="countCourrierByNatureClientData['oservations']"></p-chart>-->
-                <!--                    <h3>propositions no loop</h3>-->
-                <!--                    <p-chart type="pie" [data]="countCourrierByNatureClientData['propositions']"></p-chart>-->
-                <!--                    <h3>reclamations no loop</h3>-->
-                <!--                    <p-chart type="pie" [data]="countCourrierByNatureClientData['reclamations']"></p-chart>-->
-                <!--                  <div *ngFor="let r of countCourrierByNatureClientData | keyvalue">-->
-                <!--                      <h2>{{r.key}}</h2>-->
-                <!--                      <p-chart type="pie" [data]="r.value"></p-chart>-->
-                <!--                  </div>-->
-                <div id="results">
-                    <div class="row">
-                        <div class="col-4" *ngFor="let r of countCourrierByNatureClientData">
-                            <p-chart type="pie" [data]="r.data" [options]="r.options"></p-chart>
+        <!--            <li class="nav-item">-->
+        <!--                <a class="nav-link" id="instruction-tab" data-toggle="tab" href="#pills-stat2" role="tab"-->
+        <!--                   aria-controls="pills-home" aria-selected="true">test 2</a>-->
+        <!--            </li>-->
+        <!--        </ul>-->
+        <!--        <div class="tab-content pb-0" id="pills-tabContent">-->
+        <!--            <div id="pills-stat1"  *ngIf="loaded" class="tab-pane fade in active">-->
+        <!--                &lt;!&ndash;                    <h3>observations no loop</h3>&ndash;&gt;-->
+        <!--                &lt;!&ndash;                    <p-chart type="pie" [data]="countCourrierByNatureClientData['oservations']"></p-chart>&ndash;&gt;-->
+        <!--                &lt;!&ndash;                    <h3>propositions no loop</h3>&ndash;&gt;-->
+        <!--                &lt;!&ndash;                    <p-chart type="pie" [data]="countCourrierByNatureClientData['propositions']"></p-chart>&ndash;&gt;-->
+        <!--                &lt;!&ndash;                    <h3>reclamations no loop</h3>&ndash;&gt;-->
+        <!--                &lt;!&ndash;                    <p-chart type="pie" [data]="countCourrierByNatureClientData['reclamations']"></p-chart>&ndash;&gt;-->
+        <!--                &lt;!&ndash;                  <div *ngFor="let r of countCourrierByNatureClientData | keyvalue">&ndash;&gt;-->
+        <!--                &lt;!&ndash;                      <h2>{{r.key}}</h2>&ndash;&gt;-->
+        <!--                &lt;!&ndash;                      <p-chart type="pie" [data]="r.value"></p-chart>&ndash;&gt;-->
+        <!--                &lt;!&ndash;                  </div>&ndash;&gt;-->
+        <!--                <div id="results">-->
+        <!--                    <div class="row">-->
+        <!--                        <div class="col-xl-4 col-md-6" *ngFor="let r of countCourrierByNatureClientData">-->
+        <!--                            <p-chart type="pie" [data]="r.data" [options]="r.options"></p-chart>-->
+        <!--                        </div>-->
+        <!--                    </div>-->
+        <!--                </div>-->
+        <!--            </div>-->
+
+        <!--            <div id="pills-stat2" *ngIf="loaded" class="tab-pane fade">-->
+        <!--                <h3>stat2</h3>-->
+        <!--                <p>Some content.</p>-->
+        <!--            </div>-->
+        <!--        </div>-->
+        <!--        <p-tabMenu [model]="items" [activeItem]="items[0]"></p-tabMenu>-->
+
+        <p-tabView *ngIf="loaded">
+            <p-tabPanel header="Nature Client">
+                <ng-template pTemplate="content">
+                    <div class="results">
+                        <div class="row">
+                            <div class="col-xl-4 col-md-6" *ngFor="let r of countCourrierByNatureClientData">
+                                <p-chart type="doughnut" [data]="r.data" [options]="r.options"></p-chart>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                </ng-template>
+            </p-tabPanel>
+            <p-tabPanel header="Sexe">
+                <ng-template pTemplate="content">
+                    <p-tabView>
+                        <p-tabPanel header="Destinator">
+                            <ng-template pTemplate="content">
+                                <div class="results">
+                                    <div class="row">
+                                        <div class="col-xl-4 col-md-6" *ngFor="let r of countCourrierByDestinatorSex">
+                                            <p-chart type="doughnut" [data]="r.data" [options]="r.options"></p-chart>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-template>
+                        </p-tabPanel>
+                        <p-tabPanel header="Expeditor">
+                            <ng-template pTemplate="content">
+                                <div class="results">
+                                    <div class="row">
+                                        <div class="col-xl-4 col-md-6" *ngFor="let r of countCourrierByExpeditorSex">
+                                            <p-chart type="doughnut" [data]="r.data" [options]="r.options"></p-chart>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-template>
+                        </p-tabPanel>
+                    </p-tabView>
+                </ng-template>
+            </p-tabPanel>
 
-            <div id="pills-stat2" *ngIf="loaded" class="tab-pane fade">
-                <h3>stat2</h3>
-                <p>Some content.</p>
-            </div>
-        </div>
+            <p-tabPanel header="Service">
+                <ng-template pTemplate="content">
+                    <div class="results">
+                        <div class="row">
+                            <div class="col-xl-4 col-md-6" *ngFor="let r of countCourrierByService">
+                                <p-chart type="doughnut" [data]="r.data" [options]="r.options"></p-chart>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </p-tabPanel>
+            <p-tabPanel header="Subject">
+                <ng-template pTemplate="content">
+                    <div class="results">
+                        <div class="row">
+                            <div class="col-xl-4 col-md-6" *ngFor="let r of countCourrierBySubject">
+                                <p-chart type="doughnut" [data]="r.data" [options]="r.options"></p-chart>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </p-tabPanel>
+            <p-tabPanel header="Voie">
+                <ng-template pTemplate="content">
+                    <div class="results">
+                        <div class="row">
+                            <div class="col-xl-4 col-md-6" *ngFor="let r of countCourrierByVoie">
+                                <p-chart type="doughnut" [data]="r.data" [options]="r.options"></p-chart>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </p-tabPanel>
 
-        <br>
+            <p-tabPanel header="Etat Evaluation">
+                <ng-template pTemplate="content">
+                    <div class="results">
+                        <div class="row">
+                            <div class="col-xl-4 col-md-6" *ngFor="let r of countCourrierByEtatEval">
+                                <p-chart type="doughnut" [data]="r.data" [options]="r.options"></p-chart>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </p-tabPanel>
+            <p-tabPanel header="service Emeteur">
+                <ng-template pTemplate="content">
+                    <div class="results">
+                        <div class="row">
+                            <div class="col-xl-4 col-md-6" *ngFor="let r of countCourrierByServiceEmeteur">
+                                <p-chart type="doughnut" [data]="r.data" [options]="r.options"></p-chart>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </p-tabPanel>
+            <p-tabPanel header="service Coordinateur">
+                <ng-template pTemplate="content">
+                    <div class="results">
+                        <div class="row">
+                            <div class="col-xl-4 col-md-6" *ngFor="let r of countCourrierByServiceCoord">
+                                <p-chart type="doughnut" [data]="r.data" [options]="r.options"></p-chart>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </p-tabPanel>
+            <p-tabPanel header="Acceptee">
+                <ng-template pTemplate="content">
+                    <p-tabView>
+                        <p-tabPanel header="Subject">
+                            <ng-template pTemplate="content">
+                                <div class="results">
+                                    <div class="row">
+                                        <div class="col-xl-4 col-md-6" *ngFor="let r of countCourrierAcceptedBySubject">
+                                            <p-chart type="doughnut" [data]="r.data" [options]="r.options"></p-chart>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-template>
+                        </p-tabPanel>
+                        <p-tabPanel header="Nature Client">
+                            <ng-template pTemplate="content">
+                                <div class="results">
+                                    <div class="row">
+                                        <div class="col-xl-4 col-md-6" *ngFor="let r of countCourrierAcceptedByNatureClient">
+                                            <p-chart type="doughnut" [data]="r.data" [options]="r.options"></p-chart>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-template>
+                        </p-tabPanel>
+                    </p-tabView>
+                </ng-template>
+            </p-tabPanel>
+            <p-tabPanel header="Refusee">
+                <ng-template pTemplate="content">
+                    <p-tabView>
+                        <p-tabPanel header="Subject">
+                            <ng-template pTemplate="content">
+                                <div class="results">
+                                    <div class="row">
+                                        <div class="col-xl-4 col-md-6" *ngFor="let r of countCourrierRefusedBySubject">
+                                            <p-chart type="doughnut" [data]="r.data" [options]="r.options"></p-chart>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-template>
+                        </p-tabPanel>
+                        <p-tabPanel header="Nature Client">
+                            <ng-template pTemplate="content">
+                                <div class="results">
+                                    <div class="row">
+                                        <div class="col-xl-4 col-md-6" *ngFor="let r of countCourrierRefusedByNatureClient">
+                                            <p-chart type="doughnut" [data]="r.data" [options]="r.options"></p-chart>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-template>
+                        </p-tabPanel>
+                        <p-tabPanel header="Reason">
+                            <ng-template pTemplate="content">
+                                <div class="results">
+                                    <div class="row">
+                                        <div class="col-xl-4 col-md-6" *ngFor="let r of countCourrierRefusedByReason">
+                                            <p-chart type="doughnut" [data]="r.data" [options]="r.options"></p-chart>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-template>
+                        </p-tabPanel>
+                    </p-tabView>
+                </ng-template>
+            </p-tabPanel>
+            <p-tabPanel header="Traitee">
+                <ng-template pTemplate="content">
+                    <p-tabView>
+                        <p-tabPanel header="Service Emeteur">
+                            <ng-template pTemplate="content">
+                                <div class="results">
+                                    <div class="row">
+                                        <div class="col-xl-4 col-md-6" *ngFor="let r of countCourrierTraiteByServiceEmeteur">
+                                            <p-chart type="doughnut" [data]="r.data" [options]="r.options"></p-chart>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-template>
+                        </p-tabPanel>
+                        <p-tabPanel header="Service Coordinateur">
+                            <ng-template pTemplate="content">
+                                <div class="results">
+                                    <div class="row">
+                                        <div class="col-xl-4 col-md-6" *ngFor="let r of countCourrierTraiteByServiceCoord">
+                                            <p-chart type="doughnut" [data]="r.data" [options]="r.options"></p-chart>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-template>
+                        </p-tabPanel>
+                        <p-tabPanel header="Nature Client">
+                            <ng-template pTemplate="content">
+                                <div class="results">
+                                    <div class="row">
+                                        <div class="col-xl-4 col-md-6" *ngFor="let r of countCourrierTraiteByNatureClient">
+                                            <p-chart type="doughnut" [data]="r.data" [options]="r.options"></p-chart>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-template>
+                        </p-tabPanel>
+                    </p-tabView>
+                </ng-template>
+            </p-tabPanel>
+
+
+        </p-tabView>
+
 
     </div>
 </div>
 
-$

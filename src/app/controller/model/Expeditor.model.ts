@@ -7,6 +7,7 @@ export class ExpeditorVo {
     public adress: string;
     public createdAt: string;
     public updatedAt: string;
+    public dateNaissance: string;
     public code: string;
     public description: string;
     public expeditorTypeVo: ExpeditorTypeVo = new ExpeditorTypeVo();

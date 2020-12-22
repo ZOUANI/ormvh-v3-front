@@ -981,7 +981,7 @@
                             <label> {{"MODELS.QUERY_TYPE" | translate}}</label>
                             <p-dropdown [disabled]="onDetail||roleDirecteur()||roleChefService()"
                                         styleClass="form-control"
-                                        [(ngModel)]="courrier.typeRequetteVo" (onChange)="test()" [options]="typeRequettes"
+                                        [(ngModel)]="courrier.typeRequetteVo" [options]="typeRequettes"
                                         placeholder="--------------------" optionLabel="libelle"
                                         dataKey="id"></p-dropdown>
                         </div>
@@ -1024,7 +1024,8 @@
                             <p-dropdown [disabled]="onDetail||roleDirecteur()||roleChefService()"
                                         styleClass="form-control" selectId="status-courrier"
                                         [options]="statusse" placeholder="--------------------"
-                                        [(ngModel)]="courrier.statusVo" optionLabel="libelle" dataKey="id"></p-dropdown>
+                                        [(ngModel)]="courrier.statusVo" (onChange)="statusChange()"
+                                        optionLabel="libelle" dataKey="id"></p-dropdown>
                         </div>
                         <div *ngIf="courrier.statusVo!=null && courrier.statusVo.code=='traite'"
                              class="form-group  col-md-4">
@@ -1040,7 +1041,7 @@
 
                             <p-dropdown styleClass="form-control" selectId="phase-admin"
                                         [options]="phaseAdmins" placeholder="----------------"
-                                        [disabled]="onDetail||roleDirecteur()||roleChefService()"
+                                        [disabled]="onDetail||roleDirecteur()||roleChefService()||courrier.statusVo.code=='traite'"
                                         [(ngModel)]="courrier.phaseAdminVo" optionLabel="libelle"
                                         dataKey="id"></p-dropdown>
                         </div>
@@ -1126,54 +1127,61 @@
 
     <div class="card-header text-center font-weight-bold">Create Expeditors</div>
     <div class="card-body">
-
-        <div class="row py-2">
+    <div class="form-row">
+        <div class="form-group col-md-6">
             <label>Adresse</label>
             <input [(ngModel)]="expeditor.adress" class="form-control" type="text">
         </div>
 
-        <div class="row py-2">
+        <div class="form-group col-md-6">
             <label>Code</label>
             <input [(ngModel)]="expeditor.code" class="form-control" type="text">
         </div>
-        <div class="row py-2">
+        <div class="form-group col-md-6">
             <label>Description</label>
             <input [(ngModel)]="expeditor.description" class="form-control" type="text">
         </div>
-        <div class="row py-2">
+        <div class="form-group col-md-6">
             <label>Nature</label>
             <p-dropdown id="type-expeditor" [options]="expeditorTypes" [(ngModel)]="expeditor.expeditorTypeVo"
                         styleClass="form-control"
                         [filter]="true" placeholder="-----------------">
             </p-dropdown>
         </div>
-        <div class="row py-2">
-            <label>Age</label>
-            <input [(ngModel)]="expeditor.age" class="form-control" type="text">
+        <div class="form-group col-md-6">
+            <label>Date Naissance</label><br>
+            <p-calendar [style]="{'width':'100%'}" id="dateNaissance" (onSelect)="getExpeditorAge()" [monthNavigator]="true" [yearNavigator]="true" yearRange="1950:2030"
+                        [(ngModel)]="expeditor.dateNaissance">
+            </p-calendar>
         </div>
-        <div class="row py-2">
+        <div class="form-group col-md-6">
+            <label>Age</label>
+            <input [(ngModel)]="expeditor.age" disabled class="form-control" type="text">
+        </div>
+        <div class="form-group col-md-6">
             <label>Titre</label>
             <input [(ngModel)]="expeditor.title" class="form-control" type="text">
         </div>
         <!--
-        <div class="row py-2">
+        <div class="form-group col-md-4">
             <label>titleArab</label>
             <input [(ngModel)]="expeditor.titleArab" class="form-control" type="text">
         </div>-->
 
-        <div class="row">
+        <div class="form-group col-md-12">
             <label>Sexe</label>
             <select [(ngModel)]="expeditor.sexeVo.libelle" class="form-control">
                 <option *ngFor="let p of sexes" [ngValue]="p.libelle" value="{{p.libelle}}">{{p.libelle}}</option>
             </select>
         </div>
-        <div class="row">
+        <div class="form-group  col-md-12">
             <label>Nationalité</label>
             <select [(ngModel)]="expeditor.nationalityVo.libelle" class="form-control">
                 <option *ngFor="let p of nationalitys" [ngValue]="p.libelle"
                         value="{{p.libelle}}">{{p.libelle}}</option>
             </select>
         </div>
+    </div>
         <!--        <div class="row">-->
         <!--            <label>createdBy</label>-->
         <!--            <select [(ngModel)]="expeditor.createdByVo.username" class="form-control">-->
