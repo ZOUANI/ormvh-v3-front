@@ -23,10 +23,10 @@
         </div>
     </div>
     <div class="row" style="margin-left: 48%">
-        <button style="position: center" (click)="filterCourriers()" [disabled]="!rangeDates && !leServiceTitle"
+        <button style="position: center" (click)="filterCourriers()" [disabled]="!rangeDates "
                 class="ui-button-icon-primary"
                 icon="pi pi-search" pButton type="button"></button>
-        <button style="position: center" (click)="reset()" [disabled]="!rangeDates && !leServiceTitle"
+        <button style="position: center" (click)="reset()" [disabled]="!rangeDates "
                 class="ui-button-icon-primary"
                 style="margin-left: 1em"
                 icon="pi pi-replay" pButton type="button">
@@ -38,7 +38,7 @@
     <div class="p-grid ui-fluid mb-4">
 
     </div>
-   <app-statistiques></app-statistiques>
+   <app-statistiques ></app-statistiques>
 
 <!--    <div class="card-header text-center font-weight-bold">{{"DASHBOARD.COMPTE_RENDU" | translate}}</div>-->
 <!--    <br>-->

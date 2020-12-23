@@ -106,72 +106,7 @@ export class CourrierService {
         return this.http.get<Array<CourrierVo>>('http://localhost:8080/generated/courrier/');
     }
 
-    //STATISTIQUES
-    courrierByNatureClient() {
-        return this.http.get('http://localhost:8080/generated/statistique/countCourrierByNatureClient/');
-    }
 
-    courrierByService() {
-        return this.http.get('http://localhost:8080/generated/statistique/countCourrierByService');
-    }
-
-    courrierByExpeditorSex() {
-        return this.http.get('http://localhost:8080/generated/statistique/countCourrierByExpeditorSex');
-    }
-
-    courrierByDestinatorSex() {
-        return this.http.get('http://localhost:8080/generated/statistique/countCourrierByDestinatorSex');
-    }
-    courrierAcceptedBySubject() {
-        return this.http.get('http://localhost:8080/generated/statistique/countCourrierAcceptedBySubject');
-    }
-
-    courrierBySubject() {
-        return this.http.get('http://localhost:8080/generated/statistique/countCourrierBySubject');
-    }
-
-    courrierByVoie() {
-        return this.http.get('http://localhost:8080/generated/statistique/countCourrierByVoie');
-    }
-
-    courrierByEtatEval() {
-        return this.http.get('http://localhost:8080/generated/statistique/countCourrierByEtatEval');
-    }
-
-    courrierRefusedBySubject() {
-        return this.http.get('http://localhost:8080/generated/statistique/countCourrierRefusedBySubject');
-    }
-
-    courrierAcceptedByNatureClient() {
-        return this.http.get('http://localhost:8080/generated/statistique/countCourrierAcceptedByNatureClient');
-    }
-
-    courrierRefusedByNatureClient() {
-        return this.http.get('http://localhost:8080/generated/statistique/countCourrierRefusedByNatureClient');
-    }
-
-    courrierRefusedByReason() {
-        return this.http.get('http://localhost:8080/generated/statistique/countCourrierRefusedByReason');
-    }
-
-    courrierTraiteByServiceEmeteur() {
-        return this.http.get('http://localhost:8080/generated/statistique/countCourrierTraiteByServiceEmeteur');
-    }
-
-    courrierTraiteByServiceCoord() {
-        return this.http.get('http://localhost:8080/generated/statistique/countCourrierTraiteByServiceCoord');
-    }
-
-    courrierTraiteByNatureClient() {
-        return this.http.get('http://localhost:8080/generated/statistique/countCourrierTraiteByNatureClient');
-    }
-    courrierByServiceEmeteur() {
-        return this.http.get('http://localhost:8080/generated/statistique/countCourrierByServiceEmeteur');
-    }
-    courrierByServiceCoord() {
-        return this.http.get('http://localhost:8080/generated/statistique/countCourrierByServiceCoord');
-    }
-//----------------------
     get uploadedFiles() {
         return this._uploadedFiles;
     }

@@ -1,5 +1,7 @@
 export class StatistiqueVo {
-    count : number;
-    groupe : string;
+    count: number;
+    groupe: string;
+    dateMin: string;
+    dateMax: string;
 
 }
