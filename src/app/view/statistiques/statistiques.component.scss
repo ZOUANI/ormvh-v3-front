@@ -1,0 +1,53 @@
+.title {
+  font-family: Arial, sans-serif;
+  font-size: 20px;
+  color: rgb(102, 102, 102);
+  font-weight: bold;
+}
+
+.no-data {
+  text-align: center;
+  min-width: 100%;
+  min-height: 100%;
+}
+
+:host ::ng-deep {
+
+  .ui-tabmenu .ui-tabmenu-nav .ui-tabmenuitem:not(.ui-state-active):not(.ui-state-disabled):hover {
+    border: none;
+
+    border-bottom: 2px solid #383838;
+  }
+
+  .ui-tabmenu .ui-tabmenu-nav .ui-tabmenuitem {
+      border: none;
+    border-bottom: 2px solid #bdbdbd;
+    background-color: transparent;
+    margin-right: 2px;
+    margin-bottom: -1px;
+    -webkit-transition: background-color 0.2s, box-shadow 0.2s;
+    transition: background-color 0.2s, box-shadow 0.2s;
+  }
+    .ui-tabmenu .ui-tabmenu-nav {
+        border-bottom: 2px solid #bdbdbd;
+    }
+    .ui-tabmenu .ui-tabmenu-nav .ui-tabmenuitem.ui-state-active {
+        background-color: transparent;
+        border: none;
+        border-bottom: 2px solid #007ad9;
+    }
+    .ui-tabmenu .ui-tabmenu-nav .ui-tabmenuitem.ui-state-active .ui-menuitem-link .ui-menuitem-text {
+        color: #007ad9;
+        font-weight: bold;
+    }
+    .ui-tabmenu .ui-tabmenu-nav .ui-tabmenuitem .ui-menuitem-link .ui-menuitem-text {
+        color: #333333;
+        margin-right: 0.5em;
+        font-weight: bold;
+    }
+    *:focus {
+        outline: none;
+    }
+
+}
+

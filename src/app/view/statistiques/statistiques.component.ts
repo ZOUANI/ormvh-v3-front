@@ -8,7 +8,7 @@ import {UIChart} from "primeng/chart";
 @Component({
     selector: 'app-statistiques',
     templateUrl: './statistiques.component.html',
-    styleUrls: ['./statistiques.component.css']
+    styleUrls: ['./statistiques.component.scss']
 })
 export class StatistiquesComponent implements OnInit {
 
@@ -564,7 +564,8 @@ export class StatistiquesComponent implements OnInit {
                     title: {
                         display: true,
                         text: value.name,
-                        fontSize: 16
+                        fontSize: 20,
+                        fontFamily: " 'Arial', sans-serif",
                     },
                     legend: {
                         position: 'bottom'

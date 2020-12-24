@@ -1,12 +1,17 @@
 <p-tabMenu [model]="items" [activeItem]="activeItem"></p-tabMenu>
-<div class="container-fluid" *ngIf="loaded">
+<div class="container-fluid mt-5" *ngIf="loaded">
 
     <ng-container *ngFor="let i of items">
         <div class="results" *ngIf="activeItem==i">
 
             <div class="row" *ngIf="!i.items">
                 <div class="col-xl-4 col-md-6" *ngFor="let r of i.routerLink">
-                    <p-chart type="doughnut" [data]="r.data" [options]="r.options"></p-chart>
+                    <p-chart *ngIf="r.data.labels.length!=0" #chart type="doughnut" [data]="r.data" [options]="r.options"></p-chart>
+                    <div class="no-data d-flex flex-column p-2"  *ngIf="r.data.labels.length==0">
+                        <span class="title">{{r.options.title.text}}</span>
+                        <span class="py-5">No data Found</span>
+                    </div>
+
                 </div>
             </div>
 
@@ -14,11 +19,16 @@
                 <p-tabMenu [model]="i.items" [activeItem]="subactiveItem"></p-tabMenu>
 
                 <ng-container *ngFor="let subitem of i.items">
-                    <div class="results" *ngIf="subactiveItem==subitem">
+                    <div class="results mt-5" *ngIf="subactiveItem==subitem">
 
                         <div class="row">
                             <div class="col-xl-4 col-md-6" *ngFor="let sr of subitem.routerLink">
-                                <p-chart #chart type="doughnut" [data]="sr.data" [options]="sr.options"></p-chart>
+
+                                <p-chart *ngIf="sr.data.labels.length!=0"  type="doughnut" [data]="sr.data" [options]="sr.options"></p-chart>
+                                <div class="no-data d-flex flex-column p-2"  *ngIf="sr.data.labels.length==0">
+                                    <span class="title">{{sr.options.title.text}}</span>
+                                    <span class="py-5">No data Found</span>
+                                </div>
                             </div>
                         </div>
 
