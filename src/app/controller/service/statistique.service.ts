@@ -119,5 +119,15 @@ export class StatistiqueService {
     courrierByRejeteNonConformeSansReponceByNatureClient() {
         return this.http.post('http://localhost:8080/generated/statistique/countCourrierRejeteNonConformeSansReponceByNatureClient', this.statistiqueVo);
     }
+    courrierByPhaseAdmin() {
+        return this.http.post('http://localhost:8080/generated/statistique/countCourrierByPhaseAdministrative', this.statistiqueVo);
+    }
+    courrierByExpeditorNationality() {
+        return this.http.post('http://localhost:8080/generated/statistique/countCourrierByExpeditorNationality', this.statistiqueVo);
+    }
+
+    courrierByDestinatorNationality() {
+        return this.http.post('http://localhost:8080/generated/statistique/countCourrierByDestinatorNationality', this.statistiqueVo);
+    }
 
 }

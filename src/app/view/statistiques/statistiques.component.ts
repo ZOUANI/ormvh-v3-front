@@ -1,8 +1,7 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MenuItem} from 'primeng/api';
 import {StatistiqueService} from "../../controller/service/statistique.service";
 import {StatistiqueVo} from "../../controller/model/statistique-vo.model";
-import {UIChart} from "primeng/chart";
 
 
 @Component({
@@ -38,6 +37,9 @@ export class StatistiquesComponent implements OnInit {
     countCourrierRejeteNonConformeReponduByNatureClient: any;
     countCourrierRejeteNonConformeSansReponceByService: any;
     countCourrierRejeteNonConformeSansReponceByNatureClient: any;
+    countCourrierByPhaseAdmin: any;
+    countCourrierByExpeditorNationality: any;
+    countCourrierByDestinatorNationality: any;
 
     active = false;
     loaded: boolean = false;
@@ -49,7 +51,6 @@ export class StatistiquesComponent implements OnInit {
 
     }
 
-    @ViewChild("chart") chart: UIChart;
 
     get statistiqueVo(): StatistiqueVo {
 
@@ -79,6 +80,10 @@ export class StatistiquesComponent implements OnInit {
                 label: 'Nature Client',
                 routerLink: this.countCourrierByNatureClientData,
                 command: (event) => this.statsCourrierByNatureClient(event)
+            }, {
+                label: 'Phase Administrative',
+                routerLink: this.countCourrierByPhaseAdmin,
+                command: (event) => this.statsCourrierByPhaseAdmin(event)
             },
             {
                 label: 'Sexe',
@@ -90,6 +95,18 @@ export class StatistiquesComponent implements OnInit {
                     label: 'destinataire',
                     routerLink: this.countCourrierByDestinatorSex,
                     command: (event) => this.statsCourrierByDestinatorSex(event)
+                }],
+                command: (event) => this.initsubStats(event)
+            }, {
+                label: 'Nationality',
+                items: [{
+                    label: 'expediteur',
+                    routerLink: this.countCourrierByExpeditorNationality,
+                    command: (event) => this.statsCourrierByExpeditorNationality(event)
+                }, {
+                    label: 'destinataire',
+                    routerLink: this.countCourrierByDestinatorNationality,
+                    command: (event) => this.statsCourrierByDestinatorNationality(event)
                 }],
                 command: (event) => this.initsubStats(event)
             }, {
@@ -120,17 +137,21 @@ export class StatistiquesComponent implements OnInit {
                 label: 'Etat Evaluation',
                 routerLink: this.countCourrierByEtatEval,
                 command: (event) => this.statsCourrierByEtatEval(event)
+            }, {
+                label: 'Service Concernee',
+                items: [{
+                    label: 'Service Emeteur',
+                    routerLink: this.countCourrierByServiceEmeteur,
+                    command: (event) => this.statsCourrierByServiceEmeteur(event)
+                },
+                    {
+                        label: 'Service Coord',
+                        routerLink: this.countCourrierByServiceCoord,
+                        command: (event) => this.statsCourrierByServiceCoord(event)
+                    }],
+                command: (event) => this.initsubStats(event)
             },
-            {
-                label: 'Service Emeteur',
-                routerLink: this.countCourrierByServiceEmeteur,
-                command: (event) => this.statsCourrierByServiceEmeteur(event)
-            },
-            {
-                label: 'Service Coord',
-                routerLink: this.countCourrierByServiceCoord,
-                command: (event) => this.statsCourrierByServiceCoord(event)
-            },
+
             {
                 label: 'Acceptee', items: [{
                     label: 'Subject',
@@ -214,6 +235,22 @@ export class StatistiquesComponent implements OnInit {
             this.statistiqueService.courrierByNatureClient().subscribe(value => {
                 this.countCourrierByNatureClientData = this.listToData(value);
                 this.activeItem.routerLink = this.countCourrierByNatureClientData;
+                this.loaded = true;
+
+
+            });
+        }
+
+    }
+
+    statsCourrierByPhaseAdmin(e: any) {
+
+        this.activeItem = e.item;
+        if (this.countCourrierByPhaseAdmin == null) {
+            this.loaded = false;
+            this.statistiqueService.courrierByPhaseAdmin().subscribe(value => {
+                this.countCourrierByPhaseAdmin = this.listToData(value);
+                this.activeItem.routerLink = this.countCourrierByPhaseAdmin;
                 this.loaded = true;
 
 
@@ -361,12 +398,12 @@ export class StatistiquesComponent implements OnInit {
     }
 
     statsCourrierByServiceEmeteur(e: any) {
-        this.activeItem = e.item;
+        this.subactiveItem = e.item;
         if (this.countCourrierByServiceEmeteur == null) {
             this.loaded = false;
             this.statistiqueService.courrierByServiceEmeteur().subscribe(value => {
                 this.countCourrierByServiceEmeteur = this.listToData(value);
-                this.activeItem.routerLink = this.countCourrierByServiceEmeteur;
+                this.subactiveItem.routerLink = this.countCourrierByServiceEmeteur;
                 this.loaded = true;
 
             });
@@ -374,12 +411,12 @@ export class StatistiquesComponent implements OnInit {
     }
 
     statsCourrierByServiceCoord(e: any) {
-        this.activeItem = e.item;
+        this.subactiveItem = e.item;
         if (this.countCourrierByServiceCoord == null) {
             this.loaded = false;
             this.statistiqueService.courrierByServiceCoord().subscribe(value => {
                 this.countCourrierByServiceCoord = this.listToData(value);
-                this.activeItem.routerLink = this.countCourrierByServiceCoord;
+                this.subactiveItem.routerLink = this.countCourrierByServiceCoord;
                 this.loaded = true;
 
             });
@@ -545,6 +582,32 @@ export class StatistiquesComponent implements OnInit {
         }
     }
 
+    statsCourrierByExpeditorNationality(e: any) {
+        this.subactiveItem = e.item;
+        if (this.countCourrierByExpeditorNationality == null) {
+            this.loaded = false;
+            this.statistiqueService.courrierByExpeditorNationality().subscribe(value => {
+                this.countCourrierByExpeditorNationality = this.listToData(value);
+                this.subactiveItem.routerLink = this.countCourrierByExpeditorNationality;
+                this.loaded = true;
+
+            });
+        }
+    }
+
+    statsCourrierByDestinatorNationality(e: any) {
+        this.subactiveItem = e.item;
+        if (this.countCourrierByDestinatorNationality == null) {
+            this.loaded = false;
+            this.statistiqueService.courrierByDestinatorNationality().subscribe(value => {
+                this.countCourrierByDestinatorNationality = this.listToData(value);
+                this.subactiveItem.routerLink = this.countCourrierByDestinatorNationality;
+                this.loaded = true;
+
+            });
+        }
+    }
+
     listToData(object: any): any {
 
         const list = [{name: 'observations', data: object.oservations},
@@ -614,6 +677,16 @@ export class StatistiquesComponent implements OnInit {
         this.countCourrierTraiteByNatureClient = null;
         this.countCourrierTraiteByServiceCoord = null;
         this.countCourrierTraiteByServiceEmeteur = null;
+        this.countCourrierTraiteByService = null;
+        this.countCourrierByDestinatorTrancheAge = null;
+        this.countCourrierByExpeditorTrancheAge = null;
+        this.countCourrierRejeteNonConformeReponduByService = null;
+        this.countCourrierRejeteNonConformeReponduByNatureClient = null;
+        this.countCourrierRejeteNonConformeSansReponceByService = null;
+        this.countCourrierRejeteNonConformeSansReponceByNatureClient = null;
+        this.countCourrierByPhaseAdmin = null;
+        this.countCourrierByExpeditorNationality = null;
+        this.countCourrierByDestinatorNationality = null;
         this.activeItem.command(e);
 
     }
