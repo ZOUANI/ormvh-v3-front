@@ -326,6 +326,7 @@ export class UserService {
             }
         );
     }
+
     private _currentUser: UserVo;
 
     get currentUser(): UserVo {
@@ -347,8 +348,6 @@ export class UserService {
             }
         );
     }
-
-
 
 
 }

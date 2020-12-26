@@ -14,7 +14,8 @@ import {LeServiceService} from '../../../controller/service/LeService.service';
 export class UserCreateComponent implements OnInit {
 
     // tslint:disable-next-line:variable-name
-    private _leServices: LeServiceVo[] ;
+    private _leServices: LeServiceVo[];
+
     constructor(
         private userService: UserService,
         private roleService: RoleService,
@@ -32,6 +33,7 @@ export class UserCreateComponent implements OnInit {
             console.log(error);
         });
     }
+
     ngOnInit(): void {
         this.roleService.findAll();
         this.findAllServices();

@@ -36,8 +36,14 @@
 
         </div>
         <div class="row py-2">
+            <label>Date Naissance</label><br>
+            <p-calendar [style]="{'width':'100%'}" id="dateNaissance" (onSelect)="getExpeditorAge()" [monthNavigator]="true" [yearNavigator]="true" yearRange="1950:2030"
+                        [(ngModel)]="expeditor.dateNaissance">
+            </p-calendar>
+        </div>
+        <div class="row py-2">
             <label>age</label>
-            <input [(ngModel)]="expeditor.age" [placeholder]="expeditor.age" class="form-control" type="text">
+            <input [(ngModel)]="expeditor.age" disabled [placeholder]="expeditor.age" class="form-control" type="text">
         </div>
         <div class="row py-2">
             <label>title</label>

@@ -1,8 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {CourrierService} from '../../controller/service/Courrier.service';
 import {SelectItem} from 'primeng/api';
 import {LeServiceService} from '../../controller/service/LeService.service';
 import Swal from 'sweetalert2';
+import {StatistiquesComponent} from "../statistiques/statistiques.component";
+import {StatistiqueService} from "../../controller/service/statistique.service";
+import {DatePipe} from "@angular/common";
 
 @Component({
     selector: 'app-dashboard',
@@ -20,8 +23,10 @@ export class DashboardComponent implements OnInit {
     leServices: SelectItem[];
     leServiceTitle: any;
 
-    constructor(private courrierService: CourrierService, private _leServiceService: LeServiceService) {
+    constructor(private courrierService: CourrierService, private _leServiceService: LeServiceService, private statistiqueService: StatistiqueService, private datePipe: DatePipe) {
     }
+
+    @ViewChild(StatistiquesComponent) statistiquesComponent: StatistiquesComponent;
 
     setArrivedDepartedChart() {
         setTimeout(() => {
@@ -81,7 +86,10 @@ export class DashboardComponent implements OnInit {
         this.chargement();
         this.ngOnInit();
         this.rangeDates = undefined;
+        this.statistiqueService.statistiqueVo = null;
+        this.statistiquesComponent.update();
         this.leServiceTitle = undefined;
+
     }
 
     chargement() {
@@ -114,6 +122,7 @@ export class DashboardComponent implements OnInit {
     }
 
     ngOnInit(): void {
+
         this.courrierService.getStatsByDate(null, null, null);
         this.setStatusCourrierChart();
         this.setArrivedDepartedChart();
@@ -185,9 +194,12 @@ export class DashboardComponent implements OnInit {
                     this.setStatusCourrierChart();*/
                 } else {
                     date2.setDate(date2.getDate());
-                    this.courrierService.getStatsByDate(date1.toISOString().substring(0, 10), date2.toISOString().substring(0, 10), null);
-                    this.setArrivedDepartedChart();
-                    this.setStatusCourrierChart();
+                    this.statistiqueService.statistiqueVo.dateMin = this.datePipe.transform(date1, "yyyy-MM-dd HH:mm:ss");
+                    this.statistiqueService.statistiqueVo.dateMax = this.datePipe.transform(date2, "yyyy-MM-dd HH:mm:ss");
+                    this.statistiquesComponent.update();
+                    // this.courrierService.getStatsByDate(date1.toISOString().substring(0, 10), date2.toISOString().substring(0, 10), null);
+                    // this.setArrivedDepartedChart();
+                    // this.setStatusCourrierChart();
                 }
             } else {
                 if (date2 == null) {

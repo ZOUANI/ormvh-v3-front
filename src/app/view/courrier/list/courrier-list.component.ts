@@ -1,20 +1,9 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {CourrierVo} from '../../../controller/model/courrier.model';
 import {CourrierService} from '../../../controller/service/Courrier.service';
-import {UserVo} from '../../../controller/model/User.model';
-import {ExpeditorTypeVo} from '../../../controller/model/ExpeditorType.model';
 import {StatusVo} from '../../../controller/model/Status.model';
-import {TaskVo} from '../../../controller/model/Task.model';
-import {NatureCourrierVo} from '../../../controller/model/NatureCourrier.model';
-import {CourrierServiceItemVo} from '../../../controller/model/CourrierServiceItem.model';
-import {EvaluationVo} from '../../../controller/model/Evaluation.model';
-import {CourrierObjectVo} from '../../../controller/model/CourrierObject.model';
-import {SubdivisionVo} from '../../../controller/model/Subdivision.model';
-import {ExpeditorVo} from '../../../controller/model/Expeditor.model';
 import {TypeCourrierVo} from '../../../controller/model/TypeCourrier.model';
 import {VoieVo} from '../../../controller/model/Voie.model';
-import {LeServiceVo} from '../../../controller/model/LeService.model';
-import {EmployeeVo} from "../../../controller/model/Employee.model";
 import {TypeCourrierService} from "../../../controller/service/TypeCourrier.service";
 import {VoieService} from "../../../controller/service/Voie.service";
 import {StatusService} from "../../../controller/service/Status.service";
@@ -46,6 +35,7 @@ export class CourrierlistComponent implements OnInit {
     isCourrierSucceptibleInitialisation(courrier: CourrierVo) {
         return courrier.etatCourrierVo == null || courrier.etatCourrierVo.code === 'init';
     }
+
     edit(courrier: CourrierVo) {
         this.courrierService.edit(courrier);
     }
@@ -53,16 +43,20 @@ export class CourrierlistComponent implements OnInit {
     detail(courrier: CourrierVo) {
         this.courrierService.detail(courrier);
     }
-    roleAdmin(){
+
+    roleAdmin() {
         return this.courrierService.isADMIN;
     }
-    roleChargerDeTraitementCourier(){
+
+    roleChargerDeTraitementCourier() {
         return this.courrierService.isCHARGE_DE_TRAITEMENT_COURRIER;
     }
-    roleChefService(){
+
+    roleChefService() {
         return this.courrierService.isCHEF_DE_SERVICE;
     }
-    roleAgentBo(){
+
+    roleAgentBo() {
         return this.courrierService.isAGENT_BO;
     }
 
@@ -72,20 +66,22 @@ export class CourrierlistComponent implements OnInit {
         this.courrierService.onEdit = false;
         this.courrierService.onDetail = false;
         this.courrierService.courrier.typeCourrierVo.libelle = 'Arrivee';
-        this.courrierService.isCourieSorieOrArrivee=true;
+        this.courrierService.isCourieSorieOrArrivee = true;
     }
-public download(courrier: CourrierVo){
-           this.courrierService.downloadFile(courrier);
-      //  this.courrierService.
-}
+
+    public download(courrier: CourrierVo) {
+        this.courrierService.downloadFile(courrier);
+        //  this.courrierService.
+    }
+
     showNewCorrierDialogSortie() {
         this.courrierService.courrier = null;
         this.courrierService.addNewCourrier = true;
         this.courrierService.onEdit = false;
         this.courrierService.onDetail = false;
         this.courrierService.courrier.typeCourrierVo.libelle = 'Sortie';
-        this.courrierService.isCourieSorieOrArrivee=false;
-        console.log(">>>>>"+this.courrierService.isCourieSorieOrArrivee);
+        this.courrierService.isCourieSorieOrArrivee = false;
+        console.log(">>>>>" + this.courrierService.isCourieSorieOrArrivee);
 
     }
 

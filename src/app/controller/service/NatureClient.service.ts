@@ -70,7 +70,7 @@ export class NatureClientService {
     }
 
     public findAll() {
-       return this.http.get<Array<NatureClientVo>>('http://localhost:8080/generated/natureClient/');
+        return this.http.get<Array<NatureClientVo>>('http://localhost:8080/generated/natureClient/');
 
     }
 

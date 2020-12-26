@@ -84,7 +84,6 @@ import {VoielistComponent} from './view/voie/list/voie-list.component';
 import {VoieCreateComponent} from './view/voie/create/voie-create.component';
 import {VoieDetailsComponent} from './view/voie/details/voie-details.component';
 import {VoieEditComponent} from './view/voie/edit/voie-edit.component';
-import {LandingPageComponent} from './landing-page/landing-page.component';
 import {CourrierComponent} from './view/courrier/courrier.component';
 import {CourrierReservationComponent} from './view/courrier/reservation/courrier-reservation.component';
 import {DashboardComponent} from './view/dashboard/dashboard.component';
@@ -92,6 +91,7 @@ import {LoginComponent} from './view/login/login.component';
 import {CreateExpeditorComponent} from "./view/courrier/createExpeditor/createExpeditor.component";
 import {CourrierRedirectionComponent} from './view/courrier/redirection/courrier-redirection.component';
 import {PasswordResetComponent} from './view/password-reset/password-reset.component';
+import {StatistiquesComponent} from "./view/statistiques/statistiques.component";
 
 const routes: Routes = [
         {
@@ -268,7 +268,7 @@ const routes: Routes = [
         },
         {path: 'dashboard', component: DashboardComponent},
 
-
+        {path: 'stats', component: StatistiquesComponent},
         {path: 'login', component: LoginComponent},
         {path: 'resetPassword', component: PasswordResetComponent},
         {path: '', redirectTo: '/login', pathMatch: 'full'},

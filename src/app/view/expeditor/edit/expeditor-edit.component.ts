@@ -74,4 +74,8 @@ export class ExpeditorEditComponent implements OnInit {
     }
 
 
+    getExpeditorAge() {
+        const timeDiff = Math.abs(Date.now() - new Date(this.expeditor.dateNaissance).getTime());
+        this.expeditor.age = Math.floor((timeDiff / (1000 * 3600 * 24)) / 365.25).toString();
+    }
 }

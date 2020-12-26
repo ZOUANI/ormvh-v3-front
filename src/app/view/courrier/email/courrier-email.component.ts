@@ -1,7 +1,6 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 
 import {CourrierService} from 'src/app/controller/service/Courrier.service';
-import {CourrierVo} from 'src/app/controller/model/Courrier.model';
 
 @Component({
     selector: 'app-courrier-email',

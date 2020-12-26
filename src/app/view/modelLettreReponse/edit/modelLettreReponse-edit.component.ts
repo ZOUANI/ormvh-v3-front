@@ -11,11 +11,14 @@ import {FormBuilder, FormGroup} from '@angular/forms';
     styleUrls: ['./modelLettreReponse-edit.component.css']
 })
 export class ModelLettreReponseEditComponent implements OnInit {
-  constructor(private modelLettreReponseService: ModelLettreReponseService,
-              private formBuilder: FormBuilder) { }
+    constructor(private modelLettreReponseService: ModelLettreReponseService,
+                private formBuilder: FormBuilder) {
+    }
+
     get editableModelLettreReponses(): Array<ModelLettreReponseVo> {
         return this.modelLettreReponseService.editableModelLettreReponses;
     }
+
     set editableModelLettreReponses(value: Array<ModelLettreReponseVo>) {
         this.modelLettreReponseService.editableModelLettreReponses = value;
     }
@@ -27,29 +30,34 @@ export class ModelLettreReponseEditComponent implements OnInit {
     get createdBys(): Array<UserVo> {
         return this.modelLettreReponseService.createdBys;
     }
+
     get modelLettreReponse(): ModelLettreReponseVo {
         return this.modelLettreReponseService.modelLettreReponse;
     }
+
     selectedFile: File;
     uploadForm: FormGroup;
     dispnible: boolean;
-   ngOnInit(): void {
-       this.uploadForm = this.formBuilder.group({
-           profile: ['']
-       });
-       this.findAllcategorieModelLettreReponses();
-       this.findAllcreatedBys();
-       this.findAllupdatedBys();
-       this.findAll();
+
+    ngOnInit(): void {
+        this.uploadForm = this.formBuilder.group({
+            profile: ['']
+        });
+        this.findAllcategorieModelLettreReponses();
+        this.findAllcreatedBys();
+        this.findAllupdatedBys();
+        this.findAll();
     }
+
     findAll() {
         this.modelLettreReponseService.findAll();
     }
 
-   editModelLettreReponse() {
-       this.uploadFile();
-   // this.modelLettreReponseService.editModelLettreReponse();
-  }
+    editModelLettreReponse() {
+        this.uploadFile();
+        // this.modelLettreReponseService.editModelLettreReponse();
+    }
+
     findAllcategorieModelLettreReponses() {
         this.modelLettreReponseService.findAllcategorieModelLettreReponses();
     }
@@ -62,26 +70,28 @@ export class ModelLettreReponseEditComponent implements OnInit {
         this.modelLettreReponseService.findAllupdatedBys();
     }
 
-     findBylibelle(ref: string) {
-      this.modelLettreReponseService.findBylibelle(ref);
-     }
+    findBylibelle(ref: string) {
+        this.modelLettreReponseService.findBylibelle(ref);
+    }
+
     public onFileChanged(event) {
         this.selectedFile = event.target.files[0];
         document.getElementById('lebel1').innerText = this.selectedFile.name;
-        this.modelLettreReponse.chemin =  this.selectedFile.name.split('.').shift()
+        this.modelLettreReponse.chemin = this.selectedFile.name.split('.').shift()
         this.uploadForm.get('profile').setValue(this.selectedFile);
         console.log(this.selectedFile);
     }
+
     uploadFile() {
-       if (this.selectedFile === undefined) {
-           this.dispnible = false;
-       } else {
-           this.dispnible = true;
-       }
-       this.uploadForm.get('profile').setValue(this.selectedFile);
-       const formData = new FormData();
-       formData.append('file', this.uploadForm.get('profile').value);
-       this.modelLettreReponseService.uploadFileEdit(formData, this.dispnible);
+        if (this.selectedFile === undefined) {
+            this.dispnible = false;
+        } else {
+            this.dispnible = true;
+        }
+        this.uploadForm.get('profile').setValue(this.selectedFile);
+        const formData = new FormData();
+        formData.append('file', this.uploadForm.get('profile').value);
+        this.modelLettreReponseService.uploadFileEdit(formData, this.dispnible);
     }
 
 }

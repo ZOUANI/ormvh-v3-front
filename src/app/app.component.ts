@@ -2,7 +2,6 @@ import {Component} from '@angular/core';
 import {MenuItem} from 'primeng/api';
 import {AuthenticationService} from './controller/service/auth/authentication.service';
 import {TranslateService} from '@ngx-translate/core';
-import {UserVo} from './controller/model/User.model';
 import {UserService} from './controller/service/User.service';
 
 @Component({

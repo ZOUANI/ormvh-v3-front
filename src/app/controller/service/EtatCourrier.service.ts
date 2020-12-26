@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {EtatCourrierVo} from '../model/etatCourrier.model';
 import {Observable} from "rxjs";
-import {StatusVo} from "../model/Status.model";
 
 @Injectable({
     providedIn: 'root'
@@ -74,6 +73,7 @@ export class EtatCourrierService {
     findAlletatCourriers(): Observable<Array<EtatCourrierVo>> {
         return this.http.get<Array<EtatCourrierVo>>('http://localhost:8080/generated/etatCourrier/');
     }
+
     public findAll() {
         this.http.get<Array<EtatCourrierVo>>('http://localhost:8080/generated/etatCourrier/').subscribe(
             value => {

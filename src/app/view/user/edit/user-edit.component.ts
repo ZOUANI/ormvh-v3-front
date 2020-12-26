@@ -12,7 +12,7 @@ import {LeServiceService} from "../../../controller/service/LeService.service";
     styleUrls: ['./user-edit.component.css']
 })
 export class UserEditComponent implements OnInit {
-    private _leServices: LeServiceVo[] ;
+    private _leServices: LeServiceVo[];
 
     constructor(private userService: UserService, private roleService: RoleService, private leServiceService: LeServiceService) {
     }
@@ -34,6 +34,7 @@ export class UserEditComponent implements OnInit {
             console.log(error);
         });
     }
+
     get roles() {
         return this.roleService.roleListe;
     }
@@ -45,7 +46,6 @@ export class UserEditComponent implements OnInit {
     get leServices(): LeServiceVo[] {
         return this._leServices;
     }
-
 
 
     // get editableUsers(): Array<UserVo> {

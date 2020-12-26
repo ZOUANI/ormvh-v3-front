@@ -15,13 +15,17 @@ export class ModelLettreReponselistComponent implements OnInit {
     private blob: Blob;
 
     constructor(private _modelLettreReponseService: ModelLettreReponseService,
-                private messageService: MessageService) {}
+                private messageService: MessageService) {
+    }
+
     get categorieModelLettreReponses(): Array<CategorieModelLettreReponseVo> {
         return this.modelLettreReponseService.categorieModelLettreReponses;
     }
+
     get createdBys(): Array<UserVo> {
         return this.modelLettreReponseService.createdBys;
     }
+
     get updatedBys(): Array<UserVo> {
         return this.modelLettreReponseService.updatedBys;
     }
@@ -31,7 +35,7 @@ export class ModelLettreReponselistComponent implements OnInit {
     }
 
     set modelLettreReponseService(value: ModelLettreReponseService) {
-        this._modelLettreReponseService = value ;
+        this._modelLettreReponseService = value;
     }
 
     get modelLettreReponseListe(): Array<ModelLettreReponseVo> {
@@ -39,7 +43,7 @@ export class ModelLettreReponselistComponent implements OnInit {
     }
 
     set modelLettreReponseListe(value: Array<ModelLettreReponseVo>) {
-        this.modelLettreReponseService.modelLettreReponseListe = value ;
+        this.modelLettreReponseService.modelLettreReponseListe = value;
     }
 
     get modelLettreReponseDetail(): ModelLettreReponseVo {
@@ -47,7 +51,7 @@ export class ModelLettreReponselistComponent implements OnInit {
     }
 
     set modelLettreReponseDetail(value: ModelLettreReponseVo) {
-        this.modelLettreReponseService.modelLettreReponseDetail = value ;
+        this.modelLettreReponseService.modelLettreReponseDetail = value;
     }
 
     get modelLettreReponseSearch(): ModelLettreReponseVo {
@@ -55,19 +59,21 @@ export class ModelLettreReponselistComponent implements OnInit {
     }
 
     set modelLettreReponseSearch(value: ModelLettreReponseVo) {
-        this.modelLettreReponseService.modelLettreReponseSearch = value ;
+        this.modelLettreReponseService.modelLettreReponseSearch = value;
     }
 
-    get modelLettreReponseShowDetail(): boolean  {
+    get modelLettreReponseShowDetail(): boolean {
         return this.modelLettreReponseService.modelLettreReponseShowDetail;
     }
 
-    set modelLettreReponseShowDetail(value: boolean ) {
-        this.modelLettreReponseService.modelLettreReponseShowDetail = value ;
+    set modelLettreReponseShowDetail(value: boolean) {
+        this.modelLettreReponseService.modelLettreReponseShowDetail = value;
     }
+
     get createModelLettre(): boolean {
         return this.modelLettreReponseService.createModelLettre;
     }
+
     get letttreModelType(): string {
         return this.modelLettreReponseService.letttreModelType;
     }
@@ -79,6 +85,7 @@ export class ModelLettreReponselistComponent implements OnInit {
     set lettreModel(value: LettreModel) {
         this._lettreModel = value;
     }
+
     /*    this.modelLettreReponseService.downloadFile(modelList.chemin).subscribe(x => {
                     const blob = new Blob([x], {type: 'application/pdf'});
                     saveAs(blob, this.chihaja + '.pdf');
@@ -124,6 +131,7 @@ export class ModelLettreReponselistComponent implements OnInit {
     get imageName(): string {
         return this.modelLettreReponseService.imageName;
     }
+
     chihaja: any;
     value: number = 0;
     show: boolean;
@@ -153,19 +161,21 @@ export class ModelLettreReponselistComponent implements OnInit {
         }, 1000);
         this.url = 'ormvh-v3-back/';
     }
-    delete( pojo: ModelLettreReponseVo ) {
+
+    delete(pojo: ModelLettreReponseVo) {
         this.modelLettreReponseService.delete(pojo);
     }
 
 
-    detailShow( pojo: ModelLettreReponseVo ) {
+    detailShow(pojo: ModelLettreReponseVo) {
         console.log(pojo.lettreModel);
-        this.modelLettreReponseService.detailShow( pojo);
+        this.modelLettreReponseService.detailShow(pojo);
     }
 
-    findModelLettreReponse(pojo: ModelLettreReponseVo ) {
-        this.modelLettreReponseService.findModelLettreReponse( pojo);
+    findModelLettreReponse(pojo: ModelLettreReponseVo) {
+        this.modelLettreReponseService.findModelLettreReponse(pojo);
     }
+
     findAll() {
         this.modelLettreReponseService.findAll();
     }
@@ -173,47 +183,52 @@ export class ModelLettreReponselistComponent implements OnInit {
     findAllcategorieModelLettreReponses() {
         this.modelLettreReponseService.findAllcategorieModelLettreReponses();
     }
+
     findAllcreatedBys() {
         this.modelLettreReponseService.findAllcreatedBys();
     }
+
     findAllupdatedBys() {
         this.modelLettreReponseService.findAllupdatedBys();
     }
+
     public blobToFile = (theBlob: Blob, fileName: string): File => {
         const b: any = theBlob;
         b.lastModifiedDate = new Date();
         b.name = fileName;
         return theBlob as File;
     }
+
     download(modelList: ModelLettreReponseVo) {
         this.chihaja = modelList.chemin;
         this.show = true;
         this.display = true;
-       // this.modelLettreReponseService.findType(modelList.chemin);
-       /* this.modelLettreReponseService.getPdf(modelList.chemin).subscribe(
-            data => {
-                console.log(data);
-                this.blob = new Blob([data], {type: 'application/pdf'});
-                let downloadURL = window.URL.createObjectURL(data);
-                let link = document.createElement('a');
-                link.href = downloadURL;
-                link.download = 'help.pdf';
-                link.click();
+        // this.modelLettreReponseService.findType(modelList.chemin);
+        /* this.modelLettreReponseService.getPdf(modelList.chemin).subscribe(
+             data => {
+                 console.log(data);
+                 this.blob = new Blob([data], {type: 'application/pdf'});
+                 let downloadURL = window.URL.createObjectURL(data);
+                 let link = document.createElement('a');
+                 link.href = downloadURL;
+                 link.download = 'help.pdf';
+                 link.click();
 
-            }, eror => {
-                console.log('eroro', eror);
-            });*/
-       this.modelLettreReponseService.downloadFile(modelList.chemin, modelList.type);
-       // this.modelLettreReponseService.ShowFile();
-       // this.modelLettreReponseService.downloadFile(modelList.chemin).subscribe(response => {
-            //let blob:any = new Blob([response.blob()], { type: 'text/json; charset=utf-8' });
-            //const url= window.URL.createObjectURL(blob);
-            //window.open(url);
-          //  window.location.href = response.url;
-            //fileSaver.saveAs(blob, 'employees.json');
+             }, eror => {
+                 console.log('eroro', eror);
+             });*/
+        this.modelLettreReponseService.downloadFile(modelList.chemin, modelList.type);
+        // this.modelLettreReponseService.ShowFile();
+        // this.modelLettreReponseService.downloadFile(modelList.chemin).subscribe(response => {
+        //let blob:any = new Blob([response.blob()], { type: 'text/json; charset=utf-8' });
+        //const url= window.URL.createObjectURL(blob);
+        //window.open(url);
+        //  window.location.href = response.url;
+        //fileSaver.saveAs(blob, 'employees.json');
         //}), error => console.log('Error downloading the file'),
         //  () => console.info('File downloaded successfully');
     }
+
     public createShow() {
         this.modelLettreReponseService.create();
     }

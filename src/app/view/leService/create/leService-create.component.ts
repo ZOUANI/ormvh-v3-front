@@ -19,6 +19,7 @@ export class LeServiceCreateComponent implements OnInit {
     get createdBys(): Array<UserVo> {
         return this.leServiceService.createdBys;
     }
+
     get chefs(): Array<UserVo> {
         return this.leServiceService.chefs;
     }
@@ -52,6 +53,7 @@ export class LeServiceCreateComponent implements OnInit {
     findAllupdatedBys() {
         this.leServiceService.findAllupdatedBys();
     }
+
     findAllChefs() {
         this.leServiceService.findAllChefs();
     }

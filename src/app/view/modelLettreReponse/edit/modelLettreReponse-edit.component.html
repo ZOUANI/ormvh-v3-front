@@ -28,84 +28,90 @@
                        class="form-control"
                        type="text">
             </div>
-        
-                <!--<div class="row py-2">
-                    <div class="col-md-6">
-                        <label>createdAt</label>
-                        <input type="date" class="col-md-12" [(ngModel)] = "modelLettreReponse.createdAt">
-                    </div>
-                       <div class="col-md-6">
-                           <label>updatedAt</label>
-                           <input type="date" class="col-md-12" [(ngModel)] = "modelLettreReponse.updatedAt">
-                       </div>
-                  </div>-->
-                <div class="row py-2">
-                    <div class="col-md-6"> <label>libelleArab</label>
-                        <input type="text" class="form-control" [placeholder]="modelLettreReponse.libelleArab" [(ngModel)] = "modelLettreReponse.libelleArab">
-                    </div>
+
+            <!--<div class="row py-2">
+                <div class="col-md-6">
+                    <label>createdAt</label>
+                    <input type="date" class="col-md-12" [(ngModel)] = "modelLettreReponse.createdAt">
+                </div>
                    <div class="col-md-6">
-                       <label>code</label>
-                       <input type="text" class="form-control" [placeholder]="modelLettreReponse.code" [(ngModel)] = "modelLettreReponse.code">
+                       <label>updatedAt</label>
+                       <input type="date" class="col-md-12" [(ngModel)] = "modelLettreReponse.updatedAt">
                    </div>
-            </div>
-        <div class="col-md-12">
-            <div class="row">
-                <div class="col-md-4">
-                    <button class="ui-fileupload" style=" width: 290px;border: none; background-color: #0062cc; color: white; ">
-                        <i class="fa fa-upload" aria-hidden="true"></i>
-                        <label for="file" class="label-file" id="titreFile" style="color: white;margin-bottom: 0px">Choisir</label>
-                        <input id="file" class="input-file" type="file" (change)="onFileChanged($event)">
-                    </button>
+              </div>-->
+            <div class="row py-2">
+                <div class="col-md-6"><label>libelleArab</label>
+                    <input type="text" class="form-control" [placeholder]="modelLettreReponse.libelleArab"
+                           [(ngModel)]="modelLettreReponse.libelleArab">
                 </div>
-                <div class="col-md-4">
-                    <label id="lebel1">
-                        pas de fichier selectionné!
-                    </label>
-                </div>
-                <div class="col-md-4">
-                    <i class="fa fa-check" aria-hidden="true" id="fa"></i>
-                    <label id="label2"> </label>
+                <div class="col-md-6">
+                    <label>code</label>
+                    <input type="text" class="form-control" [placeholder]="modelLettreReponse.code"
+                           [(ngModel)]="modelLettreReponse.code">
                 </div>
             </div>
-        </div>                <div class="row py-2">
-                    <div class="col-md-6">     <label>libelle</label>
-                        <input type="text" class="form-control" [placeholder]="modelLettreReponse.libelle" [(ngModel)] = "modelLettreReponse.libelle">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-4">
+                        <button class="ui-fileupload"
+                                style=" width: 290px;border: none; background-color: #0062cc; color: white; ">
+                            <i class="fa fa-upload" aria-hidden="true"></i>
+                            <label for="file" class="label-file" id="titreFile" style="color: white;margin-bottom: 0px">Choisir</label>
+                            <input id="file" class="input-file" type="file" (change)="onFileChanged($event)">
+                        </button>
                     </div>
+                    <div class="col-md-4">
+                        <label id="lebel1">
+                            pas de fichier selectionné!
+                        </label>
+                    </div>
+                    <div class="col-md-4">
+                        <i class="fa fa-check" aria-hidden="true" id="fa"></i>
+                        <label id="label2"> </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row py-2">
+                <div class="col-md-6"><label>libelle</label>
+                    <input type="text" class="form-control" [placeholder]="modelLettreReponse.libelle"
+                           [(ngModel)]="modelLettreReponse.libelle">
+                </div>
                 <div class="col-md-6"><label>categorieModelLettreReponse</label>
-                    <select class="form-control" [(ngModel)]="modelLettreReponse.categorieModelLettreReponseVo.libelle" >
-                        <option *ngFor="let p of categorieModelLettreReponses" [ngValue]="p.libelle" value="{{p.libelle}}">{{p.libelle}}</option>
+                    <select class="form-control" [(ngModel)]="modelLettreReponse.categorieModelLettreReponseVo.libelle">
+                        <option *ngFor="let p of categorieModelLettreReponses" [ngValue]="p.libelle"
+                                value="{{p.libelle}}">{{p.libelle}}</option>
                     </select></div>
 
-                </div>
-                <!--<div class="row " >
-                    <div class="col-md-6">  <label>createdBy</label>
-                        <select class="form-control" [(ngModel)]="modelLettreReponse.createdByVo.username" >
-                            <option *ngFor="let p of createdBys" [ngValue]="p.username" value="{{p.username}}">{{p.username}}</option>
-                        </select></div>
+            </div>
+            <!--<div class="row " >
+                <div class="col-md-6">  <label>createdBy</label>
+                    <select class="form-control" [(ngModel)]="modelLettreReponse.createdByVo.username" >
+                        <option *ngFor="let p of createdBys" [ngValue]="p.username" value="{{p.username}}">{{p.username}}</option>
+                    </select></div>
 
-                    <div class="col-md-6">   <label>updatedBy</label>
-                        <select class="form-control" [(ngModel)]="modelLettreReponse.updatedByVo.username" >
-                            <option *ngFor="let p of updatedBys" [ngValue]="p.username" value="{{p.username}}">{{p.username}}</option>
-                        </select></div>
+                <div class="col-md-6">   <label>updatedBy</label>
+                    <select class="form-control" [(ngModel)]="modelLettreReponse.updatedByVo.username" >
+                        <option *ngFor="let p of updatedBys" [ngValue]="p.username" value="{{p.username}}">{{p.username}}</option>
+                    </select></div>
 
-                </div>-->
-<!--        <div class="row ">-->
-<!--            <div class="col-md-6"><label>createdBy</label>-->
-<!--                <select [(ngModel)]="modelLettreReponse.createdByVo.username" class="form-control">-->
-<!--                    <option *ngFor="let p of createdBys" [ngValue]="p.username"-->
-<!--                            value="{{p.username}}">{{p.username}}</option>-->
-<!--                </select></div>-->
-<!--            <div class="col-md-6"><label>updatedBy</label>-->
-<!--                <select [(ngModel)]="modelLettreReponse.updatedByVo.username" class="form-control">-->
-<!--                    <option *ngFor="let p of updatedBys" [ngValue]="p.username"-->
-<!--                            value="{{p.username}}">{{p.username}}</option>-->
-<!--                </select></div>-->
-<!--        </div>-->
-<!--        <br>-->
+            </div>-->
+            <!--        <div class="row ">-->
+            <!--            <div class="col-md-6"><label>createdBy</label>-->
+            <!--                <select [(ngModel)]="modelLettreReponse.createdByVo.username" class="form-control">-->
+            <!--                    <option *ngFor="let p of createdBys" [ngValue]="p.username"-->
+            <!--                            value="{{p.username}}">{{p.username}}</option>-->
+            <!--                </select></div>-->
+            <!--            <div class="col-md-6"><label>updatedBy</label>-->
+            <!--                <select [(ngModel)]="modelLettreReponse.updatedByVo.username" class="form-control">-->
+            <!--                    <option *ngFor="let p of updatedBys" [ngValue]="p.username"-->
+            <!--                            value="{{p.username}}">{{p.username}}</option>-->
+            <!--                </select></div>-->
+            <!--        </div>-->
+            <!--        <br>-->
         </div>
-    <br>
+        <br>
         <div style="text-align: center">
             <button (click)="editModelLettreReponse()" class="btn btn-outline-info" style="width: 60%">Edit</button>
         </div>
-</div>
+    </div>
 </div>

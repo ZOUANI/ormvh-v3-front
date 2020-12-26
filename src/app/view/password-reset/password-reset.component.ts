@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from '../../controller/service/User.service';
 import Swal from "sweetalert2";
-import {match} from 'minimatch';
 
 @Component({
     selector: 'app-password-reset',

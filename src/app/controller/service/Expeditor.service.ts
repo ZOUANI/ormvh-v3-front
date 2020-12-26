@@ -4,11 +4,8 @@ import {ExpeditorVo} from '../model/expeditor.model';
 import {UserVo} from '../model/User.model';
 import {SexeVo} from '../model/Sexe.model';
 import {NationalityVo} from '../model/Nationality.model';
-import {Observable} from 'rxjs';
 import {SelectItem} from "primeng";
-import {NatureCourrierEditComponent} from "../../view/natureCourrier/edit/natureCourrier-edit.component";
 import {NatureClientVo} from "../model/NatureClient.model";
-import {PhaseAdminVo} from "../model/PhaseAdmin.model";
 import {ExpeditorTypeVo} from "../model/ExpeditorType.model";
 
 @Injectable({
@@ -34,7 +31,7 @@ export class ExpeditorService {
     private _createdBys: Array<UserVo> = new Array<UserVo>();
     private _updatedBys: Array<UserVo> = new Array<UserVo>();
 
-   // private _natureClients: Array<NatureClientVo> = new Array<NatureClientVo>();
+    // private _natureClients: Array<NatureClientVo> = new Array<NatureClientVo>();
 
     private _natureClients: SelectItem[];
     private _expeditors: SelectItem[];
@@ -263,7 +260,6 @@ export class ExpeditorService {
             }
         );
     }
-
 
 
     public findAllcreatedBys() {

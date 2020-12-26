@@ -4,7 +4,6 @@ import {Router} from '@angular/router';
 import {JwtHelperService} from '@auth0/angular-jwt';
 import {UserVo} from '../../model/User.model';
 import {UserAuth} from '../../model/user-auth.model';
-import {RoleVo} from "../../model/Role.model";
 
 
 @Injectable({
@@ -74,12 +73,12 @@ export class AuthenticationService {
 
 
     public hasRole(role): boolean {
-      for (let r of this._authenticatedUser.rolesVo) {
-        if (r == role) {
-          return true;
+        for (let r of this._authenticatedUser.rolesVo) {
+            if (r == role) {
+                return true;
+            }
         }
-      }
-      return false;
+        return false;
     }
 
 
