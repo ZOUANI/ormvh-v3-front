@@ -141,6 +141,7 @@ import {DatePipe} from '@angular/common';
 import {PasswordResetComponent} from './view/password-reset/password-reset.component';
 import {CourrierEmailComponent} from './view/courrier/email/courrier-email.component';
 import {FileUploadModule, MessageService, ProgressBarModule, ToastModule} from 'primeng';
+import { ToastrModule } from 'ngx-toastr';
 
 export function httpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http);
@@ -290,6 +291,7 @@ export function httpLoaderFactory(http: HttpClient) {
         TableModule,
         ProgressBarModule,
         ToastModule,
+        ToastrModule.forRoot(),
         FileUploadModule
     ],
     providers: [

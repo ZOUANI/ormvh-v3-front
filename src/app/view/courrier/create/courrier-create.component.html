@@ -1,3 +1,4 @@
+
 <p-dialog styleClass="addCourrierDialog" header="{{message}}" position="center" (onShow)="showDialog()"
           [(visible)]="addNewCourrier" [style]="{width: '70%'}" [maximizable]="true"  >
 
@@ -135,7 +136,6 @@
                         </div>
 
                     </div>
-
 
                     <div class="form-row">
 
@@ -1036,10 +1036,10 @@
             <label>Description</label>
             <input [(ngModel)]="expeditor.description" class="form-control" type="text">
         </div>
-        <div class="row py-2">
+        <div class="row">
             <label>Nature</label>
             <p-dropdown id="type-expeditor" [options]="expeditorTypes" [(ngModel)]="expeditor.expeditorTypeVo"
-                        styleClass="form-control"
+                        class="form-control"
                         [filter]="true" placeholder="-----------------">
             </p-dropdown>
         </div>

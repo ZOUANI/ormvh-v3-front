@@ -48,7 +48,7 @@ import {AuthenticationService} from '../../../controller/service/auth/authentica
 export class CourrierCreateComponent implements OnInit {
 
     uploadForm: FormGroup;
-    uploadedFiles: any[] = [];
+
     voies: VoieVo[];
     natureCourriersSortie: NatureCourrierVo[];
     natureCourriersArrivee: NatureCourrierVo[];
@@ -105,9 +105,12 @@ export class CourrierCreateComponent implements OnInit {
         for (const file of event.files) {
             this.uploadedFiles.push(file);
         }
-        console.log(this.uploadedFiles);
-        this.courrierService.upload(this.uploadedFiles);
+        this.courrierService.upload( this.uploadedFiles);
+        this.courrierService.uploadedFiles = [] ;
     }
+
+    get uploadedFiles() {
+        return this.courrierService.uploadedFiles;}
 
     get coordinateur(): boolean {
         return this.courrierService.coordinateur;
@@ -382,6 +385,7 @@ export class CourrierCreateComponent implements OnInit {
         } else {
             this.courrierService.editCourrier();
         }
+        this.courrierService.uploadedFiles = [] ;
     }
 
     findAllcourrierObjects() {
@@ -394,14 +398,14 @@ export class CourrierCreateComponent implements OnInit {
 
     findAllServices() {
         this.leServiceService.findAllServices().subscribe(data => {
-            this.leServices = [{label: 'none', value: null}];
+            this.leServices = [{label: '---------------', value: null}];
             if (data != null) {
                 for (const item of data) {
                     this.leServices.push({label: item.title, value: item});
                 }
             }
         }, error => {
-            this.leServices = [{label: 'none', value: null}];
+            this.leServices = [{label: '---------------', value: null}];
         });
     }
     findAllLinkedTos() {
@@ -417,7 +421,7 @@ export class CourrierCreateComponent implements OnInit {
                 }
             }
         }, error => {
-            this.linkedTos = [{label: 'none', value: null}];
+            this.linkedTos = [{label: '---------------', value: null}];
         });
     }
 
@@ -433,7 +437,7 @@ export class CourrierCreateComponent implements OnInit {
                 }
             }
         }, error => {
-            this.changedServicess = [{label: 'none', value: null}];
+            this.changedServicess = [{label: '---------------', value: null}];
             console.log(error);
         });
     }
@@ -476,7 +480,7 @@ export class CourrierCreateComponent implements OnInit {
                 }
             }
         }, error => {
-            this.evaluations = [{label: 'none', value: null}];
+            this.evaluations = [{label: '---------------', value: null}];
         });
     }
 
@@ -489,7 +493,7 @@ export class CourrierCreateComponent implements OnInit {
                 }
             }
         }, error => {
-            this.expeditorTypes = [{label: 'none', value: null}];
+            this.expeditorTypes = [{label: '---------------', value: null}];
         });
     }
 
@@ -502,7 +506,7 @@ export class CourrierCreateComponent implements OnInit {
                 }
             }
         }, error => {
-            this.subdivisions = [{label: 'none', value: null}];
+            this.subdivisions = [{label: '---------------', value: null}];
         });
     }
 
