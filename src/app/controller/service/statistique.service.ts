@@ -26,6 +26,9 @@ export class StatistiqueService {
     courrierByNatureClient() {
         return this.http.post('http://localhost:8080/generated/statistique/countCourrierByNatureClient', this.statistiqueVo);
     }
+    countCourrierByNatureClientTrimestre() {
+        return this.http.post('http://localhost:8080/generated/statistique/countCourrierByNatureClientTrimestre', this.statistiqueVo);
+    }
 
     courrierByService() {
         console.log(this.statistiqueVo)
