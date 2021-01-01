@@ -3,5 +3,6 @@ export class StatistiqueVo {
     groupe: string;
     dateMin: string;
     dateMax: string;
+    trimestre: number;
 
 }

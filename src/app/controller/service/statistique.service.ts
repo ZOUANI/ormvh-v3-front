@@ -26,6 +26,9 @@ export class StatistiqueService {
     courrierByNatureClient() {
         return this.http.post('http://localhost:8080/generated/statistique/countCourrierByNatureClient', this.statistiqueVo);
     }
+    countCourrierByNatureClientTrimestre() {
+        return this.http.post('http://localhost:8080/generated/statistique/countCourrierByNatureClientTrimestre', this.statistiqueVo);
+    }
 
     courrierByService() {
         console.log(this.statistiqueVo)
@@ -118,6 +121,16 @@ export class StatistiqueService {
 
     courrierByRejeteNonConformeSansReponceByNatureClient() {
         return this.http.post('http://localhost:8080/generated/statistique/countCourrierRejeteNonConformeSansReponceByNatureClient', this.statistiqueVo);
+    }
+    courrierByPhaseAdmin() {
+        return this.http.post('http://localhost:8080/generated/statistique/countCourrierByPhaseAdministrative', this.statistiqueVo);
+    }
+    courrierByExpeditorNationality() {
+        return this.http.post('http://localhost:8080/generated/statistique/countCourrierByExpeditorNationality', this.statistiqueVo);
+    }
+
+    courrierByDestinatorNationality() {
+        return this.http.post('http://localhost:8080/generated/statistique/countCourrierByDestinatorNationality', this.statistiqueVo);
     }
 
 }

@@ -97,7 +97,7 @@ export class DashboardComponent implements OnInit {
         Swal.fire({
             title: 'Chargement des statistiques',
             html: '',
-            timer: 1500,
+            timer: 1000,
             timerProgressBar: true,
             onBeforeOpen: () => {
                 Swal.showLoading();
