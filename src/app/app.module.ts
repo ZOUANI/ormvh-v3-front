@@ -120,7 +120,7 @@ import {DropdownModule} from 'primeng/dropdown';
 import {OverlayPanelModule} from 'primeng/overlaypanel';
 
 
-import {CreateExpeditorComponent} from "./view/courrier/createExpeditor/createExpeditor.component";
+import {CreateExpeditorComponent} from './view/courrier/createExpeditor/createExpeditor.component';
 import {MenuModule} from 'primeng/menu';
 import {CourrierReservationComponent} from './view/courrier/reservation/courrier-reservation.component';
 import {ChartModule} from 'primeng/chart';
@@ -140,8 +140,9 @@ import {TableModule} from 'primeng/table';
 import {DatePipe} from '@angular/common';
 import {PasswordResetComponent} from './view/password-reset/password-reset.component';
 import {CourrierEmailComponent} from './view/courrier/email/courrier-email.component';
-import {FileUploadModule, MessageService, ProgressBarModule, ToastModule} from 'primeng';
+import {FileUploadModule, MessageService, ProgressBarModule, TabMenuModule, ToastModule} from 'primeng';
 import { ToastrModule } from 'ngx-toastr';
+import {StatistiquesComponent} from './view/statistiques/statistiques.component';
 
 export function httpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http);
@@ -264,7 +265,8 @@ export function httpLoaderFactory(http: HttpClient) {
         LinkedCourriersComponent,
         CourrierRedirectionComponent,
         CourrierEmailComponent,
-        PasswordResetComponent
+        PasswordResetComponent,
+        StatistiquesComponent
     ],
     imports: [
         FormsModule,
@@ -292,7 +294,8 @@ export function httpLoaderFactory(http: HttpClient) {
         ProgressBarModule,
         ToastModule,
         ToastrModule.forRoot(),
-        FileUploadModule
+        FileUploadModule,
+        TabMenuModule
     ],
     providers: [
         {
