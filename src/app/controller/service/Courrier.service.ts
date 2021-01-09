@@ -97,20 +97,20 @@ export class CourrierService {
 
     private _courrierPieceJoint: Array<CourrierPieceJoint>;
 
-    private _coordinateur: boolean;
+
 
 
 
     constructor(private http: HttpClient, private expeditorService: ExpeditorService ,
                 private authService: AuthenticationService, private toastr: ToastrService) {
     }
-    findAllLinkedTo(): Observable<Array<CourrierVo>>{
+    findAllLinkedTo(): Observable<Array<CourrierVo>> {
         return this.http.get<Array<CourrierVo>>('http://localhost:8080/generated/courrier/');
     }
-    get uploadedFiles(){
+    get uploadedFiles() {
         return this._uploadedFiles;
     }
-    set uploadedFiles(value){
+    set uploadedFiles(value) {
         this._uploadedFiles = value;
     }
     upload(files: Array<File>) {
@@ -141,23 +141,23 @@ export class CourrierService {
         }
     }
 
-    chekIfCoordinateur() {
-        if (this.courrier == null || this.courrier.courrierServiceItemsVo == null
+    chekIfCoordinateur(courrierVo: CourrierVo) {
+        console.log('koko ana chekIfCoordinateur');
+        if (courrierVo == null || courrierVo.courrierServiceItemsVo == null
             || this.authService.authenticatedUser == null || this.authService.authenticatedUser.username == null) {
-            this._coordinateur = false;
-            return this._coordinateur;
+            courrierVo.coordinator = false;
+            return ;
         }
 
         const authenticatedUserUsername = this.authService.authenticatedUser.username;
-        for ( const item of this.courrier.courrierServiceItemsVo) {
+        for ( const item of courrierVo.courrierServiceItemsVo) {
             if ( item.coordinateur != null && item.coordinateur && item.serviceVo != null
                 && item.serviceVo.chefVo != null && item.serviceVo.chefVo.username === authenticatedUserUsername) {
-                this._coordinateur = true;
-                return this._coordinateur;
+                courrierVo.coordinator = true;
+                return ;
             }
         }
-        this._coordinateur = false;
-        return this._coordinateur;
+        courrierVo.coordinator = false;
     }
     get courrierPieceJoint(): Array<CourrierPieceJoint> {
         if (this._courrierPieceJoint == null) {
@@ -541,7 +541,7 @@ export class CourrierService {
         if (this.courrier.tasksVo == null) {
             this.courrier.tasksVo = new Array<TaskVo>();
         }
-
+        this.chekIfCoordinateur(courrier) ;
         //  this.findServiceCourrier(this.courrier);
         this.onEdit = true;
         this.onDetail = false;
@@ -1259,8 +1259,5 @@ export class CourrierService {
     }
 
 
-    get coordinateur(): boolean {
-        return this._coordinateur;
-    }
 
 }

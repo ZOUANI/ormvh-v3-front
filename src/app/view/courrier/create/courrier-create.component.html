@@ -611,7 +611,7 @@
                             <button (click)="saveCourrierUsingEtat('bureau')" *ngIf="(roleChefService() && isCourrierSucceptibleChef()) ||roleAdmin() ||roleAgentBo()" class="form-control btn btn-outline-dark">Sauvgarder et Envoyer </button>
                         </div>
                         <div class="form-group col-md-4">
-                            <button (click)="saveCourrierUsingEtat('directeur')" *ngIf="(roleChefService() && isCourrierSucceptibleChef()) ||roleAdmin() ||roleAgentBo()" class="form-control btn btn-outline-danger">Retourner </button>
+                            <button (click)="saveCourrierUsingEtat('directeur')" *ngIf="(chekIfCoordinateur() && isCourrierSucceptibleChef()) ||roleAdmin() " class="form-control btn btn-outline-danger">Retourner koko </button>
                         </div>
                     </div>
 
@@ -884,10 +884,10 @@
                             <button (click)="saveCourrier()" *ngIf="(roleDirecteur() && isCourrierSucceptibleDirecteur()) ||roleAdmin() ||roleAgentBo()"  [disabled]="roleAgentBo()" class="form-control btn btn-outline-info">Sauvgarder</button>
                         </div>
                         <div class="form-group col-md-4">
-                            <button (click)="saveCourrierUsingEtat('chef')" *ngIf="(roleDirecteur() && isCourrierSucceptibleDirecteur()) ||roleAdmin() ||roleAgentBo()" [disabled]="roleAgentBo()"  class="form-control btn btn-outline-dark">Sauvgarder et Envoyer</button>
+                            <button (click)="saveCourrierUsingEtat('chef')" *ngIf="(roleDirecteur() && isCourrierSucceptibleDirecteur()) ||roleAdmin() ||roleAgentBo()" [disabled]="roleAgentBo()"  class="form-control btn btn-outline-dark">Sauvgarder et Envoyer </button>
                         </div>
                         <div class="form-group col-md-4">
-                            <button (click)="saveCourrierUsingEtat('init')" *ngIf="(roleDirecteur() && isCourrierSucceptibleDirecteur()) ||roleAdmin() ||roleAgentBo()" [disabled]="roleAgentBo()"  class="form-control btn btn-outline-danger">Retourner</button>
+                            <button (click)="saveCourrierUsingEtat('init')" *ngIf="(roleDirecteur() && isCourrierSucceptibleDirecteur()) ||roleAdmin() || chekIfCoordinateur()" [disabled]="roleAgentBo()"  class="form-control btn btn-outline-danger">Retourner lolo</button>
                         </div>
                     </div>
 

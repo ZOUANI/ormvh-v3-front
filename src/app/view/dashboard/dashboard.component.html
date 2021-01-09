@@ -1,11 +1,11 @@
 <div class="container-fluid">
-    <div class="card-header text-center font-weight-bold"
-         style="background-color: white;font-size: 2em;text-align: center">{{"DASHBOARD.TABLEAU_DE_BOARD" | translate}}
-    </div>
-    <br>
+<!--    <div class="card-header text-center font-weight-bold"-->
+<!--         style="background-color: white;font-size: 2em;text-align: center">{{"DASHBOARD.TABLEAU_DE_BOARD" | translate}}-->
+<!--    </div>-->
+<!--    <br>-->
     <div class="row">
         <div class="col">
-            <div class="p-grid ui-fluid mb-4">
+            <div class="p-grid ui-fluid mb-1">
                 <label class="font-weight-bold" for="rangeDates">{{"DASHBOARD.DATE_INTERVALLE" | translate}}</label>
                 <p-calendar [(ngModel)]="rangeDates" [readonlyInput]="true"
                             id="rangeDates"
@@ -15,22 +15,17 @@
         </div>
         <div class="col">
             <div class="form-group col">
-                <label class="font-weight-bold" for="coordinator">{{"MAILING.COORDINATOR" | translate}}</label>
-                <p-dropdown id="coordinator" styleClass="form-control" selectId="coordinator" [options]="leServices"
-                            [(ngModel)]="leServiceTitle" [filter]="true" dataKey="id">
-                </p-dropdown>
+                <br/>
+                <button style="position: center" (click)="filterCourriers()" [disabled]="!rangeDates "
+                        class="ui-button-icon-primary"
+                        icon="pi pi-search" pButton type="button"></button>
+                <button style="position: center" (click)="reset()" [disabled]="!rangeDates "
+                        class="ui-button-icon-primary"
+                        style="margin-left: 1em"
+                        icon="pi pi-replay" pButton type="button">
+                </button>
             </div>
         </div>
-    </div>
-    <div class="row" style="margin-left: 48%">
-        <button style="position: center" (click)="filterCourriers()" [disabled]="!rangeDates "
-                class="ui-button-icon-primary"
-                icon="pi pi-search" pButton type="button"></button>
-        <button style="position: center" (click)="reset()" [disabled]="!rangeDates "
-                class="ui-button-icon-primary"
-                style="margin-left: 1em"
-                icon="pi pi-replay" pButton type="button">
-        </button>
     </div>
     <br>
     <div class="p-grid ui-fluid mb-4">

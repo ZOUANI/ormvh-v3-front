@@ -79,5 +79,6 @@ export class CourrierVo {
     public phaseAdminVo: PhaseAdminVo;
     public typeRequetteVo: TypeRequetteVo;
     public formData: FormData;
+    public coordinator: boolean;
 
 }

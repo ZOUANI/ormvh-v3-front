@@ -38,6 +38,7 @@ export class CourrierlistComponent implements OnInit {
 
     edit(courrier: CourrierVo) {
         this.courrierService.edit(courrier);
+        console.log('haaa courier.coordinator ' + courrier.coordinator);
     }
 
     detail(courrier: CourrierVo) {
