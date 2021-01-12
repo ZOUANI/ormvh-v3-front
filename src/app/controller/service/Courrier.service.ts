@@ -1258,6 +1258,26 @@ export class CourrierService {
         });
     }
 
+    public findPieceJointsParCourrierId(id: number) {
+        this.http.get<Array<CourrierPieceJoint>>('http://localhost:8080/generated/courrier/searchbyCourrierid/' + id).subscribe(
+            value => {
+                if (value != null) {
+                    this._courrier.courrierPieceJoint = [];
+                    value.forEach(value1 => {
+                        value1.absoluteChemin = 'data:image/jpg;base64,' + value1.contenu;
+                        this._courrier.courrierPieceJoint.push(value1);
+                    });
+                }
+            });
+    }
 
-
+    public deletePieceJointById(id: number) {
+        this.http.delete('http://localhost:8080/generated/courrier/piecejointid/' + id).subscribe();
+        this._courrier.courrierPieceJoint.forEach(piece => {
+            if (piece.id === id) {
+                const index = this._courrier.courrierPieceJoint.indexOf(piece);
+                this._courrier.courrierPieceJoint.splice(index, 1);
+            }
+        } );
+    }
 }

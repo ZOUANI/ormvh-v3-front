@@ -109,6 +109,14 @@ export class CourrierCreateComponent implements OnInit {
         this.courrierService.uploadedFiles = [] ;
     }
 
+    get courrierPiecesJoints(): Array<CourrierPieceJoint> {
+        return this.courrierService.courrierPieceJoint;
+    }
+
+    deletePieceJointById(id: number) {
+        this.courrierService.deletePieceJointById(id);
+    }
+
     get uploadedFiles() {
         return this.courrierService.uploadedFiles; }
 
@@ -251,6 +259,10 @@ export class CourrierCreateComponent implements OnInit {
 
 
     }
+
+    public pieceJointsParCourrierId(id: number) {
+        this.courrierService.findPieceJointsParCourrierId(id);
+  }
 
     ngOnInit(): void {
         this.findAllcourrierObjects();
