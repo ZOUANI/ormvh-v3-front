@@ -15,6 +15,8 @@ import {EtatCourrierVo} from './EtatCourrier.model';
 import {NatureClientVo} from './NatureClient.model';
 import {PhaseAdminVo} from './PhaseAdmin.model';
 import {TypeRequetteVo} from './TypeRequette.model';
+import {CourrierPieceJointTraite} from "./courrier-piece-joint-traite.model";
+import {CourrierPieceJointReponse} from "./courrier-piece-joint-reponse.model";
 
 export class CourrierVo {
     public sujet: string;
@@ -73,6 +75,8 @@ export class CourrierVo {
     public tasksVo: Array<TaskVo> = new Array<TaskVo>();
     public courrierServiceItemsVo: Array<CourrierServiceItemVo> = new Array<CourrierServiceItemVo>();
     public courrierPieceJoint: Array<CourrierPieceJoint> = new Array<CourrierPieceJoint>();
+    public courrierPieceJointTraite: Array<CourrierPieceJointTraite> = new Array<CourrierPieceJointTraite>();
+    public courrierPieceJointReponse: Array<CourrierPieceJointReponse> = new Array<CourrierPieceJointReponse>();
     public type: string;
 
     public natureClientVo: NatureClientVo;
