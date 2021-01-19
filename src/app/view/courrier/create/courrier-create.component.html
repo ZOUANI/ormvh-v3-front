@@ -749,11 +749,11 @@
                     </div>
                 </div>-->
                 <div class="tab-pane fade pb-0" id="pills-pieceJoint" role="tabpanel" aria-labelledby="pills-contact-tab">
-                    <label>chemin : </label>
+                    <label>chemin lolo : </label>
                     <p-fileUpload name="myfile[]" customUpload="true" [disabled]="!(roleChefService() || roleAgentBo() || roleAdmin())" (uploadHandler)="onUpload($event)" multiple="multiple">
                         <ng-template pTemplate="content">
                             <ul *ngIf="uploadedFiles.length">
-                                <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+                                <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytates</li>
                             </ul>
                         </ng-template>
                     </p-fileUpload>
