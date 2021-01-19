@@ -1,6 +1,4 @@
-import {CourrierVo} from './Courrier.model';
-
-export class CourrierPieceJoint {
+export class CourrierPieceJointReponse {
     public id: number;
     public chemin: string;
     public absoluteChemin: string;

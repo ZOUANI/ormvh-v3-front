@@ -33,12 +33,11 @@ export class CourrierService {
     selectedCourrier: CourrierVo;
 
 
-
     addNewCourrier = false;
     showLinkedCourrier = false;
     linkedToThisCourrier: CourrierVo;
     linkedCourrier: Array<CourrierVo> = new Array<CourrierVo>();
-    private  formData: FormData = new FormData();
+    private formData: FormData = new FormData();
 
     private _courrierDetail: CourrierVo = new CourrierVo();
     private _courrierListe: Array<CourrierVo> = new Array<CourrierVo>();
@@ -84,6 +83,8 @@ export class CourrierService {
     private _courrierShowDetail: boolean;
     courrierPiece: any;
     private _uploadedFiles: any[] = [];
+    private _uploadedFilesTraite: any[] = [];
+    private _uploadedFilesReponse: any[] = [];
 
     isADMIN: boolean;
     isCHARGE_DE_TRAITEMENT_COURRIER: boolean;
@@ -98,21 +99,38 @@ export class CourrierService {
     private _courrierPieceJoint: Array<CourrierPieceJoint>;
 
 
-
-
-
-    constructor(private http: HttpClient, private expeditorService: ExpeditorService ,
+    constructor(private http: HttpClient, private expeditorService: ExpeditorService,
                 private authService: AuthenticationService, private toastr: ToastrService) {
     }
+
     findAllLinkedTo(): Observable<Array<CourrierVo>> {
         return this.http.get<Array<CourrierVo>>('http://localhost:8080/generated/courrier/');
     }
+
     get uploadedFiles() {
         return this._uploadedFiles;
     }
+
     set uploadedFiles(value) {
         this._uploadedFiles = value;
     }
+
+    get uploadedFilesTraite(): any[] {
+        return this._uploadedFilesTraite;
+    }
+
+    set uploadedFilesTraite(value: any[]) {
+        this._uploadedFilesTraite = value;
+    }
+
+    get uploadedFilesReponse(): any[] {
+        return this._uploadedFilesReponse;
+    }
+
+    set uploadedFilesReponse(value: any[]) {
+        this._uploadedFilesReponse = value;
+    }
+
     upload(files: Array<File>) {
         const formData: FormData = new FormData();
         for (const file of files) {
@@ -125,7 +143,7 @@ export class CourrierService {
                             closeButton: true,
                             positionClass: 'toast-top-center'
                         });
-                        this.addNewCourrier = false;
+                        this.findPieceJointsParCourrierId(this._courrier.id);
                     } else {
                         this.toastr.error('Vous devez choisir un courrier ou bien créer un nouveau', 'Courrier non valide!', {
                             timeOut: 4000,
@@ -141,24 +159,81 @@ export class CourrierService {
         }
     }
 
+    uploadTraite(files: Array<File>) {
+        const formData: FormData = new FormData();
+        for (const file of files) {
+            formData.append('files', file);
+            this.http.post('http://localhost:8080/generated/courrier/uploadTraite/' + this._courrier.idCourrier, formData).subscribe(
+                data => {
+                    if (data > 0) {
+                        this.toastr.success(' Les fichiers sont bien enregistré', 'Succés!', {
+                            timeOut: 4000,
+                            closeButton: true,
+                            positionClass: 'toast-top-center'
+                        });
+                        this.findPieceJointsTraiteParCourrierId(this._courrier.id);
+                    } else {
+                        this.toastr.error('Vous devez choisir un courrier ou bien créer un nouveau', 'Courrier non valide!', {
+                            timeOut: 4000,
+                            closeButton: true,
+                            positionClass: 'toast-top-center'
+                        });
+                    }
+
+                }, error => {
+                    console.log(error);
+                }
+            );
+        }
+
+    } uploadReponse(files: Array<File>) {
+        const formData: FormData = new FormData();
+        for (const file of files) {
+            formData.append('files', file);
+            this.http.post('http://localhost:8080/generated/courrier/uploadReponse/' + this._courrier.idCourrier, formData).subscribe(
+                data => {
+                    if (data > 0) {
+                        this.toastr.success(' Les fichiers sont bien enregistré', 'Succés!', {
+                            timeOut: 4000,
+                            closeButton: true,
+                            positionClass: 'toast-top-center'
+                        });
+                        this.findPieceJointsReponseParCourrierId(this._courrier.id);
+                    } else {
+                        this.toastr.error('Vous devez choisir un courrier ou bien créer un nouveau', 'Courrier non valide!', {
+                            timeOut: 4000,
+                            closeButton: true,
+                            positionClass: 'toast-top-center'
+                        });
+                    }
+
+                }, error => {
+                    console.log(error);
+                }
+            );
+        }
+
+    }
+
     chekIfCoordinateur(courrierVo: CourrierVo) {
         console.log('koko ana chekIfCoordinateur');
         if (courrierVo == null || courrierVo.courrierServiceItemsVo == null
             || this.authService.authenticatedUser == null || this.authService.authenticatedUser.username == null) {
             courrierVo.coordinator = false;
-            return ;
+            return;
         }
 
         const authenticatedUserUsername = this.authService.authenticatedUser.username;
-        for ( const item of courrierVo.courrierServiceItemsVo) {
-            if ( item.coordinateur != null && item.coordinateur && item.serviceVo != null
+        for (const item of courrierVo.courrierServiceItemsVo) {
+            if (item.coordinateur != null && item.coordinateur && item.serviceVo != null
                 && item.serviceVo.chefVo != null && item.serviceVo.chefVo.username === authenticatedUserUsername) {
                 courrierVo.coordinator = true;
-                return ;
+                return;
             }
         }
         courrierVo.coordinator = false;
     }
+
     get courrierPieceJoint(): Array<CourrierPieceJoint> {
         if (this._courrierPieceJoint == null) {
             this._courrierPieceJoint = new Array<CourrierPieceJoint>();
@@ -175,6 +250,7 @@ export class CourrierService {
             }
         );
     }
+
     public findAllPhaseAdmins() {
         this.http.get<Array<PhaseAdminVo>>('http://localhost:8080/generated/phaseAdmin/').subscribe(
             value => {
@@ -194,6 +270,7 @@ export class CourrierService {
             }
         );
     }
+
     loadRoles() {
         this.isADMIN = this.authService.hasRole('ADMIN');
         this.isCHARGE_DE_TRAITEMENT_COURRIER = this.authService.hasRole('CHARGE_DE_TRAITEMENT_COURRIER');
@@ -214,9 +291,11 @@ export class CourrierService {
         // console.log(this.courrierPieceJoint);
         // this.courrierPieceJoint.forEach(cour => {
         this.http.get('http://localhost:8080/generated/courrier/downloadFile/' + courrier.id, {
-            responseType : 'arraybuffer'}).subscribe(response => this.downLoad(response, courrier.type));
+            responseType: 'arraybuffer'
+        }).subscribe(response => this.downLoad(response, courrier.type));
         // });
     }
+
     public findAllCourrierJoint(id: number) {
         console.log(id);
         this.http.get<CourrierPieceJoint>('http://localhost:8080/generated/courrier/findAllcourrierPieceJoint/' + id).subscribe(
@@ -230,14 +309,16 @@ export class CourrierService {
             }
         );
     }
+
     downLoad(data: any, type: string) {
-        const blob = new Blob([data], { type});
+        const blob = new Blob([data], {type});
         const url = window.URL.createObjectURL(blob);
         const pwa = window.open(url);
         if (!pwa || pwa.closed || typeof pwa.closed === 'undefined') {
-            alert( 'Please disable your Pop-up blocker and try again.');
+            alert('Please disable your Pop-up blocker and try again.');
         }
     }
+
     get linkedTos(): SelectItem[] {
         return this._linkedTos;
     }
@@ -475,7 +556,6 @@ export class CourrierService {
     }
 
 
-
     get reservationShow(): boolean {
         return this._reservationShow;
     }
@@ -541,7 +621,7 @@ export class CourrierService {
         if (this.courrier.tasksVo == null) {
             this.courrier.tasksVo = new Array<TaskVo>();
         }
-        this.chekIfCoordinateur(courrier) ;
+        this.chekIfCoordinateur(courrier);
         //  this.findServiceCourrier(this.courrier);
         this.onEdit = true;
         this.onDetail = false;
@@ -1063,6 +1143,7 @@ export class CourrierService {
             }
         );
     }
+
     public saveCourrierPieceJoint(form: FormData) {
         this.http.post <number>('http://localhost:8080/generated/courrier/create', form).subscribe(data => {
             if (data != null) {
@@ -1258,6 +1339,72 @@ export class CourrierService {
         });
     }
 
+    public findPieceJointsParCourrierId(id: number) {
+        this.http.get<Array<CourrierPieceJoint>>('http://localhost:8080/generated/courrier/searchbyCourrierid/' + id).subscribe(
+            value => {
+                if (value != null) {
+                    this._courrier.courrierPieceJoint = [];
+                    value.forEach(value1 => {
+                        value1.absoluteChemin = 'data:image/jpg;base64,' + value1.contenu;
+                        this._courrier.courrierPieceJoint.push(value1);
+                    });
+                }
+            });
+    }
+
+    public findPieceJointsTraiteParCourrierId(id: number) {
+        this.http.get<Array<CourrierPieceJoint>>('http://localhost:8080/generated/courrier/searchbyCourrieridTraite/' + id).subscribe(
+            value => {
+                if (value != null) {
+                    this._courrier.courrierPieceJointTraite = [];
+                    value.forEach(value1 => {
+                        value1.absoluteChemin = 'data:image/jpg;base64,' + value1.contenu;
+                        this._courrier.courrierPieceJointTraite.push(value1);
+                    });
+                }
+            });
+    }
+
+    public findPieceJointsReponseParCourrierId(id: number) {
+        this.http.get<Array<CourrierPieceJoint>>('http://localhost:8080/generated/courrier/searchbyCourrieridReponse/' + id).subscribe(
+            value => {
+                if (value != null) {
+                    this._courrier.courrierPieceJointReponse = [];
+                    value.forEach(value1 => {
+                        value1.absoluteChemin = 'data:image/jpg;base64,' + value1.contenu;
+                        this._courrier.courrierPieceJointReponse.push(value1);
+                    });
+                }
+            });
+    }
+
+    public deletePieceJointById(id: number) {
+        this.http.delete('http://localhost:8080/generated/courrier/piecejointid/' + id).subscribe();
+        this._courrier.courrierPieceJoint.forEach(piece => {
+            if (piece.id === id) {
+                const index = this._courrier.courrierPieceJoint.indexOf(piece);
+                this._courrier.courrierPieceJoint.splice(index, 1);
+            }
+        });
+    }
+    public deletePieceJointTraiteById(id: number) {
+        this.http.delete('http://localhost:8080/generated/courrier/piecejointTraiteid/' + id).subscribe();
+        this._courrier.courrierPieceJointTraite.forEach(piece => {
+            if (piece.id === id) {
+                const index = this._courrier.courrierPieceJointTraite.indexOf(piece);
+                this._courrier.courrierPieceJointTraite.splice(index, 1);
+            }
+        });
+    }
+    public deletePieceJointReponseById(id: number) {
+        this.http.delete('http://localhost:8080/generated/courrier/piecejointReponseid/' + id).subscribe();
+        this._courrier.courrierPieceJointReponse.forEach(piece => {
+            if (piece.id === id) {
+                const index = this._courrier.courrierPieceJointReponse.indexOf(piece);
+                this._courrier.courrierPieceJointReponse.splice(index, 1);
+            }
+        });
+    }
 
 
 }

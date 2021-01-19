@@ -32,7 +32,7 @@
                        aria-controls="pills-contact" aria-selected="false">{{"MODELS.TASK" | translate}}</a>
                 </li>
                 <li *ngIf="(roleAdmin()  || roleChargeDeRequete() || roleChefService() || roleAgentCai()) && isCourrierRequette() "  class="nav-item">
-                    <a class="nav-link" id="pills-contact-tab" data-toggle="tab" href="#pills-follow-requests" role="tab"
+                    <a (click)="pieceJointsTraiteParCourrierId(courrier.id)" class="nav-link" id="pills-contact-tab" data-toggle="tab" href="#pills-follow-requests" role="tab"
                        aria-controls="pills-details" aria-selected="false">{{"MODELS.FOLLOW_REQUESTES" | translate}}</a>
                 </li>
                 <!--
@@ -41,11 +41,11 @@
                        aria-controls="pills-details" aria-selected="false">{{"MODELS.DETAILS" | translate}}</a>
                 </li>-->
                 <li  class="nav-item">
-                    <a class="nav-link" id="pills-contact-tab" data-toggle="tab" href="#pills-pieceJoint" role="tab"
+                    <a (click)="pieceJointsParCourrierId(courrier.id)" class="nav-link" id="pills-contact-tab" data-toggle="tab" href="#pills-pieceJoint" role="tab"
                        aria-controls="pills-services" aria-selected="false">Piece joint</a>
                 </li>
                 <li *ngIf="(roleAdmin() || chekIfCoordinateur())  && isDemande()"  class="nav-item">
-                    <a class="nav-link" id="pills-contact-tab" data-toggle="tab" href="#pills-reponse-courrier" role="tab"
+                    <a (click)="pieceJointsReponseParCourrierId(courrier.id)" class="nav-link" id="pills-contact-tab" data-toggle="tab" href="#pills-reponse-courrier" role="tab"
                        aria-controls="pills-services" aria-selected="false">Réponse</a>
                 </li>
                 <li class="nav-item" *ngIf="onDetail ">
@@ -748,16 +748,33 @@
                         </div>
                     </div>
                 </div>-->
-                <div class="tab-pane fade pb-0" id="pills-pieceJoint" role="tabpanel" aria-labelledby="pills-contact-tab">
-                    <label>chemin lolo : </label>
+              <div class="tab-pane fade pb-0" id="pills-pieceJoint" role="tabpanel" aria-labelledby="pills-contact-tab">
+                    <label>chemin : </label>
                     <p-fileUpload name="myfile[]" customUpload="true" [disabled]="!(roleChefService() || roleAgentBo() || roleAdmin())" (uploadHandler)="onUpload($event)" multiple="multiple">
                         <ng-template pTemplate="content">
                             <ul *ngIf="uploadedFiles.length">
-                                <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytates</li>
+                                <li *ngFor="let file of uploadedFiles">{{file.name}} -- {{file.size}}</li>
                             </ul>
                         </ng-template>
                     </p-fileUpload>
-
+                  <div class="card-body">
+                          <table class="table table-hover table-striped">
+                              <thead>
+                              <th>Image</th>
+                              <th>Name</th>
+                              <th>Download</th>
+                              <th>Delete</th>
+                              </thead>
+                              <tbody>
+                              <tr *ngFor="let piece of courrier.courrierPieceJoint">
+                                  <td><img [src]="piece.absoluteChemin" width="75" height="75"></td>
+                                  <td>{{piece.chemin}}</td>
+                                  <td><a class="btn btn-info btn-sm" href="{{piece.absoluteChemin}}" download="{{piece.chemin}}">Download</a></td>
+                                  <td><button class="btn btn-info btn-sm fa fa-trash" (click)="deletePieceJointById(piece.id)"></button></td>
+                              </tr>
+                              </tbody>
+                          </table>
+                  </div>
                 </div>
                 <div class="tab-pane fade pb-0" id="pills-reponse-courrier" role="tabpanel" aria-labelledby="pills-contact-tab">
                     <div class="form-row">
@@ -781,13 +798,31 @@
                     <div class="form-row">
                         <div class="col-md-8"  *ngIf="courrier.reponse">
                             <label>Pièce joint Reponse  : </label>
-                            <p-fileUpload name="myfile[]" customUpload="true" [disabled]="( !roleAdmin() && !chekIfCoordinateur() )" (uploadHandler)="onUpload($event)" multiple="multiple">
+                            <p-fileUpload name="myfile[]" customUpload="true" [disabled]="( !roleAdmin() && !chekIfCoordinateur() )" (uploadHandler)="onUploadReponse($event)" multiple="multiple">
                                 <ng-template pTemplate="content">
-                                    <ul *ngIf="uploadedFiles.length">
-                                        <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+                                    <ul *ngIf="uploadedFilesReponse.length">
+                                        <li *ngFor="let file of uploadedFilesReponse">{{file.name}} -- {{file.size}}</li>
                                     </ul>
                                 </ng-template>
                             </p-fileUpload>
+                            <div class="card-body">
+                                <table class="table table-hover table-striped">
+                                    <thead>
+                                    <th>Image</th>
+                                    <th>Name</th>
+                                    <th>Download</th>
+                                    <th>Delete</th>
+                                    </thead>
+                                    <tbody>
+                                    <tr *ngFor="let piece of courrier.courrierPieceJointReponse">
+                                        <td><img [src]="piece.absoluteChemin" width="75" height="75"></td>
+                                        <td>{{piece.chemin}}</td>
+                                        <td><a class="btn btn-info btn-sm" href="{{piece.absoluteChemin}}" download="{{piece.chemin}}">Download</a></td>
+                                        <td><button class="btn btn-info btn-sm fa fa-trash" (click)="deletePieceJointReponseById(piece.id)"></button></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
 
@@ -947,13 +982,31 @@
                         </div>
                         <div *ngIf="courrier.statusVo!=null && courrier.statusVo.code=='traite'" class="col-md-12">
                             <label>Pièce joint  : </label>
-                            <p-fileUpload name="myfile[]" customUpload="true" [disabled]="onDetail||roleDirecteur()||roleChefService()" (uploadHandler)="onUpload($event)" multiple="multiple">
+                            <p-fileUpload name="myfile[]" customUpload="true" [disabled]="onDetail||roleDirecteur()||roleChefService()" (uploadHandler)="onUploadTraite($event)" multiple="multiple">
                                 <ng-template pTemplate="content">
-                                    <ul *ngIf="uploadedFiles.length">
-                                        <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+                                    <ul *ngIf="uploadedFilesTraite.length">
+                                        <li *ngFor="let file of uploadedFilesTraite">{{file.name}} - {{file.size}} bytes</li>
                                     </ul>
                                 </ng-template>
                             </p-fileUpload>
+                            <div class="card-body">
+                                <table class="table table-hover table-striped">
+                                    <thead>
+                                    <th>Image</th>
+                                    <th>Name</th>
+                                    <th>Download</th>
+                                    <th>Delete</th>
+                                    </thead>
+                                    <tbody>
+                                    <tr *ngFor="let piece of courrier.courrierPieceJointTraite">
+                                        <td><img [src]="piece.absoluteChemin" width="75" height="75"></td>
+                                        <td>{{piece.chemin}}</td>
+                                        <td><a class="btn btn-info btn-sm" href="{{piece.absoluteChemin}}" download="{{piece.chemin}}">Download</a></td>
+                                        <td><button class="btn btn-info btn-sm fa fa-trash" (click)="deletePieceJointTraiteById(piece.id)"></button></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
 
                         <div class="form-row">
